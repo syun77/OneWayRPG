@@ -129,7 +129,7 @@ class InventorySubState extends FlxUISubState {
             var key = fuib.params[0];
             _cbClick(key);
           }
-        case FlxUITypedButton.OVER_EVENT:
+        case FlxUITypedButton.OVER_EVENT, FlxUITypedButton.DOWN_EVENT:
           // マウスが上に乗った
           if(fuib.params != null) {
             var key = fuib.params[0];
