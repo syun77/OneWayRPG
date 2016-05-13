@@ -57,8 +57,11 @@ class BtlCalc {
     // ダメージ量
     var damage = power;
     // 属性ボーナス
-    var resisits = EnemyDB.getResists(target.id);
-    var value = resisits.getValue(prm.attr);
+    var value:Float = 1;
+    if(target != null) {
+      var resisits = EnemyDB.getResists(target.id);
+      value = resisits.getValue(prm.attr);
+    }
     damage = Math.ceil(damage * value);
 
     return damage;

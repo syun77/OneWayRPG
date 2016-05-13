@@ -146,6 +146,10 @@ class ItemUtil {
     var data = BtlLogicFactory.createPlayerLogic(owner, item);
     var player = owner.player;
     var enemy = owner.enemy;
+    if(resists == null) {
+      // 耐性を考慮しない
+      enemy = null;
+    }
     var val = 0;
     switch(data.type) {
       case BtlLogic.Attack(type, prm):
