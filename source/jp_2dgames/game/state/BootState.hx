@@ -11,7 +11,9 @@ class BootState extends FlxState {
   override public function create():Void {
     super.create();
 
+    #if debug
     FlxG.debugger.toggleKeys = ["ALT"];
+    #end
 
     MyDBUtil.load();
 

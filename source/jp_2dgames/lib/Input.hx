@@ -36,6 +36,7 @@ private class InputKey {
     if(_checkKeys(keys)) {
       return true;
     }
+#if desktop
     switch(_mode) {
       case KeyMode.Press:
         if(FlxG.mouse.justPressed) {
@@ -50,6 +51,7 @@ private class InputKey {
           return true;
         }
     }
+#end
     return false;
   }
   function get_B() {
@@ -115,6 +117,8 @@ private class InputKey {
   }
 
   function _checkKeys(keys:Array<FlxKey>):Bool {
+
+#if desktop
     switch(_mode) {
       case KeyMode.Press:
         if(FlxG.keys.anyJustPressed(keys)) {
@@ -129,6 +133,7 @@ private class InputKey {
           return true;
         }
     }
+#end
     return false;
   }
 
@@ -145,10 +150,18 @@ private class InputMouse {
   }
 
   function get_x() {
+#if desktop
     return FlxG.mouse.x;
+#else
+    return 0;
+#end
   }
   function get_y() {
+#if desktop
     return FlxG.mouse.y;
+#else
+    return 0;
+#end
   }
 }
 

@@ -211,6 +211,7 @@ class PlayState extends FlxUIState {
    **/
   function _updateDebug():Void {
 
+#if debug
     if(FlxG.keys.justPressed.ESCAPE) {
       // 強制終了
       throw "Terminate.";
@@ -220,6 +221,6 @@ class PlayState extends FlxUIState {
 //      FlxG.resetState();
       FlxG.switchState(new PlayInitState());
     }
+#end
   }
-
 }
