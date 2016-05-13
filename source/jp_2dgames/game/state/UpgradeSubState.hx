@@ -175,7 +175,7 @@ class UpgradeSubState extends FlxUISubState {
   function _upgradeDex():Void {
     var player = ActorMgr.getPlayer();
     // 食糧を減らす
-    var cost = UpgradeDB.getHpMax(player.dex);
+    var cost = UpgradeDB.getDex(player.dex);
     player.subFood(cost);
     player.addDex(1);
     // 項目更新
@@ -190,7 +190,7 @@ class UpgradeSubState extends FlxUISubState {
   function _upgradeAgi():Void {
     var player = ActorMgr.getPlayer();
     // 食糧を減らす
-    var cost = UpgradeDB.getHpMax(player.agi);
+    var cost = UpgradeDB.getAgi(player.agi);
     player.subFood(cost);
     player.addAgi(1);
     // 項目更新
