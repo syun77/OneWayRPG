@@ -41,6 +41,10 @@ class BtlLogicFactory {
       case ItemCategory.Portion:
         // 回復
         var hp = ItemUtil.getHp(item);
+        if(item.now == 1) {
+          // 最後の1回
+          hp *= 3;
+        }
         var prm = new BtlLogicRecoverParam(hp);
         return BtlLogic.Recover(prm);
 
