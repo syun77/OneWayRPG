@@ -92,9 +92,9 @@ class BtlLogicPlayer {
     }
     else {
       // 外れ
-      damage = BtlCalc.VAL_AVOID;
+      damage = BtlCalc.VAL_EVADE;
       // 回避回数増加
-      _data.actor.btlPrms.cntAttackAvoid++;
+      _data.actor.btlPrms.cntAttackEvade++;
     }
     // ダメージ処理
     _data.target.damage(damage);
@@ -117,9 +117,9 @@ class BtlLogicPlayer {
     if(_data.count == 0) {
       // 攻撃終了
       // 命中回数を記録
-      _data.actor.btlPrms.cntAttackAvoid = 0;
+      _data.actor.btlPrms.cntAttackEvade = 0;
       if(_cntHit == 0) {
-        _data.actor.btlPrms.cntAttackAvoid = 1;
+        _data.actor.btlPrms.cntAttackEvade = 1;
       }
     }
     }

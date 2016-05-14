@@ -1,11 +1,11 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.global.ItemLottery;
+import flixel.addons.ui.FlxUIButton;
 import flixel.util.FlxColor;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.gui.BattleUI;
 import jp_2dgames.game.item.ItemUtil;
-import jp_2dgames.game.particle.Particle;
-import jp_2dgames.game.particle.ParticleNumber;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.game.dat.EnemyDB;
@@ -23,10 +23,10 @@ import flixel.addons.ui.interfaces.IFlxUIWidget;
 import flixel.addons.ui.FlxUISubState;
 
 enum InventoryMode {
-  Battle;   // バトル
-  ItemDrop; // アイテム捨てる
+  Battle;         // バトル
+  ItemDrop;       // アイテム捨てる
   ItemDropAndGet; // アイテムを捨てて拾う
-  ShopBuy; // ショップでアイテム購入
+  ShopBuy;        // ショップでアイテム購入
 }
 
 /**
@@ -35,12 +35,15 @@ enum InventoryMode {
 class InventorySubState extends FlxUISubState {
 
   // ----------------------------------------
+  // ■定数
+  public static var BTN_IGNORE = "ignore"; // "あきらめる" を選んだ
+
+
+  // ----------------------------------------
   // ■フィールド
   var _mode:InventoryMode;
   var _owner:SeqMgr;
 
-  var _btnCancel:FlxUIButton;
-  var _btnIgnore:FlxUIButton;
   var _btnItems:Map<String, FlxUIButton>;
   var _txtDetail:FlxUIText;
 
@@ -71,10 +74,6 @@ class InventorySubState extends FlxUISubState {
     var idx:Int = 0;
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
-        case "cancel":
-          _btnCancel = cast widget;
-        case "ignore":
-          _btnIgnore = cast widget;
         case "txtdetail":
           _txtDetail = cast widget;
         default:
@@ -150,7 +149,6 @@ class InventorySubState extends FlxUISubState {
 
     // 選択したアイテムを格納
     _owner.setButtonClick(name);
-    _owner.trySetClickButtonToSelectedItem();
 
     var idx = Std.parseInt(name);
     if(idx != null) {
@@ -169,9 +167,16 @@ class InventorySubState extends FlxUISubState {
           _owner.startWait();
         case InventoryMode.ItemDropAndGet:
           // 捨てて拾う
+          if(idx >= ItemList.getLength()) {
+            // あきらめる
+            _owner.setButtonClick(BTN_IGNORE);
+          }
         case InventoryMode.ShopBuy:
           // ショップ購入
       }
+
+      // 設定したボタン番号をアイテム情報に変換
+      _owner.trySetClickButtonToSelectedItem();
     }
 
     // 何か押したら閉じる
@@ -204,6 +209,10 @@ class InventorySubState extends FlxUISubState {
    * アイテムデータの取得
    **/
   function _getItemFromIdx(idx:Int):ItemData {
+    if(idx >= ItemList.getLength()) {
+      // 入手したアイテム
+      return ItemLottery.getLastLottery();
+    }
     return ItemList.getFromIdx(idx);
   }
 
@@ -228,31 +237,47 @@ class InventorySubState extends FlxUISubState {
         continue;
       }
       // 表示する
-      btn.visible = true;
-      var name = _getItemLabel(item);
-      btn.label.text = name;
-      // 属性アイコンを設定
-      var attr = ItemUtil.getAttribute(item);
-      var icon = AttributeUtil.getIconPath(attr);
-      btn.removeIcon();
-      if(icon != "") {
-        var spr = new FlxSprite(0, 0, icon);
-        btn.addIcon(spr, -8, -6, false);
-      }
+      _setButtonInfo(btn, item, _isItemLockFromIdx(i));
+    }
 
-      // ロックするかどうか
-      if(_isItemLockFromIdx(i)) {
-        // ロックする
-        btn.skipButtonUpdate = true;
-        btn.color = FlxColor.GRAY;
-        btn.label.color = FlxColor.GRAY;
-      }
-      else {
-        // ロックしない
-        btn.skipButtonUpdate = false;
-        btn.color = FlxColor.WHITE;
-        btn.label.color = FlxColor.WHITE;
-      }
+    // 入手したアイテム
+    var btn:FlxUIButton = _btnItems['item6'];
+    btn.visible = false;
+    if(_mode == InventoryMode.ItemDropAndGet) {
+      // 表示する
+      var item = ItemLottery.getLastLottery();
+      _setButtonInfo(btn, item, false);
+    }
+  }
+
+  /**
+   * ボタン情報を設定
+   **/
+  function _setButtonInfo(btn:FlxUIButton, item:ItemData, bLock:Bool):Void {
+    btn.visible = true;
+    var name = _getItemLabel(item);
+    btn.label.text = name;
+    // 属性アイコンを設定
+    var attr = ItemUtil.getAttribute(item);
+    var icon = AttributeUtil.getIconPath(attr);
+    btn.removeIcon();
+    if(icon != "") {
+      var spr = new FlxSprite(0, 0, icon);
+      btn.addIcon(spr, -8, -6, false);
+    }
+
+    // ロックするかどうか
+    if(bLock) {
+      // ロックする
+      btn.skipButtonUpdate = true;
+      btn.color = FlxColor.GRAY;
+      btn.label.color = FlxColor.GRAY;
+    }
+    else {
+      // ロックしない
+      btn.skipButtonUpdate = false;
+      btn.color = FlxColor.WHITE;
+      btn.label.color = FlxColor.WHITE;
     }
   }
 

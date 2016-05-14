@@ -5,7 +5,7 @@ package jp_2dgames.game.actor;
  **/
 class BtlParams {
 
-  public var cntAttackAvoid:Int = 0; // 攻撃を回避された回数
+  public var cntAttackEvade:Int = 0; // 攻撃を回避された回数
 
   /**
    * コンストラクタ

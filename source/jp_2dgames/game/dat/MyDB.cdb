@@ -579,6 +579,10 @@
 					"display": null
 				},
 				{
+					"typeStr": "1",
+					"name": "detail_last"
+				},
+				{
 					"typeStr": "3",
 					"name": "buy",
 					"display": null
@@ -597,21 +601,23 @@
 					"detail": "",
 					"category": 0,
 					"count": 0,
-					"buy": 0
+					"buy": 0,
+					"detail_last": ""
 				},
 				{
 					"id": "Portion03",
 					"name": "回復剤3",
 					"min": 3,
 					"max": 5,
-					"detail": "HPを３回復する（最後の1回は3倍)",
+					"detail": "HPを３回復する",
 					"hp": 3,
 					"power": 0,
 					"hit": 0,
 					"attr": "None",
 					"category": 0,
 					"count": 0,
-					"buy": 30
+					"buy": 30,
+					"detail_last": "HPを９回復する"
 				},
 				{
 					"id": "Portion05",
@@ -624,8 +630,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを５回復する（最後の1回は3倍)",
-					"buy": 60
+					"detail": "HPを５回復する",
+					"buy": 60,
+					"detail_last": "HPを15回復する"
 				},
 				{
 					"id": "Portion10",
@@ -638,8 +645,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを10回復する（最後の1回は3倍）",
-					"buy": 100
+					"detail": "HPを10回復する",
+					"buy": 100,
+					"detail_last": "HPを30回復する"
 				},
 				{
 					"id": "StickWood",
@@ -653,7 +661,8 @@
 					"attr": "Phys",
 					"category": 1,
 					"count": 1,
-					"buy": 5
+					"buy": 5,
+					"detail_last": ""
 				},
 				{
 					"id": "StickHard",
@@ -667,7 +676,8 @@
 					"attr": "Phys",
 					"detail": "",
 					"count": 1,
-					"buy": 7
+					"buy": 7,
+					"detail_last": ""
 				},
 				{
 					"id": "StickBronze",
@@ -681,7 +691,8 @@
 					"attr": "Phys",
 					"detail": "",
 					"count": 2,
-					"buy": 8
+					"buy": 8,
+					"detail_last": ""
 				},
 				{
 					"id": "StickFire",
@@ -695,7 +706,8 @@
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
-					"buy": 5
+					"buy": 5,
+					"detail_last": ""
 				},
 				{
 					"id": "StickFlame",
@@ -709,7 +721,8 @@
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
-					"buy": 10
+					"buy": 10,
+					"detail_last": ""
 				},
 				{
 					"id": "StickShot",
@@ -723,7 +736,8 @@
 					"attr": "Gun",
 					"count": 3,
 					"detail": "",
-					"buy": 8
+					"buy": 8,
+					"detail_last": ""
 				},
 				{
 					"id": "StickEnergy",
@@ -737,7 +751,8 @@
 					"attr": "Gun",
 					"count": 5,
 					"detail": "",
-					"buy": 10
+					"buy": 10,
+					"detail_last": ""
 				},
 				{
 					"id": "StickMissile",
@@ -751,7 +766,8 @@
 					"attr": "Gun",
 					"count": 3,
 					"detail": "",
-					"buy": 100
+					"buy": 100,
+					"detail_last": ""
 				},
 				{
 					"id": "StickSilver",
@@ -765,7 +781,8 @@
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
-					"buy": 20
+					"buy": 20,
+					"detail_last": ""
 				},
 				{
 					"id": "StickPlastic",
@@ -779,7 +796,8 @@
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
-					"buy": 15
+					"buy": 15,
+					"detail_last": ""
 				},
 				{
 					"id": "StickIron",
@@ -793,7 +811,8 @@
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
-					"buy": 18
+					"buy": 18,
+					"detail_last": ""
 				},
 				{
 					"id": "StickDecay",
@@ -807,7 +826,8 @@
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
-					"buy": 1
+					"buy": 1,
+					"detail_last": ""
 				},
 				{
 					"id": "StickIce",
@@ -821,7 +841,8 @@
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
-					"buy": 5
+					"buy": 5,
+					"detail_last": ""
 				},
 				{
 					"id": "StickFreeze",
@@ -835,7 +856,8 @@
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
-					"buy": 10
+					"buy": 10,
+					"detail_last": ""
 				},
 				{
 					"id": "StickGold",
@@ -849,7 +871,8 @@
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
-					"buy": 25
+					"buy": 25,
+					"detail_last": ""
 				},
 				{
 					"id": "StickPlatinum",
@@ -863,7 +886,8 @@
 					"attr": "Phys",
 					"count": 2,
 					"detail": "",
-					"buy": 50
+					"buy": 50,
+					"detail_last": ""
 				},
 				{
 					"id": "StickCurse",
@@ -877,7 +901,8 @@
 					"attr": "Gun",
 					"count": 1,
 					"detail": "",
-					"buy": 30
+					"buy": 30,
+					"detail_last": ""
 				},
 				{
 					"id": "StickEvil",
@@ -891,7 +916,8 @@
 					"attr": "Gun",
 					"count": 1,
 					"detail": "",
-					"buy": 100
+					"buy": 100,
+					"detail_last": ""
 				}
 			],
 			"separators": [],
@@ -1156,7 +1182,16 @@
 							"item": "StickHard"
 						},
 						{
-							"item": "Portion03"
+							"item": "StickWood"
+						},
+						{
+							"item": "StickWood"
+						},
+						{
+							"item": "StickWood"
+						},
+						{
+							"item": "StickWood"
 						}
 					]
 				}

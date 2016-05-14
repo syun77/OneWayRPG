@@ -327,7 +327,8 @@ private class Conditions {
     return false;
   }
   public static function isIgnore(owner:SeqMgr):Bool {
-    return owner.lastClickButton == "ignore";
+    // "あきらめる"を選んだ
+    return owner.lastClickButton == InventorySubState.BTN_IGNORE;
   }
   public static function isAppearEnemy(owner:SeqMgr):Bool {
     // 敵に遭遇したかどうか
