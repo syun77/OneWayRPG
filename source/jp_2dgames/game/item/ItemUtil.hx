@@ -65,6 +65,10 @@ class ItemUtil {
 
   // 詳細情報の取得
   public static function getDetail(item:ItemData):String {
+    if(item.now == 1) {
+      // 最後に一回用の説明文
+      return ItemDB.getDetailLast(item.id);
+    }
     return ItemDB.getDetail(item.id);
   }
 

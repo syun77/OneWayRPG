@@ -38,6 +38,9 @@ class ItemDB {
   public static function getDetail(id:ItemsKind):String {
     return get(id).detail;
   }
+  public static function getDetailLast(id:ItemsKind):String {
+    return get(id).detail_last;
+  }
 
   public static function getMin(id:ItemsKind):Int {
     return get(id).min;
