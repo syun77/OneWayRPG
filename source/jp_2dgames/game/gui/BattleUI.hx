@@ -1,5 +1,6 @@
 package jp_2dgames.game.gui;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.lib.StatusBar;
 import flixel.math.FlxPoint;
@@ -46,7 +47,7 @@ class BattleUI extends FlxSpriteGroup {
 
   static var _instance:BattleUI = null;
   public static function createInstance(state:FlxState, prm:BattleUIParam):Void {
-    _instance = new BattleUI(prm);
+    _instance = new BattleUI(prm, state);
     state.add(_instance);
   }
   public static function destroyInstance():Void {
@@ -139,6 +140,9 @@ class BattleUI extends FlxSpriteGroup {
   var _txtItem:FlxUIText;     // アイテム所持数
   var _hpbarPlayer:StatusBar; // HPゲージ (プレイヤー)
   var _hpbarEnemy:StatusBar;  // HPゲージ (敵)
+  var _bstPlayer:BadStatusUI; // バッドステータス（プレイヤー）
+  var _bstEnemy:BadStatusUI;  // バッドステータス（敵）
+
   var _buttonTbl:Map<String, Void->Void>;
   var _buttonClickCB:String->Void = null;
   var _buttonOverlapCB:String->Void = null;
@@ -146,7 +150,7 @@ class BattleUI extends FlxSpriteGroup {
   /**
    * コンストラクタ
    **/
-  public function new(prm:BattleUIParam):Void {
+  public function new(prm:BattleUIParam, state:FlxState):Void {
     super();
     _ui = prm.ui;
     _hpbarPlayer = prm.hpbarPlayer;
@@ -194,6 +198,15 @@ class BattleUI extends FlxSpriteGroup {
     _hpbarEnemy.visible = false;
 
     _buttonTbl = new Map<String, Void->Void>();
+
+    // バッドステータス生成
+    _bstPlayer = new BadStatusUI(_txtHp.x, _txtHp.y + _txtHp.height);
+    _bstEnemy = new BadStatusUI(_txtHpEnemy.x, _txtHpEnemy.y + _txtHpEnemy.height);
+    // TODO:
+    _bstPlayer.set([BadStatus.Poison]);
+    _bstEnemy.set([BadStatus.Curse]);
+    state.add(_bstPlayer);
+    state.add(_bstEnemy);
 
     // 不要なUIを消しておく
     _setVisibleGroup("field", false);
