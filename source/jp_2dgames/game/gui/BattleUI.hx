@@ -1,5 +1,6 @@
 package jp_2dgames.game.gui;
 
+import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.lib.StatusBar;
 import flixel.math.FlxPoint;
 import flixel.addons.ui.FlxUISprite;
@@ -238,6 +239,7 @@ class BattleUI extends FlxSpriteGroup {
     {
       // 敵の攻撃力と命中率
       var hit = EnemyDB.getHit(enemy.id);
+      hit = BtlCalc.hit(hit, enemy, player);
       var str = '${enemy.str} Damage\n(${hit}%)';
       _txtAtkEnemy.text = str;
     }

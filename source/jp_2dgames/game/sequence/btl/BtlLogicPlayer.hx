@@ -1,12 +1,13 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.lib.Snd;
+import jp_2dgames.game.gui.message.Msg;
+import jp_2dgames.game.sequence.btl.BtlLogic;
+import jp_2dgames.game.gui.message.Message;
+
 /**
  * 演出状態
  **/
-import jp_2dgames.lib.Snd;
-import jp_2dgames.game.gui.message.Msg;
-import jp_2dgames.game.sequence.btl.BtlLogic.BtlLogicAttack;
-import jp_2dgames.game.gui.message.Message;
 private enum State {
   None;
   Start;
@@ -22,6 +23,8 @@ class BtlLogicPlayer {
   static var _state:State = State.None;
   // 演出データ
   static var _data:BtlLogicData = null;
+  // 命中回数
+  static var _cntHit:Int = 0;
 
   /**
    * 初期化
@@ -29,6 +32,7 @@ class BtlLogicPlayer {
   public static function init(data:BtlLogicData):Void {
     _data = data;
     _state = State.Start;
+    _cntHit = 0;
   }
 
   /**
@@ -57,29 +61,7 @@ class BtlLogicPlayer {
 
       case BtlLogic.Attack(type, prm):
         // 攻撃
-        // 命中判定
-        var damage = BtlCalc.damage(prm, _data.actor, _data.target);
-        if(BtlCalc.isHit(prm, _data.actor, _data.target) == false) {
-          // 外れ
-          damage = BtlCalc.VAL_AVOID;
-        }
-        // ダメージ処理
-        _data.target.damage(damage);
-
-        _data.count--;
-        switch(type) {
-          case BtlLogicAttack.Normal:
-            // 1回攻撃
-            owner.startWait();
-          case BtlLogicAttack.Multi:
-            // 複数回攻撃
-            if(_data.count <= 0) {
-              owner.startWait();
-            }
-            else {
-              owner.startWaitHalf();
-            }
-        }
+        _procAttack(owner, type, prm);
 
       case BtlLogic.Recover(prm):
         // 回復
@@ -97,4 +79,48 @@ class BtlLogicPlayer {
       _state = State.End;
     }
   }
+
+  /**
+   * 更新・攻撃
+   **/
+  static function _procAttack(owner:SeqMgr, type:BtlLogicAttack, prm:BtlLogicAttackParam):Void {
+    // 命中判定
+    var damage = BtlCalc.damage(prm, _data.actor, _data.target);
+    if(BtlCalc.isHit(prm, _data.actor, _data.target)) {
+      // 命中回数増加
+      _cntHit++;
+    }
+    else {
+      // 外れ
+      damage = BtlCalc.VAL_AVOID;
+      // 回避回数増加
+      _data.actor.btlPrms.cntAttackAvoid++;
+    }
+    // ダメージ処理
+    _data.target.damage(damage);
+
+    _data.count--;
+    switch(type) {
+      case BtlLogicAttack.Normal:
+        // 1回攻撃
+        owner.startWait();
+      case BtlLogicAttack.Multi:
+        // 複数回攻撃
+        if(_data.count <= 0) {
+          owner.startWait();
+        }
+        else {
+          owner.startWaitHalf();
+        }
+    }
+
+    if(_data.count == 0) {
+      // 攻撃終了
+      // 命中回数を記録
+      _data.actor.btlPrms.cntAttackAvoid = 0;
+      if(_cntHit == 0) {
+        _data.actor.btlPrms.cntAttackAvoid = 1;
+      }
+    }
+    }
 }

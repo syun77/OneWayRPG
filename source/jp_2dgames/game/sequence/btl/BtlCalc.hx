@@ -14,14 +14,18 @@ class BtlCalc {
   public static inline var VAL_AVOID:Int = -1;
 
   // 回避率補正値
-  public static inline var VAL_DEX:Int = 2;
-  public static inline var VAL_AGI:Int = 2;
+  public static inline var HIT_AVOID:Int = 10;
+  public static inline var HIT_DEX:Int = 2;
+  public static inline var HIT_AGI:Int = 2;
 
   public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
 
+    // 回避回数に応じて命中率変化
+    ratio += actor.btlPrms.cntAttackAvoid * HIT_AVOID;
+
     // DEX / AGI の値に応じて2%ずつ補正
-    ratio += (actor.dex * VAL_DEX);
-    ratio -= (target.agi * VAL_AGI);
+    ratio += (actor.dex * HIT_DEX);
+    ratio -= (target.agi * HIT_AGI);
     if(ratio < 0) {
       ratio = 0;
     }

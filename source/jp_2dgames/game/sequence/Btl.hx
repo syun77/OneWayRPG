@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.actor.ActorMgr;
 import jp_2dgames.game.gui.BattleResultPopupUI;
 import jp_2dgames.game.state.InventorySubState;
 import jp_2dgames.game.global.ItemLottery;
@@ -73,6 +74,10 @@ class BtlBoot extends FlxFSMState<SeqMgr> {
   }
 
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    // バトルパラメータ初期化
+    ActorMgr.forEachAlive(function(actor:Actor) actor.clearBtlParams() );
+
     // 敵UI表示
     BattleUI.setVisibleGroup("enemyhud", true);
     // 敵出現
@@ -335,6 +340,10 @@ class BtlEscape extends FlxFSMState<SeqMgr> {
  **/
 class BtlEnd extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    // バトル用パラメータ初期化
+    ActorMgr.forEachAlive(function(actor:Actor) actor.clearBtlParams() );
+
     // 背景を明るくする
     Bg.brighten();
     // 敵を消す

@@ -38,6 +38,9 @@ class Actor extends FlxEffectSprite {
   var _params:Params;  // パラメータ
   var _group:BtlGroup; // 敵か味方か
 
+  // バトル用パラメータ
+  var _btlPrms:BtlParams;
+
   // 演出用
   var _spr:FlxSprite;       // もとのスプライト
   var _xstart:Float = 0.0;  // 出現時のX座標
@@ -60,6 +63,7 @@ class Actor extends FlxEffectSprite {
   public var agi(get, never):Int;
   public var dex(get, never):Int;
   public var food(get, never):Int;
+  public var btlPrms(get, never):BtlParams;
 
 
   /**
@@ -76,6 +80,7 @@ class Actor extends FlxEffectSprite {
     effects = [_eftWave, _eftGlitch];
 
     _params = new Params();
+    _btlPrms = new BtlParams();
 
   }
 
@@ -412,6 +417,12 @@ class Actor extends FlxEffectSprite {
     _tShake = Std.int(TIMER_SHAKE * ratio);
   }
 
+  /**
+   * バトルパラメータ初期化
+   **/
+  public function clearBtlParams():Void {
+    btlPrms.clear();
+  }
 
 
   // -------------------------------------------
@@ -427,5 +438,6 @@ class Actor extends FlxEffectSprite {
   function get_agi() { return _params.agi; }
   function get_dex() { return _params.dex; }
   function get_food() { return _params.food; }
+  function get_btlPrms() { return _btlPrms; }
 
 }
