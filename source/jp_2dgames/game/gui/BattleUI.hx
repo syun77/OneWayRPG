@@ -130,7 +130,6 @@ class BattleUI extends FlxSpriteGroup {
   var _txtLevel:FlxUIText;    // フロア数
   var _txtSteps:FlxUIText;    // 残り歩数
   var _txtHp:FlxUIText;       // プレイヤーのHP
-  var _txtStr:FlxUIText;      // プレイヤーのSTR
   var _txtDex:FlxUIText;      // プレイヤーのDEX
   var _txtAgi:FlxUIText;      // プレイヤーのAGI
   var _txtHpEnemy:FlxUIText;  // 敵のHP
@@ -170,8 +169,6 @@ class BattleUI extends FlxSpriteGroup {
           _txtMoney = cast widget;
         case "txtitem":
           _txtItem = cast widget;
-        case "txtstr":
-          _txtStr = cast widget;
         case "txtdex":
           _txtDex = cast widget;
         case "txtagi":
@@ -200,11 +197,8 @@ class BattleUI extends FlxSpriteGroup {
     _buttonTbl = new Map<String, Void->Void>();
 
     // バッドステータス生成
-    _bstPlayer = new BadStatusUI(_txtHp.x, _txtHp.y + _txtHp.height);
+    _bstPlayer = new BadStatusUI(_txtHp.x-8, _txtHp.y + _txtHp.height + 4);
     _bstEnemy = new BadStatusUI(_txtHpEnemy.x, _txtHpEnemy.y + _txtHpEnemy.height);
-    // TODO:
-    _bstPlayer.set([BadStatus.Poison]);
-    _bstEnemy.set([BadStatus.Curse]);
     state.add(_bstPlayer);
     state.add(_bstEnemy);
 
@@ -223,6 +217,9 @@ class BattleUI extends FlxSpriteGroup {
 
     // HP更新
     _updateHp();
+
+    // バッドステータス更新
+    _updateBst();
   }
 
   /**
@@ -269,20 +266,24 @@ class BattleUI extends FlxSpriteGroup {
     _txtHpEnemy.color = _getHpTextColor(enemy);
 
     // 食糧更新
-    _txtFood.text = '${player.food}';
+    _txtFood.text = 'x ${player.food}';
     _txtFood.color = _getFoodTextColor(player);
 
     // 所持金更新
-    _txtMoney.text = '${Global.money}';
+    _txtMoney.text = 'x ${Global.money}';
 
     // アイテム所持数
     _txtItem.text = 'Item (${ItemList.getLength()}/${ItemList.MAX})';
 
     // ステータス更新
-    _txtStr.visible = false;
-    _txtStr.text = 'STR: ${player.str}';
     _txtDex.text = 'DEX: ${player.dex}';
     _txtAgi.text = 'AGI: ${player.agi}';
+
+    // TODO:
+    var player = ActorMgr.getEnemy();
+    player.bstList.adhere(BadStatus.Paralyze);
+    player.bstList.adhere(BadStatus.Poison);
+    player.bstList.adhere(BadStatus.Blind);
   }
 
   /**
@@ -318,6 +319,16 @@ class BattleUI extends FlxSpriteGroup {
     }
 
     return FlxColor.WHITE;
+  }
+
+  /**
+   * バッドステータス更新
+   **/
+  function _updateBst():Void {
+    var player = ActorMgr.getPlayer();
+    var enemy = ActorMgr.getEnemy();
+    _bstPlayer.set(player.bstList);
+    _bstEnemy.set(enemy.bstList);
   }
 
   /**

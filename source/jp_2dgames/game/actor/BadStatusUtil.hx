@@ -5,15 +5,15 @@ package jp_2dgames.game.actor;
  **/
 enum BadStatus {
   None;     // なし
-  Death;    // 死亡
+  Death;    // 死亡 (※使用しない)
   Poison;   // 毒
-  Confuse;  // 混乱
-  Close;    // 封印
+  Confuse;  // 混乱  (※使用しない)
+  Close;    // 封印 (※使用しない)
   Paralyze; // 麻痺
-  Sleep;    // 眠り
+  Sleep;    // 眠り (※使用しない)
   Blind;    // 盲目
-  Curse;    // 呪い
-  Weaken;   // 弱体化
+  Curse;    // 呪い (※使用しない)
+  Weaken;   // 弱体化 (※使用しない)
 }
 
 /**

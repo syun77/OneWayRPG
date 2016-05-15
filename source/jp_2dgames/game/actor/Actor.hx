@@ -1,4 +1,5 @@
 package jp_2dgames.game.actor;
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.lib.MyShake;
 import flixel.util.FlxTimer;
 import flixel.addons.effects.chainable.FlxRainbowEffect;
@@ -37,6 +38,7 @@ class Actor extends FlxEffectSprite {
   var _name:String;    // 名前
   var _params:Params;  // パラメータ
   var _group:BtlGroup; // 敵か味方か
+  var _bstList:BadStatusList; // バッドステータス
 
   // バトル用パラメータ
   var _btlPrms:BtlParams;
@@ -64,6 +66,7 @@ class Actor extends FlxEffectSprite {
   public var dex(get, never):Int;
   public var food(get, never):Int;
   public var btlPrms(get, never):BtlParams;
+  public var bstList(get, never):BadStatusList;
 
 
   /**
@@ -81,7 +84,7 @@ class Actor extends FlxEffectSprite {
 
     _params = new Params();
     _btlPrms = new BtlParams();
-
+    _bstList = new BadStatusList();
   }
 
   /**
@@ -101,6 +104,9 @@ class Actor extends FlxEffectSprite {
 
     // 開始座標を保存
     _xstart = x;
+
+    // バッドステータス初期化
+    _bstList.reset();
   }
 
   /**
@@ -439,5 +445,6 @@ class Actor extends FlxEffectSprite {
   function get_dex() { return _params.dex; }
   function get_food() { return _params.food; }
   function get_btlPrms() { return _btlPrms; }
+  function get_bstList() { return _bstList; }
 
 }

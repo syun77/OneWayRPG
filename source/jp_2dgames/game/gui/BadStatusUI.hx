@@ -1,4 +1,5 @@
 package jp_2dgames.game.gui;
+import jp_2dgames.game.actor.BadStatusList;
 import jp_2dgames.game.actor.BadStatusUtil;
 import flixel.group.FlxSpriteGroup;
 
@@ -34,13 +35,20 @@ class BadStatusUI extends FlxSpriteGroup {
   /**
    * 表示内容を設定
    **/
-  public function set(array:Array<BadStatus>):Void {
-    for(i in 0...MAX) {
-      var bst = BadStatus.None;
-      if(i < array.length) {
-        bst = array[i];
+  public function set(bstList:BadStatusList):Void {
+
+    var idx:Int = 0;
+    bstList.forEach(function(prm:BadStatusParams) {
+      if(prm.bAdhere) {
+        var icon = _list[idx];
+        icon.play(prm.bst);
+        idx++;
       }
-      _list[i].play(bst);
+    });
+
+    for(i in idx...MAX) {
+      var icon = _list[idx];
+      icon.play(BadStatus.None);
     }
   }
 }
