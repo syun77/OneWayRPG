@@ -17,6 +17,14 @@ class BadStatusParams {
     reset();
   }
 
+  // コピー
+  public function copy(src:BadStatusParams):Void {
+    bst       = src.bst;
+    bAdhere   = src.bAdhere;
+    cntAdhere = src.cntAdhere;
+    turn      = src.turn;
+  }
+
   // 付着回数をリセット
   public function reset():Void {
     bAdhere = false;
@@ -60,6 +68,16 @@ class BadStatusList {
       var prm = new BadStatusParams();
       prm.bst = bst;
       _map[bst] = prm;
+    }
+  }
+
+  /**
+   * コピー
+   **/
+  public function copy(src:BadStatusList):Void {
+    for(prm in _map) {
+      var p = src.getParams(prm.bst);
+      p.copy(prm);
     }
   }
 

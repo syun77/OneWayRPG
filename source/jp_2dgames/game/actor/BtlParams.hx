@@ -18,6 +18,13 @@ class BtlParams {
    * 初期化
    **/
   public function clear():Void {
+    cntAttackEvade = 0;
+  }
 
+  /**
+   * コピー
+   **/
+  public function copy(src:BtlParams):Void {
+    cntAttackEvade = src.cntAttackEvade;
   }
 }

@@ -176,7 +176,17 @@ class Actor extends FlxEffectSprite {
     else {
       Snd.playSe("enemy");
     }
+  }
 
+  /**
+   * パラメータをコピーする
+   **/
+  public function copyTo(dst:Actor):Void {
+    dst._name = _name;
+    dst.params.copy(params); // 基本パラメータ
+    dst._group = _group;
+    dst.bstList.copy(bstList); // バッドステータス
+    dst.btlPrms.copy(btlPrms); // バトル用パラメータ
   }
 
   /**
