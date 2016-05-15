@@ -327,6 +327,13 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
+   * ターン終了
+   **/
+  public function turnEnd():Void {
+    bstList.turnEnd();
+  }
+
+  /**
    * 消滅
    **/
   public function vanish():Void {

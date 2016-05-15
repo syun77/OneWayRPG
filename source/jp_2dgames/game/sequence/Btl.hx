@@ -229,7 +229,6 @@ class BtlTurnEnd extends FlxFSMState<SeqMgr> {
     var enemy = owner.enemy;
     if(enemy.bstList.isAdhere(BadStatus.Poison)) {
       // 毒ダメージ
-      trace("enemy is poison.");
       _tbl.add(function() {
         enemy.damagePoison();
         owner.startWait();
@@ -244,6 +243,11 @@ class BtlTurnEnd extends FlxFSMState<SeqMgr> {
         owner.startWait();
       });
     }
+    // ターン終了
+    _tbl.add(function() {
+      player.turnEnd();
+      enemy.turnEnd();
+    });
 
     var func = _tbl.pop();
     if(func != null) {

@@ -21,13 +21,20 @@ class BadStatusParams {
   public function reset():Void {
     bAdhere = false;
     cntAdhere = 0;
+    turn = 0;
   }
 
+  // 付着する
   public function adhere(Bst:BadStatus):Void {
     bAdhere = true;
     bst = Bst;
     cntAdhere++;
     turn = BadStatusUtil.getTurn(bst);
+  }
+
+  // 回復する
+  public function recover():Void {
+    bAdhere = false;
   }
 }
 
@@ -105,7 +112,20 @@ class BadStatusList {
    **/
   public function recover(bst:BadStatus):Void {
     var prm = getParams(bst);
-    prm.bAdhere = false;
+    prm.recover();
+  }
+
+  /**
+   * ターン終了
+   **/
+  public function turnEnd():Void {
+    forEach(function(prm:BadStatusParams) {
+      prm.turn--;
+      if(prm.turn <= 0) {
+        // 回復
+        prm.recover();
+      }
+    });
   }
 
   /**

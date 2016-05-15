@@ -950,11 +950,11 @@
 					"id": "StickPoison",
 					"category": 1,
 					"name": "毒の棒",
-					"min": 99,
-					"max": 99,
+					"min": 3,
+					"max": 4,
 					"hp": 0,
 					"power": 1,
-					"hit": 1,
+					"hit": 0.7,
 					"attr": "Phys",
 					"count": 1,
 					"detail": "",
@@ -1116,6 +1116,12 @@
 					"end": 5,
 					"item": "StickEvil",
 					"ratio": 5
+				},
+				{
+					"start": 2,
+					"end": 5,
+					"item": "StickPoison",
+					"ratio": 10
 				}
 			],
 			"separators": [],
