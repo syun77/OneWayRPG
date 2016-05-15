@@ -1,5 +1,6 @@
 package jp_2dgames.game.actor;
 
+import flixel.util.FlxColor;
 import jp_2dgames.game.dat.MyDB;
 
 /**
@@ -40,6 +41,15 @@ class BadStatusUtil {
       case BadStatus.Paralyze: 3; // 麻痺は3ターン
       case BadStatus.Blind:    3; // 盲目は3ターン
       default: 0; // それ以外
+    }
+  }
+
+  public static function getColor(bst:BadStatus):Int {
+    return switch(bst) {
+      case BadStatus.Poison:   FlxColor.GREEN;  // 毒
+      case BadStatus.Paralyze: FlxColor.YELLOW; // 麻痺
+      case BadStatus.Blind:    FlxColor.GRAY;   // 盲目
+      default: FlxColor.WHITE; // それ以外
     }
   }
 }

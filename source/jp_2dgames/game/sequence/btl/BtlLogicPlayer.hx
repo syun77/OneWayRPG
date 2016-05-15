@@ -90,10 +90,6 @@ class BtlLogicPlayer {
     if(BtlCalc.isHit(prm, _data.actor, _data.target)) {
       // 命中回数増加
       _cntHit++;
-      if(prm.bst != BadStatus.None) {
-        // バステ付着
-        _data.target.bstList.adhere(prm.bst);
-      }
     }
     else {
       // 外れ
@@ -124,8 +120,16 @@ class BtlLogicPlayer {
       // 命中回数を記録
       _data.actor.btlPrms.cntAttackEvade = 0;
       if(_cntHit == 0) {
+        // 一度も命中しなかった
         _data.actor.btlPrms.cntAttackEvade = 1;
       }
+      else {
+        // 一度でも命中した
+        if(prm.bst != BadStatus.None) {
+          // バステ付着
+          _data.target.adhereBadStatus(prm.bst);
+        }
+      }
     }
-    }
+  }
 }
