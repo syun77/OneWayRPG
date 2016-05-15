@@ -15,10 +15,11 @@ class BtlCalc {
   public static inline var VAL_EVADE:Int = -1;
 
   // 回避率補正値
-  public static inline var HIT_EVADE:Int = 3;
-  public static inline var HIT_BLIND:Int = -10;
-  public static inline var HIT_DEX:Int = 2;
-  public static inline var HIT_AGI:Int = 2;
+  public static inline var HIT_EVADE:Int = 3; // 回避ごとに上昇する値
+  public static inline var HIT_BLIND:Int = -10; // 盲目補正
+  public static inline var HIT_PARALYZE:Int = 10; // 麻痺補正
+  public static inline var HIT_DEX:Int = 2; // DEX補正
+  public static inline var HIT_AGI:Int = 2; // AGI補正
 
   public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
 
@@ -28,6 +29,10 @@ class BtlCalc {
     if(actor.isAdhereBadStatus(BadStatus.Blind)) {
       // 盲目なので命中率低下
       ratio += HIT_BLIND;
+    }
+    if(target.isAdhereBadStatus(BadStatus.Paralyze)) {
+      // 麻痺なので回避率低下
+      ratio += HIT_PARALYZE;
     }
 
     // DEX / AGI の値に応じて2%ずつ補正

@@ -977,6 +977,22 @@
 					"detail": "",
 					"detail_last": "",
 					"buy": 20
+				},
+				{
+					"id": "StickParalyze",
+					"category": 1,
+					"name": "しびれ棒",
+					"min": 3,
+					"max": 4,
+					"hp": 0,
+					"power": 3,
+					"hit": 0.7,
+					"attr": "Phys",
+					"count": 1,
+					"bst": "Paralyze",
+					"detail": "",
+					"detail_last": "",
+					"buy": 20
 				}
 			],
 			"separators": [],
@@ -1280,6 +1296,9 @@
 						},
 						{
 							"item": "StickDarken"
+						},
+						{
+							"item": "StickParalyze"
 						}
 					]
 				}
