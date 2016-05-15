@@ -227,7 +227,7 @@ class BtlTurnEnd extends FlxFSMState<SeqMgr> {
     // バッドステータスの処理
     // 敵
     var enemy = owner.enemy;
-    if(enemy.bstList.isAdhere(BadStatus.Poison)) {
+    if(enemy.isAdhereBadStatus(BadStatus.Poison)) {
       // 毒ダメージ
       _tbl.add(function() {
         enemy.damagePoison();
@@ -236,7 +236,7 @@ class BtlTurnEnd extends FlxFSMState<SeqMgr> {
     }
     // プレイヤー
     var player = owner.player;
-    if(player.bstList.isAdhere(BadStatus.Poison)) {
+    if(player.isAdhereBadStatus(BadStatus.Poison)) {
       // 毒ダメージ
       _tbl.add(function() {
         player.damagePoison();

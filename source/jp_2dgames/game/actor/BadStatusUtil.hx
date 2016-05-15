@@ -1,5 +1,6 @@
 package jp_2dgames.game.actor;
 
+import jp_2dgames.game.gui.message.Msg;
 import flixel.util.FlxColor;
 import jp_2dgames.game.dat.MyDB;
 
@@ -48,8 +49,17 @@ class BadStatusUtil {
     return switch(bst) {
       case BadStatus.Poison:   FlxColor.GREEN;  // 毒
       case BadStatus.Paralyze: FlxColor.YELLOW; // 麻痺
-      case BadStatus.Blind:    FlxColor.GRAY;   // 盲目
-      default: FlxColor.WHITE; // それ以外
+      case BadStatus.Blind:    FlxColor.PURPLE; // 盲目
+      default: throw 'Error: Invalid bst = ${bst}'; // それ以外はエラー
+    }
+  }
+
+  public static function getMessage(bst:BadStatus):Int {
+    return switch(bst) {
+      case BadStatus.Poison: Msg.BST_POISON;
+      case BadStatus.Paralyze: Msg.BST_PARALYZE;
+      case BadStatus.Blind: Msg.BST_BLIND;
+      default: throw 'Error: Invalid bst = ${bst}'; // エラー
     }
   }
 }

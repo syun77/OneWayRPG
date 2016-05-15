@@ -323,7 +323,15 @@ class Actor extends FlxEffectSprite {
     });
 
     var name = getName();
-    Message.push2(Msg.BST_POISON, [name]);
+    var msg = BadStatusUtil.getMessage(bst);
+    Message.push2(msg, [name]);
+  }
+
+  /**
+   * 指定のバッドステータスが付着しているかどうか
+   **/
+  public function isAdhereBadStatus(bst:BadStatus):Bool {
+    return bstList.isAdhere(bst);
   }
 
   /**

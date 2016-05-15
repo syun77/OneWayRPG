@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.dat.EnemyDB;
 import jp_2dgames.game.sequence.btl.BtlLogic;
 import flixel.FlxG;
@@ -14,7 +15,8 @@ class BtlCalc {
   public static inline var VAL_EVADE:Int = -1;
 
   // 回避率補正値
-  public static inline var HIT_EVADE:Int = 10;
+  public static inline var HIT_EVADE:Int = 3;
+  public static inline var HIT_BLIND:Int = -10;
   public static inline var HIT_DEX:Int = 2;
   public static inline var HIT_AGI:Int = 2;
 
@@ -22,6 +24,11 @@ class BtlCalc {
 
     // 回避回数に応じて命中率変化
     ratio += actor.btlPrms.cntAttackEvade * HIT_EVADE;
+
+    if(actor.isAdhereBadStatus(BadStatus.Blind)) {
+      // 盲目なので命中率低下
+      ratio += HIT_BLIND;
+    }
 
     // DEX / AGI の値に応じて2%ずつ補正
     ratio += (actor.dex * HIT_DEX);

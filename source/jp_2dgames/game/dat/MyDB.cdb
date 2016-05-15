@@ -953,7 +953,7 @@
 					"min": 3,
 					"max": 4,
 					"hp": 0,
-					"power": 1,
+					"power": 3,
 					"hit": 0.7,
 					"attr": "Phys",
 					"count": 1,
@@ -961,6 +961,22 @@
 					"detail_last": "",
 					"buy": 20,
 					"bst": "Poison"
+				},
+				{
+					"id": "StickDarken",
+					"category": 1,
+					"name": "暗闇の棒",
+					"min": 3,
+					"max": 4,
+					"hp": 0,
+					"power": 3,
+					"hit": 0.7,
+					"attr": "Phys",
+					"count": 1,
+					"bst": "Blind",
+					"detail": "",
+					"detail_last": "",
+					"buy": 20
 				}
 			],
 			"separators": [],
@@ -1261,6 +1277,9 @@
 						},
 						{
 							"item": "StickPoison"
+						},
+						{
+							"item": "StickDarken"
 						}
 					]
 				}
