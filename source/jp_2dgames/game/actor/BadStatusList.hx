@@ -9,6 +9,7 @@ class BadStatusParams {
   public var bst:BadStatus; // バッドステータスの種類
   public var bAdhere:Bool;  // 付着しているかどうか
   public var cntAdhere:Int; // 付着回数
+  public var turn:Int;      // 有効ターン数
 
   // コンストラクタ
   public function new() {
@@ -20,6 +21,13 @@ class BadStatusParams {
   public function reset():Void {
     bAdhere = false;
     cntAdhere = 0;
+  }
+
+  public function adhere(Bst:BadStatus):Void {
+    bAdhere = true;
+    bst = Bst;
+    cntAdhere++;
+    turn = BadStatusUtil.getTurn(bst);
   }
 }
 
@@ -81,8 +89,7 @@ class BadStatusList {
    **/
   public function adhere(bst:BadStatus):Void {
     var prm = getParams(bst);
-    prm.bAdhere = true;
-    prm.cntAdhere++;
+    prm.adhere(bst);
   }
 
   /**
@@ -99,5 +106,14 @@ class BadStatusList {
   public function recover(bst:BadStatus):Void {
     var prm = getParams(bst);
     prm.bAdhere = false;
+  }
+
+  /**
+   * デバッグ出力
+   **/
+  public function dump():Void {
+    for(prm in _map) {
+      trace(prm);
+    }
   }
 }

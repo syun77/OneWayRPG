@@ -35,6 +35,10 @@ class ItemDB {
     return get(id).attr.id;
   }
 
+  public static function getBadStatus(id:ItemsKind):BadstatusesKind {
+    return get(id).bst.id;
+  }
+
   public static function getDetail(id:ItemsKind):String {
     return get(id).detail;
   }

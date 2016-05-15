@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.game.dat.AttributeUtil.Attribute;
@@ -30,7 +31,8 @@ class BtlLogicFactory {
       var ratioRaw = 100;
       var ratio = BtlCalc.hit(ratioRaw, player, enemy);
       var attr  = Attribute.Phys;
-      var prm = new BtlLogicAttackParam(count, ratio, ratioRaw, attr);
+      var bst   = BadStatus.None;
+      var prm = new BtlLogicAttackParam(count, ratio, ratioRaw, attr, bst);
       return BtlLogic.Attack(type, prm);
     }
 
@@ -59,7 +61,8 @@ class BtlLogicFactory {
         var ratio = BtlCalc.hit(ratioRaw, player, enemy);
         var count = ItemUtil.getCount(item);
         var attr  = ItemUtil.getAttribute(item);
-        var prm = new BtlLogicAttackParam(power, ratio, ratioRaw, attr);
+        var bst   = ItemUtil.getBadStatus(item);
+        var prm = new BtlLogicAttackParam(power, ratio, ratioRaw, attr, bst);
         var type = BtlLogicAttack.Normal;
         if(count > 1) {
           // 複数回攻撃
@@ -127,7 +130,8 @@ class BtlLogicFactory {
       var ratioRaw = EnemyDB.getHit(enemy.id);
       var ratio = BtlCalc.hit(ratioRaw, enemy, owner.player);
       var attr  = Attribute.Phys;
-      var prm  = new BtlLogicAttackParam(power, ratio, ratioRaw, attr);
+      var bst   = BadStatus.None;
+      var prm  = new BtlLogicAttackParam(power, ratio, ratioRaw, attr, bst);
       return BtlLogic.Attack(type, prm);
     }
     var type = func();

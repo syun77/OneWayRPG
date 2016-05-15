@@ -1,12 +1,11 @@
 package jp_2dgames.game.item;
 
+import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.sequence.btl.BtlLogic;
 import jp_2dgames.game.sequence.btl.BtlLogicFactory;
 import jp_2dgames.game.SeqMgr;
 import jp_2dgames.game.sequence.btl.BtlCalc;
-import jp_2dgames.game.SeqMgr;
 import jp_2dgames.game.dat.ResistData.ResistList;
-import jp_2dgames.game.dat.EnemyDB;
 import jp_2dgames.game.actor.Actor;
 import jp_2dgames.game.dat.AttributeUtil;
 import jp_2dgames.game.dat.ItemDB;
@@ -61,6 +60,11 @@ class ItemUtil {
   // 属性を取得
   public static function getAttribute(item:ItemData):Attribute {
     return AttributeUtil.fromKind(ItemDB.getAttribute(item.id));
+  }
+
+  // 付着するバステを取得
+  public static function getBadStatus(item:ItemData):BadStatus {
+    return BadStatusUtil.fromKind(ItemDB.getBadStatus(item.id));
   }
 
   // 詳細情報の取得

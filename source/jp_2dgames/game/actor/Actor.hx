@@ -304,7 +304,8 @@ class Actor extends FlxEffectSprite {
    * 毒ダメージ
    **/
   public function damagePoison():Void {
-    var v = Std.int(hpmax * 0.1);
+    // 最大HPの5%ダメージ
+    var v = Std.int(hpmax * 0.05);
     if(v < 1) {
       v = 1;
     }

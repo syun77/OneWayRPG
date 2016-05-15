@@ -574,6 +574,11 @@
 					"display": null
 				},
 				{
+					"typeStr": "6:badstatuses",
+					"name": "bst",
+					"display": null
+				},
+				{
 					"typeStr": "1",
 					"name": "detail",
 					"display": null
@@ -602,7 +607,8 @@
 					"category": 0,
 					"count": 0,
 					"buy": 0,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "Portion03",
@@ -617,7 +623,8 @@
 					"category": 0,
 					"count": 0,
 					"buy": 30,
-					"detail_last": "HPを９回復する"
+					"detail_last": "HPを９回復する",
+					"bst": "None"
 				},
 				{
 					"id": "Portion05",
@@ -632,7 +639,8 @@
 					"count": 0,
 					"detail": "HPを５回復する",
 					"buy": 60,
-					"detail_last": "HPを15回復する"
+					"detail_last": "HPを15回復する",
+					"bst": "None"
 				},
 				{
 					"id": "Portion10",
@@ -647,7 +655,8 @@
 					"count": 0,
 					"detail": "HPを10回復する",
 					"buy": 100,
-					"detail_last": "HPを30回復する"
+					"detail_last": "HPを30回復する",
+					"bst": "None"
 				},
 				{
 					"id": "StickWood",
@@ -662,7 +671,8 @@
 					"category": 1,
 					"count": 1,
 					"buy": 5,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickHard",
@@ -677,7 +687,8 @@
 					"detail": "",
 					"count": 1,
 					"buy": 7,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickBronze",
@@ -692,7 +703,8 @@
 					"detail": "",
 					"count": 2,
 					"buy": 8,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickFire",
@@ -707,7 +719,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 5,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickFlame",
@@ -722,7 +735,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 10,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickShot",
@@ -737,7 +751,8 @@
 					"count": 3,
 					"detail": "",
 					"buy": 8,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickEnergy",
@@ -752,7 +767,8 @@
 					"count": 5,
 					"detail": "",
 					"buy": 10,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickMissile",
@@ -767,7 +783,8 @@
 					"count": 3,
 					"detail": "",
 					"buy": 100,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickSilver",
@@ -782,7 +799,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 20,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickPlastic",
@@ -797,7 +815,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 15,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickIron",
@@ -812,7 +831,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 18,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickDecay",
@@ -827,7 +847,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 1,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickIce",
@@ -842,7 +863,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 5,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickFreeze",
@@ -857,7 +879,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 10,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickGold",
@@ -872,7 +895,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 25,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickPlatinum",
@@ -887,7 +911,8 @@
 					"count": 2,
 					"detail": "",
 					"buy": 50,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickCurse",
@@ -902,7 +927,8 @@
 					"count": 1,
 					"detail": "",
 					"buy": 30,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
 				},
 				{
 					"id": "StickEvil",
@@ -917,7 +943,24 @@
 					"count": 1,
 					"detail": "",
 					"buy": 100,
-					"detail_last": ""
+					"detail_last": "",
+					"bst": "None"
+				},
+				{
+					"id": "StickPoison",
+					"category": 1,
+					"name": "毒の棒",
+					"min": 99,
+					"max": 99,
+					"hp": 0,
+					"power": 1,
+					"hit": 1,
+					"attr": "Phys",
+					"count": 1,
+					"detail": "",
+					"detail_last": "",
+					"buy": 20,
+					"bst": "Poison"
 				}
 			],
 			"separators": [],
@@ -1159,6 +1202,32 @@
 			"props": {}
 		},
 		{
+			"name": "badstatuses",
+			"columns": [
+				{
+					"typeStr": "0",
+					"name": "id",
+					"display": null
+				}
+			],
+			"lines": [
+				{
+					"id": "None"
+				},
+				{
+					"id": "Poison"
+				},
+				{
+					"id": "Paralyze"
+				},
+				{
+					"id": "Blind"
+				}
+			],
+			"separators": [],
+			"props": {}
+		},
+		{
 			"name": "classes",
 			"columns": [
 				{
@@ -1183,6 +1252,9 @@
 						},
 						{
 							"item": "Portion03"
+						},
+						{
+							"item": "StickPoison"
 						}
 					]
 				}

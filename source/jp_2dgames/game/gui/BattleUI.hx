@@ -1,6 +1,5 @@
 package jp_2dgames.game.gui;
 
-import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.lib.StatusBar;
 import flixel.math.FlxPoint;
@@ -278,21 +277,6 @@ class BattleUI extends FlxSpriteGroup {
     // ステータス更新
     _txtDex.text = 'DEX: ${player.dex}';
     _txtAgi.text = 'AGI: ${player.agi}';
-
-    // TODO:
-    {
-      var player = ActorMgr.getPlayer();
-      player.bstList.adhere(BadStatus.Paralyze);
-      player.bstList.adhere(BadStatus.Poison);
-      player.bstList.adhere(BadStatus.Blind);
-    }
-    if(true)
-    {
-      var enemy = ActorMgr.getEnemy();
-      enemy.bstList.adhere(BadStatus.Paralyze);
-      enemy.bstList.adhere(BadStatus.Poison);
-      enemy.bstList.adhere(BadStatus.Blind);
-    }
   }
 
   /**

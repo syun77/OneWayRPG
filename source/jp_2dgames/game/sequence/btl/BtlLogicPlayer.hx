@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.sequence.btl.BtlLogic;
@@ -89,6 +90,10 @@ class BtlLogicPlayer {
     if(BtlCalc.isHit(prm, _data.actor, _data.target)) {
       // 命中回数増加
       _cntHit++;
+      if(prm.bst != BadStatus.None) {
+        // バステ付着
+        _data.target.bstList.adhere(prm.bst);
+      }
     }
     else {
       // 外れ

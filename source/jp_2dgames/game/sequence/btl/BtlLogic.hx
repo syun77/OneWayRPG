@@ -1,6 +1,8 @@
 package jp_2dgames.game.sequence.btl;
 
-import jp_2dgames.game.dat.AttributeUtil.Attribute;
+import jp_2dgames.game.actor.BadStatusUtil;
+import jp_2dgames.game.dat.AttributeUtil;
+
 enum BtlLogicAttack {
   Normal; // 通常
   Multi;  // 複数回攻撃
@@ -14,15 +16,17 @@ class BtlLogicAttackParam {
   public var ratio:Int;      // 命中率
   public var ratioRaw:Int;   // 主体者・対象者による補正がな状態の命中率
   public var attr:Attribute; // 属性
+  public var bst:BadStatus;  // 付着するバステ
 
   /**
    * コンストラクタ
    **/
-  public function new(power:Int, ratio:Int, ratioRaw:Int, attr:Attribute) {
-    this.power = power;
-    this.ratio = ratio;
+  public function new(power:Int, ratio:Int, ratioRaw:Int, attr:Attribute, bst:BadStatus) {
+    this.power    = power;
+    this.ratio    = ratio;
     this.ratioRaw = ratioRaw;
-    this.attr  = attr;
+    this.attr     = attr;
+    this.bst      = bst;
   }
 }
 
