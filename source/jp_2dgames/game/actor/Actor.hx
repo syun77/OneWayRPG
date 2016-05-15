@@ -301,6 +301,17 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
+   * 毒ダメージ
+   **/
+  public function damagePoison():Void {
+    var v = Std.int(hpmax * 0.1);
+    if(v < 1) {
+      v = 1;
+    }
+    damage(v);
+  }
+
+  /**
    * 消滅
    **/
   public function vanish():Void {

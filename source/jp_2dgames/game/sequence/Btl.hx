@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.actor.ActorMgr;
 import jp_2dgames.game.gui.BattleResultPopupUI;
 import jp_2dgames.game.state.InventorySubState;
@@ -213,10 +214,51 @@ class BtlEnemyMain extends FlxFSMState<SeqMgr> {
 }
 
 /**
- * ターン終了
+ * ターン終了(敵の毒処理)
  **/
 class BtlTurnEnd extends FlxFSMState<SeqMgr> {
+
+  var _idx:Int = 0;
+  var _tbl:List<Void->Void>;
+
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    _tbl = new List<Void->Void>();
+    // バッドステータスの処理
+    // 敵
+    var enemy = owner.enemy;
+    if(enemy.bstList.isAdhere(BadStatus.Poison)) {
+      // 毒ダメージ
+      _tbl.add(function() {
+        enemy.damagePoison();
+        owner.startWait();
+      });
+    }
+    // プレイヤー
+    var player = owner.player;
+    if(player.bstList.isAdhere(BadStatus.Poison)) {
+      // 毒ダメージ
+      _tbl.add(function() {
+        player.damagePoison();
+        owner.startWait();
+      });
+    }
+
+    var func = _tbl.pop();
+    if(func != null) {
+      func();
+    }
+  }
+
+  override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+    if(owner.isEndWait()) {
+      // 演出が終わった
+      var func = _tbl.pop();
+      if(func != null) {
+        // 次の演出を再生
+        func();
+      }
+    }
   }
 }
 

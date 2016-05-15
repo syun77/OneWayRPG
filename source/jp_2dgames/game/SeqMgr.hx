@@ -109,8 +109,9 @@ class SeqMgr extends FlxBasic {
       // ダンジョン - アイテム捨てる
       .add(DgDrop,     Dg,          Conditions.isEndWait)   // アイテム破棄  -> ダンジョン
       // ダンジョン - ショップ
-      .add(DgShop,     Dg,          Conditions.isEndWait)   // ショップ      -> ダンジョン
+      .add(DgShop,     Dg,          Conditions.isEndWait);  // ショップ      -> ダンジョン
 
+    _fsm.transitions
       // ■バトル
       .add(BtlBoot,        Btl,            Conditions.isEndWait)    // 敵出現        -> バトルコマンド入力
       .add(Btl,            BtlPlayerBegin, Conditions.isSelectItem) // コマンド      -> プレイヤー開始
@@ -124,6 +125,8 @@ class SeqMgr extends FlxBasic {
       .add(BtlEnemyMain,   PlayerDead,     Conditions.isDead)       // 敵実行        -> 敗北 (※ゲームオーバー)
       .add(BtlEnemyMain,   BtlTurnEnd,     Conditions.isLogicEnd)   // 敵実行        -> ターン終了
       // バトル - ターン終了
+      .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
+      .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
       .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
       // バトル - 勝利
       .add(BtlEnemyDead,   BtlPowerup,     Conditions.isEndWait)    // 敵死亡        -> アイテム強化
