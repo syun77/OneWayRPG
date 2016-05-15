@@ -78,8 +78,11 @@ class InventorySubState extends FlxUISubState {
           _txtDetail = cast widget;
         default:
           if(widget.name.indexOf("item") != -1) {
-            var btn:FlxUIButton = cast widget;
-            _btnItems[widget.name] = btn;
+            if(Std.is(widget, FlxUIButton)) {
+              // アイテムボタン
+              var btn:FlxUIButton = cast widget;
+              _btnItems[widget.name] = btn;
+            }
           }
       }
 
