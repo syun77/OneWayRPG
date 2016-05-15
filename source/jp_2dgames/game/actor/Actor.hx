@@ -85,6 +85,9 @@ class Actor extends FlxEffectSprite {
     _params = new Params();
     _btlPrms = new BtlParams();
     _bstList = new BadStatusList();
+
+    // 非表示にしておく
+    visible = false;
   }
 
   /**

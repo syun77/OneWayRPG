@@ -65,7 +65,7 @@ class BtlLogicMgr {
     // ActorMgrからTempActorMgrに情報をコピーする
 
     // 行動順の決定
-    var actorList:Array<Actor>;
+    var actorList:Array<Actor> = null;
 
     // バトル終了フラグ
     var bEnd = false;
@@ -105,7 +105,6 @@ class BtlLogicMgr {
       // バトル終了チェック
       if(_checkBattleEnd()) {
         // 終了
-        break;
       }
     }
 

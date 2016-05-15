@@ -1,5 +1,7 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.sequence.btl.BtlLogicMgr;
+import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.lib.StatusBar;
 import jp_2dgames.game.global.ItemLottery;
 import jp_2dgames.game.gui.BattleUI;
@@ -110,9 +112,18 @@ class PlayState extends FlxUIState {
       ActorMgr.add(p);
     }
 
+    // テンポラリ用のActor生成
+    TempActorMgr.createInstance();
+    for(i in 0...ActorMgr.countExists()) {
+      TempActorMgr.add();
+    }
+
     // シーケンス管理生成
     _seq = new SeqMgr();
     this.add(_seq);
+
+    // バトル演出管理生成
+    BtlLogicMgr.create();
 
     // BGM再生
     Snd.playMusic('${Global.level}');
@@ -127,10 +138,12 @@ class PlayState extends FlxUIState {
     ItemLottery.destroyInstance();
     Bg.destroyInstance();
     ActorMgr.destroyInstance();
+    TempActorMgr.destroyInstance();
     Particle.destroyParent();
     ParticleNumber.destroyParent();
     Message.destroyInstance(this);
     BattleUI.destroyInstance();
+    BtlLogicMgr.destroy();
     super.destroy();
   }
 

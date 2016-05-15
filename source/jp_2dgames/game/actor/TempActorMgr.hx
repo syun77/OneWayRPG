@@ -1,25 +1,22 @@
 package jp_2dgames.game.actor;
 
 import flixel.group.FlxGroup;
-import flixel.FlxState;
 import jp_2dgames.game.actor.BtlGroupUtil;
 
 /**
- * アクター管理
+ * アクター管理（テンポラリ）
  **/
-class ActorMgr {
+class TempActorMgr {
 
   static var _instance:FlxTypedGroup<Actor> = null;
-  public static function createInstance(state:FlxState):Void {
+  public static function createInstance():Void {
     _instance = new FlxTypedGroup<Actor>();
-    state.add(_instance);
   }
   public static function destroyInstance():Void {
     _instance = null;
   }
-  public static function add(p:Params):Actor {
-    var actor:Actor = _instance.recycle(Actor);
-    actor.init(p);
+  public static function add():Actor {
+    var actor = _instance.recycle(Actor);
     return actor;
   }
   public static function forEach(func:Actor->Void):Void {
@@ -40,9 +37,6 @@ class ActorMgr {
       }
     });
     return ret;
-  }
-  public static function countExists():Int {
-    return _instance.countLiving();
   }
 
   /**
@@ -73,9 +67,9 @@ class ActorMgr {
     return ret;
   }
 
-  // -------------------------------------------
-  // ■フィールド
 
+  // -----------------------------------------
+  // ■フィールド
 
   /**
    * コンストラクタ
