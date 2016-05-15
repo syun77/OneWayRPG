@@ -198,7 +198,7 @@ class BattleUI extends FlxSpriteGroup {
 
     // バッドステータス生成
     _bstPlayer = new BadStatusUI(_txtHp.x-8, _txtHp.y + _txtHp.height + 4);
-    _bstEnemy = new BadStatusUI(_txtHpEnemy.x, _txtHpEnemy.y + _txtHpEnemy.height);
+    _bstEnemy = new BadStatusUI(_txtHpEnemy.x-8, _txtHpEnemy.y + _txtHpEnemy.height + 4);
     state.add(_bstPlayer);
     state.add(_bstEnemy);
 
@@ -280,10 +280,19 @@ class BattleUI extends FlxSpriteGroup {
     _txtAgi.text = 'AGI: ${player.agi}';
 
     // TODO:
-    var player = ActorMgr.getEnemy();
-    player.bstList.adhere(BadStatus.Paralyze);
-    player.bstList.adhere(BadStatus.Poison);
-    player.bstList.adhere(BadStatus.Blind);
+    {
+      var player = ActorMgr.getPlayer();
+      player.bstList.adhere(BadStatus.Paralyze);
+      player.bstList.adhere(BadStatus.Poison);
+      player.bstList.adhere(BadStatus.Blind);
+    }
+    if(true)
+    {
+      var enemy = ActorMgr.getEnemy();
+      enemy.bstList.adhere(BadStatus.Paralyze);
+      enemy.bstList.adhere(BadStatus.Poison);
+      enemy.bstList.adhere(BadStatus.Blind);
+    }
   }
 
   /**
@@ -405,6 +414,7 @@ class BattleUI extends FlxSpriteGroup {
 
     if(key == "enemyhud") {
       _hpbarEnemy.visible = b;
+      _bstEnemy.visible = b;
     }
   }
 

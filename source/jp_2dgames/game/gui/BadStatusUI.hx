@@ -47,7 +47,7 @@ class BadStatusUI extends FlxSpriteGroup {
     });
 
     for(i in idx...MAX) {
-      var icon = _list[idx];
+      var icon = _list[i];
       icon.play(BadStatus.None);
     }
   }
