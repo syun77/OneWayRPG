@@ -1,5 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
+import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.game.actor.Actor;
 
 /**
@@ -63,9 +65,12 @@ class BtlLogicMgr {
   function _createLogic():Void {
 
     // ActorMgrからTempActorMgrに情報をコピーする
+    TempActorMgr.copyFromActorMgr();
 
     // 行動順の決定
-    var actorList:Array<Actor> = null;
+    var actorList = TempActorMgr.getAlive();
+    // 行動順ソート
+    // 必ず、プレイヤー -> 敵 なのでソート不要
 
     // バトル終了フラグ
     var bEnd = false;
@@ -85,6 +90,19 @@ class BtlLogicMgr {
       }
 
       // 演出データを生成
+      var efts:List<BtlLogicData> = null;
+      if(actor.group == BtlGroup.Player) {
+        // プレイヤー
+        //efts = BtlLogicFactory.createPlayerLogic
+      }
+      else {
+        // 敵
+      }
+      if(efts != null) {
+        for(eft in efts) {
+          push(eft);
+        }
+      }
 
       // 死亡チェック
 

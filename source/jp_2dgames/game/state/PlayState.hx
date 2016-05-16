@@ -113,7 +113,7 @@ class PlayState extends FlxUIState {
     }
 
     // テンポラリ用のActor生成
-    TempActorMgr.createInstance();
+    TempActorMgr.create();
     for(i in 0...ActorMgr.countExists()) {
       TempActorMgr.add();
     }
@@ -138,7 +138,7 @@ class PlayState extends FlxUIState {
     ItemLottery.destroyInstance();
     Bg.destroyInstance();
     ActorMgr.destroyInstance();
-    TempActorMgr.destroyInstance();
+    TempActorMgr.destroy();
     Particle.destroyParent();
     ParticleNumber.destroyParent();
     Message.destroyInstance(this);

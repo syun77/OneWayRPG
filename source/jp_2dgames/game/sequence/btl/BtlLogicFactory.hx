@@ -19,10 +19,8 @@ class BtlLogicFactory {
   /**
    * 行動種別を取得 (プレイヤー)
    **/
-  static function _getActionTypePlayer(owner:SeqMgr, item:ItemData):BtlLogic {
+  static function _getActionTypePlayer(player:Actor, enemy:Actor, item:ItemData):BtlLogic {
 
-    var player = owner.player;
-    var enemy = owner.enemy;
     if(ItemList.isEmpty()) {
       // 自動攻撃
       var type = BtlLogicAttack.Normal;
@@ -36,9 +34,6 @@ class BtlLogicFactory {
       return BtlLogic.Attack(type, prm);
     }
 
-    if(item == null) {
-      item = owner.getSelectedItem();
-    }
     switch(ItemUtil.getCategory(item)) {
       case ItemCategory.Portion:
         // 回復
@@ -76,7 +71,7 @@ class BtlLogicFactory {
   /**
    * 行動回数を計算
    **/
-  static function _getActionCount(owner:SeqMgr, group:BtlGroup, item:ItemData):Int {
+  static function _getActionCount(group:BtlGroup, item:ItemData):Int {
     switch(group) {
       case BtlGroup.Both:
         return 1;
@@ -87,9 +82,6 @@ class BtlLogicFactory {
           return 1;
         }
 
-        if(item == null) {
-          item = owner.getSelectedItem();
-        }
         return ItemUtil.getCount(item);
 
       case BtlGroup.Enemy:
@@ -101,11 +93,12 @@ class BtlLogicFactory {
    * プレイヤーのBtlLogicDataを生成
    **/
   public static function createPlayerLogic(owner:SeqMgr, item:ItemData):BtlLogicData {
-    var type  = _getActionTypePlayer(owner, item);
-    var count = _getActionCount(owner, BtlGroup.Player, item);
-
     var actor  = owner.player;
     var target = owner.enemy;
+
+    var type  = _getActionTypePlayer(actor, target, item);
+    var count = _getActionCount(BtlGroup.Player, item);
+
     switch(type) {
       case BtlLogic.None:
 

@@ -8,22 +8,42 @@ import jp_2dgames.game.actor.BtlGroupUtil;
  **/
 class TempActorMgr {
 
-  static var _instance:FlxTypedGroup<Actor> = null;
-  public static function createInstance():Void {
-    _instance = new FlxTypedGroup<Actor>();
+  static var _pool:FlxTypedGroup<Actor> = null;
+  public static function create():Void {
+    _pool = new FlxTypedGroup<Actor>();
   }
-  public static function destroyInstance():Void {
-    _instance = null;
+  public static function destroy():Void {
+    _pool = null;
   }
   public static function add():Actor {
-    var actor = _instance.recycle(Actor);
+    var actor = _pool.recycle(Actor);
     return actor;
   }
+
+  /**
+   * ActorMgrから情報をコピー
+   **/
+  public static function copyFromActorMgr():Void {
+    var idx:Int = 0;
+    ActorMgr.forEach(function(actor:Actor) {
+      var act:Actor = _pool.members[idx];
+      actor.copyTo(act);
+      idx++;
+    });
+  }
+
   public static function forEach(func:Actor->Void):Void {
-    _instance.forEach(func);
+    _pool.forEach(func);
   }
   public static function forEachAlive(func:Actor->Void):Void {
-    _instance.forEachAlive(func);
+    _pool.forEachAlive(func);
+  }
+
+  /**
+   * 生存しているActorのリストを取得
+   **/
+  public static function getAlive():Array<Actor> {
+    return _pool.members;
   }
 
   /**

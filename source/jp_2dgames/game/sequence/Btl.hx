@@ -166,7 +166,8 @@ class BtlPlayerMain extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
 
     // 演出データを生成
-    var logic = BtlLogicFactory.createPlayerLogic(owner, null);
+    var item = owner.getSelectedItem();
+    var logic = BtlLogicFactory.createPlayerLogic(owner, item);
     // 登録
     BtlLogicPlayer.init(logic);
   }
