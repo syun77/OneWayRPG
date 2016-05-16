@@ -1,15 +1,15 @@
 package jp_2dgames.game.sequence.btl;
 
-import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
+import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.sequence.btl.BtlCalc;
-import jp_2dgames.game.dat.AttributeUtil.Attribute;
+import jp_2dgames.game.dat.AttributeUtil;
 import jp_2dgames.game.dat.EnemyDB;
 import jp_2dgames.game.actor.Actor;
 import jp_2dgames.game.sequence.btl.BtlLogic;
 import jp_2dgames.game.item.ItemList;
 import jp_2dgames.game.item.ItemUtil;
-import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
+import jp_2dgames.game.actor.BtlGroupUtil;
 
 /**
  * BtlLogicDataの生成
@@ -92,13 +92,13 @@ class BtlLogicFactory {
   /**
    * プレイヤーのBtlLogicDataを生成
    **/
-  public static function createPlayerLogic(owner:SeqMgr, item:ItemData):BtlLogicData {
-    var actor  = owner.player;
-    var target = owner.enemy;
+  public static function createPlayerLogic(player:Actor, enemy:Actor, item:ItemData):BtlLogicData {
 
-    var type  = _getActionTypePlayer(actor, target, item);
+    var type  = _getActionTypePlayer(player, enemy, item);
     var count = _getActionCount(BtlGroup.Player, item);
 
+    var actor  = player;
+    var target = enemy;
     switch(type) {
       case BtlLogic.None:
 
@@ -106,7 +106,7 @@ class BtlLogicFactory {
 
       case BtlLogic.Recover:
         // プレイヤーが回復対象
-        target = owner.player;
+        target = player;
     }
     return new BtlLogicData(type, count, actor, target);
   }
@@ -114,14 +114,13 @@ class BtlLogicFactory {
   /**
    * 敵のBtlLogicDataを生成
    **/
-  public static function createEnemyLogic(owner:SeqMgr):BtlLogicData {
+  public static function createEnemyLogic(player:Actor, enemy:Actor):BtlLogicData {
 
     var func = function() {
-      var enemy = owner.enemy;
       var type = BtlLogicAttack.Normal;
       var power = enemy.str;
       var ratioRaw = EnemyDB.getHit(enemy.id);
-      var ratio = BtlCalc.hit(ratioRaw, enemy, owner.player);
+      var ratio = BtlCalc.hit(ratioRaw, enemy, player);
       var attr  = Attribute.Phys;
       var bst   = BadStatus.None;
       var prm  = new BtlLogicAttackParam(power, ratio, ratioRaw, attr, bst);
@@ -130,8 +129,8 @@ class BtlLogicFactory {
     var type = func();
     var count = 1;
 
-    var actor  = owner.enemy;
-    var target = owner.player;
+    var actor  = enemy;
+    var target = player;
 
     return new BtlLogicData(type, count, actor, target);
   }

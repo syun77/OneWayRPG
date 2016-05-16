@@ -167,7 +167,7 @@ class BtlPlayerMain extends FlxFSMState<SeqMgr> {
 
     // 演出データを生成
     var item = owner.getSelectedItem();
-    var logic = BtlLogicFactory.createPlayerLogic(owner, item);
+    var logic = BtlLogicFactory.createPlayerLogic(owner.player, owner.enemy, item);
     // 登録
     BtlLogicPlayer.init(logic);
   }
@@ -202,7 +202,7 @@ class BtlEnemyMain extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
 
     // 演出データを生成
-    var logic = BtlLogicFactory.createEnemyLogic(owner);
+    var logic = BtlLogicFactory.createEnemyLogic(owner.player, owner.enemy);
     // 登録
     BtlLogicPlayer.init(logic);
   }
