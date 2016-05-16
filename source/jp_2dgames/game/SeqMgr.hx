@@ -114,6 +114,14 @@ class SeqMgr extends FlxBasic {
     _fsm.transitions
       // ■バトル
       .add(BtlBoot,        Btl,            Conditions.isEndWait)    // 敵出現        -> バトルコマンド入力
+      .add(Btl,            BtlLogicLoop,   Conditions.isSelectItem) // コマンド      -> コマンド選択完了
+      .add(Btl,            BtlLogicLoop,   Conditions.isEmpytItem)  // コマンド      -> アイテムがないので自動攻撃
+      .add(BtlLogicLoop,   BtlTurnEnd,     Conditions.isLogicEnd)   // 演出再生中    -> ターン終了
+      .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
+      .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
+      .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
+
+      /*
       .add(Btl,            BtlPlayerBegin, Conditions.isSelectItem) // コマンド      -> プレイヤー開始
       .add(Btl,            BtlPlayerBegin, Conditions.isEmpytItem)  // コマンド      -> アイテムがないので自動攻撃
       // バトル - プレイヤー行動
@@ -128,6 +136,7 @@ class SeqMgr extends FlxBasic {
       .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
       .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
       .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
+      */
       // バトル - 勝利
       .add(BtlEnemyDead,   BtlPowerup,     Conditions.isEndWait)    // 敵死亡        -> アイテム強化
       .add(BtlPowerup,     BtlWin,         Conditions.isEndWait)    // アイテム強化   -> 勝利

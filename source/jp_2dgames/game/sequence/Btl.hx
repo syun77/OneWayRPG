@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.actor.ActorMgr;
 import jp_2dgames.game.gui.BattleResultPopupUI;
@@ -114,6 +115,27 @@ class Btl extends FlxFSMState<SeqMgr> {
       // インベントリ表示
       FlxG.state.openSubState(new InventorySubState(owner, InventoryMode.Battle));
     }
+  }
+}
+
+/**
+ * バトル演出再生中
+ **/
+class BtlLogicLoop extends FlxFSMState<SeqMgr> {
+
+  static var _bTurnEnd:Bool = false;
+  public static function isTurnEnd():Bool {
+    return _bTurnEnd;
+  }
+
+  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+    // 演出データ生成
+    BtlLogicMgr.createLogic(owner);
+    _bTurnEnd = false;
+  }
+
+  override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
   }
 }
 

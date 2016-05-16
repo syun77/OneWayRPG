@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import flixel.FlxG;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.sequence.btl.BtlCalc;
@@ -15,58 +16,6 @@ import jp_2dgames.game.actor.BtlGroupUtil;
  * BtlLogicDataの生成
  **/
 class BtlLogicFactory {
-
-  /**
-   * 行動種別を取得 (プレイヤー)
-   **/
-  static function _getActionTypePlayer(player:Actor, enemy:Actor, item:ItemData):BtlLogic {
-
-    if(ItemList.isEmpty()) {
-      // 自動攻撃
-      var type = BtlLogicAttack.Normal;
-      // 1回攻撃・命中率100%・物理
-      var count = 1;
-      var ratioRaw = 100;
-      var ratio = BtlCalc.hit(ratioRaw, player, enemy);
-      var attr  = Attribute.Phys;
-      var bst   = BadStatus.None;
-      var prm = new BtlLogicAttackParam(count, ratio, ratioRaw, attr, bst);
-      return BtlLogic.Attack(type, prm);
-    }
-
-    switch(ItemUtil.getCategory(item)) {
-      case ItemCategory.Portion:
-        // 回復
-        var hp = ItemUtil.getHp(item);
-        if(item.now == 1) {
-          // 最後の1回
-          hp *= 3;
-        }
-        var prm = new BtlLogicRecoverParam(hp);
-        return BtlLogic.Recover(prm);
-
-      case ItemCategory.Weapon:
-        // 武器
-        var power = ItemUtil.getPower(item);
-        if(item.now == 1) {
-          // 最後の一撃
-          power *= 3;
-        }
-        var ratioRaw = ItemUtil.getHit(item);
-        var ratio = BtlCalc.hit(ratioRaw, player, enemy);
-        var count = ItemUtil.getCount(item);
-        var attr  = ItemUtil.getAttribute(item);
-        var bst   = ItemUtil.getBadStatus(item);
-        var prm = new BtlLogicAttackParam(power, ratio, ratioRaw, attr, bst);
-        var type = BtlLogicAttack.Normal;
-        if(count > 1) {
-          // 複数回攻撃
-          type = BtlLogicAttack.Multi;
-        }
-        return BtlLogic.Attack(type, prm);
-    }
-  }
-
 
   /**
    * 行動回数を計算
@@ -92,29 +41,101 @@ class BtlLogicFactory {
   /**
    * プレイヤーのBtlLogicDataを生成
    **/
-  public static function createPlayerLogic(player:Actor, enemy:Actor, item:ItemData):BtlLogicData {
+  public static function createPlayerLogic(player:Actor, enemy:Actor, item:ItemData):List<BtlLogicData> {
 
-    var type  = _getActionTypePlayer(player, enemy, item);
-    var count = _getActionCount(BtlGroup.Player, item);
+    var ret = new List<BtlLogicData>();
 
-    var actor  = player;
-    var target = enemy;
-    switch(type) {
-      case BtlLogic.None:
-
-      case BtlLogic.Attack:
-
-      case BtlLogic.Recover:
-        // プレイヤーが回復対象
-        target = player;
+    if(ItemList.isEmpty()) {
+      // 自動攻撃
+      ret = _createAutoAttack(ret, player, enemy);
+      return ret;
     }
-    return new BtlLogicData(type, count, actor, target);
+
+    // 通常の処理
+    {
+      // アイテムを使う
+      var data = new BtlLogicData(BtlLogic.UseItem(item), player, enemy);
+      ret.add(data);
+    }
+
+    var count = _getActionCount(BtlGroup.Player, item);
+    while(count > 0) {
+      count--;
+
+      switch(ItemUtil.getCategory(item)) {
+        case ItemCategory.Portion:
+          // ■回復
+          var hp = ItemUtil.getHp(item);
+          if(item.now == 1) {
+            // 最後の1回
+            hp *= 3;
+          }
+          var data = new BtlLogicData(BtlLogic.HpRecover(hp), player, player);
+          ret.add(data);
+
+        case ItemCategory.Weapon:
+          // 武器
+          var power = ItemUtil.getPower(item);
+          if(item.now == 1) {
+            // 最後の一撃
+            power *= 3;
+          }
+          var ratioRaw = ItemUtil.getHit(item);
+          var attr  = ItemUtil.getAttribute(item);
+          var bst   = ItemUtil.getBadStatus(item);
+          var bSeq  = (count > 0);
+          ret.add(_createDamage(player, enemy, power, ratioRaw, attr, bSeq));
+      }
+    }
+
+    return ret;
+  }
+
+  /**
+   * 自動攻撃
+   **/
+  static function _createAutoAttack(ret:List<BtlLogicData>, actor:Actor, target:Actor):List<BtlLogicData> {
+
+    {
+      // 攻撃開始
+      var type = BtlLogic.BeginAtttack;
+      var data = new BtlLogicData(type, actor, target);
+      ret.add(data);
+    }
+
+    // 1回攻撃・命中率100%・物理
+    var power    = 1;
+    var attr     = Attribute.Phys;
+    var ratioRaw = 100;
+    ret.add(_createDamage(player, enemy, power, ratioRaw, attr, false));
+    return ret;
+  }
+
+  /**
+   * ダメージのLogicDataを作成
+   **/
+  static function _createDamage(actor:Actor, target:Actor, power:Int, hit:Int, attr:Attribute, bSeq:Bool):BtlLogicData {
+    var ratio = BtlCalc.hit(hit, actor, target);
+    if(FlxG.random.bool(ratio)) {
+      // 命中
+      var damage = BtlCalc.damage(power, attr, actor, target);
+      var type = BtlLogic.HpDamage(damage, bSeq);
+      var data = new BtlLogicData(type, actor, target)
+      data.bWaitQuick = bSeq;
+      return data;
+    }
+    else {
+      // 外れ
+      return new BtlLogicData(BtlLogic.ChanceRoll(false), actor, target))
+    }
   }
 
   /**
    * 敵のBtlLogicDataを生成
    **/
   public static function createEnemyLogic(player:Actor, enemy:Actor):BtlLogicData {
+
+    var ret = new List<BtlLogicData>();
 
     var func = function() {
       var type = BtlLogicAttack.Normal;
@@ -133,5 +154,20 @@ class BtlLogicFactory {
     var target = player;
 
     return new BtlLogicData(type, count, actor, target);
+
+    {
+      // 攻撃開始
+      var type = BtlLogic.BeginAtttack;
+      var data = new BtlLogicData(type, enemy, player);
+      ret.add(data);
+    }
+
+    // 1回攻撃・命中率100%・物理
+    var power = enemy.str;
+    var attr  = Attribute.Phys;
+    var bst   = BadStatus.None;
+    var ratioRaw = EnemyDB.getHit(enemy.id);
+    ret.add(_createDamage(enemy, player, power, ratioRaw, attr, false));
+    return ret;
   }
 }

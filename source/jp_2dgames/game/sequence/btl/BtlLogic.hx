@@ -1,12 +1,8 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.dat.AttributeUtil;
-
-enum BtlLogicAttack {
-  Normal; // 通常
-  Multi;  // 複数回攻撃
-}
 
 /**
  * 攻撃行動のパラメータ
@@ -48,7 +44,45 @@ class BtlLogicRecoverParam {
  * バトル行動タイプ
  **/
 enum BtlLogic {
-  None; // 何もしない
-  Attack(type:BtlLogicAttack, prm:BtlLogicAttackParam); // 攻撃
-  Recover(prm:BtlLogicRecoverParam); // 回復
+
+  // ■行動開始
+  BeginEffect(eft:BtlLogicBegin); // 攻撃開始エフェクト
+  BeginAtttack;                   // 通常攻撃
+  BeginItem(item:ItemData);       // アイテムを使う
+
+  // ■行動終了
+  EndAction;
+
+  // ■アイテム消費
+  UseItem(item:ItemData);
+
+  // ■メッセージ表示
+  Message(msgID:Int, args:Array<Dynamic>);
+
+  // ■効果反映
+  HpDamage(val:Int, bSeq:Bool); // HPダメージ
+  HpRecover(val);               // HP回復
+  BadStatus(bst:BadStatus);     // バッドステータス
+  ChanceRoll(b:Bool);           // 成功 or 失敗
+
+  // ■その他
+  Dead; // 死亡
+  BtlEnd(bWin:Bool); // バトル終了
+}
+
+/**
+ * バトル演出種別ユーティリティ
+ **/
+class BtlLogciUtil {
+  /**
+   * 開始演出かどうか
+   **/
+  public static function isBegin(type:BtlLogic):Bool {
+    switch(type) {
+      case BtlLogic.BeginEffect, BtlLogic.BeginAttack, BtlLogic.BeginItem:
+        return true;
+      default:
+        return false;
+    }
+  }
 }

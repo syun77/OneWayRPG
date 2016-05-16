@@ -5,6 +5,15 @@ import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.game.actor.Actor;
 
 /**
+ * 状態
+ **/
+private enum State {
+  Begin; // 開始
+  Main;  // メイン
+  End;   // 終了
+}
+
+/**
  * バトル演出管理（キュー）
  **/
 class BtlLogicMgr {
@@ -29,8 +38,8 @@ class BtlLogicMgr {
   /**
    * 演出データ生成
    **/
-  public static function createLogic():Void {
-    _instance._createLogic();
+  public static function createLogic(owner:SeqMgr):Void {
+    _instance._createLogic(owner);
   }
 
   /**
@@ -47,25 +56,54 @@ class BtlLogicMgr {
     return _instance._pop();
   }
 
+  /**
+   * 終了したかどうか
+   **/
+  public static function isEnd():Bool {
+    return _instance._isEnd();
+  }
+
+  /**
+   * 更新
+   **/
+  public static function update():Void {
+    _instance._update();
+  }
+
 
   // ---------------------------------------------------
   // ■フィールド
   var _pool:List<BtlLogicData>;
+  var _logicPlayer:BtlLogicPlayer;
+  var _state:State;
 
   /**
    * コンストラクタ
    **/
   function new() {
     _pool = new List<BtlLogicData>();
+    _state = State.End;
+    _logicPlayer = new BtlLogicPlayer();
+  }
+
+  /**
+   * 終了したかどうか
+   **/
+  function _isEnd():Bool {
+    return _state == State.End;
   }
 
   /**
    * 演出データを生成
    **/
-  function _createLogic():Void {
+  function _createLogic(owner:SeqMgr):Void {
+
+    _state = State.Begin;
 
     // ActorMgrからTempActorMgrに情報をコピーする
     TempActorMgr.copyFromActorMgr();
+    var player = TempActorMgr.getPlayer();
+    var enemy  = TempActorMgr.getEnemy();
 
     // 行動順の決定
     var actorList = TempActorMgr.getAlive();
@@ -93,10 +131,12 @@ class BtlLogicMgr {
       var efts:List<BtlLogicData> = null;
       if(actor.group == BtlGroup.Player) {
         // プレイヤー
-        //efts = BtlLogicFactory.createPlayerLogic
+        var item = owner.getSelectedItem();
+        efts = BtlLogicFactory.createPlayerLogic(actor, enemy, item)
       }
       else {
         // 敵
+        efts = BtlLogicFactory.createEnemyLogic(player, actor);
       }
       if(efts != null) {
         for(eft in efts) {
@@ -125,21 +165,6 @@ class BtlLogicMgr {
         // 終了
       }
     }
-
-  }
-
-  /**
-   * バトル演出データをキューに登録
-   **/
-  function _push(data:BtlLogicData):Void {
-    _pool.push(data);
-  }
-
-  /**
-   * バトル演出データをキューから取り出し
-   **/
-  function _pop():BtlLogicData {
-    return _pool.pop();
   }
 
   /**
@@ -159,4 +184,44 @@ class BtlLogicMgr {
     // 終了していない
     return false;
   }
+
+  /**
+   * 更新
+   **/
+  function _update():Void {
+    switch(_state) {
+      case State.Begin:
+        var logic = pop();
+        if(logic != null) {
+          _logicPlayer.start(logic);
+          _state = State.Main;
+        }
+        else {
+          // 再生する演出がなくなったので終わり
+          _state = State.End;
+        }
+      case State.Main:
+        _logicPlayer.update();
+        if(_logicPlayer.isEnd()) {
+          // 次の演出へ
+          _state = State.Begin;
+        }
+      case State.End:
+    }
+  }
+
+  /**
+   * バトル演出データをキューに登録
+   **/
+  function _push(data:BtlLogicData):Void {
+    _pool.push(data);
+  }
+
+  /**
+   * バトル演出データをキューから取り出し
+   **/
+  function _pop():BtlLogicData {
+    return _pool.pop();
+  }
+
 }

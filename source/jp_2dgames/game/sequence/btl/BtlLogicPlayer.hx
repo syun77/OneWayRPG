@@ -7,12 +7,13 @@ import jp_2dgames.game.sequence.btl.BtlLogic;
 import jp_2dgames.game.gui.message.Message;
 
 /**
- * 演出状態
+ * 状態
  **/
 private enum State {
-  None;
-  Start;
-  End;
+  Init; // 初期化
+  Main; // メイン
+  Wait; // 終了待ち
+  End;  // 終了
 }
 
 /**
@@ -20,12 +21,29 @@ private enum State {
  **/
 class BtlLogicPlayer {
 
+  // --------------------------------------------------
+  // ■フィールド
+  // 演出情報
+  var _data:BtlLogicData;
   // 状態
-  static var _state:State = State.None;
-  // 演出データ
-  static var _data:BtlLogicData = null;
-  // 命中回数
-  static var _cntHit:Int = 0;
+  var _state:State = State.Init;
+  // 停止タイマー
+  var _tWait:Int = 0;
+
+  /**
+   * コンストラクタ
+   **/
+  public function new() {
+  }
+
+  /**
+   * 開始
+   **/
+  public function start(logic:BtlLogicData):Void {
+    _data  = logic;
+    _state = State.Init;
+    _tWait = 0;
+  }
 
   /**
    * 初期化

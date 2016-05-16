@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.dat.AttributeUtil.Attribute;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.dat.EnemyDB;
 import jp_2dgames.game.sequence.btl.BtlLogic;
@@ -67,16 +68,15 @@ class BtlCalc {
   /**
    * ダメージ量計算
    **/
-  public static function damage(prm:BtlLogicAttackParam, actor:Actor, target:Actor):Int {
+  public static function damage(power:Int, attr:Attribute, actor:Actor, target:Actor):Int {
 
-    var power = prm.power;
     // ダメージ量
     var damage = power;
     // 属性ボーナス
     var value:Float = 1;
     if(target != null) {
       var resisits = EnemyDB.getResists(target.id);
-      value = resisits.getValue(prm.attr);
+      value = resisits.getValue(attr);
     }
     damage = Math.ceil(damage * value);
 
