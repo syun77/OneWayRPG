@@ -26,7 +26,7 @@
 
 	<!--These window settings apply to all targets-->
 	<window width="800" height="480" fps="60" background="#000000" hardware="true" vsync="true" />
-	<window width="1200" height="720" fps="60" background="#000000" hardware="true" vsync="true" />
+	<!--<window width="1200" height="720" fps="60" background="#000000" hardware="true" vsync="true" />-->
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="false" />
