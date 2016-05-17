@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.gui.message.Msg;
 import flixel.FlxG;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.item.ItemData;
@@ -89,6 +90,13 @@ class BtlLogicFactory {
       }
     }
 
+    if(item.now == 1) {
+      // 砕け散るメッセージ
+      var name = ItemUtil.getName(item);
+      var type = BtlLogic.MessageDisp(Msg.ITEM_DESTROY, [name]);
+      ret.add(new BtlLogicData(type, player.uid, player.uid));
+    }
+
     return ret;
   }
 
@@ -96,15 +104,6 @@ class BtlLogicFactory {
    * 自動攻撃
    **/
   static function _createAutoAttack(ret:List<BtlLogicData>, actor:Actor, target:Actor):List<BtlLogicData> {
-
-    /*
-    {
-      // 攻撃開始
-      var type = BtlLogic.BeginAtttack;
-      var data = new BtlLogicData(type, actor, target);
-      ret.add(data);
-    }
-    */
 
     // 1回攻撃・命中率100%・物理
     var power    = 1;
