@@ -161,13 +161,6 @@ class InventorySubState extends FlxUISubState {
           // アイテム使う
         case InventoryMode.ItemDrop:
           // アイテム捨てる
-          var item = ItemList.getFromIdx(idx);
-          ItemList.del(item.uid);
-          var name = ItemUtil.getName(item);
-          Message.push2(Msg.ITEM_DEL, [name]);
-          // 食糧が増える
-          _owner.addFood(item.now);
-          _owner.startWait();
         case InventoryMode.ItemDropAndGet:
           // 捨てて拾う
           if(idx >= ItemList.getLength()) {

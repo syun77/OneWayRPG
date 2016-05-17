@@ -176,6 +176,18 @@ class DgDrop extends FlxFSMState<SeqMgr> {
     // インベントリ表示
     FlxG.state.openSubState(new InventorySubState(owner, InventoryMode.ItemDrop));
   }
+  override public function exit(owner:SeqMgr):Void {
+    var item = owner.getSelectedItem();
+    if(item != null) {
+      // アイテム捨てる
+      ItemList.del(item.uid);
+      var name = ItemUtil.getName(item);
+      Message.push2(Msg.ITEM_DEL, [name]);
+      // 食糧が増える
+      owner.addFood(item.now);
+      owner.startWait();
+    }
+  }
 }
 
 /**

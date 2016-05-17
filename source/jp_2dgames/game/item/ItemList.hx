@@ -93,6 +93,7 @@ class ItemList {
    **/
   function _getFromIdx(idx:Int):ItemData {
     if(idx >= _pool.length) {
+      trace('Error: ItemList._getFromIdx() over length. (length=${_pool.length} idx=${idx}');
       return null;
     }
     return _pool[idx];

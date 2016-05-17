@@ -259,6 +259,7 @@ class SeqMgr extends FlxBasic {
       return true;
     }
     // アイテム以外を選んだ
+    _selectedItem = -1;
     return false;
 
   }
