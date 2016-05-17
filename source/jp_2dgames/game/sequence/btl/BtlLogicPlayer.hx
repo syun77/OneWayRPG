@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.item.ItemList;
 import jp_2dgames.lib.MyColor;
 import flixel.math.FlxMath;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
@@ -160,6 +161,7 @@ class BtlLogicPlayer {
 
       case BtlLogic.UseItem(item):
         // ■アイテムを使った
+        ItemList.del(item.uid);
         var name = ItemUtil.getName2(item);
         Message.push2(Msg.ITEM_USE, [actor.getName(), name]);
 
