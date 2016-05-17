@@ -200,10 +200,15 @@ class BtlLogicPlayer {
   function _damage(target:Actor, val:Int, bSeq:Bool):Void {
     // ダメージ値反映
     var ratio = target.damage(val);
+    var name = target.getName();
     if(target.group == BtlGroup.Player) {
       // プレイヤーダメージのときだけ画面を揺らす
       var v = FlxMath.lerp(0.01, 0.05, ratio);
       FlxG.camera.shake(v, 0.1 + (v * 10));
+      Message.push2(Msg.DAMAGE_PLAYER, [name, val]);
+    }
+    else {
+      Message.push2(Msg.DAMAGE_ENEMY, [name, val]);
     }
     var px = target.xcenter;
     var py = target.ycenter;

@@ -267,13 +267,11 @@ class Actor extends FlxEffectSprite {
    **/
   public function damage(v:Int):Float {
 
-    if(v >= 0) {
-      // ダメージあり
-      _params.hp -= v;
-      if(group == BtlGroup.Player) {
-        if(_params.hp < 0) {
-          _params.hp = 0;
-        }
+    // HPを減らす
+    _params.hp -= v;
+    if(group == BtlGroup.Player) {
+      if(_params.hp < 0) {
+        _params.hp = 0;
       }
     }
 
@@ -287,11 +285,10 @@ class Actor extends FlxEffectSprite {
 
     if(_group == BtlGroup.Player) {
       // プレイヤー
-      _damagePlayer(v);
     }
     else {
       // 敵
-      _damageEnemy(v, ratio);
+      shake(ratio);
     }
 
     return ratio;
@@ -354,18 +351,9 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
-   * プレイヤーへのダメージ
-   **/
-  function _damagePlayer(v:Int):Void {
-    Message.push2(Msg.DAMAGE_PLAYER, [_name, v]);
-  }
-
-  /**
    * 敵へのダメージ
    **/
   function _damageEnemy(v:Int, ratio:Float):Void {
-    Message.push2(Msg.DAMAGE_ENEMY, [_name, v]);
-    shake(ratio);
   }
 
   /**
