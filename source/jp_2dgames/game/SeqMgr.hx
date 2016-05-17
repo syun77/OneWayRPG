@@ -1,5 +1,6 @@
 package jp_2dgames.game;
 
+import jp_2dgames.lib.Snd;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.lib.MyColor;
 import jp_2dgames.game.particle.ParticleNumber;
@@ -290,6 +291,7 @@ class SeqMgr extends FlxBasic {
     var pt = BattleUI.getFoodPosition();
     ParticleNumber.start(pt.x, pt.y, v, MyColor.LIME);
     pt.put();
+    Snd.playSe("pickup2", true);
   }
 
   // ------------------------------------------------------
