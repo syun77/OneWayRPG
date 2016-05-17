@@ -364,19 +364,6 @@ class Actor extends FlxEffectSprite {
     if(_params.hp > hpmax) {
       _params.hp = hpmax;
     }
-
-    var w = width;
-    var h = height;
-    if(_group == BtlGroup.Player) {
-    }
-    else {
-      w = _spr.width;
-      h = _spr.height;
-    }
-
-    var px = x + w/2;
-    var py = y + h/2;
-    ParticleNumber.start(px, py, v, MyColor.LIME);
   }
 
   /**

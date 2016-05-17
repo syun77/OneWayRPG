@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.lib.MyColor;
 import flixel.math.FlxMath;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
 import jp_2dgames.game.particle.ParticleNumber;
@@ -228,6 +229,11 @@ class BtlLogicPlayer {
    **/
   function _recoverHp(target:Actor, val:Int):Void {
     target.recover(val);
+
+    var px = target.xcenter;
+    var py = target.ycenter;
+    ParticleNumber.start(px, py, val, MyColor.LIME);
+    Snd.playSe("recover");
   }
 
 
