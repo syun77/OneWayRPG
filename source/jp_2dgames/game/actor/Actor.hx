@@ -54,6 +54,7 @@ class Actor extends FlxEffectSprite {
 
 
   // アクセサ
+  public var uid(default, default):Int;
   public var group(get, never):BtlGroup;
   public var params(get, never):Params;
   public var id(get, never):EnemiesKind;
@@ -185,6 +186,7 @@ class Actor extends FlxEffectSprite {
    * パラメータをコピーする
    **/
   public function copyTo(dst:Actor):Void {
+    dst.uid   = uid;
     dst._name = _name;
     dst.params.copy(params); // 基本パラメータ
     dst._group = _group;

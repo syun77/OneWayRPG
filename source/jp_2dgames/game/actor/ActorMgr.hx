@@ -9,16 +9,20 @@ import jp_2dgames.game.actor.BtlGroupUtil;
  **/
 class ActorMgr {
 
+  static var _cntUID:Int;
   static var _instance:FlxTypedGroup<Actor> = null;
   public static function createInstance(state:FlxState):Void {
     _instance = new FlxTypedGroup<Actor>();
     state.add(_instance);
+    _cntUID = 1000;
   }
   public static function destroyInstance():Void {
     _instance = null;
   }
   public static function add(p:Params):Actor {
     var actor:Actor = _instance.recycle(Actor);
+    actor.uid = _cntUID;
+    _cntUID++;
     actor.init(p);
     return actor;
   }
@@ -27,6 +31,15 @@ class ActorMgr {
   }
   public static function forEachAlive(func:Actor->Void):Void {
     _instance.forEachAlive(func);
+  }
+  public static function search(uid:Int):Actor {
+    var ret:Actor = null;
+    forEach(function(actor:Actor) {
+      if(uid == actor.uid) {
+        ret = actor;
+      }
+    });
+    return ret;
   }
 
   /**

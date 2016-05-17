@@ -151,6 +151,7 @@ class ItemUtil {
   // ダメージ値取得
   public static function calcDamage(owner:SeqMgr, item:ItemData, bMultiple:Bool, resists:ResistList):Int {
 
+    /*
     var data = BtlLogicFactory.createPlayerLogic(owner.player, owner.enemy, item);
     var player = owner.player;
     var enemy = owner.enemy;
@@ -174,6 +175,10 @@ class ItemUtil {
     var sum = (val * count);
 
     return sum;
+    */
+
+    // TODO:
+    return 0;
   }
 
   public static function getMin(item:ItemData):Int {

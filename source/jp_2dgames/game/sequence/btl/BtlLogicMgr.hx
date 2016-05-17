@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import flixel.FlxG;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
 import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.game.actor.Actor;
@@ -84,6 +85,7 @@ class BtlLogicMgr {
     _pool = new List<BtlLogicData>();
     _state = State.End;
     _logicPlayer = new BtlLogicPlayer();
+    FlxG.watch.add(this, "_state", "Logic.state");
   }
 
   /**
@@ -132,7 +134,7 @@ class BtlLogicMgr {
       if(actor.group == BtlGroup.Player) {
         // プレイヤー
         var item = owner.getSelectedItem();
-        efts = BtlLogicFactory.createPlayerLogic(actor, enemy, item)
+        efts = BtlLogicFactory.createPlayerLogic(actor, enemy, item);
       }
       else {
         // 敵

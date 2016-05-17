@@ -135,90 +135,93 @@ class BtlLogicLoop extends FlxFSMState<SeqMgr> {
   }
 
   override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
-
+    BtlLogicMgr.update();
   }
 }
 
 /**
  * プレイヤー行動開始
  **/
-class BtlPlayerBegin extends FlxFSMState<SeqMgr> {
-
-  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
-
-    if(ItemList.isEmpty()) {
-      // 自動攻撃
-      Message.push2(Msg.AUTO_ATTACK);
-    }
-    else {
-      // アイテムを使った
-      var item = owner.getSelectedItem();
-      var name = ItemUtil.getName2(item);
-      Message.push2(Msg.ITEM_USE, [owner.player.getName(), name]);
-    }
-    owner.startWait();
-  }
-}
+//class BtlPlayerBegin extends FlxFSMState<SeqMgr> {
+//
+//  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+//
+//    if(ItemList.isEmpty()) {
+//      // 自動攻撃
+//      Message.push2(Msg.AUTO_ATTACK);
+//    }
+//    else {
+//      // アイテムを使った
+//      var item = owner.getSelectedItem();
+//      var name = ItemUtil.getName2(item);
+//      Message.push2(Msg.ITEM_USE, [owner.player.getName(), name]);
+//    }
+//    owner.startWait();
+//  }
+//}
 
 /**
  * プレイヤー行動メイン
  **/
-class BtlPlayerMain extends FlxFSMState<SeqMgr> {
-
-  /**
-   * アイテム使用回数の低下
-   **/
-  function _degrationItem(owner:SeqMgr):Void {
-
-    if(ItemList.isEmpty()) {
-      // 自動攻撃
-      return;
-    }
-
-    var item = owner.getSelectedItem();
-    item.now -= 1;
-    if(item.now <= 0) {
-      // アイテム壊れる
-      var name = ItemUtil.getName(item);
-      Message.push2(Msg.ITEM_DESTROY, [name]);
-      ItemList.del(item.uid);
-    }
-  }
-
-  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
-
-    // 演出データを生成
-    var item = owner.getSelectedItem();
-    var logic = BtlLogicFactory.createPlayerLogic(owner.player, owner.enemy, item);
-    // 登録
-    BtlLogicPlayer.init(logic);
-  }
-
-  override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
-
-    // 演出更新
-    BtlLogicPlayer.proc(elapsed, owner);
-  }
-
-  override public function exit(owner:SeqMgr):Void {
-    // アイテム使用回数減少
-    _degrationItem(owner);
-  }
-}
+//class BtlPlayerMain extends FlxFSMState<SeqMgr> {
+//
+//  /**
+//   * アイテム使用回数の低下
+//   **/
+//  function _degrationItem(owner:SeqMgr):Void {
+//
+//    if(ItemList.isEmpty()) {
+//      // 自動攻撃
+//      return;
+//    }
+//
+//    var item = owner.getSelectedItem();
+//    item.now -= 1;
+//    if(item.now <= 0) {
+//      // アイテム壊れる
+//      var name = ItemUtil.getName(item);
+//      Message.push2(Msg.ITEM_DESTROY, [name]);
+//      ItemList.del(item.uid);
+//    }
+//  }
+//
+//  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+//
+//    // 演出データを生成
+//    var item = owner.getSelectedItem();
+//    var logic = BtlLogicFactory.createPlayerLogic(owner.player, owner.enemy, item);
+//    // 登録
+//    BtlLogicPlayer.init(logic);
+//  }
+//
+//  override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+//
+//    // 演出更新
+//    BtlLogicPlayer.proc(elapsed, owner);
+//  }
+//
+//  override public function exit(owner:SeqMgr):Void {
+//    // アイテム使用回数減少
+//    _degrationItem(owner);
+//  }
+//}
 
 /**
  * 敵の行動開始
  **/
+/*
 class BtlEnemyBegin extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
     Message.push2(Msg.ATTACK_BEGIN, [owner.enemy.getName()]);
     owner.startWait();
   }
 }
+*/
 
 /**
  * 敵の行動メイン
  **/
+/*
 class BtlEnemyMain extends FlxFSMState<SeqMgr> {
 
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
@@ -235,6 +238,7 @@ class BtlEnemyMain extends FlxFSMState<SeqMgr> {
   }
 
 }
+*/
 
 /**
  * ターン終了(敵の毒処理)

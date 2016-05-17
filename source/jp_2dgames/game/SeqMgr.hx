@@ -1,5 +1,6 @@
 package jp_2dgames.game;
 
+import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.lib.MyColor;
 import jp_2dgames.game.particle.ParticleNumber;
 import jp_2dgames.game.state.InventorySubState;
@@ -377,7 +378,7 @@ private class Conditions {
     if(owner.isEndWait() == false) {
       return false;
     }
-    return BtlLogicPlayer.isEnd();
+    return BtlLogicMgr.isEnd();
   }
 
   public static function isDeadEnemy(owner:SeqMgr):Bool {

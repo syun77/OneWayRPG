@@ -47,7 +47,7 @@ enum BtlLogic {
 
   // ■行動開始
   BeginEffect(eft:BtlLogicBegin); // 攻撃開始エフェクト
-  BeginAtttack;                   // 通常攻撃
+  BeginAttack;                    // 通常攻撃
   BeginItem(item:ItemData);       // アイテムを使う
 
   // ■行動終了
@@ -57,12 +57,12 @@ enum BtlLogic {
   UseItem(item:ItemData);
 
   // ■メッセージ表示
-  Message(msgID:Int, args:Array<Dynamic>);
+  MessageDisp(msgID:Int, args:Array<Dynamic>);
 
   // ■効果反映
   HpDamage(val:Int, bSeq:Bool); // HPダメージ
-  HpRecover(val);               // HP回復
-  BadStatus(bst:BadStatus);     // バッドステータス
+  HpRecover(val:Int);           // HP回復
+  Badstatus(bst:BadStatus);     // バッドステータス
   ChanceRoll(b:Bool);           // 成功 or 失敗
 
   // ■その他
@@ -73,7 +73,7 @@ enum BtlLogic {
 /**
  * バトル演出種別ユーティリティ
  **/
-class BtlLogciUtil {
+class BtlLogicUtil {
   /**
    * 開始演出かどうか
    **/
