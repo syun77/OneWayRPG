@@ -47,4 +47,11 @@ class BtlLogicData {
     targetID   = src.targetID;
     bWaitQuick = src.bWaitQuick;
   }
+
+  /**
+   * デバッグ出力
+   **/
+  public function dump():Void {
+    trace('${type} actor=${actorID} target=${targetID} bWaitQuick=${bWaitQuick}');
+  }
 }

@@ -130,7 +130,9 @@ class BtlLogicFactory {
     }
     else {
       // 外れ
-      return new BtlLogicData(BtlLogic.ChanceRoll(false), actor.uid, target.uid);
+      var data = new BtlLogicData(BtlLogic.ChanceRoll(false), actor.uid, target.uid);
+      data.bWaitQuick = bSeq;
+      return data;
     }
   }
 
