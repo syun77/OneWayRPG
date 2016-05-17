@@ -2,7 +2,6 @@ package jp_2dgames.game.actor;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.lib.MyShake;
 import flixel.util.FlxTimer;
-import flixel.addons.effects.chainable.FlxRainbowEffect;
 import jp_2dgames.game.global.Global;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
@@ -68,6 +67,8 @@ class Actor extends FlxEffectSprite {
   public var food(get, never):Int;
   public var btlPrms(get, never):BtlParams;
   public var bstList(get, never):BadStatusList;
+  public var xcenter(get, never):Float;
+  public var ycenter(get, never):Float;
 
 
   /**
@@ -274,14 +275,8 @@ class Actor extends FlxEffectSprite {
           _params.hp = 0;
         }
       }
-      Snd.playSe("hit");
-    }
-    else {
-      Snd.playSe("miss");
     }
 
-    var w = width;
-    var h = height;
     var ratio = v / hpmax;
     if(ratio < 0) {
       ratio = 0;
@@ -297,22 +292,7 @@ class Actor extends FlxEffectSprite {
     else {
       // 敵
       _damageEnemy(v, ratio);
-      w = _spr.width;
-      h = _spr.height;
     }
-
-    var px = x + w/2;
-    var py = y + h/2;
-    if(group == BtlGroup.Enemy) {
-      // 敵の場合だけランダムでずらす
-      px += FlxG.random.int(-16, 16);
-      py += FlxG.random.int(-8, 8);
-    }
-    if(v >= 0) {
-      // ダメージエフェクト
-      Particle.start(PType.Ball, px, py, FlxColor.RED);
-    }
-    ParticleNumber.start(px, py, v);
   }
 
   /**
@@ -502,5 +482,23 @@ class Actor extends FlxEffectSprite {
   function get_food() { return _params.food; }
   function get_btlPrms() { return _btlPrms; }
   function get_bstList() { return _bstList; }
+  function get_xcenter() {
+    var w = width;
+    if(_group == BtlGroup.Enemy) {
+      // 敵
+      w = _spr.width;
+    }
+    var px = x + w/2;
+    return px;
+  }
+  function get_ycenter() {
+    var h = height;
+    if(_group == BtlGroup.Enemy) {
+      // 敵
+      h = _spr.height;
+    }
+    var py = y + h/2;
+    return py;
+  }
 
 }

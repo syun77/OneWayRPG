@@ -1,5 +1,8 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.particle.ParticleNumber;
+import flixel.util.FlxColor;
+import jp_2dgames.game.particle.Particle;
 import flixel.FlxG;
 import jp_2dgames.game.actor.ActorMgr;
 import jp_2dgames.game.actor.Actor;
@@ -171,7 +174,7 @@ class BtlLogicPlayer {
 
       case BtlLogic.ChanceRoll(b):
         // ■成功 or 失敗
-        _chanceRoll(b);
+        _chanceRoll(target, b);
 
       case BtlLogic.Badstatus(bst):
         // ■バステ付着
@@ -195,6 +198,17 @@ class BtlLogicPlayer {
   function _damage(target:Actor, val:Int, bSeq:Bool):Void {
     // ダメージ値反映
     target.damage(val);
+    var px = target.xcenter;
+    var py = target.ycenter;
+    if(bSeq) {
+      // 連続攻撃の場合だけランダムでずらす
+      px += FlxG.random.int(-16, 16);
+      py += FlxG.random.int(-8, 8);
+    }
+    // ダメージエフェクト
+    Particle.start(PType.Ball, px, py, FlxColor.RED);
+    ParticleNumber.start(px, py, val);
+    Snd.playSe("hit");
   }
 
   /**
@@ -204,8 +218,14 @@ class BtlLogicPlayer {
     target.recover(val);
   }
 
-  function _chanceRoll(b:Bool):Void {
 
+  function _chanceRoll(target:Actor, b:Bool):Void {
+    if(b == false) {
+      var px = target.xcenter;
+      var py = target.ycenter;
+      ParticleNumber.start(px, py, BtlCalc.VAL_EVADE);
+      Snd.playSe("miss");
+    }
   }
 
   /**
