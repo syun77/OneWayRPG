@@ -176,9 +176,22 @@ class ItemUtil {
 
     return sum;
     */
+    var power  = ItemUtil.getPower(item);
+    var attr   = ItemUtil.getAttribute(item);
+    var actor  = owner.player;
+    var target = owner.enemy;
+    if(resists == null) {
+      target = null;
+    }
+    var val = BtlCalc.damage(power, attr, actor, target);
+    var count = 1;
+    if(bMultiple) {
+      // 複数回攻撃を含める
+      count = getCount(item);
+    }
+    var sum = (val * count);
 
-    // TODO:
-    return 0;
+    return sum;
   }
 
   public static function getMin(item:ItemData):Int {
