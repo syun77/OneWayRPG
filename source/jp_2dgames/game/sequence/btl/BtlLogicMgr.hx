@@ -1,7 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
 import flixel.FlxG;
-import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
+import jp_2dgames.game.actor.BtlGroupUtil;
 import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.game.actor.Actor;
 
@@ -216,7 +216,7 @@ class BtlLogicMgr {
    * バトル演出データをキューに登録
    **/
   function _push(data:BtlLogicData):Void {
-    _pool.push(data);
+    _pool.add(data);
   }
 
   /**
