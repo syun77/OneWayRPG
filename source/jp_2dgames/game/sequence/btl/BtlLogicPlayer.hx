@@ -161,7 +161,11 @@ class BtlLogicPlayer {
 
       case BtlLogic.UseItem(item):
         // ■アイテムを使った
-        ItemList.del(item.uid);
+        item.now--;
+        if(item.now <= 0) {
+          // 壊れる
+          ItemList.del(item.uid);
+        }
         var name = ItemUtil.getName2(item);
         Message.push2(Msg.ITEM_USE, [actor.getName(), name]);
 
