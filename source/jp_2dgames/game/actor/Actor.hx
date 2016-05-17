@@ -265,7 +265,7 @@ class Actor extends FlxEffectSprite {
   /**
    * ダメージを与える
    **/
-  public function damage(v:Int):Void {
+  public function damage(v:Int):Float {
 
     if(v >= 0) {
       // ダメージあり
@@ -287,12 +287,14 @@ class Actor extends FlxEffectSprite {
 
     if(_group == BtlGroup.Player) {
       // プレイヤー
-      _damagePlayer(v, ratio);
+      _damagePlayer(v);
     }
     else {
       // 敵
       _damageEnemy(v, ratio);
     }
+
+    return ratio;
   }
 
   /**
@@ -354,32 +356,16 @@ class Actor extends FlxEffectSprite {
   /**
    * プレイヤーへのダメージ
    **/
-  function _damagePlayer(v:Int, ratio:Float):Void {
-    if(v >= 0) {
-      Message.push2(Msg.DAMAGE_PLAYER, [_name, v]);
-      var v = FlxMath.lerp(0.01, 0.05, ratio);
-      FlxG.camera.shake(v, 0.1 + (v * 10));
-    }
-    else {
-      // 攻撃回避
-      Message.push2(Msg.ATTACK_MISS, [_name]);
-    }
+  function _damagePlayer(v:Int):Void {
+    Message.push2(Msg.DAMAGE_PLAYER, [_name, v]);
   }
 
   /**
    * 敵へのダメージ
    **/
   function _damageEnemy(v:Int, ratio:Float):Void {
-
-    if(v >= 0) {
-      Message.push2(Msg.DAMAGE_ENEMY, [_name, v]);
-      shake(ratio);
-    }
-    else {
-      // 攻撃回避
-      Message.push2(Msg.ATTACK_MISS, [_name]);
-    }
-
+    Message.push2(Msg.DAMAGE_ENEMY, [_name, v]);
+    shake(ratio);
   }
 
   /**

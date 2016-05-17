@@ -1,5 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
+import flixel.math.FlxMath;
+import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
 import jp_2dgames.game.particle.ParticleNumber;
 import flixel.util.FlxColor;
 import jp_2dgames.game.particle.Particle;
@@ -197,7 +199,12 @@ class BtlLogicPlayer {
    **/
   function _damage(target:Actor, val:Int, bSeq:Bool):Void {
     // ダメージ値反映
-    target.damage(val);
+    var ratio = target.damage(val);
+    if(target.group == BtlGroup.Player) {
+      // プレイヤーダメージのときだけ画面を揺らす
+      var v = FlxMath.lerp(0.01, 0.05, ratio);
+      FlxG.camera.shake(v, 0.1 + (v * 10));
+    }
     var px = target.xcenter;
     var py = target.ycenter;
     if(bSeq) {
@@ -225,6 +232,7 @@ class BtlLogicPlayer {
       var py = target.ycenter;
       ParticleNumber.start(px, py, BtlCalc.VAL_EVADE);
       Snd.playSe("miss");
+      Message.push2(Msg.ATTACK_MISS, [target.getName()]);
     }
   }
 

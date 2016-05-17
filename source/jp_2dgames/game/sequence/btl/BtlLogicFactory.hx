@@ -72,6 +72,7 @@ class BtlLogicFactory {
           }
           var data = new BtlLogicData(BtlLogic.HpRecover(hp), player.uid, player.uid);
           ret.add(data);
+          player.recover(hp);
 
         case ItemCategory.Weapon:
           // 武器
@@ -124,6 +125,7 @@ class BtlLogicFactory {
       var type = BtlLogic.HpDamage(damage, bSeq);
       var data = new BtlLogicData(type, actor.uid, target.uid);
       data.bWaitQuick = bSeq;
+      target.damage(damage);
       return data;
     }
     else {

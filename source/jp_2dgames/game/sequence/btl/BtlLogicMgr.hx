@@ -173,13 +173,13 @@ class BtlLogicMgr {
    * バトル終了チェック
    **/
   function _checkBattleEnd():Bool {
-    if(false) {
-      // TODO: 味方が全滅
+    if(TempActorMgr.count(BtlGroup.Player) == 0) {
+      // 味方が全滅
       return true;
     }
 
-    if(false) {
-      // TODO: 敵が全滅
+    if(TempActorMgr.count(BtlGroup.Enemy) == 0) {
+      // 敵が全滅
       return true;
     }
 
