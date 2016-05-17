@@ -105,6 +105,9 @@ class BtlLogicFactory {
    **/
   static function _createAutoAttack(ret:List<BtlLogicData>, actor:Actor, target:Actor):List<BtlLogicData> {
 
+    // 自動攻撃開始メッセージ表示
+    ret.add(new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid));
+
     // 1回攻撃・命中率100%・物理
     var power    = 1;
     var attr     = Attribute.Phys;
