@@ -953,7 +953,7 @@
 					"min": 3,
 					"max": 4,
 					"hp": 0,
-					"power": 1,
+					"power": 3,
 					"hit": 0.7,
 					"attr": "Phys",
 					"count": 1,
@@ -1290,6 +1290,12 @@
 						},
 						{
 							"item": "StickPoison"
+						},
+						{
+							"item": "StickParalyze"
+						},
+						{
+							"item": "StickDarken"
 						}
 					]
 				}
