@@ -311,14 +311,6 @@ class Actor extends FlxEffectSprite {
    **/
   public function adhereBadStatus(bst:BadStatus):Void {
     bstList.adhere(bst);
-    var c = BadStatusUtil.getColor(bst);
-    new FlxTimer().start(0.5, function(timer:FlxTimer) {
-      FlxTween.color(this, 1, c, FlxColor.WHITE);
-    });
-
-    var name = getName();
-    var msg = BadStatusUtil.getMessage(bst);
-    Message.push2(msg, [name]);
   }
 
   /**

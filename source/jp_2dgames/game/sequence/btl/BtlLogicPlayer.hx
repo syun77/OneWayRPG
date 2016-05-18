@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import flixel.tweens.FlxTween;
 import jp_2dgames.game.item.ItemList;
 import jp_2dgames.lib.MyColor;
 import flixel.math.FlxMath;
@@ -196,7 +197,7 @@ class BtlLogicPlayer {
 
       case BtlLogic.Badstatus(bst):
         // ■バステ付着
-        target.adhereBadStatus(bst);
+        _adhereBadStatus(target, bst);
 
       case BtlLogic.Dead:
         // ■死亡
@@ -260,6 +261,16 @@ class BtlLogicPlayer {
       Snd.playSe("miss");
       Message.push2(Msg.ATTACK_MISS, [target.getName()]);
     }
+  }
+
+  function _adhereBadStatus(target:Actor, bst:BadStatus):Void {
+    target.adhereBadStatus(bst);
+    var c = BadStatusUtil.getColor(bst);
+    FlxTween.color(target, 1, c, FlxColor.WHITE);
+
+    var name = target.getName();
+    var msg = BadStatusUtil.getMessage(bst);
+    Message.push2(msg, [name]);
   }
 
   /**

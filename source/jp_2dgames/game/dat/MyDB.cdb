@@ -953,7 +953,7 @@
 					"min": 3,
 					"max": 4,
 					"hp": 0,
-					"power": 3,
+					"power": 1,
 					"hit": 0.7,
 					"attr": "Phys",
 					"count": 1,
@@ -1289,7 +1289,7 @@
 							"item": "StickHard"
 						},
 						{
-							"item": "StickDecay"
+							"item": "StickPoison"
 						}
 					]
 				}

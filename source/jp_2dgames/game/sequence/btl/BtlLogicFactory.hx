@@ -86,11 +86,11 @@ class BtlLogicFactory {
             // 最後の一撃
             power *= 3;
           }
-          var ratioRaw = ItemUtil.getHit(item);
-          var attr  = ItemUtil.getAttribute(item);
-          var bst   = ItemUtil.getBadStatus(item);
-          var bSeq  = (count > 0);
-          if(_createDamage(ret, player, enemy, power, ratioRaw, attr, bSeq)) {
+          var prm = new DamageParam(player, enemy, power, ItemUtil.getHit(item));
+          prm.attr  = ItemUtil.getAttribute(item);
+          prm.bst   = ItemUtil.getBadStatus(item);
+          prm.bSeq  = (count > 0);
+          if(_createDamage(ret, prm)) {
             // 命中した
             bHit = true;
           }
@@ -119,32 +119,36 @@ class BtlLogicFactory {
     ret.add(new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid));
 
     // 1回攻撃・命中率100%・物理
-    var power    = 1;
-    var attr     = Attribute.Phys;
-    var ratioRaw = 100;
-    _createDamage(ret, actor, target, power, ratioRaw, attr, false);
+    var prm = new DamageParam(actor, target, 1, 100);
+    _createDamage(ret, prm);
     return ret;
   }
 
   /**
    * ダメージのLogicDataを作成
    **/
-  static function _createDamage(ret:List<BtlLogicData>, actor:Actor, target:Actor, power:Int, hit:Int, attr:Attribute, bSeq:Bool):Bool {
-    var ratio = BtlCalc.hit(hit, actor, target);
+  static function _createDamage(ret:List<BtlLogicData>, prm:DamageParam):Bool {
+    var ratio = BtlCalc.hit(prm.hit, prm.actor, prm.target);
     if(FlxG.random.bool(ratio)) {
       // 命中
-      var damage = BtlCalc.damage(power, attr, actor, target);
-      var type = BtlLogic.HpDamage(damage, bSeq);
-      var data = new BtlLogicData(type, actor.uid, target.uid);
-      data.bWaitQuick = bSeq;
-      target.damage(damage);
+      var damage = BtlCalc.damage(prm.power, prm.attr, prm.actor, prm.target);
+      var type = BtlLogic.HpDamage(damage, prm.bSeq);
+      var data = new BtlLogicData(type, prm.actor.uid, prm.target.uid);
+      data.bWaitQuick = prm.bSeq;
+      prm.target.damage(damage);
       ret.add(data);
+
+      // バステ付着
+      if(prm.bst != BadStatus.None) {
+        ret.add(new BtlLogicData(BtlLogic.Badstatus(prm.bst), prm.actor.uid, prm.target.uid));
+        prm.target.adhereBadStatus(prm.bst);
+      }
       return true;
     }
     else {
       // 外れ
-      var data = new BtlLogicData(BtlLogic.ChanceRoll(false), actor.uid, target.uid);
-      data.bWaitQuick = bSeq;
+      var data = new BtlLogicData(BtlLogic.ChanceRoll(false), prm.actor.uid, prm.target.uid);
+      data.bWaitQuick = prm.bSeq;
       ret.add(data);
       return false;
     }
@@ -171,11 +175,8 @@ class BtlLogicFactory {
     var bHit = false;
     // 1回攻撃・命中率100%・物理
     {
-      var power = enemy.str;
-      var attr  = Attribute.Phys;
-      var bst   = BadStatus.None;
-      var ratioRaw = EnemyDB.getHit(enemy.id);
-      if(_createDamage(ret, actor, target, power, ratioRaw, attr, false)) {
+      var prm = new DamageParam(actor, target, enemy.str, EnemyDB.getHit(enemy.id));
+      if(_createDamage(ret, prm)) {
         // 命中した
         bHit = true;
       }
@@ -185,5 +186,31 @@ class BtlLogicFactory {
     ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), actor.uid, actor.uid));
 
     return ret;
+  }
+}
+
+/**
+ * ダメージパラメータ
+ **/
+private class DamageParam {
+  public var actor:Actor;    // 主体者
+  public var target:Actor;   // 対象者
+  public var power:Int;      // 威力
+  public var hit:Int;        // 命中率
+  public var attr:Attribute; // 属性
+  public var bst:BadStatus;  // 付着するバステ
+  public var bSeq:Bool;      // 連続攻撃かどうか
+
+  /**
+   * コンストラクタ
+   **/
+  public function new(actor:Actor, target:Actor, power:Int, hit:Int) {
+    this.actor  = actor;
+    this.target = target;
+    this.power  = power;
+    this.hit    = hit;
+    attr = Attribute.Phys;
+    bst  = BadStatus.None;
+    bSeq = false;
   }
 }
