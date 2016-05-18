@@ -51,7 +51,7 @@ enum BtlLogic {
   BeginItem(item:ItemData);       // アイテムを使う
 
   // ■行動終了
-  EndAction;
+  EndAction(bHit:Bool);
 
   // ■アイテム消費
   UseItem(item:ItemData);

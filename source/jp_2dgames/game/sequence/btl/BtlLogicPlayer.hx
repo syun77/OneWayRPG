@@ -157,7 +157,16 @@ class BtlLogicPlayer {
         // ここに来てはいけない
         throw 'Error: Invalid _data.type = ${_data.type}';
 
-      case BtlLogic.EndAction:
+      case BtlLogic.EndAction(bHit):
+        // 攻撃が命中したかどうか
+        if(bHit) {
+          actor.btlPrms.cntAttackEvade = 0;
+        }
+        else {
+          actor.btlPrms.cntAttackEvade++;
+        }
+        // ウェイトなし
+        tWait = 0;
 
       case BtlLogic.UseItem(item):
         // ■アイテムを使った
