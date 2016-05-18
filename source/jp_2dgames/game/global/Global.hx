@@ -15,7 +15,7 @@ class Global {
 
   public static inline var MAX_LEVEL:Int = 6;
   public static inline var MAX_LIFE:Int = 100;
-  static inline var START_LEVEL:Int = 5;
+  static inline var START_LEVEL:Int = 1;
   static inline var FIRST_MONEY:Int = 0;
 
   // スコア
