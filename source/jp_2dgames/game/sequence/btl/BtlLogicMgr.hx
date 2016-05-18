@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.actor.ActorMgr;
 import flixel.FlxG;
 import jp_2dgames.game.actor.BtlGroupUtil;
@@ -107,86 +108,84 @@ class BtlLogicMgr {
     TempActorMgr.copyFromActorMgr();
     var player = TempActorMgr.getPlayer();
     var enemy  = TempActorMgr.getEnemy();
+    var item   = owner.getSelectedItem();
 
     // 行動順の決定
     var actorList = TempActorMgr.getAlive();
     // 行動順ソート
-    // 必ず、プレイヤー -> 敵 なのでソート不要
+    // 必ずプレイヤー -> 敵 なのでソート不要
 
-    // バトル終了フラグ
-    var bEnd = false;
     for(actor in actorList) {
       // 行動順に実行
-
-      // 死亡チェック
-      if(actor.isDead()) {
-        // 死亡しているので何もしない
-        continue;
-      }
-
-      // バステチェック
-      if(false) {
-        // TODO: 行動不能
-        continue;
-      }
-
-      // 演出データを生成
-      var efts:List<BtlLogicData> = null;
-      if(actor.group == BtlGroup.Player) {
-        // プレイヤー
-        var item = owner.getSelectedItem();
-        efts = BtlLogicFactory.createPlayerLogic(actor, enemy, item);
-      }
-      else {
-        // 敵
-        efts = BtlLogicFactory.createEnemyLogic(player, actor);
-      }
-      if(efts != null) {
-        for(eft in efts) {
-          push(eft);
-        }
-      }
-
-      // 死亡チェック
-
-      // バトル終了チェック
-      bEnd = _checkBattleEnd();
-      if(bEnd) {
+      if(_createActionActor(actor, player, enemy, item)) {
         // バトル終了
-        break;
+        return;
       }
     }
 
     // ターン終了処理
-    if(bEnd == false) {
-      // ターン終了演出バッドステータス
-      for(actor in actorList) {
-        var efts = BtlLogicFactory.createTurnEndBadStatus(actor);
-        for(eft in efts) {
-          push(eft);
-        }
-
-        // 死亡チェック
-
-        // バトル終了チェック
-        if(_checkBattleEnd()) {
-          // 終了
-          bEnd = true;
-          break;
-        }
+    // ターン終了演出バッドステータス
+    for(actor in actorList) {
+      var efts = BtlLogicFactory.createTurnEndBadStatus(actor);
+      for(eft in efts) {
+        push(eft);
       }
 
-    }
-
-    if(bEnd == false) {
-      // ターン終了
-      for(actor in actorList) {
-        var efts = BtlLogicFactory.createTurnEnd(actor);
-        for(eft in efts) {
-          push(eft);
-        }
+      // バトル終了チェック
+      if(_checkBattleEnd()) {
+        // 終了
+        return;
       }
     }
+
+    // ターン終了
+    for(actor in actorList) {
+      var efts = BtlLogicFactory.createTurnEnd(actor);
+      for(eft in efts) {
+        push(eft);
+      }
+    }
+  }
+
+  /**
+   * アクターの行動演出作成
+   **/
+  function _createActionActor(actor:Actor, player:Actor, enemy:Actor, item:ItemData):Bool {
+    // 死亡チェック
+    if(actor.isDead()) {
+      // 死亡しているので何もしない
+      return false;
+    }
+
+    // バステチェック
+    if(false) {
+      // TODO: 行動不能
+      return false;
+    }
+
+    // 演出データを生成
+    var efts:List<BtlLogicData> = null;
+    if(actor.group == BtlGroup.Player) {
+      // プレイヤー
+      efts = BtlLogicFactory.createPlayerLogic(actor, enemy, item);
+    }
+    else {
+      // 敵
+      efts = BtlLogicFactory.createEnemyLogic(player, actor);
+    }
+    if(efts != null) {
+      for(eft in efts) {
+        push(eft);
+      }
+    }
+
+    // バトル終了チェック
+    if(_checkBattleEnd()) {
+      // バトル終了
+      return true;
+    }
+
+    return false;
   }
 
   /**

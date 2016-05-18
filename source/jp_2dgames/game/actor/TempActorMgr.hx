@@ -52,6 +52,9 @@ class TempActorMgr {
   public static function count(group:BtlGroup):Int {
     var ret:Int = 0;
     forEachAlive(function(actor:Actor) {
+      if(actor.isDead()) {
+        return;
+      }
       if(actor.group == group) {
         ret++;
       }
