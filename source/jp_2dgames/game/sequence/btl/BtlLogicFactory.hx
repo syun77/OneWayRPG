@@ -182,7 +182,7 @@ class BtlLogicFactory {
     }
 
     // 行動終了
-    ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), player.uid, player.uid));
+    ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), actor.uid, actor.uid));
 
     return ret;
   }
