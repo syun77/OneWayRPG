@@ -1,5 +1,6 @@
 package jp_2dgames.game.actor;
 
+import flixel.FlxG;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 
 /**
@@ -44,6 +45,12 @@ class BadStatusParams {
   public function recover():Void {
     bAdhere = false;
   }
+
+  public function dump():Void {
+    if(bAdhere) {
+      trace('${bst}: turn=${turn} cntAdhere=${cntAdhere}');
+    }
+  }
 }
 
 /**
@@ -76,8 +83,9 @@ class BadStatusList {
    **/
   public function copy(src:BadStatusList):Void {
     for(prm in _map) {
-      var p = src.getParams(prm.bst);
-      p.copy(prm);
+      var p = getParams(prm.bst);
+      var p2 = src.getParams(prm.bst);
+      p.copy(p2);
     }
   }
 
@@ -138,10 +146,12 @@ class BadStatusList {
    **/
   public function turnEnd():Void {
     forEach(function(prm:BadStatusParams) {
-      prm.turn--;
-      if(prm.turn <= 0) {
-        // 回復
-        prm.recover();
+      if(prm.turn > 0) {
+        prm.turn--;
+        if(prm.turn <= 0) {
+          // 回復
+          prm.recover();
+        }
       }
     });
   }
@@ -151,7 +161,7 @@ class BadStatusList {
    **/
   public function dump():Void {
     for(prm in _map) {
-      trace(prm);
+      prm.dump();
     }
   }
 }

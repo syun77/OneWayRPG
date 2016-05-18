@@ -331,12 +331,6 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
-   * 敵へのダメージ
-   **/
-  function _damageEnemy(v:Int, ratio:Float):Void {
-  }
-
-  /**
    * HP回復
    **/
   public function recover(v:Int):Void {
