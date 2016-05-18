@@ -295,18 +295,6 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
-   * 毒ダメージ
-   **/
-  public function damagePoison():Void {
-    // 最大HPの5%ダメージ
-    var v = Std.int(hpmax * 0.05);
-    if(v < 1) {
-      v = 1;
-    }
-    damage(v);
-  }
-
-  /**
    * バッドステータス付着
    **/
   public function adhereBadStatus(bst:BadStatus):Void {

@@ -203,6 +203,11 @@ class BtlLogicPlayer {
         // ■死亡
         target.vanish();
 
+      case BtlLogic.TurnEnd:
+        // ■ターン終了
+        target.turnEnd();
+        tWait = 0; // ウェイトなし
+
       case BtlLogic.BtlEnd(bWin):
         // ■バトル終了
     }

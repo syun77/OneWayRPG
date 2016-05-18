@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.ActorMgr;
 import flixel.FlxG;
 import jp_2dgames.game.actor.BtlGroupUtil;
 import jp_2dgames.game.actor.TempActorMgr;
@@ -158,13 +159,32 @@ class BtlLogicMgr {
 
     // ターン終了処理
     if(bEnd == false) {
-      // ターン終了演出生成
+      // ターン終了演出バッドステータス
+      for(actor in actorList) {
+        var efts = BtlLogicFactory.createTurnEndBadStatus(actor);
+        for(eft in efts) {
+          push(eft);
+        }
 
-      // 死亡チェック
+        // 死亡チェック
 
-      // バトル終了チェック
-      if(_checkBattleEnd()) {
-        // 終了
+        // バトル終了チェック
+        if(_checkBattleEnd()) {
+          // 終了
+          bEnd = true;
+          break;
+        }
+      }
+
+    }
+
+    if(bEnd == false) {
+      // ターン終了
+      for(actor in actorList) {
+        var efts = BtlLogicFactory.createTurnEnd(actor);
+        for(eft in efts) {
+          push(eft);
+        }
       }
     }
   }

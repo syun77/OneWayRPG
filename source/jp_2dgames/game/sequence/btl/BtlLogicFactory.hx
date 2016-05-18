@@ -187,6 +187,38 @@ class BtlLogicFactory {
 
     return ret;
   }
+
+  /**
+   * ターン終了演出の生成 (バッドステータス)
+   **/
+  public static function createTurnEndBadStatus(actor:Actor):List<BtlLogicData> {
+
+    var ret = new List<BtlLogicData>();
+
+    if(actor.isAdhereBadStatus(BadStatus.Poison)) {
+      // 毒ダメージ
+      // 最大HPの5%ダメージ
+      var v = Std.int(actor.hpmax * 0.05);
+      if(v < 1) {
+        v = 1;
+      }
+      var type = BtlLogic.HpDamage(v, false);
+      ret.add(new BtlLogicData(type, actor.uid, actor.uid));
+    }
+
+    return ret;
+  }
+
+  /**
+   * ターン終了演出の生成
+   **/
+  public static function createTurnEnd(actor:Actor):List<BtlLogicData> {
+
+    var ret = new List<BtlLogicData>();
+    ret.add(new BtlLogicData(BtlLogic.TurnEnd, actor.uid, actor.uid));
+
+    return ret;
+  }
 }
 
 /**

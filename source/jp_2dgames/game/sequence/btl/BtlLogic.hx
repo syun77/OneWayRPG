@@ -67,6 +67,7 @@ enum BtlLogic {
 
   // ■その他
   Dead; // 死亡
+  TurnEnd; // ターン終了
   BtlEnd(bWin:Bool); // バトル終了
 }
 
