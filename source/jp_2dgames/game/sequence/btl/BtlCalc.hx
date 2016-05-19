@@ -20,6 +20,7 @@ class BtlCalc {
 
   // 回避率補正値
   public static inline var HIT_EVADE:Int = 3; // 回避ごとに上昇する値
+  public static inline var HIT_EVADE_MULTI:Float = 1.1; // 回避ごとに上昇する値 (10%)
   public static inline var HIT_BLIND:Int = -10; // 盲目補正
   public static inline var HIT_PARALYZE:Int = 10; // 麻痺補正
   public static inline var HIT_DEX:Int = 2; // DEX補正
@@ -27,8 +28,9 @@ class BtlCalc {
 
   public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
 
-    // 回避回数に応じて命中率変化
-    ratio += actor.btlPrms.cntAttackEvade * HIT_EVADE;
+    // 回避回数に応じて命中率変化 (1.1^cnt)
+    ratio = Std.int(ratio * Math.pow(HIT_EVADE_MULTI, actor.btlPrms.cntAttackEvade));
+    //ratio += actor.btlPrms.cntAttackEvade * HIT_EVADE;
 
     if(actor.isAdhereBadStatus(BadStatus.Blind)) {
       // 盲目なので命中率低下
