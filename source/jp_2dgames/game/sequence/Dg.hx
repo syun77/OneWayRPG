@@ -177,6 +177,11 @@ class DgDrop extends FlxFSMState<SeqMgr> {
     FlxG.state.openSubState(new InventorySubState(owner, InventoryMode.ItemDrop));
   }
   override public function exit(owner:SeqMgr):Void {
+    if(owner.lastClickButton == "cancel") {
+      // キャンセルした
+      return;
+    }
+
     var item = owner.getSelectedItem();
     if(item != null) {
       // アイテム捨てる

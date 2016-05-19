@@ -125,22 +125,6 @@ class SeqMgr extends FlxBasic {
       .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
       .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
 
-      /*
-      .add(Btl,            BtlPlayerBegin, Conditions.isSelectItem) // コマンド      -> プレイヤー開始
-      .add(Btl,            BtlPlayerBegin, Conditions.isEmpytItem)  // コマンド      -> アイテムがないので自動攻撃
-      // バトル - プレイヤー行動
-      .add(BtlPlayerBegin, BtlPlayerMain,  Conditions.isEndWait)    // プレイヤー開始 -> プレイヤー実行
-      .add(BtlPlayerMain,  BtlEnemyDead,   Conditions.isDeadEnemy)  // プレイヤー実行 -> 敵死亡
-      .add(BtlPlayerMain,  BtlEnemyBegin,  Conditions.isLogicEnd)   // プレイヤー実行 -> 敵開始
-      // バトル - 敵行動
-      .add(BtlEnemyBegin,  BtlEnemyMain,   Conditions.isEndWait)    // 敵開始        -> 敵実行
-      .add(BtlEnemyMain,   PlayerDead,     Conditions.isDead)       // 敵実行        -> 敗北 (※ゲームオーバー)
-      .add(BtlEnemyMain,   BtlTurnEnd,     Conditions.isLogicEnd)   // 敵実行        -> ターン終了
-      // バトル - ターン終了
-      .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
-      .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
-      .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
-      */
       // バトル - 勝利
       .add(BtlEnemyDead,   BtlPowerup,     Conditions.isEndWait)    // 敵死亡        -> アイテム強化
       .add(BtlPowerup,     BtlWin,         Conditions.isEndWait)    // アイテム強化   -> 勝利
