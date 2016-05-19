@@ -10,7 +10,7 @@ import flixel.math.FlxMath;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.lib.MyColor;
-import jp_2dgames.game.particle.ParticleNumber;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.gui.BattleUI;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;

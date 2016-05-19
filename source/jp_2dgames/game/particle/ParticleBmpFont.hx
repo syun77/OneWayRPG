@@ -1,5 +1,6 @@
 package jp_2dgames.game.particle;
 
+import jp_2dgames.lib.DirUtil;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import jp_2dgames.lib.SprFont;
@@ -16,9 +17,9 @@ private enum State {
 }
 
 /**
- * ダメージエフェクト
+ * BMPフォントエフェクト
  **/
-class ParticleNumber extends FlxSprite {
+class ParticleBmpFont extends FlxSprite {
 
   // フォントサイズ
   private static inline var FONT_SIZE:Int = SprFont.FONT_WIDTH;
@@ -28,21 +29,21 @@ class ParticleNumber extends FlxSprite {
 
   // ■速度関連
   // 開始速度
-  static inline var SPEED_Y_INIT:Float = -5.0;//-20.0;
+  static inline var SPEED_Y_INIT:Float = 5.0;//-20.0;
   // 重力加速度
   static inline var GRAVITY:Float = 15.0;
   // 床との反発係数
   static inline var FRICTION:Float = 0.5;
 
   // パーティクル管理
-  public static var parent:FlxTypedGroup<ParticleNumber> = null;
+  public static var parent:FlxTypedGroup<ParticleBmpFont> = null;
   /**
    * 生成
    **/
   public static function createParent(state:FlxState):Void {
-    parent = new FlxTypedGroup<ParticleNumber>(16);
+    parent = new FlxTypedGroup<ParticleBmpFont>(16);
     for(i in 0...parent.maxSize) {
-      parent.add(new ParticleNumber());
+      parent.add(new ParticleBmpFont());
     }
     state.add(parent);
   }
@@ -53,11 +54,14 @@ class ParticleNumber extends FlxSprite {
     parent = null;
   }
 
-  public static function start(X:Float, Y:Float, val:Int, color:Int=FlxColor.WHITE):ParticleNumber {
-    var p:ParticleNumber = parent.recycle();
-    p.init(X, Y, val);
+  public static function start(X:Float, Y:Float, str:String, color:Int=FlxColor.WHITE, ?movedir:Dir):ParticleBmpFont {
+    var p:ParticleBmpFont = parent.recycle();
+    p.init(X, Y, str, movedir);
     p.color = color;
     return p;
+  }
+  public static function startNumber(X:Float, Y:Float, val:Int, color:Int=FlxColor.WHITE, ?movedir:Dir):ParticleBmpFont {
+    return start(X, Y, '${val}', color, movedir);
   }
 
   /**
@@ -89,7 +93,7 @@ class ParticleNumber extends FlxSprite {
   /**
    * 初期化
    **/
-  public function init(X:Float, Y:Float, val:Int) {
+  public function init(X:Float, Y:Float, str:String, movedir:Dir) {
 
     // カメラ位置をオフセット
     X += -FlxG.camera.scroll.x;
@@ -99,17 +103,19 @@ class ParticleNumber extends FlxSprite {
     y = Y;
     _ystart = Y;
 
-    var w = 0;
-    if(val >= 0) {
-      // 数値フォントを描画する
-      w = SprFont.render(this, '${val}');
-    }
-    else {
-      // 攻撃が外れた
-      w = SprFont.render(this, 'MISS!');
+    var w = SprFont.render(this, str);
+
+    if(movedir == null) {
+      movedir = Dir.Up;
     }
     // 移動開始
-    velocity.y = SPEED_Y_INIT;
+    switch(movedir) {
+      case Dir.Left:  velocity.x = -SPEED_Y_INIT; // 左へ移動
+      case Dir.Up:    velocity.y = -SPEED_Y_INIT; // 上へ移動
+      case Dir.Right: velocity.x =  SPEED_Y_INIT; // 右へ移動
+      case Dir.Down:  velocity.y =  SPEED_Y_INIT; // 下へ移動
+      default:
+    }
 
     // フォントを中央揃えする
     x = X - (w / 2);

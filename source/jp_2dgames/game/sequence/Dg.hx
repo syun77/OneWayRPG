@@ -2,7 +2,7 @@ package jp_2dgames.game.sequence;
 import flixel.util.FlxColor;
 import jp_2dgames.game.particle.Particle;
 import jp_2dgames.lib.MyColor;
-import jp_2dgames.game.particle.ParticleNumber;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.state.ShopSubState;
 import jp_2dgames.game.gui.BattleResultPopupUI;
 import jp_2dgames.game.state.InventorySubState;
@@ -100,7 +100,7 @@ class DgSearch extends FlxFSMState<SeqMgr> {
       var py = player.ycenter;
       // ダメージエフェクト
       Particle.start(PType.Ball, px, py, FlxColor.RED);
-      ParticleNumber.start(px, py, v);
+      ParticleBmpFont.startNumber(px, py, v);
       Snd.playSe("hit");
     }
     else {
@@ -111,7 +111,7 @@ class DgSearch extends FlxFSMState<SeqMgr> {
       player.recover(v);
       var px = player.xcenter;
       var py = player.ycenter;
-      ParticleNumber.start(px, py, v, MyColor.LIME);
+      ParticleBmpFont.startNumber(px, py, v, MyColor.LIME);
     }
 
     owner.startWait();
@@ -140,7 +140,7 @@ class DgRest extends FlxFSMState<SeqMgr> {
     player.recover(v);
     var px = player.xcenter;
     var py = player.ycenter;
-    ParticleNumber.start(px, py, v, MyColor.LIME);
+    ParticleBmpFont.startNumber(px, py, v, MyColor.LIME);
     Message.push2(Msg.RECOVER_HP, [player.getName(), v]);
     Snd.playSe("recover");
     // 食糧を減らす

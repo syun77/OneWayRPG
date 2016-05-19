@@ -11,7 +11,7 @@ import flixel.FlxG;
 import jp_2dgames.game.gui.StageClearUI;
 import jp_2dgames.game.gui.GameoverUI;
 import jp_2dgames.lib.Snd;
-import jp_2dgames.game.particle.ParticleNumber;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.particle.Particle;
 import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.lib.CsvLoader;
@@ -47,7 +47,7 @@ class PlayState extends FlxUIState {
     Message.forceUpdate(elapsed);
     // パーティクルも更新
     Particle.forceUpdate(elapsed);
-    ParticleNumber.forceUpdate(elapsed);
+    ParticleBmpFont.forceUpdate(elapsed);
   }
 
   // ---------------------------------------
@@ -100,7 +100,7 @@ class PlayState extends FlxUIState {
 
     // パーティクル生成
     Particle.createParent(this);
-    ParticleNumber.createParent(this);
+    ParticleBmpFont.createParent(this);
 
     // プレイヤーの生成
     ActorMgr.add(Global.getPlayerParam());
@@ -140,7 +140,7 @@ class PlayState extends FlxUIState {
     ActorMgr.destroyInstance();
     TempActorMgr.destroy();
     Particle.destroyParent();
-    ParticleNumber.destroyParent();
+    ParticleBmpFont.destroyParent();
     Message.destroyInstance(this);
     BattleUI.destroyInstance();
     BtlLogicMgr.destroy();

@@ -5,7 +5,7 @@ import jp_2dgames.game.item.ItemList;
 import jp_2dgames.lib.MyColor;
 import flixel.math.FlxMath;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
-import jp_2dgames.game.particle.ParticleNumber;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import flixel.util.FlxColor;
 import jp_2dgames.game.particle.Particle;
 import flixel.FlxG;
@@ -241,7 +241,7 @@ class BtlLogicPlayer {
     }
     // ダメージエフェクト
     Particle.start(PType.Ball, px, py, FlxColor.RED);
-    ParticleNumber.start(px, py, val);
+    ParticleBmpFont.startNumber(px, py, val);
     Snd.playSe("hit");
   }
 
@@ -253,7 +253,7 @@ class BtlLogicPlayer {
 
     var px = target.xcenter;
     var py = target.ycenter;
-    ParticleNumber.start(px, py, val, MyColor.LIME);
+    ParticleBmpFont.startNumber(px, py, val, MyColor.LIME);
     Snd.playSe("recover");
   }
 
@@ -262,7 +262,7 @@ class BtlLogicPlayer {
     if(b == false) {
       var px = target.xcenter;
       var py = target.ycenter;
-      ParticleNumber.start(px, py, BtlCalc.VAL_EVADE);
+      ParticleBmpFont.start(px, py, "MISS!");
       Snd.playSe("miss");
       Message.push2(Msg.ATTACK_MISS, [target.getName()]);
     }

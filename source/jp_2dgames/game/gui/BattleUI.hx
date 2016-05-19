@@ -63,6 +63,9 @@ class BattleUI extends FlxSpriteGroup {
   public static function getFoodPosition():FlxPoint {
     return _instance._getFoodPosition();
   }
+  public static function getMoneyPosition():FlxPoint {
+    return _instance._getMoneyPosition();
+  }
   public static function setButtonCB(name:String, func:Void->Void):Void {
     _instance._setButtonCB(name, func);
   }
@@ -456,8 +459,18 @@ class BattleUI extends FlxSpriteGroup {
    * 食糧のテキストの中心座標を取得する
    **/
   function _getFoodPosition():FlxPoint {
-    var px = _txtFood.x;
-    var py = _txtFood.y - 8;
+    var px = _txtFood.x+8;
+    var py = _txtFood.y+8;
+    var pt = FlxPoint.get(px, py);
+    return pt;
+  }
+
+  /**
+   * お金のテキストの中心座標を取得する
+   **/
+  function _getMoneyPosition():FlxPoint {
+    var px = _txtMoney.x+8;
+    var py = _txtMoney.y+8;
     var pt = FlxPoint.get(px, py);
     return pt;
   }

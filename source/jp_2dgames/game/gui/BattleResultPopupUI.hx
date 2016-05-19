@@ -1,4 +1,8 @@
 package jp_2dgames.game.gui;
+import jp_2dgames.game.particle.ParticleUtil;
+import jp_2dgames.lib.DirUtil.Dir;
+import flixel.util.FlxColor;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.state.PlayState;
 import jp_2dgames.lib.Input;
 import jp_2dgames.game.global.ItemLottery;
@@ -131,6 +135,7 @@ class BattleResultPopupUI extends FlxUIPopup {
       var text = '${_prm.money}G';
       Message.push2(Msg.ITEM_GET, [text]);
       Global.addMoney(_prm.money);
+      ParticleUtil.startMoney(_prm.money);
     }
 
     super.close();

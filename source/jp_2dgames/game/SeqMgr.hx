@@ -1,9 +1,11 @@
 package jp_2dgames.game;
 
+import jp_2dgames.game.particle.ParticleUtil;
+import jp_2dgames.lib.DirUtil.Dir;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.lib.MyColor;
-import jp_2dgames.game.particle.ParticleNumber;
+import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.state.InventorySubState;
 import jp_2dgames.game.global.ItemLottery;
 import jp_2dgames.game.gui.message.Msg;
@@ -288,9 +290,7 @@ class SeqMgr extends FlxBasic {
   public function addFood(v:Int):Void {
     player.addFood(v);
     Message.push2(Msg.FOOD_ADD, [v]);
-    var pt = BattleUI.getFoodPosition();
-    ParticleNumber.start(pt.x, pt.y, v, MyColor.LIME);
-    pt.put();
+    ParticleUtil.startFood(v);
     Snd.playSe("pickup2", true);
   }
 
