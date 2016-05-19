@@ -33,6 +33,7 @@ class AssetPaths {
   public static inline var IMAGE_FLOOR = "assets/images/floor.png";
   public static inline var IMAGE_ARROW = "assets/images/arrow.png";
   public static inline var IMAGE_MSG_TEXT = "assets/images/messagetext.png";
+  public static inline var IMAGE_LASTATTACK = "assets/gfx/ui/icon/lastattack.png";
 
   // 敵画像
   public static function getEnemyImage(file:String):String {

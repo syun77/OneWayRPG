@@ -261,6 +261,10 @@ class InventorySubState extends FlxUISubState {
       var spr = new FlxSprite(0, 0, icon);
       btn.addIcon(spr, -8, -6, false);
     }
+    if(item.now == 1) {
+      var spr2 = new FlxSprite(0, 0, AssetPaths.IMAGE_LASTATTACK);
+      btn.addIcon(spr2, Std.int(btn.width-18), 4, false);
+    }
 
     // ロックするかどうか
     if(bLock) {

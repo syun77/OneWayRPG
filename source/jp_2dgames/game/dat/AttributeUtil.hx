@@ -32,7 +32,7 @@ class AttributeUtil {
    * 属性アイコン画像のパスを取得する
    **/
   public static function getIconPath(attr:Attribute):String {
-    var base = "assets/gfx/ui/";
+    var base = "assets/gfx/ui/icon/";
     return switch(attr) {
       case Attribute.None:  "";
       case Attribute.Phys:  base + "phys.png";
