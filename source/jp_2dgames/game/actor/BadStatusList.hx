@@ -121,6 +121,9 @@ class BadStatusList {
    * バッドステータスを付着する
    **/
   public function adhere(bst:BadStatus):Void {
+    if(bst == BadStatus.None) {
+      return;
+    }
     var prm = getParams(bst);
     prm.adhere(bst);
   }

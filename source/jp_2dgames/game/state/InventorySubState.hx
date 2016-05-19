@@ -1,5 +1,9 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
+import jp_2dgames.game.actor.BadStatusList;
+import flixel.addons.ui.FlxUISprite;
+import jp_2dgames.game.gui.BadStatusUI;
 import jp_2dgames.game.global.ItemLottery;
 import flixel.addons.ui.FlxUIButton;
 import flixel.util.FlxColor;
@@ -46,6 +50,8 @@ class InventorySubState extends FlxUISubState {
 
   var _btnItems:Map<String, FlxUIButton>;
   var _txtDetail:FlxUIText;
+  var _bstUI:BadStatusUI;
+  var _bstList:BadStatusList;
 
   /**
    * コンストラクタ
@@ -54,6 +60,7 @@ class InventorySubState extends FlxUISubState {
     super();
     _owner = owner;
     _mode = mode;
+    _bstList = new BadStatusList();
   }
 
   /**
@@ -71,11 +78,14 @@ class InventorySubState extends FlxUISubState {
     // アイテム表示を更新
     _btnItems = new Map<String, FlxUIButton>();
 
+    var sprDetail:FlxUISprite = null;
     var idx:Int = 0;
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
         case "txtdetail":
           _txtDetail = cast widget;
+        case "sprframe":
+          sprDetail = cast widget;
         default:
           if(widget.name.indexOf("item") != -1) {
             if(Std.is(widget, FlxUIButton)) {
@@ -94,6 +104,10 @@ class InventorySubState extends FlxUISubState {
         idx++;
       }
     });
+
+    // バステアイコン生成
+    _bstUI = new BadStatusUI(sprDetail.x+8, sprDetail.y+sprDetail.height-18);
+    this.add(_bstUI);
 
     // 表示項目を更新
     _updateItems();
@@ -198,6 +212,12 @@ class InventorySubState extends FlxUISubState {
         detail = ItemUtil.getDetail2(_owner, item, resists);
       }
       _setDetailText(detail);
+
+      // バッドステータス表示
+      var bst = ItemUtil.getBadStatus(item);
+      _bstList.reset();
+      _bstList.adhere(bst);
+      _bstUI.set(_bstList);
     }
   }
 

@@ -1289,7 +1289,16 @@
 							"item": "StickHard"
 						},
 						{
-							"item": "StickDecay"
+							"item": "StickPoison"
+						},
+						{
+							"item": "StickParalyze"
+						},
+						{
+							"item": "StickDarken"
+						},
+						{
+							"item": "StickEnergy"
 						}
 					]
 				}
