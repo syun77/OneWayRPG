@@ -67,67 +67,6 @@ class ItemUtil {
     return BadStatusUtil.fromKind(ItemDB.getBadStatus(item.id));
   }
 
-  // 詳細情報の取得
-  public static function getDetail(item:ItemData):String {
-    if(item.now == 1) {
-      // 最後に一回用の説明文
-      return ItemDB.getDetailLast(item.id);
-    }
-    return ItemDB.getDetail(item.id);
-  }
-
-  // 詳細情報の取得
-  public static function getDetail2(owner:SeqMgr, item:ItemData, resists:ResistList):String {
-
-    var player = owner.player;
-    var enemy = owner.enemy;
-
-    var ret = "";
-    var str = player.str;
-    var power = getPower(item) + str;
-    var count = getCount(item);
-    var attr  = getAttribute(item);
-    var hitratio = BtlCalc.hit(getHit(item), player, enemy);
-    var sum = calcDamage(owner, item, true, resists);
-    if(getCategory(item) == ItemCategory.Weapon) {
-      // 武器
-      var power = TextUtil.fillSpace(power, 2); // flash対応
-      if(item.now == 1) {
-        // 最後の一撃
-        ret += '攻: ${power} x ${BtlCalc.LAST_MULTI} \n';
-      }
-      else {
-        ret += '攻: ${power} \n';
-      }
-      if(count > 1) {
-        var count = TextUtil.fillSpace(count, 2); // flash対応
-        ret += '回数: x ${count}\n';
-      }
-      if(resists != null) {
-        var value = resists.getValue(attr);
-        if(value != 1.0) {
-          ret += '属性: x ${value}\n';
-        }
-      }
-      var sum = TextUtil.fillSpace(sum, 2); // flash対応
-      ret += '---------- \n';
-      if(count > 1) {
-        ret += '最大';
-      }
-      else {
-        ret += '計';
-      }
-      ret += ': ${sum}ダメージ\n';
-      var hitratio = TextUtil.fillSpace(hitratio, 3); // flash対応
-      ret += '(命中率: ${hitratio}%)';
-    }
-    else {
-      ret += getDetail(item);
-    }
-
-    return ret;
-  }
-
   /**
    * 無効なアイテムかどうか
    **/

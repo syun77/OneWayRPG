@@ -276,8 +276,8 @@ class Actor extends FlxEffectSprite {
     }
 
     var ratio = v / hpmax;
-    if(ratio < 0) {
-      ratio = 0;
+    if(ratio < 0.2) {
+      ratio = 0.2;
     }
     if(ratio > 1.0) {
       ratio = 1.0;

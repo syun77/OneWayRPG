@@ -1,5 +1,9 @@
 package jp_2dgames.game.state;
 
+import flixel.text.FlxText;
+import jp_2dgames.lib.TextUtil;
+import jp_2dgames.lib.SprFont;
+import jp_2dgames.game.item.ItemDetail;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.actor.BadStatusList;
 import flixel.addons.ui.FlxUISprite;
@@ -8,10 +12,7 @@ import jp_2dgames.game.global.ItemLottery;
 import flixel.addons.ui.FlxUIButton;
 import flixel.util.FlxColor;
 import jp_2dgames.game.item.ItemData;
-import jp_2dgames.game.gui.BattleUI;
 import jp_2dgames.game.item.ItemUtil;
-import jp_2dgames.game.gui.message.Msg;
-import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.game.dat.EnemyDB;
 import jp_2dgames.game.dat.ResistData.ResistList;
 import flixel.addons.ui.FlxUIText;
@@ -19,7 +20,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxSprite;
 import jp_2dgames.game.dat.AttributeUtil;
-import jp_2dgames.game.item.ItemUtil;
 import jp_2dgames.game.item.ItemList;
 import flixel.addons.ui.FlxUITypedButton;
 import flixel.addons.ui.FlxUIButton;
@@ -52,6 +52,8 @@ class InventorySubState extends FlxUISubState {
   var _txtDetail:FlxUIText;
   var _bstUI:BadStatusUI;
   var _bstList:BadStatusList;
+  var _sprLastAttack:FlxSprite;
+  var _txtDamage:FlxText;
 
   /**
    * コンストラクタ
@@ -108,6 +110,26 @@ class InventorySubState extends FlxUISubState {
     // バステアイコン生成
     _bstUI = new BadStatusUI(sprDetail.x+8, sprDetail.y+sprDetail.height-18);
     this.add(_bstUI);
+
+    // 最後の一撃アイコン
+    {
+      var px = sprDetail.x + 64;
+      var py = sprDetail.y + 8;
+      _sprLastAttack = new FlxSprite(px, py, AssetPaths.IMAGE_LASTATTACK);
+      _sprLastAttack.visible = false;
+      this.add(_sprLastAttack);
+    }
+
+    // ダメージ数値
+    {
+      var px = sprDetail.x;
+      var py = sprDetail.y + 46;
+      var size = 16;
+      _txtDamage = new FlxText(px, py, 16*3);
+      _txtDamage.setFormat(null, 16, FlxColor.WHITE, FlxTextAlign.RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.RED);
+      _txtDamage.visible = false;
+      this.add(_txtDamage);
+    }
 
     // 表示項目を更新
     _updateItems();
@@ -207,9 +229,20 @@ class InventorySubState extends FlxUISubState {
         var enemy = _owner.enemy;
         resists = EnemyDB.getResists(enemy.id);
       }
-      var detail = ItemUtil.getDetail(item);
+
+      _sprLastAttack.visible = false;
+      _txtDamage.visible = false;
+      var detail = ItemDetail.getDetail(item);
       if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
-        detail = ItemUtil.getDetail2(_owner, item, resists);
+        var data = ItemDetail.getWeapon(_owner, item, resists);
+        detail = ItemDetail.build(data);
+        // 最後の一撃アイコン表示
+        _sprLastAttack.visible = data.bLastAttack;
+        // ダメージ数値表示
+        {
+          _txtDamage.visible = true;
+          _txtDamage.text = '${data.sum}';
+        }
       }
       _setDetailText(detail);
 
