@@ -71,7 +71,7 @@ class BtlLogicFactory {
           var hp = ItemUtil.getHp(item);
           if(item.now == 1) {
             // 最後の1回
-            hp *= 3;
+            hp *= BtlCalc.LAST_MULTI;
           }
           var data = new BtlLogicData(BtlLogic.HpRecover(hp), player.uid, player.uid);
           ret.add(data);
@@ -84,7 +84,7 @@ class BtlLogicFactory {
           var power = ItemUtil.getPower(item);
           if(item.now == 1) {
             // 最後の一撃
-            power *= 3;
+            power *= BtlCalc.LAST_MULTI;
           }
           var prm = new DamageParam(player, enemy, power, ItemUtil.getHit(item));
           prm.attr  = ItemUtil.getAttribute(item);

@@ -1287,6 +1287,9 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "StickDecay"
 						}
 					]
 				}

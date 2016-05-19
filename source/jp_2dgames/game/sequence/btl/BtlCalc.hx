@@ -12,6 +12,9 @@ import jp_2dgames.game.actor.Actor;
  **/
 class BtlCalc {
 
+  // 最後の一撃の倍率
+  public static inline var LAST_MULTI:Int = 3;
+
   // 回避時のダメージ量
   public static inline var VAL_EVADE:Int = -1;
 

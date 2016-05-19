@@ -94,7 +94,7 @@ class ItemUtil {
       var power = TextUtil.fillSpace(power, 2); // flash対応
       if(item.now == 1) {
         // 最後の一撃
-        ret += '攻: ${power} x 3 \n';
+        ret += '攻: ${power} x ${BtlCalc.LAST_MULTI} \n';
       }
       else {
         ret += '攻: ${power} \n';
@@ -151,37 +151,16 @@ class ItemUtil {
   // ダメージ値取得
   public static function calcDamage(owner:SeqMgr, item:ItemData, bMultiple:Bool, resists:ResistList):Int {
 
-    /*
-    var data = BtlLogicFactory.createPlayerLogic(owner.player, owner.enemy, item);
-    var player = owner.player;
-    var enemy = owner.enemy;
-    if(resists == null) {
-      // 耐性を考慮しない
-      enemy = null;
-    }
-    var val = 0;
-    switch(data.type) {
-      case BtlLogic.Attack(type, prm):
-        val = BtlCalc.damage(prm, player, enemy);
-      default:
-        // あり得ない
-        throw 'Error: Invalid data.type = ${data}';
-    }
-    var count = 1;
-    if(bMultiple) {
-      // 複数回攻撃を含める
-      count = getCount(item);
-    }
-    var sum = (val * count);
-
-    return sum;
-    */
     var power  = ItemUtil.getPower(item);
     var attr   = ItemUtil.getAttribute(item);
     var actor  = owner.player;
     var target = owner.enemy;
     if(resists == null) {
       target = null;
+    }
+    if(item.now == 1) {
+      // 最後の一撃
+      power *= BtlCalc.LAST_MULTI;
     }
     var val = BtlCalc.damage(power, attr, actor, target);
     var count = 1;
