@@ -138,10 +138,12 @@ class BtlLogicFactory {
       prm.target.damage(damage);
       ret.add(data);
 
-      // バステ付着
-      if(prm.bst != BadStatus.None) {
-        ret.add(new BtlLogicData(BtlLogic.Badstatus(prm.bst), prm.actor.uid, prm.target.uid));
-        prm.target.adhereBadStatus(prm.bst);
+      if(prm.target.isDead() == false) {
+        // バステ付着
+        if(prm.bst != BadStatus.None) {
+          ret.add(new BtlLogicData(BtlLogic.Badstatus(prm.bst), prm.actor.uid, prm.target.uid));
+          prm.target.adhereBadStatus(prm.bst);
+        }
       }
       return true;
     }
