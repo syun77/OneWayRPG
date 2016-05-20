@@ -1,5 +1,6 @@
 package jp_2dgames.game.gui;
 
+import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.lib.StatusBar;
 import flixel.math.FlxPoint;
@@ -279,6 +280,9 @@ class BattleUI extends FlxSpriteGroup {
 
     // アイテム所持数
     _txtItem.text = 'Item (${ItemList.getLength()}/${ItemList.MAX})';
+
+    // 経過ターン数
+    _txtTurn.text = '${BtlGlobal.turn}';
 
     // ステータス更新
     _txtDex.text = 'DEX: ${player.dex}';

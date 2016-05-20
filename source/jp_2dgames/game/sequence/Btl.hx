@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.game.actor.ActorMgr;
 import jp_2dgames.game.gui.BattleResultPopupUI;
@@ -19,15 +20,6 @@ import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.game.dat.EnemyEncountDB;
 import jp_2dgames.game.global.Global;
 import flixel.addons.util.FlxFSM;
-
-/**
- * 行動タイプ
- **/
-private enum ActionType {
-  None;    // 何もしない
-  Attack;  // 攻撃
-  Recover; // 回復
-}
 
 /**
  * バトル開始
@@ -71,6 +63,9 @@ class BtlBoot extends FlxFSMState<SeqMgr> {
   }
 
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    // バトルグローバル変数初期化
+    BtlGlobal.init();
 
     // バトルパラメータ初期化
     ActorMgr.forEachAlive(function(actor:Actor) actor.clearBtlParams() );
@@ -118,15 +113,9 @@ class Btl extends FlxFSMState<SeqMgr> {
  **/
 class BtlLogicLoop extends FlxFSMState<SeqMgr> {
 
-  static var _bTurnEnd:Bool = false;
-  public static function isTurnEnd():Bool {
-    return _bTurnEnd;
-  }
-
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
     // 演出データ生成
     BtlLogicMgr.createLogic(owner);
-    _bTurnEnd = false;
   }
 
   override public function update(elapsed:Float, owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
@@ -138,6 +127,11 @@ class BtlLogicLoop extends FlxFSMState<SeqMgr> {
  * ターン終了
  **/
 class BtlTurnEnd extends FlxFSMState<SeqMgr> {
+
+  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+    // 経過ターン数を増やす
+    BtlGlobal.addTurn();
+  }
 }
 
 /**
@@ -147,8 +141,6 @@ class BtlEnemyDead extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
     var enemy = owner.enemy;
     enemy.vanish();
-
-    //owner.startWait();
   }
 }
 

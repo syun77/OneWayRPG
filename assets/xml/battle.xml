@@ -36,7 +36,7 @@
     <group id="enemyhud" />
       <!-- ターン数 -->
       <text use_def="normal" id="labelturn" group="enemyhud" x="txtitem.x+64" y="txtitem.y" text="Turn:" />
-      <text use_def="normal" id="txtturn" group="enemyhud" x="labelturn.x+32" y="labelturn.y-4" size="12" text="1" />
+      <text use_def="normal" id="txtturn" group="enemyhud" x="labelturn.x+32" y="labelturn.y" size="8" text="1" />
       <!-- 敵の枠 -->
       <chrome use_def="frame" group="enemyhud" x="272" y="20" width="124" height="88" />
       <!-- 敵のHP -->
