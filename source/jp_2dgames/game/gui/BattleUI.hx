@@ -139,6 +139,7 @@ class BattleUI extends FlxSpriteGroup {
   var _txtFood:FlxUIText;     // 食糧
   var _txtMoney:FlxUIText;    // お金
   var _txtItem:FlxUIText;     // アイテム所持数
+  var _txtTurn:FlxUIText;     // ターン数
   var _hpbarPlayer:StatusBar; // HPゲージ (プレイヤー)
   var _hpbarEnemy:StatusBar;  // HPゲージ (敵)
   var _bstPlayer:BadStatusUI; // バッドステータス（プレイヤー）
@@ -181,6 +182,8 @@ class BattleUI extends FlxSpriteGroup {
       var grp = _ui.getGroup("enemyhud");
       grp.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
         switch(widget.name) {
+          case "txtturn":
+            _txtTurn = cast widget;
           case "txtenemyhp":
             _txtHpEnemy = cast widget;
           case "txtenemyatk":

@@ -19,6 +19,7 @@
     <text use_def="normal" id="txtmoney" x="sprmoney.x+16" y="sprmoney.y+2" text="99" size="8" />
     <!-- アイテム所持数 -->
     <text use_def="normal" id="txtitem" x="sprmoney.x+64" y="sprmoney.y+2" text="Item (2/6)" />
+    
     <!-- プレイヤーステータスの枠 -->
     <chrome id="hudframe" use_def="frame" x="272" y="116" width="124" height="56" />
     <!-- プレイヤーHP -->
@@ -33,6 +34,9 @@
     <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.y+12" text="AGI: 99" />
 
     <group id="enemyhud" />
+      <!-- ターン数 -->
+      <text use_def="normal" id="labelturn" group="enemyhud" x="txtitem.x+64" y="txtitem.y" text="Turn:" />
+      <text use_def="normal" id="txtturn" group="enemyhud" x="labelturn.x+32" y="labelturn.y-4" size="12" text="1" />
       <!-- 敵の枠 -->
       <chrome use_def="frame" group="enemyhud" x="272" y="20" width="124" height="88" />
       <!-- 敵のHP -->
