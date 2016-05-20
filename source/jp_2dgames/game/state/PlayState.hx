@@ -1,5 +1,6 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.particle.ParticleAnim;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.game.actor.TempActorMgr;
 import jp_2dgames.lib.StatusBar;
@@ -101,6 +102,7 @@ class PlayState extends FlxUIState {
     // パーティクル生成
     Particle.createParent(this);
     ParticleBmpFont.createParent(this);
+    ParticleAnim.createParent(this);
 
     // プレイヤーの生成
     ActorMgr.add(Global.getPlayerParam());
@@ -141,6 +143,7 @@ class PlayState extends FlxUIState {
     TempActorMgr.destroy();
     Particle.destroyParent();
     ParticleBmpFont.destroyParent();
+    ParticleAnim.destroyParent();
     Message.destroyInstance(this);
     BattleUI.destroyInstance();
     BtlLogicMgr.destroy();

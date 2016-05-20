@@ -74,16 +74,16 @@ class ItemDetail {
   public static function build(data:ItemDetailData):String {
     var ret = "";
     var cntBR:Int = 0;
-      ret += '攻: ${data.power} \n';
-    if(data.count > 1) {
-      var count = TextUtil.fillSpace(data.count, 2); // flash対応
-      ret += '回数: x ${count}\n';
+    ret += '攻: ${data.power} \n';
+    if(data.resists != 1.0) {
+      ret += '属性: x ${data.resists}\n';
     }
     else {
       cntBR++;
     }
-    if(data.resists != 1.0) {
-      ret += '属性: x ${data.resists}\n';
+    if(data.count > 1) {
+      var count = TextUtil.fillSpace(data.count, 2); // flash対応
+      ret += '回数: x ${count}\n';
     }
     else {
       cntBR++;
@@ -94,7 +94,7 @@ class ItemDetail {
     }
     var sum = TextUtil.fillSpace(data.sum, 2); // flash対応
     ret += '---------- \n';
-    ret += '          ダメージ\n';
+    ret += '        ダメージ\n';
     //ret += ': ${sum}ダメージ\n';
     var hitratio = TextUtil.fillSpace(data.hit, 3); // flash対応
     ret += '(命中率: ${hitratio}%)';

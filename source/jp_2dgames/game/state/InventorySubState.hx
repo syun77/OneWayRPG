@@ -122,7 +122,7 @@ class InventorySubState extends FlxUISubState {
 
     // ダメージ数値
     {
-      var px = sprDetail.x;
+      var px = sprDetail.x - 4;
       var py = sprDetail.y + 46;
       var size = 16;
       _txtDamage = new FlxText(px, py, 16*3);

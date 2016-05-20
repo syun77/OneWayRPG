@@ -1,5 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.dat.EffectDB.EffectType;
+import jp_2dgames.game.particle.ParticleAnim;
 import flixel.tweens.FlxTween;
 import jp_2dgames.game.item.ItemList;
 import jp_2dgames.lib.MyColor;
@@ -272,6 +274,11 @@ class BtlLogicPlayer {
     target.adhereBadStatus(bst);
     var c = BadStatusUtil.getColor(bst);
     FlxTween.color(target, 1, c, FlxColor.WHITE);
+    Snd.playSe("badstatus");
+    target.shake(0.2);
+    var px = target.xcenter;
+    var py = target.ycenter;
+    ParticleAnim.start(EffectType.EftBst, px, py, c);
 
     var name = target.getName();
     var msg = BadStatusUtil.getMessage(bst);

@@ -79,6 +79,7 @@
 		<sound path="avoid2.mp3" id="miss"/>
 		<sound path="powerup.mp3" id="powerup"/>
 		<sound path="foot.mp3" id="foot"/>
+		<sound path="badstatus.mp3" id="badstatus"/>
 	</assets>
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
@@ -92,6 +93,7 @@
 		<sound path="avoid2.ogg" id="miss"/>
 		<sound path="powerup.ogg" id="powerup"/>
 		<sound path="foot.ogg" id="foot"/>
+		<sound path="badstatus.ogg" id="badstatus"/>
 	</assets>
 
 

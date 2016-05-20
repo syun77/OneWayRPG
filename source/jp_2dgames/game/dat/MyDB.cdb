@@ -838,8 +838,8 @@
 					"id": "StickDecay",
 					"category": 1,
 					"name": "くさった棒",
-					"min": 1,
-					"max": 1,
+					"min": 2,
+					"max": 3,
 					"hp": 0,
 					"power": 2,
 					"hit": 0.5,
@@ -1289,10 +1289,7 @@
 							"item": "StickHard"
 						},
 						{
-							"item": "StickMissile"
-						},
-						{
-							"item": "Portion03"
+							"item": "StickPoison"
 						}
 					]
 				}
@@ -1374,6 +1371,46 @@
 					"hpmax": 160,
 					"dex": 25,
 					"agi": 25
+				}
+			],
+			"separators": [],
+			"props": {}
+		},
+		{
+			"name": "effects",
+			"columns": [
+				{
+					"typeStr": "0",
+					"name": "id"
+				},
+				{
+					"typeStr": "13",
+					"name": "file",
+					"display": null
+				},
+				{
+					"typeStr": "7",
+					"name": "image",
+					"display": null
+				},
+				{
+					"typeStr": "5:Alpha,Add",
+					"name": "blend",
+					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "speed",
+					"display": null
+				}
+			],
+			"lines": [
+				{
+					"id": "EftBadStatus",
+					"file": "../../../../assets/images/effect/badstatus.png",
+					"image": "acb602baa102d882924fae1a227af324",
+					"blend": 0,
+					"speed": 16
 				}
 			],
 			"separators": [],
