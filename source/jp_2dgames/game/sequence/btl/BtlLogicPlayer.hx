@@ -156,11 +156,6 @@ class BtlLogicPlayer {
 
       case BtlLogic.UseItem(item):
         // ■アイテムを使った
-        item.now--;
-        if(item.now <= 0) {
-          // 壊れる
-          ItemList.del(item.uid);
-        }
         switch(ItemUtil.getCategory(item)) {
         case ItemCategory.Weapon:
           // 攻撃エフェクト
@@ -193,6 +188,18 @@ class BtlLogicPlayer {
       case BtlLogic.Badstatus(bst):
         // ■バステ付着
         _adhereBadStatus(target, bst);
+
+      case BtlLogic.ItemDestroy(item):
+        // ■アイテム壊れる
+        if(item.now == 1) {
+          // 砕け散るメッセージ
+          var name = ItemUtil.getName(item);
+          Message.push2(Msg.ITEM_DESTROY, [name]);
+          item.now--;
+          // 壊れる
+          ItemList.del(item.uid);
+          Snd.playSe("crash", true);
+        }
 
       case BtlLogic.Dead:
         // ■死亡

@@ -105,10 +105,8 @@ class BtlLogicFactory {
     }
 
     if(item.now == 1) {
-      // 砕け散るメッセージ
-      var name = ItemUtil.getName(item);
-      var type = BtlLogic.MessageDisp(Msg.ITEM_DESTROY, [name]);
-      ret.add(new BtlLogicData(type, player.uid, player.uid));
+      // アイテム壊れる
+      ret.add(new BtlLogicData(BtlLogic.ItemDestroy(item), player.uid, enemy.uid));
     }
 
     // 行動終了
