@@ -24,8 +24,8 @@ class EffectDB {
       case EffectType.EftBst:   EffectsKind.EftBadStatus;
       case EffectType.EftPhys:  EffectsKind.EftPhysics;
       case EffectType.EftGun:   EffectsKind.EftGun;
-      case EffectType.EftFire:  EffectsKind.EftPhysics;
-      case EffectType.EftIce:   EffectsKind.EftPhysics;
+      case EffectType.EftFire:  EffectsKind.EftFire;
+      case EffectType.EftIce:   EffectsKind.EftIce;
       case EffectType.EftShock: EffectsKind.EftPhysics;
       case EffectType.EftWind:  EffectsKind.EftPhysics;
     }

@@ -82,6 +82,8 @@
 		<sound path="badstatus.mp3" id="badstatus"/>
 		<sound path="phys.mp3" id="phys"/>
 		<sound path="gun.mp3" id="gun"/>
+		<sound path="fire.mp3" id="fire"/>
+		<sound path="ice.mp3" id="ice"/>
 	</assets>
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
@@ -98,6 +100,8 @@
 		<sound path="badstatus.ogg" id="badstatus"/>
 		<sound path="phys.ogg" id="phys"/>
 		<sound path="gun.ogg" id="gun"/>
+		<sound path="fire.ogg" id="fire"/>
+		<sound path="ice.ogg" id="ice"/>
 	</assets>
 
 
