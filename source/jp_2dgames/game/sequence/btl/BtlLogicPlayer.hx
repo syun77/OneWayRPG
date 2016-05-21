@@ -197,6 +197,7 @@ class BtlLogicPlayer {
     var px = target.xcenter;
     var py = target.ycenter;
     ParticleAnim.start(EffectType.EftPhys, px, py);
+    Snd.playSe("attack", true);
   }
 
   /**
