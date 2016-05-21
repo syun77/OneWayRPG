@@ -1408,9 +1408,16 @@
 				{
 					"id": "EftBadStatus",
 					"file": "../../../../assets/images/effect/badstatus.png",
-					"image": "acb602baa102d882924fae1a227af324",
+					"image": "1866d419746fe666893a04e4b5e4b823",
 					"blend": 0,
-					"speed": 16
+					"speed": 20
+				},
+				{
+					"id": "EftPhysics",
+					"file": "../../../../assets/images/effect/physics.png",
+					"image": "8dd7d6e3c5cdcc15e9d85d9d77c61a8c",
+					"blend": 0,
+					"speed": 20
 				}
 			],
 			"separators": [],

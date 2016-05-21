@@ -5,7 +5,8 @@ import jp_2dgames.game.dat.MyDB;
  * エフェクトの種類
  **/
 enum EffectType {
-  EftBst; // バッドステータス
+  EftBst;  // バッドステータス
+  EftPhys; // 物理攻撃
 }
 
 /**
@@ -15,7 +16,8 @@ class EffectDB {
 
   static function typeToKind(type:EffectType):EffectsKind {
     return switch(type) {
-      case EftBst: return EffectsKind.EftBadStatus;
+      case EffectType.EftBst:  return EffectsKind.EftBadStatus;
+      case EffectType.EftPhys: return EffectsKind.EftPhysics;
     }
   }
 

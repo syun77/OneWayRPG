@@ -46,9 +46,7 @@ class BtlLogicRecoverParam {
 enum BtlLogic {
 
   // ■行動開始
-  BeginEffect(eft:BtlLogicBegin); // 攻撃開始エフェクト
-  BeginAttack;                    // 通常攻撃
-  BeginItem(item:ItemData);       // アイテムを使う
+  BeginAttack(attr:Attribute);    // 通常攻撃
 
   // ■行動終了
   EndAction(bHit:Bool);
@@ -75,15 +73,4 @@ enum BtlLogic {
  * バトル演出種別ユーティリティ
  **/
 class BtlLogicUtil {
-  /**
-   * 開始演出かどうか
-   **/
-  public static function isBegin(type:BtlLogic):Bool {
-    switch(type) {
-      case BtlLogic.BeginEffect, BtlLogic.BeginAttack, BtlLogic.BeginItem:
-        return true;
-      default:
-        return false;
-    }
-  }
 }

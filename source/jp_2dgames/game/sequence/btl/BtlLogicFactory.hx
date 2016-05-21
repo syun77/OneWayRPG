@@ -55,6 +55,8 @@ class BtlLogicFactory {
     // 通常の処理
     {
       // アイテムを使う
+      // 自動攻撃開始メッセージ表示
+      var attr = ItemUtil.getAttribute(item);
       var data = new BtlLogicData(BtlLogic.UseItem(item), player.uid, enemy.uid);
       ret.add(data);
     }
@@ -166,10 +168,10 @@ class BtlLogicFactory {
     var count = 1;
     var actor  = enemy;
     var target = player;
+    var attr   = Attribute.Phys;
     {
       // 攻撃開始
-      var type = BtlLogic.BeginAttack;
-      var data = new BtlLogicData(type, actor.uid, target.uid);
+      var data = new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid);
       ret.add(data);
     }
 
@@ -178,6 +180,7 @@ class BtlLogicFactory {
     // 1回攻撃・命中率100%・物理
     {
       var prm = new DamageParam(actor, target, enemy.str, EnemyDB.getHit(enemy.id));
+      prm.attr = attr;
       if(_createDamage(ret, prm)) {
         // 命中した
         bHit = true;

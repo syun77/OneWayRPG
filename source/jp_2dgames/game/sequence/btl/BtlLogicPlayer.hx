@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.dat.AttributeUtil.Attribute;
 import jp_2dgames.game.dat.EffectDB.EffectType;
 import jp_2dgames.game.particle.ParticleAnim;
 import flixel.tweens.FlxTween;
@@ -85,14 +86,7 @@ class BtlLogicPlayer {
         _state = State.Main;
 
       case State.Main:
-        if(BtlLogicUtil.isBegin(_data.type)) {
-          // 開始演出
-          _updateMainBegin();
-        }
-        else {
-          // 通常演出
-          _updateMain();
-        }
+        _updateMain();
 
       case State.Wait:
         _state = State.End;
@@ -116,36 +110,6 @@ class BtlLogicPlayer {
   }
 
   /**
-   * 開始演出の更新
-   **/
-  function _updateMainBegin():Void {
-    var actor  = ActorMgr.search(_data.actorID);
-    var target = ActorMgr.search(_data.targetID);
-    var tWait  = TIMER_WAIT;
-
-    switch(_data.type) {
-      case BtlLogic.BeginEffect:
-        // 開始演出
-        tWait = 0; // ウェイトなし
-
-      case BtlLogic.BeginAttack:
-        // 攻撃
-        Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
-
-      case BtlLogic.BeginItem(item):
-        // アイテム
-        var name = ItemUtil.getName(item);
-        Message.push2(Msg.ITEM_USE, [name]);
-
-      default:
-        throw 'Error: Invalid data.type = ${_data.type}';
-    }
-
-    // メイン処理終了
-    _endMain(tWait);
-  }
-
-  /**
    * メインの更新
    **/
   function _updateMain():Void {
@@ -156,9 +120,10 @@ class BtlLogicPlayer {
     var tWait = TIMER_WAIT;
 
     switch(_data.type) {
-      case BtlLogic.BeginEffect, BtlLogic.BeginAttack, BtlLogic.BeginItem:
-        // ここに来てはいけない
-        throw 'Error: Invalid _data.type = ${_data.type}';
+      case BtlLogic.BeginAttack(attr):
+        // 攻撃
+        Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
+        _startAttackEffect(target, attr);
 
       case BtlLogic.EndAction(bHit):
         // 攻撃が命中したかどうか
@@ -177,6 +142,13 @@ class BtlLogicPlayer {
         if(item.now <= 0) {
           // 壊れる
           ItemList.del(item.uid);
+        }
+        switch(ItemUtil.getCategory(item)) {
+        case ItemCategory.Weapon:
+          // 攻撃エフェクト
+          var attr = ItemUtil.getAttribute(item);
+          _startAttackEffect(target, attr);
+        case ItemCategory.Portion:
         }
         var name = ItemUtil.getName2(item);
         Message.push2(Msg.ITEM_USE, [actor.getName(), name]);
@@ -216,6 +188,15 @@ class BtlLogicPlayer {
 
     // メイン処理終了
     _endMain(tWait);
+  }
+
+  /**
+   * 攻撃開始演出
+   **/
+  function _startAttackEffect(target:Actor, attr:Attribute):Void {
+    var px = target.xcenter;
+    var py = target.ycenter;
+    ParticleAnim.start(EffectType.EftPhys, px, py);
   }
 
   /**
