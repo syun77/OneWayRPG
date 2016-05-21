@@ -59,6 +59,12 @@ class BtlLogicFactory {
       var data = new BtlLogicData(BtlLogic.UseItem(item), player.uid, enemy.uid);
       ret.add(data);
     }
+    if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
+      if(item.now == 1) {
+        // 最後の一撃
+        ret.add(new BtlLogicData(BtlLogic.BeginLastAttack, player.uid, enemy.uid));
+      }
+    }
 
     // 一度でも攻撃が命中したかどうか
     var bHit:Bool = false;
@@ -86,7 +92,6 @@ class BtlLogicFactory {
           if(item.now == 1) {
             // 最後の一撃
             power *= BtlCalc.LAST_MULTI;
-            ret.add(new BtlLogicData(BtlLogic.BeginLastAttack, player.uid, enemy.uid));
           }
           var prm = new DamageParam(player, enemy, power, ItemUtil.getHit(item));
           prm.attr  = ItemUtil.getAttribute(item);

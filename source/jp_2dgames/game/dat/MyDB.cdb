@@ -615,7 +615,7 @@
 					"name": "回復剤3",
 					"min": 3,
 					"max": 5,
-					"detail": "HPを３回復する",
+					"detail": "HP３回復",
 					"hp": 3,
 					"power": 0,
 					"hit": 0,
@@ -623,7 +623,7 @@
 					"category": 0,
 					"count": 0,
 					"buy": 30,
-					"detail_last": "HPを９回復する",
+					"detail_last": "HP９回復",
 					"bst": "None"
 				},
 				{
@@ -637,9 +637,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを５回復する",
+					"detail": "HP５回復",
 					"buy": 60,
-					"detail_last": "HPを15回復する",
+					"detail_last": "HP15回復",
 					"bst": "None"
 				},
 				{
@@ -653,9 +653,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを10回復する",
+					"detail": "HP10回復",
 					"buy": 100,
-					"detail_last": "HPを30回復する",
+					"detail_last": "HP30回復",
 					"bst": "None"
 				},
 				{
@@ -713,7 +713,7 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 2,
+					"power": 1,
 					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
@@ -729,7 +729,7 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 3,
+					"power": 2,
 					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
@@ -758,8 +758,8 @@
 					"id": "StickEnergy",
 					"category": 1,
 					"name": "エナジー棒",
-					"min": 3,
-					"max": 5,
+					"min": 1,
+					"max": 1,
 					"hp": 0,
 					"power": 1,
 					"hit": 0.7,
@@ -857,7 +857,7 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 3,
+					"power": 2,
 					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
@@ -873,7 +873,7 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 4,
+					"power": 3,
 					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
@@ -1287,6 +1287,9 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "StickEnergy"
 						}
 					]
 				}

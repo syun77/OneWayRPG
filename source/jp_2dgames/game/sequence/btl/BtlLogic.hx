@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.item.ItemUtil;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.dat.AttributeUtil;
@@ -74,4 +75,16 @@ enum BtlLogic {
  * バトル演出種別ユーティリティ
  **/
 class BtlLogicUtil {
+  public static function isBegin(type:BtlLogic):Bool {
+    switch(type) {
+      case BtlLogic.BeginAttack, BtlLogic.BeginLastAttack:
+        return true;
+      case BtlLogic.UseItem(item):
+        if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
+          return true;
+        }
+      default:
+    }
+    return false;
+  }
 }

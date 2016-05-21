@@ -27,6 +27,13 @@ class ParticleAnim extends FlxSprite {
     return anim;
   }
 
+  /**
+   * エフェクトが存在するかどうか
+   **/
+  public static function isLiving():Bool {
+    return parent.countLiving() > 0;
+  }
+
   // ----------------------------------------
   // ■フィールド
   var _type:EffectType;

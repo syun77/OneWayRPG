@@ -99,6 +99,16 @@ class BtlLogicPlayer {
    * 停止中かどうか
    **/
   function _checkWait():Bool {
+
+    if(BtlLogicUtil.isBegin(_data.type)) {
+      // 開始演出はエフェクトの再生完了を待つ
+      if(ParticleAnim.isLiving()) {
+        // まだ存在している
+        return true;
+      }
+      return false;
+    }
+
     if(_tWait > 0) {
       _tWait--;
       // 停止中
