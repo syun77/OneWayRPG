@@ -201,7 +201,6 @@ class BtlLogicPlayer {
     var py = target.ycenter;
     var eft = AttributeUtil.toEffectType(attr);
     ParticleAnim.start(eft, px, py);
-    Snd.playSe("attack", true);
   }
 
   /**
@@ -260,7 +259,6 @@ class BtlLogicPlayer {
     target.adhereBadStatus(bst);
     var c = BadStatusUtil.getColor(bst);
     FlxTween.color(target, 1, c, FlxColor.WHITE);
-    Snd.playSe("badstatus");
     target.shake(0.2);
     var px = target.xcenter;
     var py = target.ycenter;

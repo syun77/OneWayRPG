@@ -80,7 +80,8 @@
 		<sound path="powerup.mp3" id="powerup"/>
 		<sound path="foot.mp3" id="foot"/>
 		<sound path="badstatus.mp3" id="badstatus"/>
-		<sound path="attack.mp3" id="attack"/>
+		<sound path="phys.mp3" id="phys"/>
+		<sound path="gun.mp3" id="gun"/>
 	</assets>
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
@@ -95,7 +96,8 @@
 		<sound path="powerup.ogg" id="powerup"/>
 		<sound path="foot.ogg" id="foot"/>
 		<sound path="badstatus.ogg" id="badstatus"/>
-		<sound path="attack.ogg" id="attack"/>
+		<sound path="phys.ogg" id="phys"/>
+		<sound path="gun.ogg" id="gun"/>
 	</assets>
 
 

@@ -44,4 +44,8 @@ class EffectDB {
     var id = typeToKind(type);
     return get(id).speed;
   }
+  public static function getSe(type:EffectType):String {
+    var id = typeToKind(type);
+    return get(id).se;
+  }
 }

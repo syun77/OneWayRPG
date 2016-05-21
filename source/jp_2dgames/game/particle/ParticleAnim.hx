@@ -1,5 +1,6 @@
 package jp_2dgames.game.particle;
 
+import jp_2dgames.lib.Snd;
 import flixel.FlxG;
 import jp_2dgames.game.dat.EffectDB;
 import flixel.util.FlxColor;
@@ -52,8 +53,13 @@ class ParticleAnim extends FlxSprite {
     animation.add("play", [for(i in 0...cnt) i], speed, false);
     animation.play("play");
 
+    // 中心に移動
     x = X - (origin.x - offset.x);
     y = Y - (origin.y - offset.y);
+
+    // SE再生
+    var se = EffectDB.getSe(type);
+    Snd.playSe(se, true);
   }
 
   /**
