@@ -86,6 +86,7 @@ class BtlLogicFactory {
           if(item.now == 1) {
             // 最後の一撃
             power *= BtlCalc.LAST_MULTI;
+            ret.add(new BtlLogicData(BtlLogic.BeginLastAttack, player.uid, enemy.uid));
           }
           var prm = new DamageParam(player, enemy, power, ItemUtil.getHit(item));
           prm.attr  = ItemUtil.getAttribute(item);

@@ -67,4 +67,5 @@ class Msg {
   public static inline var AUTO_ATTACK:Int    = 65; // 自動攻撃
   public static inline var UPGRADE_PARAM:Int  = 66; // ステータス強化
   public static inline var UPGRADE_HPMAX:Int  = 67; // 最大HP上昇
+  public static inline var LAST_ATTACK:Int    = 68; // 最後の一撃
 }

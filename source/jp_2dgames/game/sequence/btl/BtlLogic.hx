@@ -47,6 +47,7 @@ enum BtlLogic {
 
   // ■行動開始
   BeginAttack(attr:Attribute);    // 通常攻撃
+  BeginLastAttack;                // 最後の一撃
 
   // ■行動終了
   EndAction(bHit:Bool);

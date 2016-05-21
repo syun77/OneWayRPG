@@ -125,6 +125,14 @@ class BtlLogicPlayer {
         Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
         _startAttackEffect(target, attr);
 
+      case BtlLogic.BeginLastAttack:
+        // 最後の一撃
+        Message.push2(Msg.LAST_ATTACK);
+        var px = target.xcenter;
+        var py = target.ycenter;
+        ParticleAnim.start(EffectType.EftLastAttack, px, py);
+        FlxG.camera.flash(FlxColor.WHITE, 0.2);
+
       case BtlLogic.EndAction(bHit):
         // 攻撃が命中したかどうか
         if(bHit) {

@@ -12,6 +12,7 @@ enum EffectType {
   EftIce;   // 氷攻撃
   EftShock; // 雷攻撃
   EftWind;  // 疾風攻撃
+  EftLastAttack; // 最後の一撃
 }
 
 /**
@@ -28,6 +29,7 @@ class EffectDB {
       case EffectType.EftIce:   EffectsKind.EftIce;
       case EffectType.EftShock: EffectsKind.EftPhysics;
       case EffectType.EftWind:  EffectsKind.EftPhysics;
+      case EffectType.EftLastAttack: EffectsKind.EftLastAttack;
     }
   }
 
@@ -47,5 +49,13 @@ class EffectDB {
   public static function getSe(type:EffectType):String {
     var id = typeToKind(type);
     return get(id).se;
+  }
+  public static function getWidth(type:EffectType):Int {
+    var id = typeToKind(type);
+    return get(id).width;
+  }
+  public static function getHeight(type:EffectType):Int {
+    var id = typeToKind(type);
+    return get(id).height;
   }
 }

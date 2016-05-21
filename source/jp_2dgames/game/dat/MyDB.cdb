@@ -714,7 +714,7 @@
 					"max": 3,
 					"hp": 0,
 					"power": 2,
-					"hit": 0.7,
+					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
@@ -730,7 +730,7 @@
 					"max": 3,
 					"hp": 0,
 					"power": 3,
-					"hit": 0.8,
+					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
@@ -858,7 +858,7 @@
 					"max": 3,
 					"hp": 0,
 					"power": 3,
-					"hit": 0.7,
+					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
@@ -874,7 +874,7 @@
 					"max": 3,
 					"hp": 0,
 					"power": 4,
-					"hit": 0.8,
+					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
@@ -1410,6 +1410,16 @@
 					"typeStr": "1",
 					"name": "se",
 					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "width",
+					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "height",
+					"display": null
 				}
 			],
 			"lines": [
@@ -1419,7 +1429,9 @@
 					"image": "1866d419746fe666893a04e4b5e4b823",
 					"blend": 0,
 					"speed": 20,
-					"se": "badstatus"
+					"se": "badstatus",
+					"width": 0,
+					"height": 0
 				},
 				{
 					"id": "EftPhysics",
@@ -1427,7 +1439,9 @@
 					"image": "8dd7d6e3c5cdcc15e9d85d9d77c61a8c",
 					"blend": 0,
 					"speed": 20,
-					"se": "phys"
+					"se": "phys",
+					"width": 0,
+					"height": 0
 				},
 				{
 					"id": "EftGun",
@@ -1435,7 +1449,9 @@
 					"image": "7dbac9b7866ea157ce6f0d5b5a57b161",
 					"blend": 0,
 					"speed": 20,
-					"se": "gun"
+					"se": "gun",
+					"width": 0,
+					"height": 0
 				},
 				{
 					"id": "EftFire",
@@ -1443,7 +1459,9 @@
 					"image": "c21ebacaf572c5eafe13d8a3166db63f",
 					"blend": 0,
 					"speed": 20,
-					"se": "fire"
+					"se": "fire",
+					"width": 0,
+					"height": 0
 				},
 				{
 					"id": "EftIce",
@@ -1451,7 +1469,19 @@
 					"image": "d5cc890896345d3c7c24143b1a04c7c2",
 					"blend": 0,
 					"speed": 20,
-					"se": "ice"
+					"se": "ice",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftLastAttack",
+					"file": "../../../../assets/images/effect/lastattack.png",
+					"image": "d8d667c9b529eb0300284fcf289913e3",
+					"blend": 0,
+					"speed": 20,
+					"se": "kin",
+					"width": 320,
+					"height": 120
 				}
 			],
 			"separators": [],

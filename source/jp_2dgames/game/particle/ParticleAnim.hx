@@ -48,7 +48,9 @@ class ParticleAnim extends FlxSprite {
 
     var path = EffectDB.getFile(type);
     var speed = EffectDB.getSpeed(type);
-    loadGraphic(path, true);
+    var w = EffectDB.getWidth(type);
+    var h = EffectDB.getHeight(type);
+    loadGraphic(path, true, w, h);
     var cnt = frames.numFrames;
     animation.add("play", [for(i in 0...cnt) i], speed, false);
     animation.play("play");
