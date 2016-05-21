@@ -1,7 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
-import jp_2dgames.game.dat.AttributeUtil.Attribute;
-import jp_2dgames.game.dat.EffectDB.EffectType;
+import jp_2dgames.game.dat.AttributeUtil;
+import jp_2dgames.game.dat.EffectDB;
 import jp_2dgames.game.particle.ParticleAnim;
 import flixel.tweens.FlxTween;
 import jp_2dgames.game.item.ItemList;
@@ -156,6 +156,9 @@ class BtlLogicPlayer {
       case BtlLogic.MessageDisp(msgID, args):
         // ■メッセージ表示
         Message.push2(msgID, args);
+        if(_data.bWaitQuick) {
+          tWait = 0;
+        }
 
       case BtlLogic.HpDamage(val, bSeq):
         // ■HPダメージ
@@ -196,7 +199,8 @@ class BtlLogicPlayer {
   function _startAttackEffect(target:Actor, attr:Attribute):Void {
     var px = target.xcenter;
     var py = target.ycenter;
-    ParticleAnim.start(EffectType.EftPhys, px, py);
+    var eft = AttributeUtil.toEffectType(attr);
+    ParticleAnim.start(eft, px, py);
     Snd.playSe("attack", true);
   }
 
@@ -280,96 +284,4 @@ class BtlLogicPlayer {
       }
     }
   }
-
-  /**
-   * 更新
-   **/
-  /*
-  public static function proc(elapsed:Float, owner:SeqMgr):Void {
-    if(_data.count <= 0) {
-      // 行動終了
-      return;
-    }
-    if(owner.isEndWait() == false) {
-      // 演出中
-      return;
-    }
-
-    switch(_data.type) {
-      case BtlLogic.None:
-        // 何もしない
-
-      case BtlLogic.Attack(type, prm):
-        // 攻撃
-        _procAttack(owner, type, prm);
-
-      case BtlLogic.Recover(prm):
-        // 回復
-        var hp = prm.hp;
-        _data.target.recover(hp);
-        var name = _data.actor.getName();
-        Message.push2(Msg.RECOVER_HP, [name, hp]);
-        Snd.playSe("recover");
-        owner.startWait();
-        _data.count--;
-    }
-
-    if(_data.count <= 0) {
-      // 演出終了
-      _state = State.End;
-    }
-  }
-  */
-
-  /**
-   * 更新・攻撃
-   **/
-  /*
-  static function _procAttack(owner:SeqMgr, type:BtlLogicAttack, prm:BtlLogicAttackParam):Void {
-    // 命中判定
-    var damage = BtlCalc.damage(prm, _data.actor, _data.target);
-    if(BtlCalc.isHit(prm, _data.actor, _data.target)) {
-      // 命中回数増加
-      _cntHit++;
-    }
-    else {
-      // 外れ
-      damage = BtlCalc.VAL_EVADE;
-    }
-    // ダメージ処理
-    _data.target.damage(damage);
-
-    _data.count--;
-    switch(type) {
-      case BtlLogicAttack.Normal:
-        // 1回攻撃
-        owner.startWait();
-      case BtlLogicAttack.Multi:
-        // 複数回攻撃
-        if(_data.count <= 0) {
-          owner.startWait();
-        }
-        else {
-          owner.startWaitHalf();
-        }
-    }
-
-    if(_data.count == 0) {
-      // 攻撃終了
-      // 命中回数を記録
-      if(_cntHit == 0) {
-        // 一度も命中しなかった
-        _data.actor.btlPrms.cntAttackEvade += 1;
-      }
-      else {
-        // 一度でも命中した
-        _data.actor.btlPrms.cntAttackEvade = 0;
-        if(prm.bst != BadStatus.None) {
-          // バステ付着
-          _data.target.adhereBadStatus(prm.bst);
-        }
-      }
-    }
-  }
-  */
 }

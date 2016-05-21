@@ -55,7 +55,6 @@ class BtlLogicFactory {
     // 通常の処理
     {
       // アイテムを使う
-      // 自動攻撃開始メッセージ表示
       var attr = ItemUtil.getAttribute(item);
       var data = new BtlLogicData(BtlLogic.UseItem(item), player.uid, enemy.uid);
       ret.add(data);
@@ -118,10 +117,15 @@ class BtlLogicFactory {
   static function _createAutoAttack(ret:List<BtlLogicData>, actor:Actor, target:Actor):List<BtlLogicData> {
 
     // 自動攻撃開始メッセージ表示
-    ret.add(new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid));
+    var data = new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid);
+    data.bWaitQuick = true;
+    // 攻撃開始
+    var attr = Attribute.Phys;
+    ret.add(new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid));
 
     // 1回攻撃・命中率100%・物理
     var prm = new DamageParam(actor, target, 1, 100);
+    prm.attr = attr;
     _createDamage(ret, prm);
     return ret;
   }

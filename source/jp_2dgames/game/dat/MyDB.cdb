@@ -1290,6 +1290,9 @@
 						},
 						{
 							"item": "StickPoison"
+						},
+						{
+							"item": "StickEnergy"
 						}
 					]
 				}
@@ -1416,6 +1419,13 @@
 					"id": "EftPhysics",
 					"file": "../../../../assets/images/effect/physics.png",
 					"image": "8dd7d6e3c5cdcc15e9d85d9d77c61a8c",
+					"blend": 0,
+					"speed": 20
+				},
+				{
+					"id": "EftGun",
+					"file": "../../../../assets/images/effect/gun.png",
+					"image": "7dbac9b7866ea157ce6f0d5b5a57b161",
 					"blend": 0,
 					"speed": 20
 				}
