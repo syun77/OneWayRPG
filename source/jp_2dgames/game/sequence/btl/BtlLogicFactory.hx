@@ -104,10 +104,8 @@ class BtlLogicFactory {
       }
     }
 
-    if(item.now == 1) {
-      // アイテム壊れる
-      ret.add(new BtlLogicData(BtlLogic.ItemDestroy(item), player.uid, enemy.uid));
-    }
+    // アイテム使用回数減少
+    ret.add(new BtlLogicData(BtlLogic.DecayItem(item), player.uid, enemy.uid));
 
     // 行動終了
     ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), player.uid, player.uid));

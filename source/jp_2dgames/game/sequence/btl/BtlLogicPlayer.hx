@@ -189,8 +189,8 @@ class BtlLogicPlayer {
         // ■バステ付着
         _adhereBadStatus(target, bst);
 
-      case BtlLogic.ItemDestroy(item):
-        // ■アイテム壊れる
+      case BtlLogic.DecayItem(item):
+        // ■アイテム劣化する
         if(item.now == 1) {
           // 砕け散るメッセージ
           var name = ItemUtil.getName(item);
@@ -199,6 +199,11 @@ class BtlLogicPlayer {
           // 壊れる
           ItemList.del(item.uid);
           Snd.playSe("crash", true);
+        }
+        else {
+          // アイテム使用回数を減らす
+          item.now--;
+          tWait = 0;
         }
 
       case BtlLogic.Dead:
