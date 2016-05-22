@@ -55,8 +55,15 @@ class BtlLogicFactory {
     // 通常の処理
     {
       // アイテムを使う
+      var attr = ItemUtil.getAttribute(item);
       var data = new BtlLogicData(BtlLogic.UseItem(item), player.uid, enemy.uid);
       ret.add(data);
+    }
+    if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
+      if(item.now == 1) {
+        // 最後の一撃
+        ret.add(new BtlLogicData(BtlLogic.BeginLastAttack, player.uid, enemy.uid));
+      }
     }
 
     // 一度でも攻撃が命中したかどうか
@@ -97,12 +104,8 @@ class BtlLogicFactory {
       }
     }
 
-    if(item.now == 1) {
-      // 砕け散るメッセージ
-      var name = ItemUtil.getName(item);
-      var type = BtlLogic.MessageDisp(Msg.ITEM_DESTROY, [name]);
-      ret.add(new BtlLogicData(type, player.uid, player.uid));
-    }
+    // アイテム使用回数減少
+    ret.add(new BtlLogicData(BtlLogic.DecayItem(item), player.uid, enemy.uid));
 
     // 行動終了
     ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), player.uid, player.uid));
@@ -116,10 +119,15 @@ class BtlLogicFactory {
   static function _createAutoAttack(ret:List<BtlLogicData>, actor:Actor, target:Actor):List<BtlLogicData> {
 
     // 自動攻撃開始メッセージ表示
-    ret.add(new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid));
+    var data = new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid);
+    data.bWaitQuick = true;
+    // 攻撃開始
+    var attr = Attribute.Phys;
+    ret.add(new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid));
 
     // 1回攻撃・命中率100%・物理
     var prm = new DamageParam(actor, target, 1, 100);
+    prm.attr = attr;
     _createDamage(ret, prm);
     return ret;
   }
@@ -166,10 +174,10 @@ class BtlLogicFactory {
     var count = 1;
     var actor  = enemy;
     var target = player;
+    var attr   = Attribute.Phys;
     {
       // 攻撃開始
-      var type = BtlLogic.BeginAttack;
-      var data = new BtlLogicData(type, actor.uid, target.uid);
+      var data = new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid);
       ret.add(data);
     }
 
@@ -178,6 +186,7 @@ class BtlLogicFactory {
     // 1回攻撃・命中率100%・物理
     {
       var prm = new DamageParam(actor, target, enemy.str, EnemyDB.getHit(enemy.id));
+      prm.attr = attr;
       if(_createDamage(ret, prm)) {
         // 命中した
         bHit = true;

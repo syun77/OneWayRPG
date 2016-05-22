@@ -1,5 +1,7 @@
 package jp_2dgames.game.particle;
 
+import jp_2dgames.lib.Snd;
+import flixel.FlxG;
 import jp_2dgames.game.dat.EffectDB;
 import flixel.util.FlxColor;
 import flixel.FlxState;
@@ -25,8 +27,16 @@ class ParticleAnim extends FlxSprite {
     return anim;
   }
 
+  /**
+   * エフェクトが存在するかどうか
+   **/
+  public static function isLiving():Bool {
+    return parent.countLiving() > 0;
+  }
+
   // ----------------------------------------
   // ■フィールド
+  var _type:EffectType;
 
   /**
    * コンストラクタ
@@ -40,17 +50,25 @@ class ParticleAnim extends FlxSprite {
    **/
   public function init(type:EffectType, X:Float, Y:Float, c:FlxColor):Void {
 
+    _type = type;
     color = c;
 
     var path = EffectDB.getFile(type);
     var speed = EffectDB.getSpeed(type);
-    loadGraphic(path, true);
+    var w = EffectDB.getWidth(type);
+    var h = EffectDB.getHeight(type);
+    loadGraphic(path, true, w, h);
     var cnt = frames.numFrames;
     animation.add("play", [for(i in 0...cnt) i], speed, false);
     animation.play("play");
 
+    // 中心に移動
     x = X - (origin.x - offset.x);
     y = Y - (origin.y - offset.y);
+
+    // SE再生
+    var se = EffectDB.getSe(type);
+    Snd.playSe(se, true);
   }
 
   /**
@@ -61,6 +79,10 @@ class ParticleAnim extends FlxSprite {
 
     if(animation.finished) {
       // 再生が終わったら消す
+      // 読み込んだ画像をキャッシュから削除
+      var path = EffectDB.getFile(_type);
+      var bmp = FlxG.bitmap.get(path);
+      FlxG.bitmap.remove(bmp);
       kill();
     }
   }

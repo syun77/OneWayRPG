@@ -1,5 +1,6 @@
 package jp_2dgames.game.dat;
 
+import jp_2dgames.game.dat.EffectDB.EffectType;
 import jp_2dgames.game.dat.MyDB;
 
 /**
@@ -41,6 +42,21 @@ class AttributeUtil {
       case Attribute.Ice:   base + "ice.png";
       case Attribute.Shock: base + "shock.png";
       case Attribute.Wind:  base + "wind.png";
+    }
+  }
+
+  /**
+   * 属性に対応するエフェクトに変換
+   **/
+  public static function toEffectType(attr:Attribute):EffectType {
+    return switch(attr) {
+      case Attribute.None:  EffectType.EftPhys;
+      case Attribute.Phys:  EffectType.EftPhys;
+      case Attribute.Gun:   EffectType.EftGun;
+      case Attribute.Fire:  EffectType.EftFire;
+      case Attribute.Ice:   EffectType.EftIce;
+      case Attribute.Shock: EffectType.EftShock;
+      case Attribute.Wind:  EffectType.EftWind;
     }
   }
 }

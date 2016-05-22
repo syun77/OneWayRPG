@@ -143,7 +143,7 @@
 							"ratio": 100
 						}
 					],
-					"fire": 1.25,
+					"fire": 2,
 					"ice": 1,
 					"phys": 1,
 					"gun": 1,
@@ -187,7 +187,7 @@
 							"ratio": 100
 						}
 					],
-					"fire": 1.25,
+					"fire": 3,
 					"ice": 1,
 					"phys": 1,
 					"gun": 1,
@@ -211,7 +211,7 @@
 							"ratio": 20
 						}
 					],
-					"fire": 0.75,
+					"fire": 2,
 					"ice": 1.5,
 					"phys": 1,
 					"gun": 1,
@@ -226,7 +226,7 @@
 					"atk": 2,
 					"hit": 0.7,
 					"drops": [],
-					"fire": 1.25,
+					"fire": 2,
 					"ice": 1,
 					"phys": 1,
 					"gun": 1.25,
@@ -256,8 +256,8 @@
 					"atk": 3,
 					"hit": 0.7,
 					"drops": [],
-					"fire": 1.25,
-					"ice": 0.75,
+					"fire": 2,
+					"ice": 0.5,
 					"phys": 1,
 					"gun": 1,
 					"money": 10
@@ -271,8 +271,8 @@
 					"atk": 3,
 					"hit": 0.3,
 					"drops": [],
-					"fire": 0.75,
-					"ice": 1.5,
+					"fire": 0.5,
+					"ice": 2,
 					"phys": 1,
 					"gun": 1,
 					"money": 4
@@ -301,7 +301,7 @@
 					"atk": 2,
 					"hit": 0.7,
 					"drops": [],
-					"fire": 1.25,
+					"fire": 2,
 					"ice": 1,
 					"phys": 1,
 					"gun": 1,
@@ -316,7 +316,7 @@
 					"atk": 4,
 					"hit": 0.2,
 					"drops": [],
-					"fire": 1.5,
+					"fire": 3,
 					"ice": 1,
 					"phys": 1.25,
 					"gun": 1,
@@ -346,8 +346,8 @@
 					"atk": 2,
 					"hit": 0.8,
 					"drops": [],
-					"fire": 0.75,
-					"ice": 1,
+					"fire": 1.5,
+					"ice": 1.5,
 					"phys": 1,
 					"gun": 1,
 					"money": 20
@@ -615,7 +615,7 @@
 					"name": "回復剤3",
 					"min": 3,
 					"max": 5,
-					"detail": "HPを３回復する",
+					"detail": "HP３回復",
 					"hp": 3,
 					"power": 0,
 					"hit": 0,
@@ -623,7 +623,7 @@
 					"category": 0,
 					"count": 0,
 					"buy": 30,
-					"detail_last": "HPを９回復する",
+					"detail_last": "HP９回復",
 					"bst": "None"
 				},
 				{
@@ -637,9 +637,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを５回復する",
+					"detail": "HP５回復",
 					"buy": 60,
-					"detail_last": "HPを15回復する",
+					"detail_last": "HP15回復",
 					"bst": "None"
 				},
 				{
@@ -653,9 +653,9 @@
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HPを10回復する",
+					"detail": "HP10回復",
 					"buy": 100,
-					"detail_last": "HPを30回復する",
+					"detail_last": "HP30回復",
 					"bst": "None"
 				},
 				{
@@ -713,8 +713,8 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 2,
-					"hit": 0.7,
+					"power": 1,
+					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
@@ -729,8 +729,8 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 3,
-					"hit": 0.8,
+					"power": 2,
+					"hit": 1,
 					"attr": "Fire",
 					"count": 1,
 					"detail": "",
@@ -857,8 +857,8 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 3,
-					"hit": 0.7,
+					"power": 2,
+					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
@@ -873,8 +873,8 @@
 					"min": 2,
 					"max": 3,
 					"hp": 0,
-					"power": 4,
-					"hit": 0.8,
+					"power": 3,
+					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
@@ -1287,9 +1287,6 @@
 						},
 						{
 							"item": "StickHard"
-						},
-						{
-							"item": "StickPoison"
 						}
 					]
 				}
@@ -1402,15 +1399,83 @@
 					"typeStr": "3",
 					"name": "speed",
 					"display": null
+				},
+				{
+					"typeStr": "1",
+					"name": "se",
+					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "width",
+					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "height",
+					"display": null
 				}
 			],
 			"lines": [
 				{
 					"id": "EftBadStatus",
 					"file": "../../../../assets/images/effect/badstatus.png",
-					"image": "acb602baa102d882924fae1a227af324",
+					"image": "1866d419746fe666893a04e4b5e4b823",
 					"blend": 0,
-					"speed": 16
+					"speed": 20,
+					"se": "badstatus",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftPhysics",
+					"file": "../../../../assets/images/effect/physics.png",
+					"image": "8dd7d6e3c5cdcc15e9d85d9d77c61a8c",
+					"blend": 0,
+					"speed": 20,
+					"se": "phys",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftGun",
+					"file": "../../../../assets/images/effect/gun.png",
+					"image": "7dbac9b7866ea157ce6f0d5b5a57b161",
+					"blend": 0,
+					"speed": 20,
+					"se": "gun",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftFire",
+					"file": "../../../../assets/images/effect/fire.png",
+					"image": "c21ebacaf572c5eafe13d8a3166db63f",
+					"blend": 0,
+					"speed": 20,
+					"se": "fire",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftIce",
+					"file": "../../../../assets/images/effect/ice.png",
+					"image": "d5cc890896345d3c7c24143b1a04c7c2",
+					"blend": 0,
+					"speed": 20,
+					"se": "ice",
+					"width": 0,
+					"height": 0
+				},
+				{
+					"id": "EftLastAttack",
+					"file": "../../../../assets/images/effect/lastattack.png",
+					"image": "d8d667c9b529eb0300284fcf289913e3",
+					"blend": 0,
+					"speed": 20,
+					"se": "kin",
+					"width": 320,
+					"height": 120
 				}
 			],
 			"separators": [],

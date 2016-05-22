@@ -1,6 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
-import jp_2dgames.game.dat.EffectDB.EffectType;
+import jp_2dgames.game.dat.AttributeUtil;
+import jp_2dgames.game.dat.EffectDB;
 import jp_2dgames.game.particle.ParticleAnim;
 import flixel.tweens.FlxTween;
 import jp_2dgames.game.item.ItemList;
@@ -85,14 +86,7 @@ class BtlLogicPlayer {
         _state = State.Main;
 
       case State.Main:
-        if(BtlLogicUtil.isBegin(_data.type)) {
-          // 開始演出
-          _updateMainBegin();
-        }
-        else {
-          // 通常演出
-          _updateMain();
-        }
+        _updateMain();
 
       case State.Wait:
         _state = State.End;
@@ -105,6 +99,16 @@ class BtlLogicPlayer {
    * 停止中かどうか
    **/
   function _checkWait():Bool {
+
+    if(BtlLogicUtil.isBegin(_data.type)) {
+      // 開始演出はエフェクトの再生完了を待つ
+      if(ParticleAnim.isLiving()) {
+        // まだ存在している
+        return true;
+      }
+      return false;
+    }
+
     if(_tWait > 0) {
       _tWait--;
       // 停止中
@@ -113,36 +117,6 @@ class BtlLogicPlayer {
 
     // 停止していない
     return false;
-  }
-
-  /**
-   * 開始演出の更新
-   **/
-  function _updateMainBegin():Void {
-    var actor  = ActorMgr.search(_data.actorID);
-    var target = ActorMgr.search(_data.targetID);
-    var tWait  = TIMER_WAIT;
-
-    switch(_data.type) {
-      case BtlLogic.BeginEffect:
-        // 開始演出
-        tWait = 0; // ウェイトなし
-
-      case BtlLogic.BeginAttack:
-        // 攻撃
-        Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
-
-      case BtlLogic.BeginItem(item):
-        // アイテム
-        var name = ItemUtil.getName(item);
-        Message.push2(Msg.ITEM_USE, [name]);
-
-      default:
-        throw 'Error: Invalid data.type = ${_data.type}';
-    }
-
-    // メイン処理終了
-    _endMain(tWait);
   }
 
   /**
@@ -156,9 +130,18 @@ class BtlLogicPlayer {
     var tWait = TIMER_WAIT;
 
     switch(_data.type) {
-      case BtlLogic.BeginEffect, BtlLogic.BeginAttack, BtlLogic.BeginItem:
-        // ここに来てはいけない
-        throw 'Error: Invalid _data.type = ${_data.type}';
+      case BtlLogic.BeginAttack(attr):
+        // 攻撃
+        Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
+        _startAttackEffect(target, attr);
+
+      case BtlLogic.BeginLastAttack:
+        // 最後の一撃
+        Message.push2(Msg.LAST_ATTACK);
+        var px = target.xcenter;
+        var py = target.ycenter;
+        ParticleAnim.start(EffectType.EftLastAttack, px, py);
+        FlxG.camera.flash(FlxColor.WHITE, 0.2);
 
       case BtlLogic.EndAction(bHit):
         // 攻撃が命中したかどうか
@@ -173,10 +156,12 @@ class BtlLogicPlayer {
 
       case BtlLogic.UseItem(item):
         // ■アイテムを使った
-        item.now--;
-        if(item.now <= 0) {
-          // 壊れる
-          ItemList.del(item.uid);
+        switch(ItemUtil.getCategory(item)) {
+        case ItemCategory.Weapon:
+          // 攻撃エフェクト
+          var attr = ItemUtil.getAttribute(item);
+          _startAttackEffect(target, attr);
+        case ItemCategory.Portion:
         }
         var name = ItemUtil.getName2(item);
         Message.push2(Msg.ITEM_USE, [actor.getName(), name]);
@@ -184,6 +169,9 @@ class BtlLogicPlayer {
       case BtlLogic.MessageDisp(msgID, args):
         // ■メッセージ表示
         Message.push2(msgID, args);
+        if(_data.bWaitQuick) {
+          tWait = 0;
+        }
 
       case BtlLogic.HpDamage(val, bSeq):
         // ■HPダメージ
@@ -201,6 +189,23 @@ class BtlLogicPlayer {
         // ■バステ付着
         _adhereBadStatus(target, bst);
 
+      case BtlLogic.DecayItem(item):
+        // ■アイテム劣化する
+        if(item.now == 1) {
+          // 砕け散るメッセージ
+          var name = ItemUtil.getName(item);
+          Message.push2(Msg.ITEM_DESTROY, [name]);
+          item.now--;
+          // 壊れる
+          ItemList.del(item.uid);
+          Snd.playSe("crash", true);
+        }
+        else {
+          // アイテム使用回数を減らす
+          item.now--;
+          tWait = 0;
+        }
+
       case BtlLogic.Dead:
         // ■死亡
         target.vanish();
@@ -216,6 +221,16 @@ class BtlLogicPlayer {
 
     // メイン処理終了
     _endMain(tWait);
+  }
+
+  /**
+   * 攻撃開始演出
+   **/
+  function _startAttackEffect(target:Actor, attr:Attribute):Void {
+    var px = target.xcenter;
+    var py = target.ycenter;
+    var eft = AttributeUtil.toEffectType(attr);
+    ParticleAnim.start(eft, px, py);
   }
 
   /**
@@ -274,7 +289,6 @@ class BtlLogicPlayer {
     target.adhereBadStatus(bst);
     var c = BadStatusUtil.getColor(bst);
     FlxTween.color(target, 1, c, FlxColor.WHITE);
-    Snd.playSe("badstatus");
     target.shake(0.2);
     var px = target.xcenter;
     var py = target.ycenter;
@@ -298,96 +312,4 @@ class BtlLogicPlayer {
       }
     }
   }
-
-  /**
-   * 更新
-   **/
-  /*
-  public static function proc(elapsed:Float, owner:SeqMgr):Void {
-    if(_data.count <= 0) {
-      // 行動終了
-      return;
-    }
-    if(owner.isEndWait() == false) {
-      // 演出中
-      return;
-    }
-
-    switch(_data.type) {
-      case BtlLogic.None:
-        // 何もしない
-
-      case BtlLogic.Attack(type, prm):
-        // 攻撃
-        _procAttack(owner, type, prm);
-
-      case BtlLogic.Recover(prm):
-        // 回復
-        var hp = prm.hp;
-        _data.target.recover(hp);
-        var name = _data.actor.getName();
-        Message.push2(Msg.RECOVER_HP, [name, hp]);
-        Snd.playSe("recover");
-        owner.startWait();
-        _data.count--;
-    }
-
-    if(_data.count <= 0) {
-      // 演出終了
-      _state = State.End;
-    }
-  }
-  */
-
-  /**
-   * 更新・攻撃
-   **/
-  /*
-  static function _procAttack(owner:SeqMgr, type:BtlLogicAttack, prm:BtlLogicAttackParam):Void {
-    // 命中判定
-    var damage = BtlCalc.damage(prm, _data.actor, _data.target);
-    if(BtlCalc.isHit(prm, _data.actor, _data.target)) {
-      // 命中回数増加
-      _cntHit++;
-    }
-    else {
-      // 外れ
-      damage = BtlCalc.VAL_EVADE;
-    }
-    // ダメージ処理
-    _data.target.damage(damage);
-
-    _data.count--;
-    switch(type) {
-      case BtlLogicAttack.Normal:
-        // 1回攻撃
-        owner.startWait();
-      case BtlLogicAttack.Multi:
-        // 複数回攻撃
-        if(_data.count <= 0) {
-          owner.startWait();
-        }
-        else {
-          owner.startWaitHalf();
-        }
-    }
-
-    if(_data.count == 0) {
-      // 攻撃終了
-      // 命中回数を記録
-      if(_cntHit == 0) {
-        // 一度も命中しなかった
-        _data.actor.btlPrms.cntAttackEvade += 1;
-      }
-      else {
-        // 一度でも命中した
-        _data.actor.btlPrms.cntAttackEvade = 0;
-        if(prm.bst != BadStatus.None) {
-          // バステ付着
-          _data.target.adhereBadStatus(prm.bst);
-        }
-      }
-    }
-  }
-  */
 }

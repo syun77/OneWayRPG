@@ -80,6 +80,12 @@
 		<sound path="powerup.mp3" id="powerup"/>
 		<sound path="foot.mp3" id="foot"/>
 		<sound path="badstatus.mp3" id="badstatus"/>
+		<sound path="phys.mp3" id="phys"/>
+		<sound path="gun.mp3" id="gun"/>
+		<sound path="fire.mp3" id="fire"/>
+		<sound path="ice.mp3" id="ice"/>
+		<sound path="kin.mp3" id="kin"/>
+		<sound path="crash.mp3" id="crash"/>
 	</assets>
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
@@ -94,6 +100,12 @@
 		<sound path="powerup.ogg" id="powerup"/>
 		<sound path="foot.ogg" id="foot"/>
 		<sound path="badstatus.ogg" id="badstatus"/>
+		<sound path="phys.ogg" id="phys"/>
+		<sound path="gun.ogg" id="gun"/>
+		<sound path="fire.ogg" id="fire"/>
+		<sound path="ice.ogg" id="ice"/>
+		<sound path="kin.ogg" id="kin"/>
+		<sound path="crash.ogg" id="crash"/>
 	</assets>
 
 

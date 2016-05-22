@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.item.ItemUtil;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.dat.AttributeUtil;
@@ -46,9 +47,8 @@ class BtlLogicRecoverParam {
 enum BtlLogic {
 
   // ■行動開始
-  BeginEffect(eft:BtlLogicBegin); // 攻撃開始エフェクト
-  BeginAttack;                    // 通常攻撃
-  BeginItem(item:ItemData);       // アイテムを使う
+  BeginAttack(attr:Attribute);    // 通常攻撃
+  BeginLastAttack;                // 最後の一撃
 
   // ■行動終了
   EndAction(bHit:Bool);
@@ -66,6 +66,7 @@ enum BtlLogic {
   ChanceRoll(b:Bool);           // 成功 or 失敗
 
   // ■その他
+  DecayItem(item:ItemData); // アイテム壊れる
   Dead; // 死亡
   TurnEnd; // ターン終了
   BtlEnd(bWin:Bool); // バトル終了
@@ -75,15 +76,16 @@ enum BtlLogic {
  * バトル演出種別ユーティリティ
  **/
 class BtlLogicUtil {
-  /**
-   * 開始演出かどうか
-   **/
   public static function isBegin(type:BtlLogic):Bool {
     switch(type) {
-      case BtlLogic.BeginEffect, BtlLogic.BeginAttack, BtlLogic.BeginItem:
+      case BtlLogic.BeginAttack, BtlLogic.BeginLastAttack:
         return true;
+      case BtlLogic.UseItem(item):
+        if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
+          return true;
+        }
       default:
-        return false;
     }
+    return false;
   }
 }
