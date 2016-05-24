@@ -18,8 +18,6 @@ class Global {
   static inline var START_LEVEL:Int = 1;
   static inline var FIRST_MONEY:Int = 0;
 
-  // スコア
-  static var _score:Int;
   // レベル
   static var _level:Int;
   // お金
@@ -31,7 +29,6 @@ class Global {
   // ショップアイテム
   static var _shop:Array<ItemData>;
 
-  public static var score(get, never):Int;
   public static var level(get, never):Int;
   public static var money(get, never):Int;
   public static var step(get, never):Int;
@@ -47,7 +44,6 @@ class Global {
    * ゲーム開始時の初期化 (PlayInitState)
    **/
   public static function initGame():Void {
-    _score = 0;
     _level = START_LEVEL;
     _money = FIRST_MONEY;
     // プレイヤーパラメータ
@@ -66,7 +62,6 @@ class Global {
    * レベル開始時の初期化 (PlayState)
    **/
   public static function initLevel():Void {
-    _score = 0;
     _step = FloorInfoDB.getSteps(level);
 
     // TODO: ショップアイテムの生成
@@ -79,10 +74,6 @@ class Global {
     }
   }
 
-
-  public static function addScore(v:Int):Void {
-    _score += v;
-  }
   public static function addLevel():Bool {
     _level++;
     if(_level >= MAX_LEVEL) {
@@ -108,7 +99,6 @@ class Global {
 
   // -----------------------------------------------
   // ■アクセサ
-  static function get_score() { return _score; }
   static function get_level() { return _level; }
   static function get_money() { return _money; }
   static function get_step()  { return _step;  }

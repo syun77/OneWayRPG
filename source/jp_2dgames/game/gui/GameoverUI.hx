@@ -1,7 +1,7 @@
 package jp_2dgames.game.gui;
+import jp_2dgames.game.state.ResultState;
 import jp_2dgames.game.gui.MyButton;
 import jp_2dgames.game.state.PlayInitState;
-import jp_2dgames.game.global.Global;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -18,20 +18,15 @@ class GameoverUI extends FlxSpriteGroup {
   public function new(bBtn:Bool=false) {
     super();
 
-    var txt = new FlxText(0, FlxG.height*0.3, FlxG.width, "GAME OVER");
+    var txt = new FlxText(0, FlxG.height*0.3, FlxG.width, "YOU DIED");
     txt.setFormat(null, FONT_SIZE, FlxColor.WHITE, "center", FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
     this.add(txt);
-    /*
-    var score = BtlGroupUtil FlxText(0, FlxG.height*0.5, FlxG.width, 'FINAL SCORE: ${Global.score}');
-    score.setFormat(null, FONT_SIZE, FlxColor.WHITE, "center", FlxTextBorderStyle.OUTLINE);
-    this.add(score);
-    */
 
     if(bBtn) {
       // やり直しボタン
-      var btn = new MyButton(FlxG.width/2, FlxG.height*0.7, "Restart", function() {
-        FlxG.switchState(new PlayInitState());
-//        FlxG.resetState();
+      var btn = new MyButton(FlxG.width/2, FlxG.height*0.7, "Next", function() {
+        FlxG.switchState(new ResultState());
+//        FlxG.switchState(new PlayInitState());
       });
       btn.x -= btn.width/2;
       this.add(btn);

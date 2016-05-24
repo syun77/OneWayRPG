@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <!-- ■共通定義読み込み -->
+  <include id="_ui_globals"/>
+  
+  <!-- タイトル -->
+  <text id="txttitle" use_def="pixelmplus10_result" center_x="true" y="16" text="Result" size="20" />
+  <!-- 区切り線 -->
+  <line center_x="true" y="txttitle.bottom" width="400" height="1" color="0xFFFFFFFF" />
+  
+  <!-- 敵を倒した数 -->
+  <text id="txtkill" use_def="pixelmplus10_result" center_x="true" y="txttitle.bottom" text="Kill Enemies:" />
+  <!-- 所持金 -->
+  <text id="txtmoney" use_def="pixelmplus10_result" center_x="true" y="txtkill.bottom" text="Money:" />
+  <!-- 食糧 -->
+  <text id="txtfood" use_def="pixelmplus10_result" center_x="true" y="txtmoney.bottom" text="Food:" />
+  <!-- アイテム -->
+  <text id="txtitem" use_def="pixelmplus10_result" center_x="true" y="txtfood.bottom" text="Item:" />
+  <!-- クリアボーナス -->
+  <text id="txtcompleted" use_def="pixelmplus10_result" center_x="true" y="txtitem.bottom" text="Bonus:" />
+  <!-- 区切り線 -->
+  <line center_x="true" y="txtcompleted.bottom" width="400" height="1" color="0xFFFFFFFF" />
+  
+  <!-- トータルスコア -->
+  <text id="txttotal" use_def="pixelmplus10_result" center_x="true" y="txtcompleted.bottom+32" text="Total:" size="20" />
+  
+  <!-- タイトルへ戻るボタン -->
+  <!-- 確認ボタン -->
+  <button id="close" label="CLOSE" center_x="true" y="txttotal.bottom+16" width="64">
+    <text use_def="pixelmplus10_result" />
+    <param type="string" value="close" />
+  </button>
+</data>
+

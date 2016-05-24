@@ -3,6 +3,7 @@ package jp_2dgames.game.item;
 /**
  * アイテムリスト
  **/
+import jp_2dgames.game.dat.ItemDB;
 import jp_2dgames.lib.Snd;
 class ItemList {
 
@@ -33,6 +34,9 @@ class ItemList {
   }
   public static function getFromUID(uid:Int):ItemData {
     return _instance._getFromUID(uid);
+  }
+  public static function calcTotalScore():Int {
+    return _instance._calcTotalScore();
   }
   public static function dump():Void {
     _instance._dump();
@@ -116,6 +120,19 @@ class ItemList {
       item.uid = 1000 + idx;
       idx++;
     }
+  }
+
+  /**
+   * 所持アイテムをスコアに換算する
+   **/
+  function _calcTotalScore():Int {
+    var ret:Int = 0;
+    for(item in _pool) {
+      var buy = ItemDB.getBuy(item.id);
+      ret += buy;
+    }
+
+    return ret;
   }
 
   /**
