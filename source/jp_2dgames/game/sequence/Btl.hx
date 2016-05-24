@@ -141,6 +141,8 @@ class BtlEnemyDead extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
     var enemy = owner.enemy;
     enemy.vanish();
+    // 敵撃破数を増やす
+    Global.addKillEnemies();
   }
 }
 

@@ -28,11 +28,14 @@ class Global {
   static var _step:Int;
   // ショップアイテム
   static var _shop:Array<ItemData>;
+  // 倒した敵の数
+  static var _killEnemies:Int;
 
   public static var level(get, never):Int;
   public static var money(get, never):Int;
   public static var step(get, never):Int;
   public static var shop(get, never):Array<ItemData>;
+  public static var killEnemies(get, never):Int;
 
   /**
    * 起動時の初期化
@@ -56,6 +59,8 @@ class Global {
       var item = ItemUtil.add(itemid);
       ItemList.push(item);
     }
+    // 倒した敵の数を初期化
+    _killEnemies = 0;
   }
 
   /**
@@ -96,11 +101,15 @@ class Global {
   public static function subStep():Void {
     _step--;
   }
+  public static function addKillEnemies():Void {
+    _killEnemies++;
+  }
 
   // -----------------------------------------------
   // ■アクセサ
-  static function get_level() { return _level; }
-  static function get_money() { return _money; }
-  static function get_step()  { return _step;  }
-  static function get_shop()  { return _shop;  }
+  static function get_level()       { return _level; }
+  static function get_money()       { return _money; }
+  static function get_step()        { return _step;  }
+  static function get_shop()        { return _shop;  }
+  static function get_killEnemies() { return _killEnemies; }
 }

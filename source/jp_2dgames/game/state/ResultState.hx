@@ -61,7 +61,7 @@ class ResultState extends FlxUIState {
     var total:Int = 0;
     // 敵を倒した数
     {
-      var kills:Int = 0;
+      var kills:Int = Global.killEnemies;
       var ratio:Int = RATIO_KILL;
       var score:Int = kills * ratio;
       _txtKill.text = 'Kill Enemies: ${kills} x ${ratio} = ${score}pt';
