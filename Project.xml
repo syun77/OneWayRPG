@@ -70,6 +70,7 @@
 	<assets path="assets/sounds" if="flash" include="*.mp3">
 		<sound path="destroy.mp3" id="destroy"/>
 		<sound path="destroy2.mp3" id="destroy2"/>
+        <sound path="explosion.mp3" id="explosion"/>
 		<sound path="foot2.mp3" id="foot2"/>
 		<sound path="hit.mp3" id="hit"/>
 		<sound path="pickup2.mp3" id="pickup2"/>
@@ -90,6 +91,7 @@
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
 		<sound path="destroy2.ogg" id="destroy2"/>
+        <sound path="explosion.ogg" id="explosion"/>
 		<sound path="foot2.ogg" id="foot2"/>
 		<sound path="hit.ogg" id="hit"/>
 		<sound path="pickup2.ogg" id="pickup2"/>

@@ -1,5 +1,7 @@
 package jp_2dgames.game;
 
+import flixel.util.FlxColor;
+import jp_2dgames.lib.MyShake;
 import jp_2dgames.game.particle.ParticleUtil;
 import jp_2dgames.lib.DirUtil.Dir;
 import jp_2dgames.lib.Snd;
@@ -406,6 +408,11 @@ private class Boot extends FlxFSMState<SeqMgr> {
 // プレイヤー死亡
 private class PlayerDead extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    Snd.playSe("explosion");
+    MyShake.high();
+    FlxG.camera.flash(FlxColor.WHITE, 0.5);
+
     Message.push2(Msg.DEAD, [owner.player.getName()]);
     owner.startWait();
   }
