@@ -130,9 +130,12 @@ class BtlLogicPlayer {
     var tWait = TIMER_WAIT;
 
     switch(_data.type) {
-      case BtlLogic.BeginAttack(attr):
+      case BtlLogic.BeginAttack(attr, bMsg):
         // 攻撃
-        Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
+        if(bMsg) {
+          // 攻撃開始メッセージ表示
+          Message.push2(Msg.ATTACK_BEGIN, [actor.getName()]);
+        }
         _startAttackEffect(target, attr);
 
       case BtlLogic.BeginLastAttack:

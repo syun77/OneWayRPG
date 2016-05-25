@@ -121,9 +121,10 @@ class BtlLogicFactory {
     // 自動攻撃開始メッセージ表示
     var data = new BtlLogicData(BtlLogic.MessageDisp(Msg.AUTO_ATTACK, null), actor.uid, target.uid);
     data.bWaitQuick = true;
+    ret.add(data);
     // 攻撃開始
     var attr = Attribute.Phys;
-    ret.add(new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid));
+    ret.add(new BtlLogicData(BtlLogic.BeginAttack(attr, false), actor.uid, target.uid));
 
     // 1回攻撃・命中率100%・物理
     var prm = new DamageParam(actor, target, 1, 100);
@@ -177,7 +178,7 @@ class BtlLogicFactory {
     var attr   = Attribute.Phys;
     {
       // 攻撃開始
-      var data = new BtlLogicData(BtlLogic.BeginAttack(attr), actor.uid, target.uid);
+      var data = new BtlLogicData(BtlLogic.BeginAttack(attr, true), actor.uid, target.uid);
       ret.add(data);
     }
 
