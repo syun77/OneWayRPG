@@ -25,7 +25,7 @@
     <text use_def="pixelmplus10" />
     <param type="string" value="btnagi" />
     <tooltip>
-      <title use_def="pixelmplus10" text="敵の攻撃の命中率を2%下げます" />
+      <title use_def="pixelmplus10" text="敵の攻撃からの回避率が2%上昇します" />
     </tooltip>
   </button>
   <button id="close" label="戻る" x="btndex.x" y="btnagi.y+btnagi.height" width="64">

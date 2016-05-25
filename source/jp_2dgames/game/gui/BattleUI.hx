@@ -358,7 +358,7 @@ class BattleUI extends FlxSpriteGroup {
       var bVisible = (v != 1);
       _lblHitMulti.visible = bVisible;
       _txtHitMulti.visible = bVisible;
-      _txtHitMulti.text = 'x${v}%';
+      _txtHitMulti.text = 'x${v}';
     }
     {
       // 回避率+補正

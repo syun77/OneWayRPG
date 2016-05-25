@@ -21,50 +21,59 @@ class BtlCalc {
   // 回避率補正値
   public static inline var HIT_EVADE:Int = 3; // 回避ごとに上昇する値
   public static inline var HIT_EVADE_MULTI:Float = 1.1; // 回避ごとに上昇する値 (10%)
-  public static inline var HIT_BLIND:Int = -10; // 盲目補正
-  public static inline var HIT_PARALYZE:Int = 10; // 麻痺補正
-  public static inline var HIT_DEX:Int = 2; // DEX補正
-  public static inline var HIT_AGI:Int = 2; // AGI補正
+  public static inline var HIT_BLIND:Float = 0.9; // 盲目補正
+  public static inline var HIT_PARALYZE:Float = 1.1; // 麻痺補正
+  public static inline var HIT_DEX:Float = 0.02;  // DEX補正
+  public static inline var HIT_AGI:Float = -0.02; // AGI補正
 
   /**
    * 命中率補正(*)
    **/
   public static function hitMulti(actor:Actor):Float {
-    var v = Math.pow(HIT_EVADE_MULTI, actor.btlPrms.cntAttackEvade);
-    return Std.int(v * 100) / 100;
+    var ret = hit(100, actor, null);
+    return ret / 100;
   }
 
   /**
    * 回避率補正(+)
    **/
   public static function evadePlus(actor:Actor):Int {
-    var v = 0;
-    return v;
+    var ret = hit(100, null, actor);
+    return Std.int(100 - ret);
   }
 
   public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
 
-    // 回避回数に応じて命中率変化 (1.1^cnt)
-    ratio = Std.int(ratio * Math.pow(HIT_EVADE_MULTI, actor.btlPrms.cntAttackEvade));
-    //ratio += actor.btlPrms.cntAttackEvade * HIT_EVADE;
+    var ret:Float = ratio;
 
-    if(actor.isAdhereBadStatus(BadStatus.Blind)) {
-      // 盲目なので命中率低下
-      ratio += HIT_BLIND;
+    if(actor != null) {
+      // 回避回数に応じて命中率変化 (1.1^cnt)
+      ret *= Math.pow(HIT_EVADE_MULTI, actor.btlPrms.cntAttackEvade);
+
+      if(actor.isAdhereBadStatus(BadStatus.Blind)) {
+        // 盲目なので命中率低下
+        ret *= HIT_BLIND;
+      }
     }
-    if(target.isAdhereBadStatus(BadStatus.Paralyze)) {
-      // 麻痺なので回避率低下
-      ratio += HIT_PARALYZE;
+    if(target != null) {
+      if(target.isAdhereBadStatus(BadStatus.Paralyze)) {
+        // 麻痺なので回避率低下
+        ret *= HIT_PARALYZE;
+      }
     }
 
     // DEX / AGI の値に応じて2%ずつ補正
-    ratio += (actor.dex * HIT_DEX);
-    ratio -= (target.agi * HIT_AGI);
-    if(ratio < 0) {
-      ratio = 0;
+    if(actor != null) {
+      ret *= (1 + actor.dex * HIT_DEX);
+    }
+    if(target != null) {
+      ret += 100 * (target.agi * HIT_AGI);
+    }
+    if(ret < 0) {
+      ret = 0;
     }
 
-    return ratio;
+    return Std.int(ret);
   }
 
   /**
