@@ -7,6 +7,8 @@
   
   <!-- ■HUD -->
   <group id="hud" />
+    <!-- 危険状態用の赤背景 -->
+    <sprite id="sprdanger" x="0" y="0" width="100%" height="8%" color="0x80FF0000"/>
     <!-- フロア数 -->
     <text id="txtlevel" use_def="normal" x="8" y="4" text="1F (10 steps)" size="8" />
     <!-- 歩いた歩数 -->

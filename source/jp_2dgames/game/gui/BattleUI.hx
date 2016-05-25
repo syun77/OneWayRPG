@@ -1,5 +1,6 @@
 package jp_2dgames.game.gui;
 
+import jp_2dgames.lib.MyMath;
 import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.lib.StatusBar;
@@ -130,6 +131,7 @@ class BattleUI extends FlxSpriteGroup {
   // ■フィールド
   var _tAnim:Int = 0; // アニメーション用タイマー
   var _ui:FlxUI;
+  var _sprDanger:FlxUISprite; // 食糧危険状態
   var _txtLevel:FlxUIText;    // フロア数
   var _txtSteps:FlxUIText;    // 残り歩数
   var _txtHp:FlxUIText;       // プレイヤーのHP
@@ -161,22 +163,15 @@ class BattleUI extends FlxSpriteGroup {
 
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
-        case "txtlevel":
-          _txtLevel = cast widget;
-        case "txtsteps":
-          _txtSteps = cast widget;
-        case "txthp":
-          _txtHp = cast widget;
-        case "txtfood":
-          _txtFood = cast widget;
-        case "txtmoney":
-          _txtMoney = cast widget;
-        case "txtitem":
-          _txtItem = cast widget;
-        case "txtdex":
-          _txtDex = cast widget;
-        case "txtagi":
-          _txtAgi = cast widget;
+        case "sprdanger": _sprDanger = cast widget;
+        case "txtlevel":  _txtLevel  = cast widget;
+        case "txtsteps":  _txtSteps  = cast widget;
+        case "txthp":     _txtHp     = cast widget;
+        case "txtfood":   _txtFood   = cast widget;
+        case "txtmoney":  _txtMoney  = cast widget;
+        case "txtitem":   _txtItem   = cast widget;
+        case "txtdex":    _txtDex    = cast widget;
+        case "txtagi":    _txtAgi    = cast widget;
       }
     });
     {
@@ -192,6 +187,9 @@ class BattleUI extends FlxSpriteGroup {
         }
       });
     }
+
+    // 危険表示を消しておく
+    _sprDanger.visible = false;
 
     // HPゲージの座標を設定
     _hpbarPlayer.x = _txtHp.x+HPBAR_PLAYER_OFS_X;
@@ -234,6 +232,13 @@ class BattleUI extends FlxSpriteGroup {
   function _updateHp():Void {
     var player = ActorMgr.getPlayer();
     var enemy = ActorMgr.getEnemy();
+
+    // 危険表示
+    _sprDanger.visible = false;
+    if(player.food == 0) {
+      _sprDanger.visible = true;
+      _sprDanger.alpha = 0.5 + 0.25 * MyMath.sinEx(_tAnim*4);
+    }
 
     // フロア数更新
     _txtLevel.text = '${Global.level}F';
