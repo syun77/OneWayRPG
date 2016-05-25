@@ -131,12 +131,20 @@ class BattleUI extends FlxSpriteGroup {
   // ■フィールド
   var _tAnim:Int = 0; // アニメーション用タイマー
   var _ui:FlxUI;
-  var _sprDanger:FlxUISprite; // 食糧危険状態
-  var _txtLevel:FlxUIText;    // フロア数
-  var _txtSteps:FlxUIText;    // 残り歩数
-  var _txtHp:FlxUIText;       // プレイヤーのHP
-  var _txtDex:FlxUIText;      // プレイヤーのDEX
-  var _txtAgi:FlxUIText;      // プレイヤーのAGI
+
+  // プレイヤー
+  var _sprDanger:FlxUISprite;   // 食糧危険状態
+  var _txtLevel:FlxUIText;      // フロア数
+  var _txtSteps:FlxUIText;      // 残り歩数
+  var _txtHp:FlxUIText;         // プレイヤーのHP
+  var _txtDex:FlxUIText;        // プレイヤーのDEX
+  var _txtAgi:FlxUIText;        // プレイヤーのAGI
+  var _lblEvadePlus:FlxUIText;  // 命中率補正値(+)
+  var _txtEvadePlus:FlxUIText;  // 命中率補正値(+)
+  var _lblHitMulti:FlxUIText; // 命中率補正値(*)
+  var _txtHitMulti:FlxUIText; // 命中率補正値(*)
+
+  // 敵
   var _txtHpEnemy:FlxUIText;  // 敵のHP
   var _txtAtkEnemy:FlxUIText; // 敵の攻撃力
   var _txtFood:FlxUIText;     // 食糧
@@ -172,6 +180,10 @@ class BattleUI extends FlxSpriteGroup {
         case "txtitem":   _txtItem   = cast widget;
         case "txtdex":    _txtDex    = cast widget;
         case "txtagi":    _txtAgi    = cast widget;
+        case "lblhitmulti":   _lblHitMulti   = cast widget;
+        case "txthitmulti":   _txtHitMulti   = cast widget;
+        case "lblevadeplus":  _lblEvadePlus  = cast widget;
+        case "txtevadeplus":  _txtEvadePlus  = cast widget;
       }
     });
     {
@@ -221,6 +233,9 @@ class BattleUI extends FlxSpriteGroup {
 
     // HP更新
     _updateHp();
+
+    // ステータス更新
+    _updateStatus();
 
     // バッドステータス更新
     _updateBst();
@@ -289,9 +304,6 @@ class BattleUI extends FlxSpriteGroup {
     // 経過ターン数
     _txtTurn.text = '${BtlGlobal.turn}';
 
-    // ステータス更新
-    _txtDex.text = 'DEX: ${player.dex}';
-    _txtAgi.text = 'AGI: ${player.agi}';
   }
 
   /**
@@ -327,6 +339,42 @@ class BattleUI extends FlxSpriteGroup {
     }
 
     return FlxColor.WHITE;
+  }
+
+  /**
+   * ステータス更新
+   **/
+  function _updateStatus():Void {
+
+    var player = ActorMgr.getPlayer();
+
+    // ステータス更新
+    _txtDex.text = 'DEX: ${player.dex}';
+    _txtAgi.text = 'AGI: ${player.agi}';
+
+    {
+      // 命中率*補正
+      var v = BtlCalc.hitMulti(player);
+      var bVisible = (v != 1);
+      _lblHitMulti.visible = bVisible;
+      _txtHitMulti.visible = bVisible;
+      _txtHitMulti.text = 'x${v}%';
+    }
+    {
+      // 回避率+補正
+      var v = BtlCalc.evadePlus(player);
+      var bVisible = (v != 0);
+      _lblEvadePlus.visible = bVisible;
+      _txtEvadePlus.visible = bVisible;
+      var str = '';
+      if(v > 0) {
+        str = '+${v}%';
+      }
+      else {
+        str = '-${Math.abs(v)}%';
+      }
+      _txtEvadePlus.text = str;
+    }
   }
 
   /**

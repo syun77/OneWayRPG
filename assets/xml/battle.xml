@@ -35,8 +35,10 @@
     <!-- ・AGI -->
     <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.y+12" text="AGI: 99" />
     <!-- 命中率補正値 -->
-    <text id="txtevade" use_def="pixelmplus10" x="frame_status.x+32" y="txtdex.y" text="命中率 +10%" />
-    <text id="txtevadem" use_def="pixelmplus10" x="txtevade.x" y="txtevade.bottom" text="命中率 x10%" />
+    <text id="lblhitmulti"   use_def="pixelmplus10_noalign" x="frame_status.x+56"   y="txtdex.y"             text="命中率" />
+    <text id="txthitmulti"   use_def="normal" x="lblhitmulti.x+32"    y="lblhitmulti.y"        text="x 12%"  />
+    <text id="lblevadeplus"  use_def="pixelmplus10_noalign" x="lblhitmulti.x"       y="lblhitmulti.bottom"  text="回避率" />
+    <text id="txtevadeplus"  use_def="normal" x="lblevadeplus.x+32"   y="lblevadeplus.y"      text="+ 15%" />
 
     <group id="enemyhud" />
       <!-- ターン数 -->

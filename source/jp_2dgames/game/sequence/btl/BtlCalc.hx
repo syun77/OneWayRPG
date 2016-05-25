@@ -26,6 +26,22 @@ class BtlCalc {
   public static inline var HIT_DEX:Int = 2; // DEX補正
   public static inline var HIT_AGI:Int = 2; // AGI補正
 
+  /**
+   * 命中率補正(*)
+   **/
+  public static function hitMulti(actor:Actor):Float {
+    var v = Math.pow(HIT_EVADE_MULTI, actor.btlPrms.cntAttackEvade);
+    return Std.int(v * 100) / 100;
+  }
+
+  /**
+   * 回避率補正(+)
+   **/
+  public static function evadePlus(actor:Actor):Int {
+    var v = 0;
+    return v;
+  }
+
   public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
 
     // 回避回数に応じて命中率変化 (1.1^cnt)

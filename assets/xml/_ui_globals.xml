@@ -5,6 +5,8 @@
   <definition id="pixelmplus10" font="PixelMplus10-Regular" size="10" color="0xffffff" outline="0x000000" align="center"/>
   <!-- 日本語フォント10pt 幅最大 (リザルト用) -->
   <definition id="pixelmplus10_result" font="PixelMplus10-Regular" size="10" color="0xffffff" outline="0x000000" align="center" width="100%" />
+  <!-- 日本語フォント10pt アラインなし -->
+  <definition id="pixelmplus10_noalign" font="PixelMplus10-Regular" size="10" color="0xffffff" outline="0x000000"/>
   <!-- 英語フォント(8pt基準) -->
   <definition id="normal" color="0xffffff" outline="0x000000" />
   
