@@ -237,7 +237,7 @@ class BattleUI extends FlxSpriteGroup {
     _sprDanger.visible = false;
     if(player.food == 0) {
       _sprDanger.visible = true;
-      _sprDanger.alpha = 0.5 + 0.25 * MyMath.sinEx(_tAnim*4);
+      _sprDanger.alpha = 0.6 + 0.25 * MyMath.sinEx(_tAnim*4);
     }
 
     // フロア数更新

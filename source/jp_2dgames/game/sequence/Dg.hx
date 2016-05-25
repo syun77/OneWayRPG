@@ -87,6 +87,10 @@ class DgSearch extends FlxFSMState<SeqMgr> {
     var player = owner.player;
 
     // 食糧を減らす
+    if(player.food == 1) {
+      // 食糧がなくなるメッセージ表示
+      Message.push2(Msg.FOOD_NOTHING);
+    }
     if(player.subFood(1) == false) {
       // 空腹ダメージ
       // 残りHPの30%ダメージ
