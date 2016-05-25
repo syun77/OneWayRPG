@@ -34,6 +34,9 @@
     <text id="txtdex" use_def="normal" x="txthp_label.x" y="frame_status.y+4" text="DEX: 99" />
     <!-- ・AGI -->
     <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.y+12" text="AGI: 99" />
+    <!-- 命中率補正値 -->
+    <text id="txtevade" use_def="pixelmplus10" x="frame_status.x+32" y="txtdex.y" text="命中率 +10%" />
+    <text id="txtevadem" use_def="pixelmplus10" x="txtevade.x" y="txtevade.bottom" text="命中率 x10%" />
 
     <group id="enemyhud" />
       <!-- ターン数 -->
