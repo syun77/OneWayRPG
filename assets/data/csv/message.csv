@@ -69,3 +69,4 @@ int,str,str
 67,最大HPが<val1>上昇した,blue
 68,最後の一撃！！,white
 69,食糧がなくなった,yellow
+70,空腹のため<val1>ダメージを受けた,yellow

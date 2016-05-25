@@ -106,6 +106,7 @@ class DgSearch extends FlxFSMState<SeqMgr> {
       Particle.start(PType.Ball, px, py, FlxColor.RED);
       ParticleBmpFont.startNumber(px, py, v);
       Snd.playSe("hit");
+      Message.push2(Msg.HUNGRY_DAMAGE, [v]);
     }
     else {
       // 10%回復
