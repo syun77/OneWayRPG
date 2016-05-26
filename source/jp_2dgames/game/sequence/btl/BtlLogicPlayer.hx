@@ -293,6 +293,8 @@ class BtlLogicPlayer {
     var py = target.ycenter;
     ParticleBmpFont.startNumber(px, py, val, MyColor.LIME);
     Snd.playSe("recover");
+    var name = target.getName();
+    Message.push2(Msg.RECOVER_HP, [name, val]);
   }
 
 

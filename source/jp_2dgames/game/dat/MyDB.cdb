@@ -641,7 +641,7 @@
 					"hp": 0
 				},
 				{
-					"id": "Portion03",
+					"id": "PortionHp03",
 					"name": "回復薬3",
 					"min": 3,
 					"max": 5,
@@ -659,7 +659,7 @@
 					"ext": 0
 				},
 				{
-					"id": "Portion05",
+					"id": "PortionHp05",
 					"category": 0,
 					"name": "回復薬5",
 					"min": 2,
@@ -677,7 +677,7 @@
 					"ext": 0
 				},
 				{
-					"id": "Portion10",
+					"id": "PortionHp10",
 					"category": 0,
 					"name": "回復薬10",
 					"min": 2,
@@ -1176,19 +1176,19 @@
 				{
 					"start": 2,
 					"end": 4,
-					"item": "Portion03",
+					"item": "PortionHp03",
 					"ratio": 20
 				},
 				{
 					"start": 3,
 					"end": 4,
-					"item": "Portion05",
+					"item": "PortionHp05",
 					"ratio": 10
 				},
 				{
 					"start": 5,
 					"end": 5,
-					"item": "Portion10",
+					"item": "PortionHp10",
 					"ratio": 2
 				},
 				{
@@ -1467,13 +1467,7 @@
 							"item": "StickHard"
 						},
 						{
-							"item": "StickPoison"
-						},
-						{
-							"item": "StickParalyze"
-						},
-						{
-							"item": "StickDarken"
+							"item": "PortionHp03"
 						}
 					],
 					"hp": 7
