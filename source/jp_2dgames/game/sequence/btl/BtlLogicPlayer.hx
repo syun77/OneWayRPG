@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.particle.ParticleUtil;
 import jp_2dgames.game.dat.AttributeUtil;
 import jp_2dgames.game.dat.EffectDB;
 import jp_2dgames.game.particle.ParticleAnim;
@@ -187,6 +188,13 @@ class BtlLogicPlayer {
       case BtlLogic.ChanceRoll(b):
         // ■成功 or 失敗
         _chanceRoll(target, b);
+
+      case BtlLogic.AddFood(val):
+        // ■食糧増加
+        actor.addFood(val);
+        Message.push2(Msg.FOOD_ADD, [val]);
+        ParticleUtil.startFood(val);
+        Snd.playSe("pickup2", true);
 
       case BtlLogic.Badstatus(bst):
         // ■バステ付着

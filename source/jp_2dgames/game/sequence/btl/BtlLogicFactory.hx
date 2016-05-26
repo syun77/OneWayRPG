@@ -108,6 +108,11 @@ class BtlLogicFactory {
     // アイテム使用回数減少
     ret.add(new BtlLogicData(BtlLogic.DecayItem(item), player.uid, enemy.uid));
 
+    if(item.now == 1) {
+      // アイテム破壊による食糧増加
+      ret.add(new BtlLogicData(BtlLogic.AddFood(item.buff), player.uid, player.uid));
+    }
+
     // 行動終了
     ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), player.uid, player.uid));
 

@@ -64,6 +64,7 @@ enum BtlLogic {
   HpRecover(val:Int);           // HP回復
   Badstatus(bst:BadStatus);     // バッドステータス
   ChanceRoll(b:Bool);           // 成功 or 失敗
+  AddFood(val:Int);             // 食糧増加
 
   // ■その他
   DecayItem(item:ItemData); // アイテム壊れる
