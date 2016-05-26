@@ -35,10 +35,11 @@
     <!-- ・AGI -->
     <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.y+12" text="AGI: 99" />
     <!-- 命中率補正値 -->
-    <text id="lblhitmulti"   use_def="pixelmplus10_noalign" x="frame_status.x+56"   y="txtdex.y"            text="命中率" />
-    <text id="txthitmulti"   use_def="normal" x="lblhitmulti.x+32"                  y="lblhitmulti.y"       text="x 12%"  />
-    <text id="lblevadeplus"  use_def="pixelmplus10_noalign" x="lblhitmulti.x"       y="lblhitmulti.bottom"  text="回避率" />
-    <text id="txtevadeplus"  use_def="normal" x="lblevadeplus.x+32"                 y="lblevadeplus.y"      text="+ 15%" />
+    <text id="lbldexmulti"   use_def="pixelmplus10_noalign" x="frame_status.x+56"   y="txtdex.y"            text="命中率" />
+    <text id="txtdexmulti"   use_def="normal" x="lbldexmulti.x+32"                  y="lbldexmulti.y"       text="x 12%"  />
+    <!-- 回避率補正 -->
+    <text id="lblevaplus"  use_def="pixelmplus10_noalign" x="lbldexmulti.x"       y="lbldexmulti.bottom"  text="回避率" />
+    <text id="txtevaplus"  use_def="normal" x="lblevaplus.x+32"                 y="lblevaplus.y"      text="+ 15%" />
 
     <group id="enemyhud" />
       <!-- ターン数 -->
@@ -54,7 +55,7 @@
       <text id="lblenemyatk" group="enemyhud" use_def="pixelmplus10" x="txtenemyatk.x-16" y="txtenemyatk.y" text="ダメージ" />
       <text id="txtenemyhit" group="enemyhud" use_def="normal" x="txtenemyatk.x+16" y="lblenemyatk.bottom-2" text="(80%)" />
       <!-- 敵の属性 -->
-      <sprite id="sprresist0" group="enemyhud" src="ui/icon/wind" x="txtenemyatk.x-8" y="txtenemyatk.y+24" />
+      <sprite id="sprresist0" group="enemyhud" src="ui/icon/wind" x="txtenemyhp_label.x-8" y="txtenemyatk.y+24" />
       <text id="txtresist0" group="enemyhud" use_def="normal" x="sprresist0.x+28" y="sprresist0.y+13" text="x 1.5" />
       <sprite id="sprresist1" group="enemyhud" src="ui/icon/shock" x="txtresist0.x+32" y="sprresist0.y" />
       <text id="txtresist1" group="enemyhud" use_def="normal" x="sprresist1.x+28" y="sprresist1.y+13" text="x 1.5" />
