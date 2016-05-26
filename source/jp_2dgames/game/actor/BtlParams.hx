@@ -43,7 +43,7 @@ class BtlParams {
   /**
    * 命中率設定
    **/
-  public function setDex(val:Int, turn:Int):Void {
+  public function setDex(val:Int, turn:Int=4):Void {
     dexVal  = val;
     dexTurn = turn;
   }
@@ -51,11 +51,14 @@ class BtlParams {
   /**
    * 回避率設定
    **/
-  public function setEva(val:Int, turn:Int):Void {
+  public function setEva(val:Int, turn:Int=4):Void {
     evaVal  = val;
     evaTurn = turn;
   }
 
+  /**
+   * ターン終了
+   **/
   public function turnEnd():Void {
     if(dexTurn > 0) {
       dexTurn--;

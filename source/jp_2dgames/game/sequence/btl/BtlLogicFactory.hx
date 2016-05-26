@@ -231,12 +231,12 @@ class BtlLogicFactory {
           // 命中率UP
           var data = new BtlLogicData(BtlLogic.DexUp(val), player.uid, player.uid);
           ret.add(data);
-          player.btlPrms.setDex(val, 3);
+          player.btlPrms.setDex(val);
         case ItemExt.EvaUp:
           // 回避率UP
           var data = new BtlLogicData(BtlLogic.EvaUp(val), player.uid, player.uid);
           ret.add(data);
-          player.btlPrms.setEva(val, 3);
+          player.btlPrms.setEva(val);
       }
     }
 
