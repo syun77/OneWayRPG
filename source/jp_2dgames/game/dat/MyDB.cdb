@@ -1293,6 +1293,10 @@
 					"name": "id"
 				},
 				{
+					"typeStr": "3",
+					"name": "hp"
+				},
+				{
 					"typeStr": "8",
 					"name": "items",
 					"display": null
@@ -1308,7 +1312,8 @@
 						{
 							"item": "StickHard"
 						}
-					]
+					],
+					"hp": 7
 				}
 			],
 			"separators": [],

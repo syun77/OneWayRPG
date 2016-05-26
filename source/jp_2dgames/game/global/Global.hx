@@ -49,16 +49,23 @@ class Global {
   public static function initGame():Void {
     _level = START_LEVEL;
     _money = FIRST_MONEY;
+
     // プレイヤーパラメータ
     _param = new Params();
     _param.id = EnemiesKind.Player;
+
+    // TODO: 職業は戦士とする
+    var kind = ClassesKind.Fighter;
+    _param.setHpMax(ClassDB.getHp(kind));
+
     // アイテム初期化
     ItemList.createInstance();
-    var items = ClassDB.getItems(ClassesKind.Fighter);
+    var items = ClassDB.getItems(kind);
     for(itemid in items) {
       var item = ItemUtil.add(itemid);
       ItemList.push(item);
     }
+
     // 倒した敵の数を初期化
     _killEnemies = 0;
   }

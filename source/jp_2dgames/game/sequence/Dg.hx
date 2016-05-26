@@ -112,7 +112,7 @@ class DgSearch extends FlxFSMState<SeqMgr> {
       // 10%回復
       var hpmax = player.hpmax;
       var v = Std.int(hpmax * 0.1);
-      if(v < 0) { v = 1; }
+      if(v < 1) { v = 1; }
       player.recover(v);
       var px = player.xcenter;
       var py = player.ycenter;

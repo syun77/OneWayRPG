@@ -18,4 +18,8 @@ class ClassDB {
     }
     return ret;
   }
+
+  public static function getHp(id:ClassesKind):Int {
+    return get(id).hp;
+  }
 }
