@@ -1465,6 +1465,15 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "StickPoison"
+						},
+						{
+							"item": "StickParalyze"
+						},
+						{
+							"item": "StickDarken"
 						}
 					],
 					"hp": 7
