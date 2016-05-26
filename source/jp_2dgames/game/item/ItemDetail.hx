@@ -1,5 +1,6 @@
 package jp_2dgames.game.item;
 
+import flixel.FlxG;
 import jp_2dgames.lib.TextUtil;
 import jp_2dgames.game.sequence.btl.BtlCalc;
 import jp_2dgames.game.item.ItemUtil;
@@ -77,7 +78,11 @@ class ItemDetail {
     var power = TextUtil.fillSpace(data.power, 2); // flash対応
     ret += '攻: ${power} \n';
     if(data.resists != 1.0) {
-      ret += '属性: x ${data.resists}\n';
+      var val = '${data.resists}';
+      if(val.length%2 == 1) {
+        val = ' ${val}'; // flash対応
+      }
+      ret += '属性: x ${val}\n';
     }
     else {
       cntBR++;
