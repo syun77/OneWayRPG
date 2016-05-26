@@ -181,8 +181,8 @@ class BattleUI extends FlxSpriteGroup {
         case "txtitem":   _txtItem   = cast widget;
         case "txtdex":    _txtDex    = cast widget;
         case "txtagi":    _txtAgi    = cast widget;
-        case "lbldexmulti":   _lblHitMulti   = cast widget;
-        case "txtdexmulti":   _txtHitMulti   = cast widget;
+        case "lbldexmulti": _lblHitMulti   = cast widget;
+        case "txtdexmulti": _txtHitMulti   = cast widget;
         case "lblevaplus":  _lblEvadePlus  = cast widget;
         case "txtevaplus":  _txtEvadePlus  = cast widget;
       }

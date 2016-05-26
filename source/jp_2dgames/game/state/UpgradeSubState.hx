@@ -1,5 +1,6 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.lib.Snd;
 import jp_2dgames.game.actor.Actor;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
@@ -8,7 +9,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.addons.ui.FlxUIButton;
 import jp_2dgames.game.dat.UpgradeDB;
-import jp_2dgames.game.gui.BattleUI;
 import jp_2dgames.game.actor.ActorMgr;
 import flixel.addons.ui.FlxUITypedButton;
 import flixel.addons.ui.FlxUIButton;
@@ -36,12 +36,9 @@ class UpgradeSubState extends FlxUISubState {
     var idx:Int = 0;
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
-        case "btnhp":
-          _btnHpMax = cast widget;
-        case "btndex":
-          _btnDex = cast widget;
-        case "btnagi":
-          _btnAgi = cast widget;
+        case "btnhp":  _btnHpMax = cast widget;
+        case "btndex": _btnDex   = cast widget;
+        case "btnagi": _btnAgi   = cast widget;
       }
       if(Std.is(widget, FlxUIButton)) {
         // スライドイン表示
@@ -142,10 +139,13 @@ class UpgradeSubState extends FlxUISubState {
             switch(key) {
               case "btnhp":
                 _updateHpMax();
+                Snd.playSe("powerup");
               case "btndex":
                 _upgradeDex();
+                Snd.playSe("powerup");
               case "btnagi":
                 _upgradeAgi();
+                Snd.playSe("powerup");
               case "close":
                 // おしまい
                 close();
