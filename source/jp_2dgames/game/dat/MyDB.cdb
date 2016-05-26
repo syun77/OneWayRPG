@@ -695,9 +695,9 @@
 					"ext": 0
 				},
 				{
-					"id": "PortionHit5",
+					"id": "PortionDex5",
 					"category": 0,
-					"name": "ハチミツ",
+					"name": "集中の薬5",
 					"min": 3,
 					"max": 4,
 					"power": 0,
@@ -707,15 +707,15 @@
 					"bst": "None",
 					"detail": "命中率5%上昇",
 					"detail_last": "命中率15％上昇",
-					"buy": 0,
+					"buy": 40,
 					"ext": 1,
 					"extval": 5,
 					"hp": 0
 				},
 				{
-					"id": "PortionHit10",
+					"id": "PortionDex10",
 					"category": 0,
-					"name": "高級ハチミツ",
+					"name": "集中の薬10",
 					"min": 2,
 					"max": 3,
 					"power": 0,
@@ -725,10 +725,46 @@
 					"bst": "None",
 					"detail": "命中率10％上昇",
 					"detail_last": "命中率30％上昇",
-					"buy": 0,
+					"buy": 100,
 					"ext": 1,
 					"extval": 10,
 					"hp": 0
+				},
+				{
+					"id": "PortionEva5",
+					"category": 0,
+					"name": "疾風の薬5",
+					"min": 3,
+					"max": 4,
+					"hp": 0,
+					"ext": 2,
+					"extval": 5,
+					"power": 0,
+					"hit": 0,
+					"attr": "None",
+					"count": 0,
+					"bst": "None",
+					"detail": "回避率5%上昇",
+					"detail_last": "回避率15％上昇",
+					"buy": 40
+				},
+				{
+					"id": "PortionEva10",
+					"category": 0,
+					"name": "疾風の薬10",
+					"min": 2,
+					"max": 3,
+					"hp": 0,
+					"ext": 2,
+					"extval": 10,
+					"power": 0,
+					"hit": 0,
+					"attr": "None",
+					"count": 0,
+					"bst": "None",
+					"detail": "回避率10％上昇",
+					"detail_last": "回避率30％上昇",
+					"buy": 100
 				},
 				{
 					"id": "StickWood",
@@ -1156,6 +1192,30 @@
 					"ratio": 2
 				},
 				{
+					"start": 2,
+					"end": 5,
+					"item": "PortionDex5",
+					"ratio": 0
+				},
+				{
+					"start": 4,
+					"end": 5,
+					"item": "PortionDex10",
+					"ratio": 0
+				},
+				{
+					"start": 2,
+					"end": 5,
+					"item": "PortionEva5",
+					"ratio": 0
+				},
+				{
+					"start": 4,
+					"end": 5,
+					"item": "PortionEva10",
+					"ratio": 0
+				},
+				{
 					"start": 1,
 					"end": 3,
 					"item": "StickWood",
@@ -1410,10 +1470,10 @@
 							"item": "Portion03"
 						},
 						{
-							"item": "PortionHit5"
+							"item": "PortionEva5"
 						},
 						{
-							"item": "PortionHit10"
+							"item": "PortionEva10"
 						}
 					],
 					"hp": 7
