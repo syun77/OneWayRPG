@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.gui.message.Msg;
 import flixel.FlxG;
 import jp_2dgames.game.actor.BadStatusUtil;
@@ -188,6 +189,11 @@ class BtlLogicFactory {
     {
       var prm = new DamageParam(actor, target, enemy.str, EnemyDB.getHit(enemy.id));
       prm.attr = attr;
+      if(BtlGlobal.turn % 3 == 0) {
+        // バステ発動
+        // 3ターンごとにのみ有効
+        prm.bst = EnemyDB.getBst(enemy.id);
+      }
       if(_createDamage(ret, prm)) {
         // 命中した
         bHit = true;

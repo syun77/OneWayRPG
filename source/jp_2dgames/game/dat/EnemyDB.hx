@@ -1,5 +1,6 @@
 package jp_2dgames.game.dat;
 
+import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.game.dat.AttributeUtil;
 import jp_2dgames.game.dat.ResistData;
 import jp_2dgames.game.dat.MyDB;
@@ -32,6 +33,11 @@ class EnemyDB {
 
   public static function getHit(id:EnemiesKind):Int {
     return Std.int(get(id).hit * 100);
+  }
+
+  public static function getBst(id:EnemiesKind):BadStatus {
+    var bst = get(id).bst.id;
+    return BadStatusUtil.fromKind(bst);
   }
 
   public static function getMoeny(id:EnemiesKind):Int {

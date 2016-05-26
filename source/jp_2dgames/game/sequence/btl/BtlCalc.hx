@@ -21,8 +21,8 @@ class BtlCalc {
   // 回避率補正値
   public static inline var HIT_EVADE:Int = 3; // 回避ごとに上昇する値
   public static inline var HIT_EVADE_MULTI:Float = 1.1; // 回避ごとに上昇する値 (10%)
-  public static inline var HIT_BLIND:Float = 0.9; // 盲目補正
-  public static inline var HIT_PARALYZE:Float = 1.1; // 麻痺補正
+  public static inline var HIT_BLIND:Float = 0.8; // 盲目補正
+  public static inline var HIT_PARALYZE:Float = 1.2; // 麻痺補正
   public static inline var HIT_DEX:Float = 0.02;  // DEX補正
   public static inline var HIT_AGI:Float = -0.02; // AGI補正
 
