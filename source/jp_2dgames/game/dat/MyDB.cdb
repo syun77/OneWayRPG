@@ -1195,25 +1195,25 @@
 					"start": 2,
 					"end": 5,
 					"item": "PortionDex5",
-					"ratio": 0
+					"ratio": 10
 				},
 				{
 					"start": 4,
 					"end": 5,
 					"item": "PortionDex10",
-					"ratio": 0
+					"ratio": 2
 				},
 				{
 					"start": 2,
 					"end": 5,
 					"item": "PortionEva5",
-					"ratio": 0
+					"ratio": 10
 				},
 				{
 					"start": 4,
 					"end": 5,
 					"item": "PortionEva10",
-					"ratio": 0
+					"ratio": 2
 				},
 				{
 					"start": 1,
