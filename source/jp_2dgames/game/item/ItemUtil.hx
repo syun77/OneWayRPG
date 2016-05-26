@@ -132,6 +132,21 @@ class ItemUtil {
     return ItemDB.getHp(item.id);
   }
 
+  public static function getExt(item:ItemData):ItemExt {
+    return ItemDB.getExt(item.id);
+  }
+
+  public static function getExtVal(item:ItemData):Int {
+    return ItemDB.getExtVal(item.id);
+  }
+  public static function getExtVal2(item:ItemData):Int {
+    var val = getExtVal(item);
+    if(item.now == 1) {
+      return val * 3;
+    }
+    return val;
+  }
+
   /**
    * アイテムを生成
    **/

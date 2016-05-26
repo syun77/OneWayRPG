@@ -1,16 +1,11 @@
 package jp_2dgames.game.actor;
-import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
+import jp_2dgames.game.actor.BadStatusUtil;
 import jp_2dgames.lib.MyShake;
 import flixel.util.FlxTimer;
 import jp_2dgames.game.global.Global;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
 import jp_2dgames.game.particle.Particle;
-import flixel.math.FlxMath;
-import jp_2dgames.game.gui.message.Msg;
-import jp_2dgames.game.gui.message.Message;
-import jp_2dgames.lib.MyColor;
-import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.gui.BattleUI;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
@@ -48,8 +43,8 @@ class Actor extends FlxEffectSprite {
   var _tAnime:Float = 0.0;  // アニメーション用タイマー
   var _tShake:Float = 0.0;  // 揺れ用のタイマ
   // エフェクト
-  var _eftWave:FlxWaveEffect;       // ゆらゆら
-  var _eftGlitch:FlxGlitchEffect;   // ゆがみ
+  var _eftWave:FlxWaveEffect;     // ゆらゆら
+  var _eftGlitch:FlxGlitchEffect; // ゆがみ
 
 
   // アクセサ
@@ -313,6 +308,7 @@ class Actor extends FlxEffectSprite {
    **/
   public function turnEnd():Void {
     bstList.turnEnd();
+    btlPrms.turnEnd();
   }
 
   /**

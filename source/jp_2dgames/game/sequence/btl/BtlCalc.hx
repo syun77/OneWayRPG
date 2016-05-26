@@ -62,12 +62,14 @@ class BtlCalc {
       }
     }
 
-    // DEX / AGI の値に応じて2%ずつ補正
+    // 命中率補正・回避率補正
     if(actor != null) {
       ret *= (1 + actor.dex * HIT_DEX);
+      ret *= (1 + actor.btlPrms.dexVal/100);
     }
     if(target != null) {
       ret += 100 * (target.agi * HIT_AGI);
+      ret += 100 * (-target.btlPrms.evaVal/100);
     }
     if(ret < 0) {
       ret = 0;

@@ -131,6 +131,8 @@ class BtlTurnEnd extends FlxFSMState<SeqMgr> {
   override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
     // 経過ターン数を増やす
     BtlGlobal.addTurn();
+    // ターン終了処理
+    ActorMgr.forEach(function(actor:Actor) actor.turnEnd());
   }
 }
 

@@ -570,7 +570,15 @@
 				},
 				{
 					"typeStr": "3",
-					"name": "hp",
+					"name": "hp"
+				},
+				{
+					"typeStr": "5:none,dexup,evaup",
+					"name": "ext"
+				},
+				{
+					"typeStr": "3",
+					"name": "extval",
 					"display": null
 				},
 				{
@@ -619,7 +627,6 @@
 					"name": "無効なアイテム",
 					"min": 0,
 					"max": 0,
-					"hp": 0,
 					"power": 0,
 					"hit": 0,
 					"attr": "None",
@@ -628,55 +635,100 @@
 					"count": 0,
 					"buy": 0,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "Portion03",
-					"name": "回復剤3",
+					"name": "回復薬3",
 					"min": 3,
 					"max": 5,
-					"detail": "HP３回復",
-					"hp": 3,
+					"detail": "HPを３回復",
 					"power": 0,
 					"hit": 0,
 					"attr": "None",
 					"category": 0,
 					"count": 0,
 					"buy": 30,
-					"detail_last": "HP９回復",
-					"bst": "None"
+					"detail_last": "HPを９回復",
+					"bst": "None",
+					"extval": 0,
+					"hp": 3,
+					"ext": 0
 				},
 				{
 					"id": "Portion05",
 					"category": 0,
-					"name": "回復剤5",
+					"name": "回復薬5",
 					"min": 2,
 					"max": 3,
-					"hp": 5,
 					"power": 0,
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HP５回復",
+					"detail": "HPを５回復",
 					"buy": 60,
-					"detail_last": "HP15回復",
-					"bst": "None"
+					"detail_last": "HPを15回復",
+					"bst": "None",
+					"extval": 0,
+					"hp": 5,
+					"ext": 0
 				},
 				{
 					"id": "Portion10",
 					"category": 0,
-					"name": "回復剤10",
+					"name": "回復薬10",
 					"min": 2,
 					"max": 2,
-					"hp": 10,
 					"power": 0,
 					"hit": 0,
 					"attr": "None",
 					"count": 0,
-					"detail": "HP10回復",
+					"detail": "HPを10回復",
 					"buy": 100,
-					"detail_last": "HP30回復",
-					"bst": "None"
+					"detail_last": "HPを30回復",
+					"bst": "None",
+					"extval": 0,
+					"hp": 10,
+					"ext": 0
+				},
+				{
+					"id": "PortionHit5",
+					"category": 0,
+					"name": "ハチミツ",
+					"min": 3,
+					"max": 4,
+					"power": 0,
+					"hit": 0,
+					"attr": "None",
+					"count": 0,
+					"bst": "None",
+					"detail": "命中率5%上昇",
+					"detail_last": "命中率15％上昇",
+					"buy": 0,
+					"ext": 1,
+					"extval": 5,
+					"hp": 0
+				},
+				{
+					"id": "PortionHit10",
+					"category": 0,
+					"name": "高級ハチミツ",
+					"min": 2,
+					"max": 3,
+					"power": 0,
+					"hit": 0,
+					"attr": "None",
+					"count": 0,
+					"bst": "None",
+					"detail": "命中率10％上昇",
+					"detail_last": "命中率30％上昇",
+					"buy": 0,
+					"ext": 1,
+					"extval": 10,
+					"hp": 0
 				},
 				{
 					"id": "StickWood",
@@ -684,7 +736,6 @@
 					"min": 5,
 					"max": 7,
 					"detail": "",
-					"hp": 0,
 					"power": 2,
 					"hit": 0.9,
 					"attr": "Phys",
@@ -692,7 +743,10 @@
 					"count": 1,
 					"buy": 5,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickHard",
@@ -700,7 +754,6 @@
 					"name": "固い棒",
 					"min": 5,
 					"max": 7,
-					"hp": 0,
 					"power": 3,
 					"hit": 0.8,
 					"attr": "Phys",
@@ -708,7 +761,10 @@
 					"count": 1,
 					"buy": 7,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickBronze",
@@ -716,7 +772,6 @@
 					"name": "銅の棒",
 					"min": 3,
 					"max": 5,
-					"hp": 0,
 					"power": 2,
 					"hit": 0.8,
 					"attr": "Phys",
@@ -724,7 +779,10 @@
 					"count": 2,
 					"buy": 8,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickFire",
@@ -732,7 +790,6 @@
 					"name": "火の棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 1,
 					"hit": 1,
 					"attr": "Fire",
@@ -740,7 +797,10 @@
 					"detail": "",
 					"buy": 5,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickFlame",
@@ -748,7 +808,6 @@
 					"name": "火炎の棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 2,
 					"hit": 1,
 					"attr": "Fire",
@@ -756,7 +815,10 @@
 					"detail": "",
 					"buy": 10,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickShot",
@@ -764,7 +826,6 @@
 					"name": "ショット棒",
 					"min": 3,
 					"max": 5,
-					"hp": 0,
 					"power": 1,
 					"hit": 0.8,
 					"attr": "Gun",
@@ -772,7 +833,10 @@
 					"detail": "",
 					"buy": 8,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickEnergy",
@@ -780,7 +844,6 @@
 					"name": "エナジー棒",
 					"min": 3,
 					"max": 5,
-					"hp": 0,
 					"power": 1,
 					"hit": 0.7,
 					"attr": "Gun",
@@ -788,7 +851,10 @@
 					"detail": "",
 					"buy": 10,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickMissile",
@@ -796,7 +862,6 @@
 					"name": "ミサイル棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 5,
 					"hit": 0.5,
 					"attr": "Gun",
@@ -804,7 +869,10 @@
 					"detail": "",
 					"buy": 100,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickSilver",
@@ -812,7 +880,6 @@
 					"name": "シルバーの棒",
 					"min": 5,
 					"max": 7,
-					"hp": 0,
 					"power": 5,
 					"hit": 0.9,
 					"attr": "Phys",
@@ -820,7 +887,10 @@
 					"detail": "",
 					"buy": 20,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickPlastic",
@@ -828,7 +898,6 @@
 					"name": "プラスチックの棒",
 					"min": 4,
 					"max": 6,
-					"hp": 0,
 					"power": 4,
 					"hit": 0.7,
 					"attr": "Phys",
@@ -836,7 +905,10 @@
 					"detail": "",
 					"buy": 15,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickIron",
@@ -844,7 +916,6 @@
 					"name": "鉄の棒",
 					"min": 4,
 					"max": 6,
-					"hp": 0,
 					"power": 4,
 					"hit": 0.9,
 					"attr": "Phys",
@@ -852,7 +923,10 @@
 					"detail": "",
 					"buy": 18,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickDecay",
@@ -860,7 +934,6 @@
 					"name": "くさった棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 2,
 					"hit": 0.5,
 					"attr": "Phys",
@@ -868,7 +941,10 @@
 					"detail": "",
 					"buy": 1,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickIce",
@@ -876,7 +952,6 @@
 					"name": "氷の棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 2,
 					"hit": 1,
 					"attr": "Ice",
@@ -884,7 +959,10 @@
 					"detail": "",
 					"buy": 5,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickFreeze",
@@ -892,7 +970,6 @@
 					"name": "氷結の棒",
 					"min": 2,
 					"max": 3,
-					"hp": 0,
 					"power": 3,
 					"hit": 1,
 					"attr": "Ice",
@@ -900,7 +977,10 @@
 					"detail": "",
 					"buy": 10,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickGold",
@@ -908,7 +988,6 @@
 					"name": "ゴールドの棒",
 					"min": 4,
 					"max": 6,
-					"hp": 0,
 					"power": 4,
 					"hit": 0.99,
 					"attr": "Phys",
@@ -916,7 +995,10 @@
 					"detail": "",
 					"buy": 25,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickPlatinum",
@@ -924,7 +1006,6 @@
 					"name": "プラチナの棒",
 					"min": 5,
 					"max": 7,
-					"hp": 0,
 					"power": 3,
 					"hit": 0.9,
 					"attr": "Phys",
@@ -932,7 +1013,10 @@
 					"detail": "",
 					"buy": 50,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickCurse",
@@ -940,7 +1024,6 @@
 					"name": "呪いの棒",
 					"min": 3,
 					"max": 4,
-					"hp": 0,
 					"power": 5,
 					"hit": 0.5,
 					"attr": "Gun",
@@ -948,7 +1031,10 @@
 					"detail": "",
 					"buy": 30,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickEvil",
@@ -956,7 +1042,6 @@
 					"name": "悪魔の棒",
 					"min": 3,
 					"max": 4,
-					"hp": 0,
 					"power": 20,
 					"hit": 0.3,
 					"attr": "Gun",
@@ -964,7 +1049,10 @@
 					"detail": "",
 					"buy": 100,
 					"detail_last": "",
-					"bst": "None"
+					"bst": "None",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickPoison",
@@ -972,7 +1060,6 @@
 					"name": "毒の棒",
 					"min": 3,
 					"max": 4,
-					"hp": 0,
 					"power": 3,
 					"hit": 0.7,
 					"attr": "Phys",
@@ -980,7 +1067,10 @@
 					"detail": "",
 					"detail_last": "",
 					"buy": 20,
-					"bst": "Poison"
+					"bst": "Poison",
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickDarken",
@@ -988,7 +1078,6 @@
 					"name": "暗闇の棒",
 					"min": 3,
 					"max": 4,
-					"hp": 0,
 					"power": 3,
 					"hit": 0.7,
 					"attr": "Phys",
@@ -996,7 +1085,10 @@
 					"bst": "Blind",
 					"detail": "",
 					"detail_last": "",
-					"buy": 20
+					"buy": 20,
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				},
 				{
 					"id": "StickParalyze",
@@ -1004,7 +1096,6 @@
 					"name": "しびれ棒",
 					"min": 3,
 					"max": 4,
-					"hp": 0,
 					"power": 3,
 					"hit": 0.7,
 					"attr": "Phys",
@@ -1012,7 +1103,10 @@
 					"bst": "Paralyze",
 					"detail": "",
 					"detail_last": "",
-					"buy": 20
+					"buy": 20,
+					"ext": 0,
+					"extval": 0,
+					"hp": 0
 				}
 			],
 			"separators": [],
@@ -1311,6 +1405,15 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "Portion03"
+						},
+						{
+							"item": "PortionHit5"
+						},
+						{
+							"item": "PortionHit10"
 						}
 					],
 					"hp": 7

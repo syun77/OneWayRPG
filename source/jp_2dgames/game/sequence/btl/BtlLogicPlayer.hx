@@ -196,6 +196,16 @@ class BtlLogicPlayer {
         ParticleUtil.startFood(val);
         Snd.playSe("pickup2", true);
 
+      case BtlLogic.DexUp(val):
+        // 命中率UP
+        actor.btlPrms.setDex(val, 3);
+        Message.push2(Msg.DEX_UP, [val]);
+
+      case BtlLogic.EvaUp(val):
+        // 回避率UP
+        actor.btlPrms.setEva(val, 3);
+        Message.push2(Msg.EVA_UP, [val]);
+
       case BtlLogic.Badstatus(bst):
         // ■バステ付着
         _adhereBadStatus(target, bst);

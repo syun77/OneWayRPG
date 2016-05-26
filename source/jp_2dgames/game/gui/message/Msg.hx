@@ -70,4 +70,6 @@ class Msg {
   public static inline var LAST_ATTACK:Int    = 68; // 最後の一撃
   public static inline var FOOD_NOTHING:Int   = 69; // 食糧がなくなった
   public static inline var HUNGRY_DAMAGE:Int  = 70; // 空腹ダメージ
+  public static inline var DEX_UP:Int         = 71; // 命中率上昇
+  public static inline var EVA_UP:Int         = 72; // 回避率上昇
 }

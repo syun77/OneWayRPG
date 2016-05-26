@@ -3,6 +3,15 @@ package jp_2dgames.game.dat;
 import jp_2dgames.game.dat.MyDB;
 
 /**
+ * アイテム特殊効果
+ **/
+enum ItemExt {
+  None;    // なし
+  DexUp;   // 命中率上昇
+  EvaUp;   // 回避率上昇
+}
+
+/**
  * アイテムDB
  **/
 class ItemDB {
@@ -54,14 +63,27 @@ class ItemDB {
     return get(id).max;
   }
 
+  public static function getHp(id:ItemsKind):Int {
+    return get(id).hp;
+  }
+
   // 攻撃回数
   public static function getCount(id:ItemsKind):Int {
     return get(id).count;
   }
 
-  // 回復HP量
-  public static function getHp(id:ItemsKind):Int {
-    return get(id).hp;
+  // 拡張パラメータの値を取得する
+  public static function getExt(id:ItemsKind):ItemExt {
+    return switch(get(id).ext) {
+      case Items_ext.none:  ItemExt.None;
+      case Items_ext.dexup: ItemExt.DexUp;
+      case Items_ext.evaup: ItemExt.EvaUp;
+    }
+  }
+
+  // 拡張パラメータを取得する
+  public static function getExtVal(id:ItemsKind):Int {
+    return get(id).extval;
   }
 
   public static function getBuy(id:ItemsKind):Int {

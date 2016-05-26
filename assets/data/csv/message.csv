@@ -70,3 +70,5 @@ int,str,str
 68,最後の一撃！！,white
 69,食糧がなくなった,yellow
 70,空腹のため<val1>ダメージを受けた,yellow
+71,命中率が<val1>%上昇した,blue
+72,回避率が<val1>%上昇した,blue

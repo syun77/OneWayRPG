@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.dat.ItemDB.ItemExt;
 import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.gui.message.Msg;
 import flixel.FlxG;
@@ -76,14 +77,7 @@ class BtlLogicFactory {
       switch(ItemUtil.getCategory(item)) {
         case ItemCategory.Portion:
           // ■回復
-          var hp = ItemUtil.getHp(item);
-          if(item.now == 1) {
-            // 最後の1回
-            hp *= BtlCalc.LAST_MULTI;
-          }
-          var data = new BtlLogicData(BtlLogic.HpRecover(hp), player.uid, player.uid);
-          ret.add(data);
-          player.recover(hp);
+          ret = _createPortion(ret, player, item);
           // 命中したことにする
           bHit = true;
 
@@ -207,6 +201,44 @@ class BtlLogicFactory {
 
     // 行動終了
     ret.add(new BtlLogicData(BtlLogic.EndAction(bHit), actor.uid, actor.uid));
+
+    return ret;
+  }
+
+  /**
+   * ポーションの演出の生成
+   **/
+  static function _createPortion(ret:List<BtlLogicData>, player:Actor, item:ItemData):List<BtlLogicData> {
+    var hp = ItemUtil.getHp(item);
+    if(item.now == 1) {
+      // 最後の1回
+      hp *= BtlCalc.LAST_MULTI;
+    }
+    if(hp > 0) {
+      // HP回復
+      var data = new BtlLogicData(BtlLogic.HpRecover(hp), player.uid, player.uid);
+      ret.add(data);
+      player.recover(hp);
+    }
+    else {
+      var ext = ItemUtil.getExt(item);
+      var val = ItemUtil.getExtVal2(item);
+      switch(ext) {
+        case ItemExt.None:
+          // あり得ない
+          throw 'Error: Invalid ItemExt ${ext}';
+        case ItemExt.DexUp:
+          // 命中率UP
+          var data = new BtlLogicData(BtlLogic.DexUp(val), player.uid, player.uid);
+          ret.add(data);
+          player.btlPrms.setDex(val, 3);
+        case ItemExt.EvaUp:
+          // 回避率UP
+          var data = new BtlLogicData(BtlLogic.EvaUp(val), player.uid, player.uid);
+          ret.add(data);
+          player.btlPrms.setEva(val, 3);
+      }
+    }
 
     return ret;
   }
