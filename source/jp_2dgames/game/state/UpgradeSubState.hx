@@ -1,5 +1,6 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.actor.Actor;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
 import flixel.tweens.FlxEase;
@@ -77,7 +78,7 @@ class UpgradeSubState extends FlxUISubState {
     var player = ActorMgr.getPlayer();
     // HP
     {
-      var cost = UpgradeDB.getHpMax(player.hpmax - 10);
+      var cost = _getHpMaxCost(player);
       _setBtnInfo(_btnHpMax, '最大HP', cost, player.food);
     }
     // DEX
@@ -155,12 +156,23 @@ class UpgradeSubState extends FlxUISubState {
   }
 
   /**
+   * 最大HP上昇に必要なコストを取得する
+   **/
+  function _getHpMaxCost(player:Actor):Int {
+    var cost = UpgradeDB.getHpMax(player.hpmax - 10);
+    if(player.hpmax < 10) {
+      cost = UpgradeDB.getHpMax(0);
+    }
+    return cost;
+  }
+
+  /**
    * 最大HPを上昇させる
    **/
   function _updateHpMax():Void {
     var player = ActorMgr.getPlayer();
     // 食糧を減らす
-    var cost = UpgradeDB.getHpMax(player.hpmax - 10);
+    var cost = _getHpMaxCost(player);
     player.subFood(cost);
     player.addHpMax(1);
     // 項目更新

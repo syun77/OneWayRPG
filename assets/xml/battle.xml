@@ -66,7 +66,7 @@
       <text use_def="pixelmplus10" />
       <param type="string" value="search" />
       <tooltip>
-        <title use_def="pixelmplus10" text="食糧を１つ消費して、探索を行います" width="100"/>
+        <title use_def="pixelmplus10" text="食糧を消費して、探索を行います" width="100"/>
       </tooltip>
     </button>
     <!-- 休憩 -->
