@@ -147,6 +147,7 @@ class BattleUI extends FlxSpriteGroup {
   // 敵
   var _txtHpEnemy:FlxUIText;  // 敵のHP
   var _txtAtkEnemy:FlxUIText; // 敵の攻撃力
+  var _txtHitEnemy:FlxUIText; // 敵の命中率
   var _txtFood:FlxUIText;     // 食糧
   var _txtMoney:FlxUIText;    // お金
   var _txtItem:FlxUIText;     // アイテム所持数
@@ -190,12 +191,10 @@ class BattleUI extends FlxSpriteGroup {
       var grp = _ui.getGroup("enemyhud");
       grp.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
         switch(widget.name) {
-          case "txtturn":
-            _txtTurn = cast widget;
-          case "txtenemyhp":
-            _txtHpEnemy = cast widget;
-          case "txtenemyatk":
-            _txtAtkEnemy = cast widget;
+          case "txtturn":     _txtTurn     = cast widget;
+          case "txtenemyhp":  _txtHpEnemy  = cast widget;
+          case "txtenemyatk": _txtAtkEnemy = cast widget;
+          case "txtenemyhit": _txtHitEnemy = cast widget;
         }
       });
     }
@@ -273,11 +272,12 @@ class BattleUI extends FlxSpriteGroup {
     _txtHp.text = '${player.hp}/${player.hpmax}';
     _txtHpEnemy.text = '${enemy.hp}';
     {
-      // 敵の攻撃力と命中率
+      // 敵の攻撃力
+      _txtAtkEnemy.text = '${enemy.str}';
+      // 命中率
       var hit = EnemyDB.getHit(enemy.id);
       hit = BtlCalc.hit(hit, enemy, player);
-      var str = '${enemy.str} Damage\n(${hit}%)';
-      _txtAtkEnemy.text = str;
+      _txtHitEnemy.text = '(${hit}%)';
     }
 
     // HPゲージ更新

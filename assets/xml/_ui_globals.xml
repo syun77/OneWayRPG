@@ -9,6 +9,8 @@
   <definition id="pixelmplus10_noalign" font="PixelMplus10-Regular" size="10" color="0xffffff" outline="0x000000"/>
   <!-- 英語フォント(8pt基準) -->
   <definition id="normal" color="0xffffff" outline="0x000000" />
+  <!-- 英語フォント(8pt基準) 赤色 -->
+  <definition id="normal_red" color="0xffffff" outline="0xFF0000" />
   
   <!-- 9sliceのフレーム -->
   <definition id="frame" src="ui/chrome/frame" slice9="3,3,13,13"/>
