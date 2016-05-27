@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.item.ItemData;
 import jp_2dgames.game.actor.ActorMgr;
 import flixel.FlxG;
@@ -158,8 +159,10 @@ class BtlLogicMgr {
     }
 
     // バステチェック
-    if(false) {
-      // TODO: 行動不能
+    if(actor.isAdhereBadStatus(BadStatus.Stan)) {
+      // スタン状態は行動不能
+      var eft = BtlLogicFactory.createStan(actor);
+      push(eft);
       return false;
     }
 

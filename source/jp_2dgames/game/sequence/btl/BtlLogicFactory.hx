@@ -244,6 +244,14 @@ class BtlLogicFactory {
   }
 
   /**
+   * 行動不能メッセージ生成
+   **/
+  public static function createStan(actor:Actor):BtlLogicData {
+    var name = actor.getName();
+    return new BtlLogicData(BtlLogic.MessageDisp(Msg.STANING, [name]), actor.uid, actor.uid);
+  }
+
+  /**
    * ターン終了演出の生成 (バッドステータス)
    **/
   public static function createTurnEndBadStatus(actor:Actor):List<BtlLogicData> {

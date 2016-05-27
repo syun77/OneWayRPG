@@ -1346,6 +1346,24 @@
 					"end": 5,
 					"item": "StickPoison",
 					"ratio": 10
+				},
+				{
+					"start": 0,
+					"end": 0,
+					"item": "StickParalyze",
+					"ratio": 10
+				},
+				{
+					"start": 0,
+					"end": 0,
+					"item": "StickDarken",
+					"ratio": 10
+				},
+				{
+					"start": 0,
+					"end": 0,
+					"item": "StickStop",
+					"ratio": 10
 				}
 			],
 			"separators": [],
@@ -1486,9 +1504,6 @@
 						},
 						{
 							"item": "StickHard"
-						},
-						{
-							"item": "StickStop"
 						}
 					],
 					"hp": 7
