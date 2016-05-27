@@ -56,7 +56,7 @@ class Global {
 
     // TODO: 職業は戦士とする
     var kind = ClassesKind.Fighter;
-    _param.setHpMax(ClassDB.getHp(kind));
+    _param.setFromKind(kind);
 
     // アイテム初期化
     ItemList.createInstance();

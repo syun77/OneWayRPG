@@ -1,5 +1,6 @@
 package jp_2dgames.game;
 
+import jp_2dgames.game.dat.ClassDB;
 import jp_2dgames.game.dat.MyDB;
 
 /**
@@ -55,5 +56,18 @@ class Params {
   public function setHpMax(v:Int):Void {
     hpmax = v;
     hp = v;
+  }
+
+  /**
+   * 職業に対応するパラメータを設定
+   **/
+  public function setFromKind(kind:ClassesKind):Void {
+    // 最大HP設定
+    var hp = ClassDB.getHp(kind);
+    setHpMax(hp);
+    // DEX
+    dex = ClassDB.getDex(kind);
+    // AGI
+    agi = ClassDB.getAgi(kind);
   }
 }

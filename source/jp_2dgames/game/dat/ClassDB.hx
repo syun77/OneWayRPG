@@ -22,4 +22,12 @@ class ClassDB {
   public static function getHp(id:ClassesKind):Int {
     return get(id).hp;
   }
+
+  public static function getDex(id:ClassesKind):Int {
+    return get(id).dex;
+  }
+
+  public static function getAgi(id:ClassesKind):Int {
+    return get(id).agi;
+  }
 }
