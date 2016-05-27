@@ -264,6 +264,8 @@ class BtlEnd extends FlxFSMState<SeqMgr> {
     owner.enemy.visible = false;
     // 敵UIを消す
     BattleUI.setVisibleGroup("enemyhud", false);
+    // バッドステータス回復
+    owner.player.bstList.reset();
   }
 }
 
