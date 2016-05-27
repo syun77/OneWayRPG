@@ -1,7 +1,7 @@
 package jp_2dgames.game.actor;
 
 import flixel.FlxG;
-import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
+import jp_2dgames.game.actor.BadStatusUtil;
 
 /**
  * バッドステータスのパラメータ
@@ -70,6 +70,7 @@ class BadStatusList {
       BadStatus.Poison,
       BadStatus.Paralyze,
       BadStatus.Blind,
+      BadStatus.Stan,
     ];
     for(bst in arr) {
       var prm = new BadStatusParams();

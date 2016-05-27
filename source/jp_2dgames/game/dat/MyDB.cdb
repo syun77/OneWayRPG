@@ -1143,6 +1143,24 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0
+				},
+				{
+					"id": "StickStop",
+					"category": 1,
+					"name": "ピタリ棒",
+					"min": 3,
+					"max": 4,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 3,
+					"hit": 0.5,
+					"attr": "Phys",
+					"count": 0,
+					"bst": "Stan",
+					"detail": "",
+					"detail_last": "",
+					"buy": 30
 				}
 			],
 			"separators": [],
@@ -1434,6 +1452,9 @@
 				},
 				{
 					"id": "Blind"
+				},
+				{
+					"id": "Stan"
 				}
 			],
 			"separators": [],
@@ -1465,6 +1486,9 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "StickStop"
 						}
 					],
 					"hp": 7

@@ -46,5 +46,6 @@ class BadStatusIcon extends FlxSprite {
     animation.add('${BadStatus.Blind}',    [6], 0);
     animation.add('${BadStatus.Curse}',    [7], 0);
     animation.add('${BadStatus.Weaken}',   [8], 0);
+    animation.add('${BadStatus.Stan}',     [9], 0);
   }
 }
