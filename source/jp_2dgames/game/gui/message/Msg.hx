@@ -30,8 +30,8 @@ class Msg {
   public static inline var BST_BLIND:Int      = 28; // バステ: 盲目
   public static inline var BST_CURSE:Int      = 29; // バステ: 呪い
   public static inline var BST_WEAK:Int       = 30; // バステ: 衰弱
-  public static inline var NOT_ENOUGH_HP:Int  = 31; // HP不足
-  public static inline var NOT_ENOUGH_TP:Int  = 32; // TP不足
+  public static inline var BST_STAN:Int       = 31; // バステ: スタン
+  public static inline var STANING:Int        = 32; // スタン中
   public static inline var ESCAPE_FAILED:Int  = 33; // 逃走失敗
   public static inline var SLEEPING:Int       = 34; // 眠っている
   public static inline var CLOSING:Int        = 35; // 封印されている

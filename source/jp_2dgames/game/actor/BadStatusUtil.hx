@@ -18,6 +18,7 @@ enum BadStatus {
   Blind;    // 盲目
   Curse;    // 呪い (※使用しない)
   Weaken;   // 弱体化 (※使用しない)
+  Stan;     // スタン
 }
 
 /**
@@ -30,6 +31,7 @@ class BadStatusUtil {
       case BadstatusesKind.Poison:   BadStatus.Poison;
       case BadstatusesKind.Paralyze: BadStatus.Paralyze;
       case BadstatusesKind.Blind:    BadStatus.Blind;
+      case BadstatusesKind.Stan:     BadStatus.Stan;
     }
   }
 
@@ -41,6 +43,7 @@ class BadStatusUtil {
       case BadStatus.Poison:   3; // 毒は3ターン
       case BadStatus.Paralyze: 3; // 麻痺は3ターン
       case BadStatus.Blind:    3; // 盲目は3ターン
+      case BadStatus.Stan:     1; // スタンは1ターン
       default: 0; // それ以外
     }
   }
@@ -50,15 +53,17 @@ class BadStatusUtil {
       case BadStatus.Poison:   FlxColor.GREEN;  // 毒
       case BadStatus.Paralyze: FlxColor.YELLOW; // 麻痺
       case BadStatus.Blind:    FlxColor.PURPLE; // 盲目
+      case BadStatus.Stan:     FlxColor.BLUE;   // スタン
       default: throw 'Error: Invalid bst = ${bst}'; // それ以外はエラー
     }
   }
 
   public static function getMessage(bst:BadStatus):Int {
     return switch(bst) {
-      case BadStatus.Poison: Msg.BST_POISON;
+      case BadStatus.Poison:   Msg.BST_POISON;
       case BadStatus.Paralyze: Msg.BST_PARALYZE;
-      case BadStatus.Blind: Msg.BST_BLIND;
+      case BadStatus.Blind:    Msg.BST_BLIND;
+      case BadStatus.Stan:     Msg.BST_STAN;
       default: throw 'Error: Invalid bst = ${bst}'; // エラー
     }
   }

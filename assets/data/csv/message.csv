@@ -30,8 +30,8 @@ int,str,str
 28,<val1>は盲目になった,yellow
 29,<val1>は呪われた,yellow
 30,<val1>は衰弱した,yellow
-31,HPが足りない,yellow
-32,TPが足りない,yellow
+31,<val1>はスタンした,yellow
+32,<val1>は動けない,white
 33,しかし逃げることはできなかった,yellow
 34,<val1>は眠っている,white
 35,<val1>のスキルは封印されている,white
