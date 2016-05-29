@@ -22,7 +22,9 @@ class EnemyDB {
     var image = get(id).image;
     return StringTools.replace(image, "../../../../", "");
   }
-
+  public static function getYOfs(id:EnemiesKind):Int {
+    return get(id).yofs;
+  }
   public static function getHp(id:EnemiesKind):Int {
     return get(id).hp;
   }
@@ -38,6 +40,10 @@ class EnemyDB {
   public static function getBst(id:EnemiesKind):BadStatus {
     var bst = get(id).bst.id;
     return BadStatusUtil.fromKind(bst);
+  }
+
+  public static function getShield(id:EnemiesKind):Int {
+    return get(id).shield;
   }
 
   public static function getMoeny(id:EnemiesKind):Int {

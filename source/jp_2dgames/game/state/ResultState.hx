@@ -20,7 +20,7 @@ class ResultState extends FlxUIState {
   var RATIO_MONEY:Int = 50;  // お金
   var RATIO_FOOD:Int  = 10;  // 食糧
   var RATIO_ITEM:Int  = 30;  // アイテム
-  var RATIO_BONUS:Int = 100; // クリアボーナス
+  var RATIO_BONUS:Int = 500; // クリアボーナス
 
   // ------------------------------------------
   // ■フィールド

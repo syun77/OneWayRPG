@@ -22,6 +22,11 @@
 				},
 				{
 					"typeStr": "3",
+					"name": "yofs",
+					"display": null
+				},
+				{
+					"typeStr": "3",
 					"name": "hp",
 					"display": null
 				},
@@ -38,6 +43,11 @@
 				{
 					"typeStr": "6:badstatuses",
 					"name": "bst"
+				},
+				{
+					"typeStr": "3",
+					"name": "shield",
+					"display": null
 				},
 				{
 					"typeStr": "3",
@@ -84,7 +94,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 0,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Slime",
@@ -109,7 +121,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 1,
-					"bst": "None"
+					"bst": "None",
+					"shield": 3,
+					"yofs": 24
 				},
 				{
 					"id": "RedSlime",
@@ -134,7 +148,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 1,
-					"bst": "None"
+					"bst": "None",
+					"shield": 5,
+					"yofs": 24
 				},
 				{
 					"id": "SilverWolf",
@@ -155,7 +171,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 5,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Bat",
@@ -176,7 +194,9 @@
 					"phys": 1,
 					"gun": 1.5,
 					"money": 2,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Snake",
@@ -201,7 +221,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 2,
-					"bst": "Poison"
+					"bst": "Poison",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Worm",
@@ -226,7 +248,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 7,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "MashRoom",
@@ -242,7 +266,9 @@
 					"phys": 1,
 					"gun": 1.25,
 					"money": 3,
-					"bst": "Poison"
+					"bst": "Poison",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Goast",
@@ -258,7 +284,9 @@
 					"phys": 0.75,
 					"gun": 2,
 					"money": 3,
-					"bst": "Blind"
+					"bst": "Blind",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Wood",
@@ -274,7 +302,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 10,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Oak",
@@ -290,7 +320,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 4,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Lizard",
@@ -306,7 +338,9 @@
 					"phys": 1,
 					"gun": 1.5,
 					"money": 3,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Flower",
@@ -322,7 +356,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 12,
-					"bst": "Poison"
+					"bst": "Poison",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Zombie",
@@ -338,7 +374,9 @@
 					"phys": 1.25,
 					"gun": 1,
 					"money": 4,
-					"bst": "Poison"
+					"bst": "Poison",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "Wraith",
@@ -354,7 +392,9 @@
 					"phys": 0.75,
 					"gun": 2,
 					"money": 6,
-					"bst": "None"
+					"bst": "None",
+					"shield": 0,
+					"yofs": 0
 				},
 				{
 					"id": "BigMagician",
@@ -370,7 +410,9 @@
 					"phys": 1,
 					"gun": 1,
 					"money": 20,
-					"bst": "Blind"
+					"bst": "Blind",
+					"shield": 0,
+					"yofs": 0
 				}
 			],
 			"separators": [],

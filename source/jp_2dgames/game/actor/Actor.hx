@@ -40,6 +40,7 @@ class Actor extends FlxEffectSprite {
   // 演出用
   var _spr:FlxSprite;       // もとのスプライト
   var _xstart:Float = 0.0;  // 出現時のX座標
+  var _yofs:Int     = 0;    // 描画座標のオフセット(Y)
   var _tAnime:Float = 0.0;  // アニメーション用タイマー
   var _tShake:Float = 0.0;  // 揺れ用のタイマ
   // エフェクト
@@ -143,6 +144,8 @@ class Actor extends FlxEffectSprite {
     _name = EnemyDB.getName(p.id);
     _params.str = EnemyDB.getAtk(p.id);
     _params.setHpMax(EnemyDB.getHp(p.id));
+    _params.shield = EnemyDB.getShield(p.id);
+    _yofs = EnemyDB.getYOfs(p.id);
 
     // 敵画像読み込み
     var path = EnemyDB.getImage(p.id);
@@ -451,7 +454,7 @@ class Actor extends FlxEffectSprite {
       // 敵
       h = _spr.height;
     }
-    var py = y + h/2;
+    var py = y + _yofs + h/2;
     return py;
   }
   function get_shield() { return _shield; }
