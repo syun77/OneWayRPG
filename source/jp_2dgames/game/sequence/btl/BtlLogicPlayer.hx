@@ -196,6 +196,10 @@ class BtlLogicPlayer {
         ParticleUtil.startFood(val);
         Snd.playSe("pickup2", true);
 
+      case BtlLogic.ShieldDamage(val, bSeq):
+        // ■シールドダメージ
+        _damageShield(target, val, bSeq);
+
       case BtlLogic.DexUp(val):
         // 命中率UP
         actor.btlPrms.setDex(val);
@@ -297,6 +301,23 @@ class BtlLogicPlayer {
     Message.push2(Msg.RECOVER_HP, [name, val]);
   }
 
+  /**
+   * シールドダメージ
+   **/
+  function _damageShield(target:Actor, val:Int, bSeq:Bool):Void {
+
+    // シールドを減らす
+    target.params.subShield(val);
+    var px = target.xcenter;
+    var py = target.ycenter;
+    if(bSeq) {
+      // 連続攻撃の場合だけランダムでずらす
+      px += FlxG.random.int(-16, 16);
+      py += FlxG.random.int(-8, 8);
+    }
+    ParticleBmpFont.startNumber(px, py, val);
+    Particle.start(PType.Ball, px, py, FlxColor.GREEN);
+  }
 
   function _chanceRoll(target:Actor, b:Bool):Void {
     if(b == false) {

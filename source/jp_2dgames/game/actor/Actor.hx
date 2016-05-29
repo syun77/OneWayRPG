@@ -238,6 +238,7 @@ class Actor extends FlxEffectSprite {
    * シールドの更新
    **/
   function _updateShield():Void {
+    _shield.visible = false;
     if(params.isValidShield()) {
       _shield.visible = visible;
       _shield.x = xcenter-_shield.width/2;
@@ -423,6 +424,12 @@ class Actor extends FlxEffectSprite {
     btlPrms.clear();
   }
 
+  /**
+   * シールドが有効かどうか
+   **/
+  public function isValidShield():Bool {
+    return  params.isValidShield();
+  }
 
   // -------------------------------------------
   // ■アクセサメソッド

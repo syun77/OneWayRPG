@@ -84,9 +84,10 @@ class Params {
   /**
    * シールドの枚数を減らす
    **/
-  public function subShield():Void {
-    if(shield > 0) {
-      shield--;
+  public function subShield(v:Int):Void {
+    shield -= v;
+    if(shield < 0) {
+      shield = 0;
     }
   }
 }

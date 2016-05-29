@@ -122,7 +122,7 @@
 					"gun": 1,
 					"money": 1,
 					"bst": "None",
-					"shield": 3,
+					"shield": 1,
 					"yofs": 24
 				},
 				{
@@ -149,7 +149,7 @@
 					"gun": 1,
 					"money": 1,
 					"bst": "None",
-					"shield": 5,
+					"shield": 1,
 					"yofs": 24
 				},
 				{

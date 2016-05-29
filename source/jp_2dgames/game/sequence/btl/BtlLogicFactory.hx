@@ -140,6 +140,15 @@ class BtlLogicFactory {
     var ratio = BtlCalc.hit(prm.hit, prm.actor, prm.target);
     if(FlxG.random.bool(ratio)) {
       // 命中
+      // シールドチェック
+      if(prm.target.isValidShield()) {
+        // シールドを減らす
+        var data = new BtlLogicData(BtlLogic.ShieldDamage(1, prm.bSeq), prm.actor.uid, prm.target.uid);
+        ret.add(data);
+        prm.target.params.subShield(1);
+        return true;
+      }
+
       var damage = BtlCalc.damage(prm.power, prm.attr, prm.actor, prm.target);
       var type = BtlLogic.HpDamage(damage, prm.bSeq);
       var data = new BtlLogicData(type, prm.actor.uid, prm.target.uid);

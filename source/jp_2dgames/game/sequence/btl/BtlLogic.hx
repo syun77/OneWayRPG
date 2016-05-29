@@ -65,6 +65,7 @@ enum BtlLogic {
   Badstatus(bst:BadStatus);     // バッドステータス
   ChanceRoll(b:Bool);           // 成功 or 失敗
   AddFood(val:Int);             // 食糧増加
+  ShieldDamage(val:Int, bSeq:Bool); // シールドダメージ
   // ■ステータスアップ
   DexUp(val:Int); // 命中率アップ
   EvaUp(val:Int); // 回避率アップ
