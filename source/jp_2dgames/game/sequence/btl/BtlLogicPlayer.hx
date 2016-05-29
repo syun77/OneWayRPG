@@ -307,7 +307,7 @@ class BtlLogicPlayer {
   function _damageShield(target:Actor, val:Int, bSeq:Bool):Void {
 
     // シールドを減らす
-    target.params.subShield(val);
+    target.subShield(val);
     var px = target.xcenter;
     var py = target.ycenter;
     if(bSeq) {
@@ -317,6 +317,13 @@ class BtlLogicPlayer {
     }
     ParticleBmpFont.startNumber(px, py, val);
     Particle.start(PType.Ball, px, py, FlxColor.GREEN);
+    if(target.isValidShield()) {
+      Snd.playSe("shield", true);
+    }
+    else {
+      // シールド破壊
+      Snd.playSe("shieldbreak", true);
+    }
   }
 
   function _chanceRoll(target:Actor, b:Bool):Void {

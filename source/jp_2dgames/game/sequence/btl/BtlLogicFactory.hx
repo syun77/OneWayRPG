@@ -144,8 +144,9 @@ class BtlLogicFactory {
       if(prm.target.isValidShield()) {
         // シールドを減らす
         var data = new BtlLogicData(BtlLogic.ShieldDamage(1, prm.bSeq), prm.actor.uid, prm.target.uid);
+        data.bWaitQuick = prm.bSeq;
         ret.add(data);
-        prm.target.params.subShield(1);
+        prm.target.subShield(1);
         return true;
       }
 

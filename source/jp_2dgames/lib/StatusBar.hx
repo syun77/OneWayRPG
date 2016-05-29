@@ -1,7 +1,6 @@
 package jp_2dgames.lib;
 
 import flixel.ui.FlxBar.FlxBarFillDirection;
-import flixel.ui.FlxBar.FlxBarFillDirection;
 import flixel.ui.FlxBar;
 
 /**

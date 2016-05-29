@@ -17,6 +17,7 @@ class Params {
   public var dex:Int    = 0;  // 器用さ
   public var agi:Int    = 0;  // 素早さ
   public var shield:Int = 0;  // シールドの枚数
+  public var shieldMax:Int = 0; // シールドの最大数
 
   /**
    * コンストラクタ
@@ -36,6 +37,7 @@ class Params {
     dex    = 0;
     agi    = 0;
     shield = 0;
+    shieldMax = 0;
   }
 
   /**
@@ -51,6 +53,7 @@ class Params {
     dex    = src.dex;
     agi    = src.agi;
     shield = src.shield;
+    shieldMax = src.shieldMax;
   }
 
   /**
@@ -72,6 +75,14 @@ class Params {
     dex = ClassDB.getDex(kind);
     // AGI
     agi = ClassDB.getAgi(kind);
+  }
+
+  /**
+   * シールド設定
+   **/
+  public function setShield(v:Int):Void {
+    shield = v;
+    shieldMax = v;
   }
 
   /**

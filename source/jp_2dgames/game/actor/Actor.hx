@@ -47,7 +47,7 @@ class Actor extends FlxEffectSprite {
   var _eftWave:FlxWaveEffect;     // ゆらゆら
   var _eftGlitch:FlxGlitchEffect; // ゆがみ
   // シールド
-  var _shield:FlxSprite;
+  var _shield:Shield;
 
 
   // アクセサ
@@ -91,8 +91,9 @@ class Actor extends FlxEffectSprite {
     visible = false;
 
     // シールドを生成
-    _shield = new FlxSprite(0, 0, AssetPaths.IMAGE_SHIELD);
+    _shield = new Shield();
     _shield.visible = false;
+    _shield.kill();
   }
 
   /**
@@ -144,7 +145,7 @@ class Actor extends FlxEffectSprite {
     _name = EnemyDB.getName(p.id);
     _params.str = EnemyDB.getAtk(p.id);
     _params.setHpMax(EnemyDB.getHp(p.id));
-    _params.shield = EnemyDB.getShield(p.id);
+    _params.setShield(EnemyDB.getShield(p.id));
     _yofs = EnemyDB.getYOfs(p.id);
 
     // 敵画像読み込み
@@ -186,6 +187,9 @@ class Actor extends FlxEffectSprite {
     else {
       Snd.playSe("enemy");
     }
+
+    // シールド表示
+    _shield.revive();
   }
 
   /**
@@ -243,6 +247,7 @@ class Actor extends FlxEffectSprite {
       _shield.visible = visible;
       _shield.x = xcenter-_shield.width/2;
       _shield.y = ycenter-_shield.height/2;
+      _shield.setPercent(params.shield / params.shieldMax);
     }
   }
 
@@ -429,6 +434,14 @@ class Actor extends FlxEffectSprite {
    **/
   public function isValidShield():Bool {
     return  params.isValidShield();
+  }
+
+  /**
+   * シールドダメージ
+   **/
+  public function subShield(v:Int):Void {
+    params.subShield(v);
+    _shield.startShake(0.5);
   }
 
   // -------------------------------------------
