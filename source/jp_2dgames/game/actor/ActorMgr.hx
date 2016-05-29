@@ -12,8 +12,13 @@ class ActorMgr {
   static var _cntUID:Int;
   static var _instance:FlxTypedGroup<Actor> = null;
   public static function createInstance(state:FlxState):Void {
-    _instance = new FlxTypedGroup<Actor>();
+    _instance = new FlxTypedGroup<Actor>(2);
     state.add(_instance);
+    for(i in 0..._instance.maxSize) {
+      var actor = new Actor();
+      _instance.add(actor);
+      state.add(actor.shield);
+    }
     _cntUID = 1000;
   }
   public static function destroyInstance():Void {

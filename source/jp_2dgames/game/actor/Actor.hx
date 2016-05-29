@@ -45,6 +45,8 @@ class Actor extends FlxEffectSprite {
   // エフェクト
   var _eftWave:FlxWaveEffect;     // ゆらゆら
   var _eftGlitch:FlxGlitchEffect; // ゆがみ
+  // シールド
+  var _shield:FlxSprite;
 
 
   // アクセサ
@@ -64,6 +66,7 @@ class Actor extends FlxEffectSprite {
   public var bstList(get, never):BadStatusList;
   public var xcenter(get, never):Float;
   public var ycenter(get, never):Float;
+  public var shield(get, never):FlxSprite;
 
 
   /**
@@ -85,6 +88,10 @@ class Actor extends FlxEffectSprite {
 
     // 非表示にしておく
     visible = false;
+
+    // シールドを生成
+    _shield = new FlxSprite(0, 0, AssetPaths.IMAGE_SHIELD);
+    _shield.visible = false;
   }
 
   /**
@@ -198,7 +205,11 @@ class Actor extends FlxEffectSprite {
 
     _tAnime++;
 
+    // 揺れの更新
     _updateShake();
+
+    // シールドの更新
+    _updateShield();
   }
 
   /**
@@ -217,6 +228,17 @@ class Actor extends FlxEffectSprite {
       }
       var xsign = if(_tAnime%4 < 2) 1 else -1;
       x = _xstart + (_tShake * xsign * 0.2);
+    }
+  }
+
+  /**
+   * シールドの更新
+   **/
+  function _updateShield():Void {
+    if(params.isValidShield()) {
+      _shield.visible = visible;
+      _shield.x = xcenter-_shield.width/2;
+      _shield.y = ycenter-_shield.height/2;
     }
   }
 
@@ -432,5 +454,6 @@ class Actor extends FlxEffectSprite {
     var py = y + h/2;
     return py;
   }
+  function get_shield() { return _shield; }
 
 }
