@@ -246,6 +246,7 @@ class PlayState extends FlxUIState {
     if(FlxG.keys.justPressed.A) {
       // ロード
       Save.load(true, true);
+      FlxG.resetState();
     }
 #end
   }

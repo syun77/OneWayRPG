@@ -19,9 +19,10 @@ class ItemData {
    * コンストラクタ
    **/
   public function new() {
-    id = ItemsKind.None;
-    now = 0;
-    max = 0;
+    uid  = 0;
+    id   = ItemsKind.None;
+    now  = 0;
+    max  = 0;
     buff = 0;
   }
 
@@ -29,6 +30,7 @@ class ItemData {
    * アイテム情報をコピー
    **/
   public function copy(src:ItemData):Void {
+    uid  = src.uid;
     id   = src.id;
     now  = src.now;
     max  = src.max;
