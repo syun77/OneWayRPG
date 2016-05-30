@@ -11,17 +11,20 @@ class Snd {
 
   // BGM無効フラグ
 #if !neko
-  private static var _bBgmDisable = false;
+  static var _bBgmDisable = false;
 #else
   #if debug
-    private static var _bBgmDisable = true;
+    static var _bBgmDisable = true;
   #else
-    private static var _bBgmDisable = false;
+    static var _bBgmDisable = false;
   #end
 #end
 
-  // 現在再生中のBGM
-  private static var _bgmnow = null;
+  static var _bgmnow  = null; // 現在再生中のBGM
+  static var _bgmprev = null; // 1つ前に再生したBGM
+  static var _oneShotTable = new Map<String, SoundInfo>(); // SEワンショット再生用テーブル
+  static var _bSeEnable = true; // SEを有効にするかどうか
+
   public static function getBgmNow():String {
     return _bgmnow;
   }
@@ -29,17 +32,12 @@ class Snd {
     _bgmnow = v;
   }
 
-  // 1つ前に再生したBGM
-  private static var _bgmprev = null;
   public static function getBgmPrev():String {
     return _bgmprev;
   }
   public static function setBgmPrev(v:String):Void {
     _bgmprev = v;
   }
-
-  // SEワンショット再生用テーブル
-  private static var _oneShotTable = new Map<String, SoundInfo>();
 
   /**
    * キャッシュする
@@ -49,14 +47,28 @@ class Snd {
   }
 
   /**
+   * SEの有効フラグを設定する
+   **/
+  public static function enableSe(b:Bool):Void {
+    _bSeEnable = b;
+  }
+
+  /**
    * ゲームを起動しての経過時間を取得する
    **/
   public static function getPasttime():Float {
     return flash.Lib.getTimer() * 0.001;
   }
 
-
+  /**
+   * SEの再生
+   **/
   public static function playSe(key:String, bOneShot:Bool = false, tWait:Float = 0.01):FlxSound {
+
+    if(_bSeEnable == false) {
+      // SE無効
+      return null;
+    }
 
     if(bOneShot) {
 

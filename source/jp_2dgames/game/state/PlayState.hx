@@ -62,6 +62,9 @@ class PlayState extends FlxUIState {
    **/
   override public function create():Void {
 
+    // SEを再生しないようにする
+    Snd.enableSe(false);
+
     // 初期化
     Global.initLevel();
 
@@ -130,6 +133,8 @@ class PlayState extends FlxUIState {
     // BGM再生
     Snd.playMusic('${Global.level}');
 
+    // SEを再生する
+    Snd.enableSe(true);
   }
 
   /**
