@@ -22,6 +22,9 @@ class Shop {
   public static function isEmpty():Bool {
     return _instance._isEmpty();
   }
+  public static function set(items:Array<ItemData>):Void {
+    _instance._set(items);
+  }
 
   // -------------------------------------------
   // ■フィールド
@@ -49,5 +52,14 @@ class Shop {
 
   function _isEmpty():Bool {
     return _items.length == 0;
+  }
+
+  function _set(items:Array<ItemData>):Void {
+    _items = new Array<ItemData>();
+    for(item in items) {
+      var it = new ItemData();
+      it.copy(item);
+      _items.push(it);
+    }
   }
 }

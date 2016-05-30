@@ -1,5 +1,6 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.save.Save;
 import jp_2dgames.game.particle.ParticleAnim;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
 import jp_2dgames.game.actor.TempActorMgr;
@@ -111,11 +112,7 @@ class PlayState extends FlxUIState {
     ActorMgr.add(Global.getPlayerParam());
 
     // 敵の生成
-    {
-      var p = new Params();
-      p.id = EnemiesKind.Slime;
-      ActorMgr.add(p);
-    }
+    ActorMgr.add(Global.getEnemyParam());
 
     // テンポラリ用のActor生成
     TempActorMgr.create();
@@ -241,6 +238,14 @@ class PlayState extends FlxUIState {
       // リスタート
 //      FlxG.resetState();
       FlxG.switchState(new PlayInitState());
+    }
+    if(FlxG.keys.justPressed.S) {
+      // セーブ
+      Save.save(true, true);
+    }
+    if(FlxG.keys.justPressed.A) {
+      // ロード
+      Save.load(true, true);
     }
 #end
   }

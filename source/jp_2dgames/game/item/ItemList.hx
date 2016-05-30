@@ -38,6 +38,9 @@ class ItemList {
   public static function calcTotalScore():Int {
     return _instance._calcTotalScore();
   }
+  public static function set(items:Array<ItemData>):Void {
+    _instance._set(items);
+  }
   public static function dump():Void {
     _instance._dump();
   }
@@ -133,6 +136,18 @@ class ItemList {
     }
 
     return ret;
+  }
+
+  /**
+   * セーブデータから情報を設定
+   **/
+  function _set(items:Array<ItemData>):Void {
+    _pool = new Array<ItemData>();
+    for(item in items) {
+      var it = new ItemData();
+      it.copy(item);
+      _pool.push(it);
+    }
   }
 
   /**

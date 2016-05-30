@@ -25,6 +25,16 @@ class ItemData {
     buff = 0;
   }
 
+  /**
+   * アイテム情報をコピー
+   **/
+  public function copy(src:ItemData):Void {
+    id   = src.id;
+    now  = src.now;
+    max  = src.max;
+    buff = src.buff;
+  }
+
   public function toString():String {
     return '${id}+${buff} [${uid}+${buff}] (${now}/${max})';
   }

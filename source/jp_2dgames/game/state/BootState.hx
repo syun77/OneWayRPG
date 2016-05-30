@@ -35,7 +35,7 @@ class BootState extends FlxState {
     FlxG.switchState(new PlayInitState());
 //    FlxG.switchState(BtlGroupUtil TitleState());
 //    FlxG.switchState(BtlGroupUtil EndingState());
-//    FlxG.switchState(new ResultState());
+//    FlxG.switchState(_Actors ResultState());
     #end
   }
 }

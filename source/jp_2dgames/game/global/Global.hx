@@ -23,7 +23,9 @@ class Global {
   // お金
   static var _money:Int;
   // プレイヤーステータス
-  static var _param:Params;
+  static var _player:Params;
+  // 敵ステータス
+  static var _enemy:Params;
   // 歩いた歩数
   static var _step:Int;
   // 倒した敵の数
@@ -48,12 +50,12 @@ class Global {
     _money = FIRST_MONEY;
 
     // プレイヤーパラメータ
-    _param = new Params();
-    _param.id = EnemiesKind.Player;
+    _player = new Params();
+    _player.id = EnemiesKind.Player;
 
     // TODO: 職業は戦士とする
     var kind = ClassesKind.Fighter;
-    _param.setFromKind(kind);
+    _player.setFromKind(kind);
 
     // アイテム初期化
     ItemList.createInstance();
@@ -62,6 +64,10 @@ class Global {
       var item = ItemUtil.add(itemid);
       ItemList.push(item);
     }
+
+    // 敵パラメータ
+    _enemy = new Params();
+    _enemy.id = EnemiesKind.Slime;
 
     // 倒した敵の数を初期化
     _killEnemies = 0;
@@ -97,7 +103,10 @@ class Global {
     _money = v;
   }
   public static function getPlayerParam():Params {
-    return _param;
+    return _player;
+  }
+  public static function getEnemyParam():Params {
+    return _enemy;
   }
   public static function subStep():Void {
     _step--;
