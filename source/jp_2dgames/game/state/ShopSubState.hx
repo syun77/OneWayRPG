@@ -1,4 +1,5 @@
 package jp_2dgames.game.state;
+import jp_2dgames.game.shop.Shop;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
 import jp_2dgames.game.dat.ItemDB;
@@ -24,8 +25,8 @@ class ShopSubState extends InventorySubState {
   public function new(owner:SeqMgr) {
     super(owner, InventoryMode.ShopBuy);
 
-    // TODO: ショップアイテム生成
-    _list = Global.shop;
+    // ショップアイテム取得
+    _list = Shop.get();
   }
 
   /**

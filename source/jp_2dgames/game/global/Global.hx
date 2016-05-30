@@ -1,6 +1,6 @@
 package jp_2dgames.game.global;
 
-import jp_2dgames.game.dat.ItemLotteryDB;
+import jp_2dgames.game.shop.Shop;
 import jp_2dgames.game.dat.ClassDB;
 import jp_2dgames.game.dat.FloorInfoDB;
 import jp_2dgames.game.item.ItemUtil;
@@ -26,15 +26,12 @@ class Global {
   static var _param:Params;
   // 歩いた歩数
   static var _step:Int;
-  // ショップアイテム
-  static var _shop:Array<ItemData>;
   // 倒した敵の数
   static var _killEnemies:Int;
 
   public static var level(get, never):Int;
   public static var money(get, never):Int;
   public static var step(get, never):Int;
-  public static var shop(get, never):Array<ItemData>;
   public static var killEnemies(get, never):Int;
 
   /**
@@ -77,13 +74,7 @@ class Global {
     _step = FloorInfoDB.getSteps(level);
 
     // TODO: ショップアイテムの生成
-    _shop = new Array<ItemData>();
-    var gen = ItemLotteryDB.createGenerator(Global.level);
-    for(i in 0...3) {
-      var id = gen.exec();
-      var item = ItemUtil.add(id);
-      _shop.push(item);
-    }
+    Shop.create(Global.level);
   }
 
   public static function addLevel():Bool {
@@ -102,14 +93,23 @@ class Global {
   public static function subMoney(v:Int):Void {
     _money -= v;
   }
+  public static function setMoney(v:Int):Void {
+    _money = v;
+  }
   public static function getPlayerParam():Params {
     return _param;
   }
   public static function subStep():Void {
     _step--;
   }
+  public static function setStep(v:Int):Void {
+    _step = v;
+  }
   public static function addKillEnemies():Void {
     _killEnemies++;
+  }
+  public static function setKillEnemies(v:Int):Void {
+    _killEnemies = v;
   }
 
   // -----------------------------------------------
@@ -117,6 +117,5 @@ class Global {
   static function get_level()       { return _level; }
   static function get_money()       { return _money; }
   static function get_step()        { return _step;  }
-  static function get_shop()        { return _shop;  }
   static function get_killEnemies() { return _killEnemies; }
 }

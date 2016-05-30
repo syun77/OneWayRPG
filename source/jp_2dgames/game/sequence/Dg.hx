@@ -1,10 +1,10 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.shop.Shop;
 import flixel.util.FlxColor;
 import jp_2dgames.game.particle.Particle;
 import jp_2dgames.lib.MyColor;
 import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.state.ShopSubState;
-import jp_2dgames.game.gui.BattleResultPopupUI;
 import jp_2dgames.game.state.InventorySubState;
 import jp_2dgames.game.state.UpgradeSubState;
 import flixel.FlxG;
@@ -44,7 +44,7 @@ class Dg extends FlxFSMState<SeqMgr> {
     }
 
     // ショップボタンチェック
-    if(Global.shop.length == 0) {
+    if(Shop.isEmpty()) {
       // 押せない
       BattleUI.lockButton("field", "shop");
     }
