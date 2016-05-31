@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.gui.DialogPopupUI;
 import jp_2dgames.game.shop.Shop;
 import flixel.util.FlxColor;
 import jp_2dgames.game.particle.Particle;
