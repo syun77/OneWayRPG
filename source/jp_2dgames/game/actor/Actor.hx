@@ -67,7 +67,7 @@ class Actor extends FlxEffectSprite {
   public var bstList(get, never):BadStatusList;
   public var xcenter(get, never):Float;
   public var ycenter(get, never):Float;
-  public var shield(get, never):FlxSprite;
+  public var shield(get, never):Shield;
 
 
   /**
