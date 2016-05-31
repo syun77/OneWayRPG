@@ -104,6 +104,10 @@ class BtlCalc {
 
     // ダメージ量
     var damage = power;
+    // 防御力補正
+    if(target != null) {
+      damage -= target.vit;
+    }
     // 属性ボーナス
     var value:Float = 1;
     if(target != null) {
@@ -111,6 +115,11 @@ class BtlCalc {
       value = resisits.getValue(attr);
     }
     damage = Math.ceil(damage * value);
+
+    if(damage <= 0) {
+      // 1より小さくはならない
+      damage = 1;
+    }
 
     return damage;
   }

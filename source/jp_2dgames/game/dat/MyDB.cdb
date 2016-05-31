@@ -1594,6 +1594,11 @@
 				},
 				{
 					"typeStr": "3",
+					"name": "vit",
+					"display": null
+				},
+				{
+					"typeStr": "3",
 					"name": "dex",
 					"display": null
 				},
@@ -1608,37 +1613,43 @@
 					"level": -1,
 					"hpmax": -1,
 					"dex": -1,
-					"agi": -1
+					"agi": -1,
+					"vit": -1
 				},
 				{
 					"level": 0,
 					"hpmax": 10,
 					"dex": 5,
-					"agi": 5
+					"agi": 5,
+					"vit": 40
 				},
 				{
 					"level": 1,
 					"hpmax": 20,
 					"dex": 10,
-					"agi": 10
+					"agi": 10,
+					"vit": -1
 				},
 				{
 					"level": 2,
 					"hpmax": 40,
 					"dex": 15,
-					"agi": 15
+					"agi": 15,
+					"vit": -1
 				},
 				{
 					"level": 3,
 					"hpmax": 80,
 					"dex": 20,
-					"agi": 20
+					"agi": 20,
+					"vit": -1
 				},
 				{
 					"level": 4,
 					"hpmax": 160,
 					"dex": 25,
-					"agi": 25
+					"agi": 25,
+					"vit": -1
 				}
 			],
 			"separators": [],

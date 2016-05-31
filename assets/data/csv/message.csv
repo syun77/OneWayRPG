@@ -73,3 +73,4 @@ int,str,str
 71,命中率が<val1>%上昇した,blue
 72,回避率が<val1>%上昇した,blue
 73,お金が足りない,yellow
+74,食糧が足りない,yellow

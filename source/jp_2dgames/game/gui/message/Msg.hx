@@ -50,4 +50,5 @@ class Msg {
   public static inline var DEX_UP:Int         = 71; // 命中率上昇
   public static inline var EVA_UP:Int         = 72; // 回避率上昇
   public static inline var NOT_ENOUGH_MONEY   = 73; // お金が足りない
+  public static inline var NOT_ENOUGH_FOOD    = 74; // 食糧が足りない
 }

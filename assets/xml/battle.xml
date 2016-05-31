@@ -29,11 +29,13 @@
     <text id="txthp" use_def="normal" x="txthp_label.x+12" y="txthp_label.y-8" width="96" text="999/999" size="16" align="right" />
     <!-- 各ステータス -->
     <!-- ステータスの枠 -->
-    <chrome id="frame_status" use_def="frame" x="hudframe.x" y="180" width="48" height="32" />
+    <chrome id="frame_status" use_def="frame" x="hudframe.x" y="180" width="48" height="48" />
+    <!-- ・VIT -->
+    <text id="txtvit" use_def="normal" x="txthp_label.x" y="frame_status.y+4" text="VIT: 99" />
     <!-- ・DEX -->
-    <text id="txtdex" use_def="normal" x="txthp_label.x" y="frame_status.y+4" text="DEX: 99" />
+    <text id="txtdex" use_def="normal" x="txthp_label.x" y="txtvit.bottom" text="DEX: 99" />
     <!-- ・AGI -->
-    <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.y+12" text="AGI: 99" />
+    <text id="txtagi" use_def="normal" x="txthp_label.x" y="txtdex.bottom" text="AGI: 99" />
     <!-- 命中率補正値 -->
     <text id="lbldexmulti"   use_def="pixelmplus10_noalign" x="frame_status.x+56"   y="txtdex.y"            text="命中率" />
     <text id="txtdexmulti"   use_def="normal" x="lbldexmulti.x+32"                  y="lbldexmulti.y"       text="x 12%"  />

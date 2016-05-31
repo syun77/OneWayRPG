@@ -23,6 +23,7 @@ class UpgradeSubState extends FlxUISubState {
   // -------------------------------------------
   // ■フィールド
   var _btnHpMax:FlxUIButton;
+  var _btnVit:FlxUIButton;
   var _btnDex:FlxUIButton;
   var _btnAgi:FlxUIButton;
 
@@ -37,6 +38,7 @@ class UpgradeSubState extends FlxUISubState {
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
         case "btnhp":  _btnHpMax = cast widget;
+        case "btnvit": _btnVit   = cast widget;
         case "btndex": _btnDex   = cast widget;
         case "btnagi": _btnAgi   = cast widget;
       }
@@ -76,31 +78,32 @@ class UpgradeSubState extends FlxUISubState {
     // HP
     {
       var cost = _getHpMaxCost(player);
-      _setBtnInfo(_btnHpMax, '最大HP', cost, player.food);
+      _setBtnInfo(_btnHpMax, '最大HP', cost);
+    }
+    // VIT
+    {
+      var cost = UpgradeDB.getVit(player.vit);
+      _setBtnInfo(_btnVit, 'VIT', cost);
     }
     // DEX
     {
       var cost = UpgradeDB.getDex(player.dex);
-      _setBtnInfo(_btnDex, 'DEX', cost, player.food);
+      _setBtnInfo(_btnDex, 'DEX', cost);
     }
     // AGI
     {
       var cost = UpgradeDB.getAgi(player.agi);
-      _setBtnInfo(_btnAgi, 'AGI', cost, player.food);
+      _setBtnInfo(_btnAgi, 'AGI', cost);
     }
   }
 
   /**
    * ボタン情報を設定する
    **/
-  function _setBtnInfo(btn:FlxUIButton, label:String, cost:Int, food:Int):Void {
+  function _setBtnInfo(btn:FlxUIButton, label:String, cost:Int):Void {
 
-    var bBuy = false;
+    var bBuy = true;
     var txt = '${label} +1 (${cost})';
-    if(food >= cost) {
-      // 購入可能
-      bBuy = true;
-    }
     if(cost < 1) {
       // 最大レベルなので買えない
       txt = '${label} +1 (-)';
@@ -136,19 +139,13 @@ class UpgradeSubState extends FlxUISubState {
           // ボタンパラメータを判定
           if(fuib.params != null) {
             var key = fuib.params[0];
-            switch(key) {
-              case "btnhp":
-                _updateHpMax();
-                Snd.playSe("powerup");
-              case "btndex":
-                _upgradeDex();
-                Snd.playSe("powerup");
-              case "btnagi":
-                _upgradeAgi();
-                Snd.playSe("powerup");
-              case "close":
-                // おしまい
-                close();
+            if(key == "close") {
+              // おしまい
+              close();
+            }
+            else {
+              // アップグレード実行
+              _execUpgrade(key);
             }
           }
       }
@@ -167,47 +164,54 @@ class UpgradeSubState extends FlxUISubState {
   }
 
   /**
-   * 最大HPを上昇させる
+   * アップグレードを実行
    **/
-  function _updateHpMax():Void {
+  function _execUpgrade(key:String):Void {
+
     var player = ActorMgr.getPlayer();
+    var cost = 0;
+    var func:Void->Void = function() {};
+    switch(key) {
+      case "btnhp":
+        cost = _getHpMaxCost(player);
+        func = function() {
+          player.addHpMax(1);
+          Message.push2(Msg.UPGRADE_HPMAX, [1]);
+        }
+      case "btnvit":
+        cost = UpgradeDB.getVit(player.vit);
+        func = function() {
+          player.addVit(1);
+          Message.push2(Msg.UPGRADE_PARAM, ["VIT"]);
+        }
+      case "btndex":
+        cost = UpgradeDB.getDex(player.dex);
+        func = function() {
+          player.addDex(1);
+          Message.push2(Msg.UPGRADE_PARAM, ["DEX"]);
+        }
+      case "btnagi":
+        cost = UpgradeDB.getAgi(player.agi);
+        func = function() {
+          player.addAgi(1);
+          Message.push2(Msg.UPGRADE_PARAM, ["AGI"]);
+        }
+    }
+
+    if(cost > player.food) {
+      // 食糧が足りない
+      Message.push2(Msg.NOT_ENOUGH_FOOD);
+      Snd.playSe("error", true);
+      return;
+    }
+
+    // パラメータ上昇・メッセージ表示
+    func();
+
     // 食糧を減らす
-    var cost = _getHpMaxCost(player);
     player.subFood(cost);
-    player.addHpMax(1);
+    Snd.playSe("powerup", true);
     // 項目更新
     _updateItems();
-
-    Message.push2(Msg.UPGRADE_HPMAX, [1]);
-  }
-
-  /**
-   * DEXを上昇させる
-   **/
-  function _upgradeDex():Void {
-    var player = ActorMgr.getPlayer();
-    // 食糧を減らす
-    var cost = UpgradeDB.getDex(player.dex);
-    player.subFood(cost);
-    player.addDex(1);
-    // 項目更新
-    _updateItems();
-
-    Message.push2(Msg.UPGRADE_PARAM, ["DEX"]);
-  }
-
-  /**
-   * AGIを上昇させる
-   **/
-  function _upgradeAgi():Void {
-    var player = ActorMgr.getPlayer();
-    // 食糧を減らす
-    var cost = UpgradeDB.getAgi(player.agi);
-    player.subFood(cost);
-    player.addAgi(1);
-    // 項目更新
-    _updateItems();
-
-    Message.push2(Msg.UPGRADE_PARAM, ["AGI"]);
   }
 }

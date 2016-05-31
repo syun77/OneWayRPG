@@ -12,8 +12,16 @@
       <title use_def="pixelmplus10" text="最大HPが1上昇します" />
     </tooltip>
   </button>
+  <!-- VIT上昇 -->
+  <button id="btnvit" label="VIT +1" x="btnhp.x" y="btnhp.y+btnhp.height" width="128">
+    <text use_def="pixelmplus10" />
+    <param type="string" value="btnvit" />
+    <tooltip>
+      <title use_def="pixelmplus10" text="敵からのダメージを１減らします" />
+    </tooltip>
+  </button>
   <!-- DEX上昇 -->
-  <button id="btndex" label="DEX +1" x="btnhp.x" y="btnhp.y+btnhp.height" width="128">
+  <button id="btndex" label="DEX +1" x="btnvit.x" y="btnvit.y+btnvit.height" width="128">
     <text use_def="pixelmplus10" />
     <param type="string" value="btndex" />
     <tooltip>

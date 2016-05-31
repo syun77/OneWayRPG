@@ -401,6 +401,13 @@ class Actor extends FlxEffectSprite {
   }
 
   /**
+   * VITを増やす
+   **/
+  public function addVit(v:Int):Void {
+    _params.vit += v;
+  }
+
+  /**
    * DEXを増やす
    **/
   public function addDex(v:Int):Void {

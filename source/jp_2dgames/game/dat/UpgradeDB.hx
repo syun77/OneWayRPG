@@ -21,6 +21,9 @@ class UpgradeDB {
   public static function getHpMax(level:Int):Int {
     return get(level).hpmax;
   }
+  public static function getVit(level:Int):Int {
+    return get(level).vit;
+  }
   public static function getDex(level:Int):Int {
     return get(level).dex;
   }

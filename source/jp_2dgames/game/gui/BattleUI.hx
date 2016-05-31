@@ -1,5 +1,6 @@
 package jp_2dgames.game.gui;
 
+import jp_2dgames.game.dat.AttributeUtil.Attribute;
 import jp_2dgames.lib.MyMath;
 import jp_2dgames.game.global.BtlGlobal;
 import jp_2dgames.game.sequence.btl.BtlCalc;
@@ -137,6 +138,7 @@ class BattleUI extends FlxSpriteGroup {
   var _txtLevel:FlxUIText;      // フロア数
   var _txtSteps:FlxUIText;      // 残り歩数
   var _txtHp:FlxUIText;         // プレイヤーのHP
+  var _txtVit:FlxUIText;        // プレイヤーのVIT
   var _txtDex:FlxUIText;        // プレイヤーのDEX
   var _txtAgi:FlxUIText;        // プレイヤーのAGI
   var _lblEvadePlus:FlxUIText;  // 命中率補正値(+)
@@ -179,6 +181,7 @@ class BattleUI extends FlxSpriteGroup {
         case "txtfood":   _txtFood   = cast widget;
         case "txtmoney":  _txtMoney  = cast widget;
         case "txtitem":   _txtItem   = cast widget;
+        case "txtvit":    _txtVit    = cast widget;
         case "txtdex":    _txtDex    = cast widget;
         case "txtagi":    _txtAgi    = cast widget;
         case "lbldexmulti": _lblHitMulti   = cast widget;
@@ -273,7 +276,10 @@ class BattleUI extends FlxSpriteGroup {
     _txtHpEnemy.text = '${enemy.hp}';
     {
       // 敵の攻撃力
-      _txtAtkEnemy.text = '${enemy.str}';
+      var str  = enemy.str;
+      var attr = Attribute.Phys;
+      var damage = BtlCalc.damage(str, attr, enemy, player);
+      _txtAtkEnemy.text = '${damage}';
       // 命中率
       var hit = EnemyDB.getHit(enemy.id);
       hit = BtlCalc.hit(hit, enemy, player);
@@ -349,6 +355,7 @@ class BattleUI extends FlxSpriteGroup {
     var player = ActorMgr.getPlayer();
 
     // ステータス更新
+    _txtVit.text = 'VIT: ${player.vit}';
     _txtDex.text = 'DEX: ${player.dex}';
     _txtAgi.text = 'AGI: ${player.agi}';
 
