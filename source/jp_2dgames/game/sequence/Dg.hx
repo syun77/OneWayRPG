@@ -1,4 +1,5 @@
 package jp_2dgames.game.sequence;
+import jp_2dgames.game.gui.message.UIMsg;
 import jp_2dgames.game.gui.DialogPopupUI;
 import jp_2dgames.game.shop.Shop;
 import flixel.util.FlxColor;
@@ -64,6 +65,13 @@ class Dg extends FlxFSMState<SeqMgr> {
       BattleUI.lockButton("field", "nextfloor");
     }
 
+
+    if(Global.step == 1) {
+      // ボス出現前メッセージ
+      var prm = new DialogPopupUIParam();
+      prm.body = UIMsg.get(UIMsg.BOSS_NOTICE);
+      FlxG.state.openSubState(new DialogPopupUI(owner, prm));
+    }
   }
 
   override public function exit(owner:SeqMgr):Void {

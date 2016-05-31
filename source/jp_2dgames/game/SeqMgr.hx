@@ -1,5 +1,6 @@
 package jp_2dgames.game;
 
+import jp_2dgames.game.global.Global;
 import flixel.util.FlxColor;
 import jp_2dgames.lib.MyShake;
 import jp_2dgames.game.particle.ParticleUtil;
@@ -351,16 +352,23 @@ private class Conditions {
   }
   // イベントが発生していないかどうか
   public static function isEventNone(owner:SeqMgr):Bool {
-    if(DgEventMgr.event == DgEvent.None) {
-      // イベントなし
-      if(owner.player.food > 0) {
-        // 食糧がまだある
-        return true;
-      }
+    if(DgEventMgr.event != DgEvent.None) {
+      // なんらかのイベントが発生
+      return false;
     }
 
-    // なんらかのイベントが発生
-    return false;
+    if(owner.player.food == 0) {
+      // 食糧がなくなった
+      return false;
+    }
+
+    if(Global.step == 1) {
+      // ボス出現直前
+      return false;
+    }
+
+    // イベントなし
+    return true;
   }
 
   public static function isLogicEnd(owner:SeqMgr):Bool {

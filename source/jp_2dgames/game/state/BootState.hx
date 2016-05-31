@@ -1,4 +1,5 @@
 package jp_2dgames.game.state;
+import jp_2dgames.game.gui.message.UIMsg;
 import jp_2dgames.game.dat.MyDBUtil;
 import jp_2dgames.lib.MyTransition;
 import flixel.FlxG;
@@ -15,6 +16,7 @@ class BootState extends FlxState {
     FlxG.debugger.toggleKeys = ["ALT"];
     #end
 
+    UIMsg.load();
     MyDBUtil.load();
 
     // トランジション用オブジェクト生成

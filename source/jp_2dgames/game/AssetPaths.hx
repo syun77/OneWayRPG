@@ -13,6 +13,7 @@ class AssetPaths {
 
   // CSV
   public static inline var CSV_MESSAGE = "assets/data/csv/message.csv";
+  public static inline var CSV_UI_MSG  = "assets/data/csv/ui.csv";
 
   // フォント
   public static inline var FONT_TTF = "assets/fonts/PixelMplus10-Regular.ttf";
