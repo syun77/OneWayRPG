@@ -1538,6 +1538,16 @@
 				},
 				{
 					"typeStr": "3",
+					"name": "food",
+					"display": null
+				},
+				{
+					"typeStr": "3",
+					"name": "vit",
+					"display": null
+				},
+				{
+					"typeStr": "3",
 					"name": "dex"
 				},
 				{
@@ -1559,7 +1569,9 @@
 					],
 					"hp": 7,
 					"dex": 0,
-					"agi": 0
+					"agi": 0,
+					"food": 10,
+					"vit": 0
 				}
 			],
 			"separators": [],

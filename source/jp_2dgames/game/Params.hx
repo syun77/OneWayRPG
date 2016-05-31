@@ -71,6 +71,10 @@ class Params {
     // 最大HP設定
     var hp = ClassDB.getHp(kind);
     setHpMax(hp);
+    // 食糧
+    food = ClassDB.getFood(kind);
+    // VIT
+    vit = ClassDB.getVit(kind);
     // DEX
     dex = ClassDB.getDex(kind);
     // AGI

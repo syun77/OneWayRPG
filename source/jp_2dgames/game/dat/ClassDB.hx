@@ -23,6 +23,14 @@ class ClassDB {
     return get(id).hp;
   }
 
+  public static function getFood(id:ClassesKind):Int {
+    return get(id).food;
+  }
+
+  public static function getVit(id:ClassesKind):Int {
+    return get(id).vit;
+  }
+
   public static function getDex(id:ClassesKind):Int {
     return get(id).dex;
   }

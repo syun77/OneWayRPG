@@ -17,7 +17,6 @@ class Global {
   public static inline var MAX_LIFE:Int = 100;
   static inline var START_LEVEL:Int = 1;
   static inline var FIRST_MONEY:Int = 0;
-  static inline var START_FOOD:Int  = 10;
 
   // レベル
   static var _level:Int;
@@ -53,7 +52,6 @@ class Global {
     // プレイヤーパラメータ
     _player = new Params();
     _player.id = EnemiesKind.Player;
-    _player.food = START_FOOD; // 初期食糧設定
 
     // TODO: 職業は戦士とする
     var kind = ClassesKind.Fighter;
