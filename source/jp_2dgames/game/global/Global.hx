@@ -17,7 +17,7 @@ class Global {
   public static inline var MAX_LIFE:Int = 100;
   static inline var START_LEVEL:Int = 1;
   static inline var FIRST_MONEY:Int = 0;
-  static inline var START_FOOD:Int  = 40;
+  static inline var START_FOOD:Int  = 10;
 
   // レベル
   static var _level:Int;

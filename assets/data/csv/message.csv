@@ -19,7 +19,7 @@ int,str,str
 17,ダミー,orange
 18,ダミー,blue
 19,ダミー,green
-20,ダミー,green
+20,<val1>は攻撃をかわした,green
 21,ダミー,green
 22,<val1>は力尽きた,red
 23,<val1>は毒を受けた,yellow
