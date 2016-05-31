@@ -11,13 +11,13 @@ import jp_2dgames.game.gui.BattleUI;
 class ParticleUtil {
 
   /**
-   * 食糧増える演出
+   * 食糧増減演出
    **/
   public static function startFood(val:Int):Void {
     var pt = BattleUI.getFoodPosition();
     var str = '+${val}';
     if(val < 0) {
-      str = '-${val}';
+      str = '${val}';
     }
     ParticleBmpFont.start(pt.x, pt.y, str, MyColor.LIME, Dir.Down);
     pt.put();

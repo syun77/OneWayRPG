@@ -1,5 +1,6 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.particle.ParticleUtil;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.actor.Actor;
 import jp_2dgames.game.gui.message.Msg;
@@ -210,6 +211,7 @@ class UpgradeSubState extends FlxUISubState {
 
     // 食糧を減らす
     player.subFood(cost);
+    ParticleUtil.startFood(-cost);
     Snd.playSe("powerup", true);
     // 項目更新
     _updateItems();
