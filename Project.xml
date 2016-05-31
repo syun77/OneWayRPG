@@ -89,6 +89,7 @@
 		<sound path="crash.mp3" id="crash"/>
 		<sound path="shield.mp3" id="shield"/>
 		<sound path="shieldbreak.mp3" id="shieldbreak"/>
+		<sound path="error.mp3" id="error"/>
 	</assets>
 	<assets path="assets/sounds" unless="flash" include="*.ogg">
 		<sound path="destroy.ogg" id="destroy"/>
@@ -112,6 +113,7 @@
 		<sound path="crash.ogg" id="crash"/>
 		<sound path="shield.ogg" id="shield"/>
 		<sound path="shieldbreak.ogg" id="shieldbreak"/>
+		<sound path="error.ogg" id="error"/>
 	</assets>
 
 

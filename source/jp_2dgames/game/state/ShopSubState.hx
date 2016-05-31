@@ -1,4 +1,5 @@
 package jp_2dgames.game.state;
+import jp_2dgames.lib.Snd;
 import jp_2dgames.game.shop.Shop;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
@@ -41,12 +42,15 @@ class ShopSubState extends InventorySubState {
   }
 
   override function _isItemLockFromIdx(idx:Int):Bool {
+    /*
+    // 所持金チェック
     var item = _getItemFromIdx(idx);
     var cost = ItemDB.getBuy(item.id);
     if(cost > Global.money) {
       // お金が足りない
       return true;
     }
+    */
     return false;
   }
 
@@ -63,13 +67,22 @@ class ShopSubState extends InventorySubState {
     if(ItemList.isFull()) {
       // 購入できない
       Message.push2(Msg.ITEM_CANT_BUY);
+      Snd.playSe("error", true);
+      return;
+    }
+
+    // 所持金チェック
+    var idx = Std.parseInt(name);
+    var item = _list[idx];
+    var cost = ItemDB.getBuy(item.id);
+    if(cost > Global.money) {
+      // お金が足りない
+      Message.push2(Msg.NOT_ENOUGH_MONEY);
+      Snd.playSe("error", true);
       return;
     }
 
     // 購入
-    var idx = Std.parseInt(name);
-    var item = _list[idx];
-    var cost = ItemDB.getBuy(item.id);
     var itemname = ItemUtil.getName(item);
     // お金消費
     Global.subMoney(cost);
