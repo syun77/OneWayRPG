@@ -1,21 +1,16 @@
 package jp_2dgames.game;
 
+import jp_2dgames.game.dat.ClassDB;
 import jp_2dgames.game.global.Global;
 import flixel.util.FlxColor;
 import jp_2dgames.lib.MyShake;
 import jp_2dgames.game.particle.ParticleUtil;
-import jp_2dgames.lib.DirUtil.Dir;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.sequence.btl.BtlLogicMgr;
-import jp_2dgames.lib.MyColor;
-import jp_2dgames.game.particle.ParticleBmpFont;
 import jp_2dgames.game.state.InventorySubState;
 import jp_2dgames.game.global.ItemLottery;
 import jp_2dgames.game.gui.message.Msg;
 import jp_2dgames.game.gui.message.Message;
-import jp_2dgames.game.dat.EnemyDB;
-import jp_2dgames.game.dat.ResistData.ResistList;
-import jp_2dgames.game.sequence.btl.BtlLogicPlayer;
 import jp_2dgames.game.sequence.Btl;
 import jp_2dgames.game.sequence.DgEventMgr;
 import jp_2dgames.game.item.ItemData;
@@ -40,6 +35,10 @@ class SeqMgr extends FlxBasic {
   public static inline var RET_DEAD:Int    = 3; // プレイヤー死亡
   public static inline var RET_STAGECLEAR:Int  = 5; // ステージクリア
 
+  // ■選んだアイテム
+  public static inline var SELECTED_ITEM_NONE:Int = -1;
+  public static inline var SELECTED_ITEM_SPECIAL:Int = -2;
+
   static inline var TIMER_WAIT:Int = 30;
 
   // -----------------------------------------
@@ -62,7 +61,7 @@ class SeqMgr extends FlxBasic {
   var _selectedItem:Int;
 
   // ボタン関連
-  var _overlapedItem:Int = -1;
+  var _overlapedItem:Int = SELECTED_ITEM_NONE;
   var _lastOverlapButton:String = ""; // 最後にオーバーラップしたボタン
   var _lastClickButton:String = ""; // 最後にクリックしたボタン
 
@@ -227,14 +226,26 @@ class SeqMgr extends FlxBasic {
    **/
   public function resetLastClickButton():Void {
     _lastClickButton = "";
-    _overlapedItem = -1;
+    _overlapedItem = SELECTED_ITEM_NONE;
   }
 
   /**
    * 選択したアイテム
    **/
   public function getSelectedItem():ItemData {
-    return ItemList.getFromUID(_selectedItem);
+    switch(_selectedItem) {
+      case SELECTED_ITEM_NONE:
+        // 何も選択していない
+        return null;
+      case SELECTED_ITEM_SPECIAL:
+        // スペシャル
+        var itemid = ClassDB.getSpecial(_player.params.kind);
+        var item = ItemUtil.add(itemid);
+        return item;
+      default:
+        // 何か選んだ
+        return ItemList.getFromUID(_selectedItem);
+    }
   }
 
   /**
@@ -250,15 +261,20 @@ class SeqMgr extends FlxBasic {
       return true;
     }
     // アイテム以外を選んだ
-    _selectedItem = -1;
+    _selectedItem = SELECTED_ITEM_NONE;
     return false;
   }
 
   /**
    * スペシャルを選んだ
    **/
-  public function isSelectSpecial():Bool {
-    return lastClickButton == "special";
+  public function trySetSelectSpecial():Bool {
+    var ret = (lastClickButton == "special");
+    if(ret) {
+      // スペシャルに対応するアイテムを設定
+      _selectedItem = SELECTED_ITEM_SPECIAL;
+    }
+    return ret;
   }
 
   /**
@@ -336,7 +352,7 @@ private class Conditions {
     return false;
   }
   public static function isSelectSpecial(owner:SeqMgr):Bool {
-    if(owner.isSelectSpecial()) {
+    if(owner.trySetSelectSpecial()) {
       // スペシャルを選んだ
       return true;
     }

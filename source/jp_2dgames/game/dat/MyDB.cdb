@@ -1537,6 +1537,10 @@
 					"display": null
 				},
 				{
+					"typeStr": "6:items",
+					"name": "special"
+				},
+				{
 					"typeStr": "3",
 					"name": "food",
 					"display": null
@@ -1571,7 +1575,8 @@
 					"dex": 0,
 					"agi": 0,
 					"food": 10,
-					"vit": 0
+					"vit": 0,
+					"special": "StickMissile"
 				}
 			],
 			"separators": [],

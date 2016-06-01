@@ -19,6 +19,10 @@ class ClassDB {
     return ret;
   }
 
+  public static function getSpecial(id:ClassesKind):ItemsKind {
+    return get(id).special.id;
+  }
+
   public static function getHp(id:ClassesKind):Int {
     return get(id).hp;
   }
