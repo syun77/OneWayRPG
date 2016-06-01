@@ -66,11 +66,12 @@ class Dg extends FlxFSMState<SeqMgr> {
     }
 
 
-    if(Global.step == 1) {
+    if(Global.step == 1 && Global.isDispBossNotice == false) {
       // ボス出現前メッセージ
       var prm = new DialogPopupUIParam();
       prm.body = UIMsg.get(UIMsg.BOSS_NOTICE);
       FlxG.state.openSubState(new DialogPopupUI(owner, prm));
+      Global.setDispBossNotice(true);
     }
   }
 

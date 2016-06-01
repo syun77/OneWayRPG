@@ -30,11 +30,14 @@ class Global {
   static var _step:Int;
   // 倒した敵の数
   static var _killEnemies:Int;
+  // ボス開始メッセージを表示したかどうか
+  static var _bDispBossNotice:Bool;
 
   public static var level(get, never):Int;
   public static var money(get, never):Int;
   public static var step(get, never):Int;
   public static var killEnemies(get, never):Int;
+  public static var isDispBossNotice(get, never):Bool;
 
   /**
    * 起動時の初期化
@@ -77,10 +80,15 @@ class Global {
    * レベル開始時の初期化 (PlayState)
    **/
   public static function initLevel():Void {
+
+    // 目標歩数
     _step = FloorInfoDB.getSteps(level);
 
     // TODO: ショップアイテムの生成
     Shop.create(Global.level);
+
+    // ボス警告メッセージ
+    _bDispBossNotice = false;
   }
 
   public static function addLevel():Bool {
@@ -120,6 +128,9 @@ class Global {
   public static function setKillEnemies(v:Int):Void {
     _killEnemies = v;
   }
+  public static function setDispBossNotice(b:Bool):Void {
+    _bDispBossNotice = b;
+  }
 
   // -----------------------------------------------
   // ■アクセサ
@@ -127,4 +138,5 @@ class Global {
   static function get_money()       { return _money; }
   static function get_step()        { return _step;  }
   static function get_killEnemies() { return _killEnemies; }
+  static function get_isDispBossNotice() { return _bDispBossNotice; }
 }
