@@ -43,7 +43,6 @@ class DgEventMgr {
     resetEnemyEncount();
     resetItemGain();
 
-    FlxG.watch.add(DgEventMgr, "_cntStair");
     FlxG.watch.add(DgEventMgr, "_cntEnemyEncount");
     FlxG.watch.add(DgEventMgr, "_cntItemGain");
   }

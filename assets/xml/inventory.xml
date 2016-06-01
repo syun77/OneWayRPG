@@ -10,18 +10,18 @@
   </mode>
   <mode name="dropandget">
     <!-- 捨てて拾うモード -->
-    <show name="black,txtignore,txtfull,item6_back,txtitem6" />
+    <show name="black,txtignore,txtfull,item6_back,txtitem6,special" />
     <hide name="cancel" />
   </mode>
   <mode name="drop">
     <!-- 捨てるモード -->
     <show name="cancel,black,txtignore" />
-    <hide name="txtfull,item6_back,txtitem6" />
+    <hide name="txtfull,item6_back,txtitem6,special" />
   </mode>
   <mode name="shopbuy">
     <!-- ショップモード -->
     <show name="cancel" />
-    <hide name="black,txtignore,txtfull,item6_back,txtitem6" />
+    <hide name="black,txtignore,txtfull,item6_back,txtitem6,special" />
   </mode>
 
   <!-- ■共通定義 -->
@@ -45,6 +45,12 @@
   <button id="cancel" label="キャンセル" x="item0.x" y="item5.bottom" width="64">
     <text use_def="pixelmplus10" />
     <param type="string" value="cancel" />
+  </button>
+  
+  <!-- スペシャル -->
+  <button id="special" label="スペシャル" x="cancel.x" y="cancel.y" width="64">
+    <text use_def="pixelmplus10" />
+    <param type="string" value="special" />
   </button>
   
   <!-- アイテム説明 -->

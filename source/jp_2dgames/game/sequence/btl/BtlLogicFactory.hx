@@ -48,6 +48,11 @@ class BtlLogicFactory {
 
     var ret = new List<BtlLogicData>();
 
+    // TODO: スペシャル
+    {
+
+    }
+
     if(ItemList.isEmpty()) {
       // 自動攻撃
       ret = _createAutoAttack(ret, player, enemy);

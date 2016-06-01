@@ -122,6 +122,7 @@ class SeqMgr extends FlxBasic {
       // ■バトル
       .add(BtlBoot,        Btl,            Conditions.isEndWait)    // 敵出現        -> バトルコマンド入力
       .add(Btl,            BtlLogicLoop,   Conditions.isSelectItem) // コマンド      -> コマンド選択完了
+      .add(Btl,            BtlLogicLoop,   Conditions.isSelectSpecial) // コマンド   -> コマンド選択完了 (スペシャル)
       .add(Btl,            BtlLogicLoop,   Conditions.isEmpytItem)  // コマンド      -> アイテムがないので自動攻撃
       .add(BtlLogicLoop,   BtlTurnEnd,     Conditions.isLogicEnd)   // 演出再生中    -> ターン終了
       .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
@@ -251,9 +252,14 @@ class SeqMgr extends FlxBasic {
     // アイテム以外を選んだ
     _selectedItem = -1;
     return false;
-
   }
 
+  /**
+   * スペシャルを選んだ
+   **/
+  public function isSelectSpecial():Bool {
+    return lastClickButton == "special";
+  }
 
   /**
    * 更新
@@ -327,6 +333,14 @@ private class Conditions {
       return true;
     }
     // 選んでない
+    return false;
+  }
+  public static function isSelectSpecial(owner:SeqMgr):Bool {
+    if(owner.isSelectSpecial()) {
+      // スペシャルを選んだ
+      return true;
+    }
+    // 選んでいない
     return false;
   }
   public static function isIgnore(owner:SeqMgr):Bool {
