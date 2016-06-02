@@ -45,9 +45,11 @@ class InventorySubState extends FlxUISubState {
   // ■フィールド
   var _mode:InventoryMode;
   var _owner:SeqMgr;
+  var _tAnim:Int = 0; // アニメーションタイマー
 
   var _btnItems:Map<String, FlxUIButton>;
   var _btnSpecial:FlxUIButton;
+  var _txtSpecial:FlxUIText;
   var _txtDetail:FlxUIText;
   var _bstUI:BadStatusUI;
   var _bstList:BadStatusList;
@@ -89,6 +91,8 @@ class InventorySubState extends FlxUISubState {
           sprDetail = cast widget;
         case SeqMgr.BUTTON_ID_SPECIAL:
           _btnSpecial = cast widget;
+        case "txtspecial":
+          _txtSpecial = cast widget;
         default:
           if(widget.name.indexOf("item") != -1) {
             if(Std.is(widget, FlxUIButton)) {
@@ -99,7 +103,7 @@ class InventorySubState extends FlxUISubState {
           }
       }
 
-      if(Std.is(widget, FlxUIButton)) {
+      if(Std.is(widget, FlxUIButton) || widget.name == "txtspecial") {
         // スライドイン表示
         var px = widget.x;
         widget.x = -widget.width*2;
@@ -132,6 +136,9 @@ class InventorySubState extends FlxUISubState {
       this.add(_txtDamage);
     }
 
+    // クールダウンタイム表示
+    _txtSpecial.visible = _btnSpecial.visible;
+
     // 表示項目を更新
     _updateItems();
 
@@ -150,6 +157,17 @@ class InventorySubState extends FlxUISubState {
   public override function update(elapsed:Float):Void {
     super.update(elapsed);
     PlayState.forceUpdate(elapsed);
+
+    _tAnim++;
+    if(_txtSpecial.visible) {
+      if(_owner.specialWeapon.isCoolDown() == false) {
+        // スペシャルが撃てる
+        _txtSpecial.color = FlxColor.WHITE;
+        if(_tAnim%24 < 8) {
+          _txtSpecial.color = FlxColor.LIME;
+        }
+      }
+    }
   }
 
   /**
@@ -308,6 +326,14 @@ class InventorySubState extends FlxUISubState {
     // スペシャル
     if(_btnSpecial.visible) {
       var item = _owner.specialWeapon;
+      if(item.isCoolDown()) {
+        // クールダウン中
+        _txtSpecial.text = 'CoolDown: ${item.now}';
+      }
+      else {
+        // 撃てる
+        _txtSpecial.text = 'Ready';
+      }
       _setButtonInfo(_btnSpecial, item, item.isCoolDown());
     }
 

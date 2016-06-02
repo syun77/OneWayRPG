@@ -30,20 +30,10 @@ class ItemUtil {
   public static function getName(item:ItemData):String {
     var name = getName2(item);
     if(item.isSpecial()) {
-      // スペシャルはクールダウンタイムを付与
-      if(item.isCoolDown()) {
-        // クールダウン中
-        return '${name} (${item.now})';
-      }
-      else {
-        // クールダウン完了
-        return name;
-      }
+      // スペシャルは使用回数を付与しない
+      return name;
     }
-    else {
-      // 通常アイテムは使用回数を付与
-      return '${name} (${item.now}/${item.max})';
-    }
+    return '${name} (${item.now}/${item.max})';
   }
   public static function getName2(item:ItemData):String {
     var name = ItemDB.getName(item.id);

@@ -32,7 +32,7 @@ class Shield extends FlxSpriteGroup {
     _spr.color = MyColor.LIME;
     this.add(_spr);
 
-    _bar = new StatusBar(80, 32, 48, 4, true);
+    _bar = new StatusBar(80, 32, 64, 4, true);
     this.add(_bar);
 
     FlxTween.tween(_spr, {angle:360}, 30, {type:FlxTween.LOOPING});
