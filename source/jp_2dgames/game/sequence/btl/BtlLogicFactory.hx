@@ -29,11 +29,6 @@ class BtlLogicFactory {
         return 1;
 
       case BtlGroup.Player:
-        if(ItemList.isEmpty()) {
-          // 自動攻撃
-          return 1;
-        }
-
         return ItemUtil.getCount(item);
 
       case BtlGroup.Enemy:
@@ -48,7 +43,7 @@ class BtlLogicFactory {
 
     var ret = new List<BtlLogicData>();
 
-    if(ItemList.isEmpty()) {
+    if(item == null) {
       // 自動攻撃
       ret = _createAutoAttack(ret, player, enemy);
       return ret;

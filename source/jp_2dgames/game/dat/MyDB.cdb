@@ -1610,7 +1610,7 @@
 					"agi": 0,
 					"food": 10,
 					"vit": 0,
-					"special": "StickMissile"
+					"special": "PortionHp03"
 				}
 			],
 			"separators": [],

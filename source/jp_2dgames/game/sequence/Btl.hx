@@ -104,7 +104,7 @@ class Btl extends FlxFSMState<SeqMgr> {
     // 入力を初期化
     owner.resetLastClickButton();
 
-    if(ItemList.isEmpty() == false) {
+    if(owner.isAutoAttack() == false) {
       // インベントリ表示
       FlxG.state.openSubState(new InventorySubState(owner, InventoryMode.Battle));
     }

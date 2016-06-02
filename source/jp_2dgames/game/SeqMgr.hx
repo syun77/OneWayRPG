@@ -128,8 +128,8 @@ class SeqMgr extends FlxBasic {
       .add(BtlBoot,        Btl,            Conditions.isEndWait)    // 敵出現        -> バトルコマンド入力
       .add(Btl,            BtlLogicLoop,   Conditions.isSelectItem) // コマンド      -> コマンド選択完了
       .add(Btl,            BtlLogicLoop,   Conditions.isSelectSpecial) // コマンド   -> コマンド選択完了 (スペシャル)
-      .add(Btl,            BtlLogicLoop,   Conditions.isEmpytItem)  // コマンド      -> アイテムがないので自動攻撃
-      .add(BtlLogicLoop,   BtlTurnEnd,     Conditions.isLogicEnd)   // 演出再生中    -> ターン終了
+      .add(Btl,            BtlLogicLoop,   Conditions.isAutoAttack)  // コマンド     -> アイテムがないので自動攻撃
+      .add(BtlLogicLoop,   BtlTurnEnd,     Conditions.isLogicEnd)   // 演出再生中     -> ターン終了
       .add(BtlTurnEnd,     BtlEnemyDead,   Conditions.isDeadEnemy)  // ターン終了     -> 敵死亡
       .add(BtlTurnEnd,     PlayerDead,     Conditions.isDead)       // ターン終了     -> 敗北 (※ゲームオーバー)
       .add(BtlTurnEnd,     Btl,            Conditions.isEndWait)    // ターン終了     -> バトルコマンド入力
@@ -238,12 +238,26 @@ class SeqMgr extends FlxBasic {
   }
 
   /**
+   * 自動攻撃するかどうか
+   **/
+  public function isAutoAttack():Bool {
+    if(ItemList.isEmpty()) {
+      if(_specialWeapon.isCoolDown()) {
+        return true;
+      }
+    }
+
+    // 何か選べる
+    return false;
+  }
+
+  /**
    * 選択したアイテム
    **/
   public function getSelectedItem():ItemData {
     switch(_selectedItem) {
       case SELECTED_ITEM_NONE:
-        // 何も選択していない
+        // 何も選択していない (自動攻撃)
         return null;
       case SELECTED_ITEM_SPECIAL:
         // スペシャル
@@ -443,9 +457,9 @@ private class Conditions {
     return owner.player.isDead();
   }
 
-  // アイテムを所持していないかどうか
-  public static function isEmpytItem(owner:SeqMgr):Bool {
-    if(ItemList.isEmpty()) {
+  // 自動攻撃するかどうか
+  public static function isAutoAttack(owner:SeqMgr):Bool {
+    if(owner.isAutoAttack()) {
       return true;
     }
     return false;
