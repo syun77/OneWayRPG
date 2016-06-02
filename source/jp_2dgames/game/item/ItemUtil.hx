@@ -29,7 +29,21 @@ class ItemUtil {
   // 名前を取得 (使用回数付与)
   public static function getName(item:ItemData):String {
     var name = getName2(item);
-    return '${name} (${item.now}/${item.max})';
+    if(item.isSpecial()) {
+      // スペシャルはクールダウンタイムを付与
+      if(item.isCoolDown()) {
+        // クールダウン中
+        return '${name} (${item.now})';
+      }
+      else {
+        // クールダウン完了
+        return name;
+      }
+    }
+    else {
+      // 通常アイテムは使用回数を付与
+      return '${name} (${item.now}/${item.max})';
+    }
   }
   public static function getName2(item:ItemData):String {
     var name = ItemDB.getName(item.id);
@@ -168,8 +182,8 @@ class ItemUtil {
     var item = new ItemData();
     item.id = itemid;
     item.bSpecial = true;
-    item.now = 0;
-    item.max = 1;
+    item.max = ItemDB.getCoolDown(itemid);
+    item.now = item.max;
 
     return item;
   }

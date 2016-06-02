@@ -654,6 +654,10 @@
 					"display": null
 				},
 				{
+					"typeStr": "3",
+					"name": "cd"
+				},
+				{
 					"typeStr": "1",
 					"name": "detail_last"
 				},
@@ -680,7 +684,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 0
 				},
 				{
 					"id": "PortionHp03",
@@ -698,7 +703,8 @@
 					"bst": "None",
 					"extval": 0,
 					"hp": 3,
-					"ext": 0
+					"ext": 0,
+					"cd": 3
 				},
 				{
 					"id": "PortionHp05",
@@ -716,7 +722,8 @@
 					"bst": "None",
 					"extval": 0,
 					"hp": 5,
-					"ext": 0
+					"ext": 0,
+					"cd": 4
 				},
 				{
 					"id": "PortionHp10",
@@ -734,7 +741,8 @@
 					"bst": "None",
 					"extval": 0,
 					"hp": 10,
-					"ext": 0
+					"ext": 0,
+					"cd": 5
 				},
 				{
 					"id": "PortionDex5",
@@ -752,7 +760,8 @@
 					"buy": 40,
 					"ext": 1,
 					"extval": 5,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "PortionDex10",
@@ -770,7 +779,8 @@
 					"buy": 100,
 					"ext": 1,
 					"extval": 10,
-					"hp": 0
+					"hp": 0,
+					"cd": 4
 				},
 				{
 					"id": "PortionEva5",
@@ -788,7 +798,8 @@
 					"bst": "None",
 					"detail": "回避率5%上昇",
 					"detail_last": "回避率15％上昇",
-					"buy": 40
+					"buy": 40,
+					"cd": 3
 				},
 				{
 					"id": "PortionEva10",
@@ -806,7 +817,8 @@
 					"bst": "None",
 					"detail": "回避率10％上昇",
 					"detail_last": "回避率30％上昇",
-					"buy": 100
+					"buy": 100,
+					"cd": 4
 				},
 				{
 					"id": "StickWood",
@@ -824,7 +836,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickHard",
@@ -842,7 +855,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickBronze",
@@ -860,7 +874,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickFire",
@@ -878,7 +893,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickFlame",
@@ -896,7 +912,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickShot",
@@ -914,7 +931,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickEnergy",
@@ -932,7 +950,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickMissile",
@@ -950,7 +969,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickSilver",
@@ -968,12 +988,13 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickPlastic",
 					"category": 1,
-					"name": "プラスチック棒",
+					"name": "d",
 					"min": 4,
 					"max": 6,
 					"power": 4,
@@ -986,7 +1007,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickIron",
@@ -1004,7 +1026,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickDecay",
@@ -1022,7 +1045,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickIce",
@@ -1040,7 +1064,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickFreeze",
@@ -1058,7 +1083,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickGold",
@@ -1076,7 +1102,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickPlatinum",
@@ -1094,7 +1121,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickCurse",
@@ -1112,7 +1140,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickEvil",
@@ -1130,7 +1159,8 @@
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickPoison",
@@ -1148,7 +1178,8 @@
 					"bst": "Poison",
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickDarken",
@@ -1166,7 +1197,8 @@
 					"buy": 20,
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickParalyze",
@@ -1184,7 +1216,8 @@
 					"buy": 20,
 					"ext": 0,
 					"extval": 0,
-					"hp": 0
+					"hp": 0,
+					"cd": 3
 				},
 				{
 					"id": "StickStop",
@@ -1202,7 +1235,8 @@
 					"bst": "Stan",
 					"detail": "",
 					"detail_last": "",
-					"buy": 30
+					"buy": 30,
+					"cd": 3
 				}
 			],
 			"separators": [],

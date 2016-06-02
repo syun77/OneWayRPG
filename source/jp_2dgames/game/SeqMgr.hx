@@ -310,6 +310,13 @@ class SeqMgr extends FlxBasic {
     Snd.playSe("pickup2", true);
   }
 
+  /**
+   * ターン終了
+   **/
+  public function turnEnd():Void {
+    _specialWeapon.coolDown();
+  }
+
   // ------------------------------------------------------
   // ■アクセサメソッド
   function get_player() { return _player; }

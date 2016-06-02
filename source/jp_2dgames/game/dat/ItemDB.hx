@@ -48,6 +48,10 @@ class ItemDB {
     return get(id).bst.id;
   }
 
+  public static function getCoolDown(id:ItemsKind):Int {
+    return get(id).cd;
+  }
+
   public static function getDetail(id:ItemsKind):String {
     return get(id).detail;
   }

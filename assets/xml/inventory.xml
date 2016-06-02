@@ -48,6 +48,7 @@
   </button>
   
   <!-- スペシャル -->
+  <chrome id="special_back" src="ui/chrome/dark_grey" slice9="4,4,8,8" x="cancel.x-4" y="cancel.y-4" width="item0.width+8" height="item0.height+8" />
   <button id="special" label="スペシャル" x="cancel.x" y="cancel.y" width="item0.width">
     <text use_def="pixelmplus10" />
     <param type="string" value="special" />

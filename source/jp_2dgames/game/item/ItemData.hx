@@ -46,7 +46,8 @@ class ItemData {
   public function wear():Void {
 
     if(bSpecial) {
-      // スペシャルは摩耗しない
+      // スペシャルはクールダウンが必要
+      now = max;
       return;
     }
 
@@ -60,7 +61,35 @@ class ItemData {
    * 次で消滅するかどうか
    **/
   public function isLast():Bool {
+    if(isSpecial()) {
+      // スペシャルはなくならない
+      return false;
+    }
     return now == 1;
+  }
+
+  /**
+   * クールダウン中かどうか
+   **/
+  public function isCoolDown():Bool {
+    if(isSpecial()) {
+      // クールダウン中かどうか
+      return now > 0;
+    }
+
+    return false;
+  }
+
+  /**
+   * クールダウンする
+   **/
+  public function coolDown():Void {
+    if(isSpecial()) {
+      now--;
+      if(now < 0) {
+        now = 0;
+      }
+    }
   }
 
   /**
