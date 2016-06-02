@@ -10,8 +10,8 @@
   </mode>
   <mode name="dropandget">
     <!-- 捨てて拾うモード -->
-    <show name="black,txtignore,txtfull,item6_back,txtitem6,special" />
-    <hide name="cancel" />
+    <show name="black,txtignore,txtfull,item6_back,txtitem6" />
+    <hide name="cancel,special" />
   </mode>
   <mode name="drop">
     <!-- 捨てるモード -->
@@ -29,7 +29,7 @@
   
   <!-- ■インベントリ -->
   <!-- アイテム -->
-  <button id="item0" label="アイテム1" x="8" y="96" width="128"><text use_def="pixelmplus10" /><param type="string" value="0" /></button>
+  <button id="item0" label="アイテム1" x="8" y="92" width="128"><text use_def="pixelmplus10" /><param type="string" value="0" /></button>
   <button id="item1" label="アイテム2" x="item0.x" y="item0.bottom" width="item0.width"><text use_def="pixelmplus10" /><param type="string" value="1" /></button>
   <button id="item2" label="アイテム3" x="item0.x" y="item1.bottom" width="item0.width"><text use_def="pixelmplus10" /><param type="string" value="2" /></button>
   <button id="item3" label="アイテム4" x="item0.x" y="item2.bottom" width="item0.width"><text use_def="pixelmplus10" /><param type="string" value="3" /></button>
@@ -42,13 +42,15 @@
   <button id="item6" label="アイテム7" x="item6_back.x+8" y="item6_back.y+8" width="item0.width"><text use_def="pixelmplus10" /><param type="string" value="6" /></button>
   
   <!-- キャンセル -->
-  <button id="cancel" label="キャンセル" x="item0.x" y="item5.bottom" width="64">
+  <button id="cancel" label="キャンセル" x="item0.x" y="item5.bottom+4" width="64">
     <text use_def="pixelmplus10" />
     <param type="string" value="cancel" />
   </button>
   
   <!-- スペシャル -->
+  <!--
   <chrome id="special_back" src="ui/chrome/dark_grey" slice9="4,4,8,8" x="cancel.x-4" y="cancel.y-4" width="item0.width+8" height="item0.height+8" />
+  -->
   <button id="special" label="スペシャル" x="cancel.x" y="cancel.y" width="item0.width">
     <text use_def="pixelmplus10" />
     <param type="string" value="special" />

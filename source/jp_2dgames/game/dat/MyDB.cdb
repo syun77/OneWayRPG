@@ -1603,6 +1603,18 @@
 						},
 						{
 							"item": "StickHard"
+						},
+						{
+							"item": "StickDecay"
+						},
+						{
+							"item": "StickBronze"
+						},
+						{
+							"item": "StickCurse"
+						},
+						{
+							"item": "StickDecay"
 						}
 					],
 					"hp": 7,

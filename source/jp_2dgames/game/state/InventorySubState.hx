@@ -306,10 +306,9 @@ class InventorySubState extends FlxUISubState {
     }
 
     // スペシャル
-    {
-      var btn = _btnSpecial;
+    if(_btnSpecial.visible) {
       var item = _owner.specialWeapon;
-      _setButtonInfo(btn, item, item.isCoolDown());
+      _setButtonInfo(_btnSpecial, item, item.isCoolDown());
     }
 
     // 入手したアイテム
