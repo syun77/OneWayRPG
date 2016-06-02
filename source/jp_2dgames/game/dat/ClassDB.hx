@@ -11,6 +11,14 @@ class ClassDB {
     return MyDB.classes.get(id);
   }
 
+  public static function getName(id:ClassesKind):String {
+    return get(id).name;
+  }
+
+  public static function getDetail(id:ClassesKind):String {
+    return get(id).detail;
+  }
+
   public static function getItems(id:ClassesKind):Array<ItemsKind> {
     var ret = new Array<ItemsKind>();
     for(item in get(id).items) {
