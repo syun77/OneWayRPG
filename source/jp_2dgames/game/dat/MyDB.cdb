@@ -994,7 +994,7 @@
 				{
 					"id": "StickPlastic",
 					"category": 1,
-					"name": "d",
+					"name": "プラスチック棒",
 					"min": 4,
 					"max": 6,
 					"power": 4,
