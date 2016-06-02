@@ -48,7 +48,7 @@
   </button>
   
   <!-- スペシャル -->
-  <button id="special" label="スペシャル" x="cancel.x" y="cancel.y" width="64">
+  <button id="special" label="スペシャル" x="cancel.x" y="cancel.y" width="item0.width">
     <text use_def="pixelmplus10" />
     <param type="string" value="special" />
   </button>

@@ -9,11 +9,12 @@ class ItemData {
 
   // ----------------------------------------
   // ■フィールド
-  public var uid:Int;      // ユニーク番号
-  public var id:ItemsKind; // アイテムID
-  public var now:Int;      // 使用回数
-  public var max:Int;      // 最大使用回数
-  public var buff:Int;     // 強化値
+  public var uid:Int;       // ユニーク番号
+  public var id:ItemsKind;  // アイテムID
+  public var now:Int;       // 使用回数
+  public var max:Int;       // 最大使用回数
+  public var buff:Int;      // 強化値
+  public var bSpecial:Bool; // スペシャルかどうか
 
   /**
    * コンストラクタ
@@ -24,6 +25,7 @@ class ItemData {
     now  = 0;
     max  = 0;
     buff = 0;
+    bSpecial = false;
   }
 
   /**
@@ -35,9 +37,53 @@ class ItemData {
     now  = src.now;
     max  = src.max;
     buff = src.buff;
+    bSpecial = src.bSpecial;
+  }
+
+  /**
+   * アイテム摩耗
+   **/
+  public function wear():Void {
+
+    if(bSpecial) {
+      // スペシャルは摩耗しない
+      return;
+    }
+
+    now--;
+    if(now < 0) {
+      now = 0;
+    }
+  }
+
+  /**
+   * 次で消滅するかどうか
+   **/
+  public function isLast():Bool {
+    return now == 1;
+  }
+
+  /**
+   * 武器強化
+   **/
+  public function upgrade():Bool {
+    if(isSpecial()) {
+      // 強化できない
+      return false;
+    }
+
+    buff++;
+    return true;
+  }
+
+  /**
+   * スペシャルかどうか
+   **/
+  public function isSpecial():Bool {
+    return bSpecial;
   }
 
   public function toString():String {
-    return '${id}+${buff} [${uid}+${buff}] (${now}/${max})';
+    return '${id}+${buff} [${uid}+${buff}] (${now}/${max}) special=${bSpecial}';
   }
 }

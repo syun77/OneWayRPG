@@ -97,7 +97,7 @@ class ItemUtil {
     if(resists == null) {
       target = null;
     }
-    if(item.now == 1) {
+    if(item.isLast()) {
       // 最後の一撃
       power *= BtlCalc.LAST_MULTI;
     }
@@ -141,7 +141,7 @@ class ItemUtil {
   }
   public static function getExtVal2(item:ItemData):Int {
     var val = getExtVal(item);
-    if(item.now == 1) {
+    if(item.isLast()) {
       return val * 3;
     }
     return val;
@@ -157,6 +157,19 @@ class ItemUtil {
     var max = getMax(item);
     item.max = FlxG.random.int(min, max);
     item.now = item.max;
+
+    return item;
+  }
+
+  /**
+   * スペシャルアイテムを生成
+   **/
+  public static function addSpecial(itemid:ItemsKind):ItemData {
+    var item = new ItemData();
+    item.id = itemid;
+    item.bSpecial = true;
+    item.now = 0;
+    item.max = 1;
 
     return item;
   }

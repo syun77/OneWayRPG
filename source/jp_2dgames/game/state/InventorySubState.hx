@@ -1,8 +1,6 @@
 package jp_2dgames.game.state;
 
 import flixel.text.FlxText;
-import jp_2dgames.lib.TextUtil;
-import jp_2dgames.lib.SprFont;
 import jp_2dgames.game.item.ItemDetail;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.actor.BadStatusList;
@@ -49,6 +47,7 @@ class InventorySubState extends FlxUISubState {
   var _owner:SeqMgr;
 
   var _btnItems:Map<String, FlxUIButton>;
+  var _btnSpecial:FlxUIButton;
   var _txtDetail:FlxUIText;
   var _bstUI:BadStatusUI;
   var _bstList:BadStatusList;
@@ -88,6 +87,8 @@ class InventorySubState extends FlxUISubState {
           _txtDetail = cast widget;
         case "sprframe":
           sprDetail = cast widget;
+        case SeqMgr.BUTTON_ID_SPECIAL:
+          _btnSpecial = cast widget;
         default:
           if(widget.name.indexOf("item") != -1) {
             if(Std.is(widget, FlxUIButton)) {
@@ -210,6 +211,10 @@ class InventorySubState extends FlxUISubState {
       // 設定したボタン番号をアイテム情報に変換
       _owner.trySetClickButtonToSelectedItem();
     }
+    else if(name == SeqMgr.BUTTON_ID_SPECIAL) {
+      // スペシャル
+      _owner.trySetSelectSpecial();
+    }
 
     // 何か押したら閉じる
     close();
@@ -219,10 +224,19 @@ class InventorySubState extends FlxUISubState {
    * マウスオーバーのコールバック
    **/
   function _cbOver(name:String):Void {
+
     var idx = Std.parseInt(name);
+    var item:ItemData = null;
     if(idx != null) {
-      // 説明文の更新
-      var item = _getItemFromIdx(idx);
+      // 選択しているアイテムを取得
+      item = _getItemFromIdx(idx);
+    }
+    else if(name == SeqMgr.BUTTON_ID_SPECIAL) {
+      // スペシャル
+      item = _owner.specialWeapon;
+    }
+
+    if(item != null) {
       // 耐性情報を表示するかどうか
       var resists:ResistList = null;
       if(_mode == InventoryMode.Battle) {
@@ -276,10 +290,12 @@ class InventorySubState extends FlxUISubState {
    * 表示アイテムを更新
    **/
   function _updateItems():Void {
+
+    // 所持アイテム
     for(i in 0..._getItemMax()) {
       var item = _getItemFromIdx(i);
       var key = 'item${i}';
-      var btn:FlxUIButton = _btnItems[key];
+      var btn = _btnItems[key];
       if(item == null) {
         // 所持していないので非表示
         btn.visible = false;
@@ -287,6 +303,13 @@ class InventorySubState extends FlxUISubState {
       }
       // 表示する
       _setButtonInfo(btn, item, _isItemLockFromIdx(i));
+    }
+
+    // スペシャル
+    {
+      var btn = _btnSpecial;
+      var item = _owner.specialWeapon;
+      _setButtonInfo(btn, item, false);
     }
 
     // 入手したアイテム
@@ -314,7 +337,7 @@ class InventorySubState extends FlxUISubState {
       var spr = new FlxSprite(0, 0, icon);
       btn.addIcon(spr, -8, -6, false);
     }
-    if(item.now == 1) {
+    if(item.isLast()) {
       var spr2 = new FlxSprite(0, 0, AssetPaths.IMAGE_LASTATTACK);
       btn.addIcon(spr2, Std.int(btn.width-18), 4, false);
     }

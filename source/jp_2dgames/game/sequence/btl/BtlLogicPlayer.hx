@@ -216,18 +216,18 @@ class BtlLogicPlayer {
 
       case BtlLogic.DecayItem(item):
         // ■アイテム劣化する
-        if(item.now == 1) {
+        if(item.isLast()) {
           // 砕け散るメッセージ
           var name = ItemUtil.getName(item);
           Message.push2(Msg.ITEM_DESTROY, [name]);
-          item.now--;
+          item.wear();
           // 壊れる
           ItemList.del(item.uid);
           Snd.playSe("crash", true);
         }
         else {
           // アイテム使用回数を減らす
-          item.now--;
+          item.wear();
           tWait = 0;
         }
 

@@ -62,7 +62,7 @@ class BtlLogicFactory {
       ret.add(data);
     }
     if(ItemUtil.getCategory(item) == ItemCategory.Weapon) {
-      if(item.now == 1) {
+      if(item.isLast()) {
         // 最後の一撃
         ret.add(new BtlLogicData(BtlLogic.BeginLastAttack, player.uid, enemy.uid));
       }
@@ -84,7 +84,7 @@ class BtlLogicFactory {
         case ItemCategory.Weapon:
           // 武器
           var power = ItemUtil.getPower(item);
-          if(item.now == 1) {
+          if(item.isLast()) {
             // 最後の一撃
             power *= BtlCalc.LAST_MULTI;
           }
@@ -102,7 +102,7 @@ class BtlLogicFactory {
     // アイテム使用回数減少
     ret.add(new BtlLogicData(BtlLogic.DecayItem(item), player.uid, enemy.uid));
 
-    if(item.now == 1 && item.buff > 0) {
+    if(item.isLast() && item.buff > 0) {
       // アイテム破壊による食糧増加
       ret.add(new BtlLogicData(BtlLogic.AddFood(item.buff), player.uid, player.uid));
     }
@@ -220,7 +220,7 @@ class BtlLogicFactory {
    **/
   static function _createPortion(ret:List<BtlLogicData>, player:Actor, item:ItemData):List<BtlLogicData> {
     var hp = ItemUtil.getHp(item);
-    if(item.now == 1) {
+    if(item.isLast()) {
       // 最後の1回
       hp *= BtlCalc.LAST_MULTI;
     }

@@ -164,11 +164,12 @@ class BtlPowerup extends FlxFSMState<SeqMgr> {
       switch(ItemUtil.getCategory(item)) {
         case ItemCategory.Weapon:
           // 敵を倒した武器を強化
-          item.buff++;
-          var name = ItemUtil.getName2(item);
-          Message.push2(Msg.WEAPON_POWERUP, [name]);
-          Snd.playSe("powerup");
-          owner.startWait();
+          if(item.upgrade()) {
+            var name = ItemUtil.getName2(item);
+            Message.push2(Msg.WEAPON_POWERUP, [name]);
+            Snd.playSe("powerup");
+            owner.startWait();
+          }
 
         case ItemCategory.Portion:
       }

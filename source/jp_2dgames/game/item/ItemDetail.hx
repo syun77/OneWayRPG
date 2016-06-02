@@ -50,7 +50,7 @@ class ItemDetail {
     var attr  = ItemUtil.getAttribute(item);
     ret.hit   = BtlCalc.hit(ItemUtil.getHit(item), player, enemy);
     ret.sum   = ItemUtil.calcDamage(owner, item, true, resists);
-    if(item.now == 1) {
+    if(item.isLast()) {
       // 最後の一撃
       ret.bLastAttack = true;
     }
@@ -65,7 +65,7 @@ class ItemDetail {
    * 通常の詳細説明文
    **/
   public static function getDetail(item:ItemData):String {
-    if(item.now == 1) {
+    if(item.isLast()) {
       // 最後に一回用の説明文
       return ItemDB.getDetailLast(item.id);
     }

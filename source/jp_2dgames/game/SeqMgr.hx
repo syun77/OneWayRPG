@@ -1,6 +1,7 @@
 package jp_2dgames.game;
 
 import jp_2dgames.game.dat.ClassDB;
+import jp_2dgames.game.dat.ClassDB;
 import jp_2dgames.game.global.Global;
 import flixel.util.FlxColor;
 import jp_2dgames.lib.MyShake;
@@ -38,6 +39,7 @@ class SeqMgr extends FlxBasic {
   // ■選んだアイテム
   public static inline var SELECTED_ITEM_NONE:Int = -1;
   public static inline var SELECTED_ITEM_SPECIAL:Int = -2;
+  public static inline var BUTTON_ID_SPECIAL = "special";
 
   static inline var TIMER_WAIT:Int = 30;
 
@@ -60,6 +62,9 @@ class SeqMgr extends FlxBasic {
   // 選択したアイテム情報
   var _selectedItem:Int;
 
+  // スペシャル
+  var _specialWeapon:ItemData;
+
   // ボタン関連
   var _overlapedItem:Int = SELECTED_ITEM_NONE;
   var _lastOverlapButton:String = ""; // 最後にオーバーラップしたボタン
@@ -71,6 +76,7 @@ class SeqMgr extends FlxBasic {
   public var enemy(get, never):Actor;
   public var lastOverlapButton(get, never):String;
   public var lastClickButton(get, never):String;
+  public var specialWeapon(get, never):ItemData;
 
   /**
    * コンストラクタ
@@ -151,6 +157,9 @@ class SeqMgr extends FlxBasic {
     // ボタンのコールバックを設定
     BattleUI.setButtonClickCB(_cbButtonClick);
     BattleUI.setButtonOverlapCB(_cbButtonOverlap);
+
+    // スペシャルを設定
+    _specialWeapon = ItemUtil.addSpecial(ClassDB.getSpecial(_player.params.kind));
 
     // 初期化処理
     // イベント初期化
@@ -239,9 +248,7 @@ class SeqMgr extends FlxBasic {
         return null;
       case SELECTED_ITEM_SPECIAL:
         // スペシャル
-        var itemid = ClassDB.getSpecial(_player.params.kind);
-        var item = ItemUtil.add(itemid);
-        return item;
+        return specialWeapon;
       default:
         // 何か選んだ
         return ItemList.getFromUID(_selectedItem);
@@ -269,7 +276,7 @@ class SeqMgr extends FlxBasic {
    * スペシャルを選んだ
    **/
   public function trySetSelectSpecial():Bool {
-    var ret = (lastClickButton == "special");
+    var ret = (lastClickButton == BUTTON_ID_SPECIAL);
     if(ret) {
       // スペシャルに対応するアイテムを設定
       _selectedItem = SELECTED_ITEM_SPECIAL;
@@ -309,6 +316,7 @@ class SeqMgr extends FlxBasic {
   function get_enemy()  { return _enemy;  }
   function get_lastOverlapButton() { return _lastOverlapButton; }
   function get_lastClickButton() { return _lastClickButton; }
+  function get_specialWeapon() { return _specialWeapon; }
 }
 
 // -----------------------------------------------------------
