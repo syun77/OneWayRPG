@@ -47,7 +47,7 @@ class ItemData {
 
     if(bSpecial) {
       // スペシャルはクールダウンが必要
-      now = max;
+      resetCoolDown();
       return;
     }
 
@@ -90,6 +90,13 @@ class ItemData {
         now = 0;
       }
     }
+  }
+
+  /**
+   * クールダウンをリセットする
+   **/
+  public function resetCoolDown():Void {
+    now = max;
   }
 
   /**

@@ -89,6 +89,9 @@ class BtlBoot extends FlxFSMState<SeqMgr> {
     // 属性アイコンの表示
     _displayEnemyAttribute(owner.enemy);
 
+    // クールダウンタイムをリセットする
+    owner.resetCoolDownSpecial();
+
     owner.startWait();
   }
 }

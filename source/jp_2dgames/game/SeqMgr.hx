@@ -180,7 +180,6 @@ class SeqMgr extends FlxBasic {
     super.destroy();
   }
 
-
   /**
    * 更新
    **/
@@ -282,6 +281,13 @@ class SeqMgr extends FlxBasic {
       _selectedItem = SELECTED_ITEM_SPECIAL;
     }
     return ret;
+  }
+
+  /**
+   * クールダウンタイムをリセットする
+   **/
+  public function resetCoolDownSpecial():Void {
+    _specialWeapon.resetCoolDown();
   }
 
   /**
