@@ -11,6 +11,20 @@ class ClassDB {
     return MyDB.classes.get(id);
   }
 
+  public static function count():Int {
+    return MyDB.classes.all.length;
+  }
+
+  public static function idxToKind(idx:Int):ClassesKind {
+    return MyDB.classes.all[idx].id;
+  }
+
+  public static function forEach(func:ClassesKind->Void):Void {
+    for(info in MyDB.classes.all) {
+      func(info.id);
+    }
+  }
+
   public static function getName(id:ClassesKind):String {
     return get(id).name;
   }

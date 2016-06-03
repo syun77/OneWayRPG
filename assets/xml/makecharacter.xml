@@ -14,15 +14,18 @@
   <!-- ■職業説明 -->
   <!-- ・概要 -->
   <chrome id="sprframe" use_def="frame" x="item0.right+16" y="item0.y-8" width="280" height="180" />
-  <text id="txtdetail" use_def="pixelmplus10" text="職業説明" x="sprframe.x+4" y="sprframe.y+4" width="128" />
+  <text id="txtdetail" use_def="pixelmplus10" text="職業説明" x="sprframe.x+16" y="sprframe.y+8" width="180" align="left" />
   
   <!-- ・ステータス -->
-  <text id="txtvit" use_def="normal" x="sprframe.x+16" y="sprframe.y+32" text="VIT: 0" />
-  <text id="txtdex" use_def="normal" x="txtvit.x" y="txtvit.bottom" text="DEX: 0" />
-  <text id="txtagi" use_def="normal" x="txtvit.x" y="txtdex.bottom" text="AGI: 0" />
+  <chrome id="sprstatus" use_def="frame" x="sprframe.x+16" y="sprframe.y+32" width="64" height="80" />
+  <text id="txthp"  use_def="normal" x="sprstatus.x+16" y="sprstatus.y+4" text="HP: 10" />
+  <text id="txtvit" use_def="normal" x="txthp.x" y="txthp.bottom" text="VIT: 0" />
+  <text id="txtdex" use_def="normal" x="txthp.x" y="txtvit.bottom" text="DEX: 0" />
+  <text id="txtagi" use_def="normal" x="txthp.x" y="txtdex.bottom" text="AGI: 0" />
   
   <!-- ・アイテム -->
-  <text id="txtitem0" use_def="pixelmplus10" x="txtvit.x+48" y="txtvit.y" text="アイテム0" />
+  <chrome id="spritem" use_def="frame" x="sprstatus.right+16" y="sprstatus.y" width="96" height="80" />
+  <text id="txtitem0" use_def="pixelmplus10" x="spritem.x-8" y="spritem.y+4" text="アイテム0" />
   <text id="txtitem1" use_def="pixelmplus10" x="txtitem0.x" y="txtitem0.bottom" text="アイテム1" />
   <text id="txtitem2" use_def="pixelmplus10" x="txtitem0.x" y="txtitem1.bottom" text="アイテム2" />
   <text id="txtitem3" use_def="pixelmplus10" x="txtitem0.x" y="txtitem2.bottom" text="アイテム3" />
@@ -30,6 +33,7 @@
   <text id="txtitem5" use_def="pixelmplus10" x="txtitem0.x" y="txtitem4.bottom" text="アイテム5" />
   
   <!-- ・スキル -->
-  <text id="txtskill" use_def="pixelmplus10" x="txtitem0.x+96" y="txtvit.y" text="スキル" />
+  <chrome id="sprskill" use_def="frame" x="sprstatus.x" y="sprstatus.bottom+8" width="96" height="24" />
+  <text id="txtskill" use_def="pixelmplus10" x="sprskill.x-8" y="sprskill.y+4" text="スキル" />
 </data>
 
