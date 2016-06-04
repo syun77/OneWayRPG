@@ -1639,7 +1639,7 @@
 						}
 					],
 					"special": "StickFlame",
-					"food": 30,
+					"food": 10,
 					"vit": 0,
 					"dex": 0,
 					"agi": 4,
@@ -1647,23 +1647,26 @@
 					"name": "魔法使い"
 				},
 				{
-					"id": "Ranger",
+					"id": "Gunner",
 					"hp": 8,
 					"items": [
 						{
-							"item": "StickWood"
+							"item": "StickShot"
 						},
 						{
-							"item": "StickHard"
+							"item": "StickShot"
+						},
+						{
+							"item": "StickEnergy"
 						}
 					],
 					"special": "PortionEva10",
-					"food": 20,
+					"food": 10,
 					"vit": 0,
 					"dex": 3,
 					"agi": 1,
-					"detail": "攻撃の命中率が高い冒険者",
-					"name": "盗賊"
+					"detail": "銃の扱いが得意な冒険者",
+					"name": "射撃手"
 				}
 			],
 			"separators": [],
