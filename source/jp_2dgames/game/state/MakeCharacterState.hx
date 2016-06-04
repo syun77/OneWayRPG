@@ -1,5 +1,7 @@
 package jp_2dgames.game.state;
 
+import flixel.addons.ui.FlxUICheckBox;
+import flixel.addons.ui.FlxUIRadioGroup;
 import jp_2dgames.game.item.ItemList;
 import jp_2dgames.game.dat.ItemDB;
 import flixel.addons.ui.FlxUIText;
@@ -16,8 +18,6 @@ import jp_2dgames.game.dat.MyDB;
  * キャラメイク画面
  **/
 class MakeCharacterState extends FlxUIState {
-
-  var _btnItems:Map<String, FlxUIButton>;
 
   var _txtDetail:FlxUIText;
   var _txtHp:FlxUIText;
@@ -36,9 +36,6 @@ class MakeCharacterState extends FlxUIState {
     _xml_id = "makecharacter";
     super.create();
 
-    // ボタン保持マップの生成
-    _btnItems = new Map<String, FlxUIButton>();
-
     // アイテムマップの生成
     _txtItems = new Map<String, FlxUIText>();
 
@@ -51,22 +48,23 @@ class MakeCharacterState extends FlxUIState {
         case "txtdex":    _txtDex    = cast widget;
         case "txtagi":    _txtAgi    = cast widget;
         case "txtskill":  _txtSkill  = cast widget;
+        case "radio_classes":
+          var radioGroup:FlxUIRadioGroup = cast widget;
+          // 0番目を選択する
+          radioGroup.selectedIndex = 0;
+          // ラベル更新
+          for(i in 0...radioGroup.numRadios) {
+            var kind = ClassDB.idxToKind(i);
+            var name = ClassDB.getName(kind);
+            radioGroup.updateLabel(i, name);
+          }
         default:
           if(widget.name.indexOf("item") != -1) {
-            if(Std.is(widget, FlxUIButton)) {
-              // 職業ボタン
-              _btnItems[widget.name] = cast widget;
-            }
-            else if(Std.is(widget, FlxUIText)) {
+            if(Std.is(widget, FlxUIText)) {
               // 所持アイテムテキスト
               _txtItems[widget.name] = cast widget;
             }
           }
-      }
-
-      if(Std.is(widget, FlxUIText)) {
-        var txt:FlxUIText = cast widget;
-//        txt.text = "";
       }
 
       if(Std.is(widget, FlxUIButton)) {
@@ -78,13 +76,8 @@ class MakeCharacterState extends FlxUIState {
       }
     });
 
-    // 職業ボタンの名前を設定
-    for(i in 0...ClassDB.count()) {
-      var kind = ClassDB.idxToKind(i);
-      var name = ClassDB.getName(kind);
-      var btn:FlxUIButton = _btnItems['item${i}'];
-      btn.label.text = name;
-    }
+    // 0番目を選択
+    _cbClickRadioButton(0);
   }
 
   /**
@@ -105,8 +98,20 @@ class MakeCharacterState extends FlxUIState {
    * UIWidgetのコールバック受け取り
    **/
   public override function getEvent(id:String, sender:Dynamic, data:Dynamic, ?params:Array<Dynamic>):Void {
+
+    if(sender == null) {
+      return;
+    }
+
     var widget:IFlxUIWidget = cast sender;
-    if(widget != null && Std.is(widget, FlxUIButton)) {
+    if(Std.is(widget, FlxUIRadioGroup)) {
+      // 項目を選択した
+      var radio:FlxUIRadioGroup = cast widget;
+      _cbClickRadioButton(radio.selectedIndex);
+      return;
+    }
+
+    if(Std.is(widget, FlxUIButton)) {
 
       var fuib:FlxUIButton = cast widget;
       switch(id) {
@@ -116,17 +121,6 @@ class MakeCharacterState extends FlxUIState {
             var key = fuib.params[0];
             _cbClick(key);
           }
-
-      #if mobile
-        case FlxUITypedButton.DOWN_EVENT: // ボタン押下時に反応させる
-      #else
-        case FlxUITypedButton.OVER_EVENT:
-      #end
-          // マウスが上に乗った
-        if(fuib.params != null) {
-          var key = fuib.params[0];
-          _cbOver(key);
-        }
       }
     }
   }
@@ -139,13 +133,9 @@ class MakeCharacterState extends FlxUIState {
   }
 
   /**
-   * マウスオーバーのコールバック
+   * 職業ボタン選択
    **/
-  function _cbOver(name:String):Void {
-    var idx = Std.parseInt(name);
-    if(idx == null) {
-      return;
-    }
+  function _cbClickRadioButton(idx:Int):Void {
 
     var kind = ClassDB.idxToKind(idx);
     // 詳細

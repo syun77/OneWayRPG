@@ -3,17 +3,28 @@
   <!-- ■共通定義読み込み -->
   <include id="_ui_globals"/>
   
-  <!-- タイトル -->
+  <!-- ■定義 -->
+  <definition id="radio_1" radio_src="ui/misc/radio" dat_src="ui/misc/radio_dat">
+    <text use_def="pixelmplus10">
+      <color id="over" value="0xffff00" />
+    </text>
+  </definition>
+  
+  <!-- ■タイトル -->
   <text id="txttitle" use_def="pixelmplus10" center_x="true" y="8" text="職業を選んでください" width="100%" size="10" />
   
   <!-- ■職業ボタン -->
-  <button id="item0" label="職業0" x="16" y="48" width="64"><text use_def="pixelmplus10" /><param type="string" value="0" /></button>
-  <button id="item1" label="職業1" x="item0.x" y="item0.bottom" width="64"><text use_def="pixelmplus10" /><param type="string" value="1" /></button>
-  <button id="item2" label="職業2" x="item0.x" y="item1.bottom" width="64"><text use_def="pixelmplus10" /><param type="string" value="2" /></button>
+  <radio_group x="8" y="32" use_def="radio_1" id="radio_classes">
+    <param type="string" value="radio_group" />
+    
+    <radio id="radio0" label="職業1" />
+    <radio id="radio1" label="職業2" />
+    <radio id="radio2" label="職業3" />
+  </radio_group>
 
   <!-- ■職業説明 -->
   <!-- ・概要 -->
-  <chrome id="sprframe" use_def="frame" x="item0.right+16" y="item0.y-8" width="280" height="180" />
+  <chrome id="sprframe" use_def="frame" x="96" y="32" width="280" height="180" />
   <text id="txtdetail" use_def="pixelmplus10" text="職業説明" x="sprframe.x+16" y="sprframe.y+8" width="180" align="left" />
   
   <!-- ・ステータス -->
