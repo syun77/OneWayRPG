@@ -1,4 +1,6 @@
 package jp_2dgames.game.sequence;
+import flixel.math.FlxMath;
+import jp_2dgames.lib.MyShake;
 import jp_2dgames.game.gui.message.UIMsg;
 import jp_2dgames.game.gui.DialogPopupUI;
 import jp_2dgames.game.shop.Shop;
@@ -106,10 +108,16 @@ class DgSearch extends FlxFSMState<SeqMgr> {
       // 残りHPの30%ダメージ
       var hp = player.hp;
       var v = Std.int(hp * 0.3);
-      if(v < 3) {
-        v = 3;
+      if(v < 1) {
+        v = 1;
       }
       player.damage(v);
+      // 画面揺らす
+      {
+        var ratio = v / player.hpmax;
+        var val = FlxMath.lerp(0.01, 0.05, ratio);
+        FlxG.camera.shake(val, 0.1 + (val * 10));
+      }
       var px = player.xcenter;
       var py = player.ycenter;
       // ダメージエフェクト
