@@ -21,6 +21,12 @@
     <radio id="radio1" label="職業2" />
     <radio id="radio2" label="職業3" />
   </radio_group>
+  
+  <!-- ■決定ボタン -->
+  <button id="btndecide" label="決定" x="8" y="208" width="64">
+    <text use_def="pixelmplus10" />
+    <param type="string" value="decide" />
+  </button>
 
   <!-- ■職業説明 -->
   <!-- ・概要 -->

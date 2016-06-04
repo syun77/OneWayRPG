@@ -1,12 +1,11 @@
 package jp_2dgames.game.state;
 
-import flixel.addons.ui.FlxUICheckBox;
+import jp_2dgames.game.global.Global;
+import flixel.FlxG;
 import flixel.addons.ui.FlxUIRadioGroup;
 import jp_2dgames.game.item.ItemList;
 import jp_2dgames.game.dat.ItemDB;
 import flixel.addons.ui.FlxUIText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import jp_2dgames.game.dat.ClassDB;
 import flixel.addons.ui.FlxUITypedButton;
 import flixel.addons.ui.FlxUIButton;
@@ -26,6 +25,7 @@ class MakeCharacterState extends FlxUIState {
   var _txtAgi:FlxUIText;
   var _txtItems:Map<String, FlxUIText>;
   var _txtSkill:FlxUIText;
+  var _radioClasses:FlxUIRadioGroup;
 
   /**
    * 生成
@@ -39,7 +39,6 @@ class MakeCharacterState extends FlxUIState {
     // アイテムマップの生成
     _txtItems = new Map<String, FlxUIText>();
 
-    var idx:Int = 0;
     _ui.forEachOfType(IFlxUIWidget, function(widget:IFlxUIWidget) {
       switch(widget.name) {
         case "txtdetail": _txtDetail = cast widget;
@@ -49,14 +48,14 @@ class MakeCharacterState extends FlxUIState {
         case "txtagi":    _txtAgi    = cast widget;
         case "txtskill":  _txtSkill  = cast widget;
         case "radio_classes":
-          var radioGroup:FlxUIRadioGroup = cast widget;
+          _radioClasses = cast widget;
           // 0番目を選択する
-          radioGroup.selectedIndex = 0;
+          _radioClasses.selectedIndex = 0;
           // ラベル更新
-          for(i in 0...radioGroup.numRadios) {
+          for(i in 0..._radioClasses.numRadios) {
             var kind = ClassDB.idxToKind(i);
             var name = ClassDB.getName(kind);
-            radioGroup.updateLabel(i, name);
+            _radioClasses.updateLabel(i, name);
           }
         default:
           if(widget.name.indexOf("item") != -1) {
@@ -67,13 +66,6 @@ class MakeCharacterState extends FlxUIState {
           }
       }
 
-      if(Std.is(widget, FlxUIButton)) {
-        // スライドイン表示
-        var px = widget.x;
-        widget.x = -widget.width*2;
-        FlxTween.tween(widget, {x:px}, 0.5, {ease:FlxEase.expoOut, startDelay:idx*0.05});
-        idx++;
-      }
     });
 
     // 0番目を選択
@@ -105,14 +97,18 @@ class MakeCharacterState extends FlxUIState {
 
     var widget:IFlxUIWidget = cast sender;
     if(Std.is(widget, FlxUIRadioGroup)) {
-      // 項目を選択した
-      var radio:FlxUIRadioGroup = cast widget;
-      _cbClickRadioButton(radio.selectedIndex);
+      // ラジオボタン
+      switch(id) {
+        case FlxUIRadioGroup.CLICK_EVENT:
+          // 項目を選択した
+          var radio:FlxUIRadioGroup = cast widget;
+          _cbClickRadioButton(radio.selectedIndex);
+      }
       return;
     }
 
     if(Std.is(widget, FlxUIButton)) {
-
+      // ボタン
       var fuib:FlxUIButton = cast widget;
       switch(id) {
         case FlxUITypedButton.CLICK_EVENT:
@@ -129,7 +125,13 @@ class MakeCharacterState extends FlxUIState {
    * ボタンクリックのコールバック
    **/
   function _cbClick(name:String):Void {
-
+    switch(name) {
+      case "decide":
+        // 決定
+        var kind = ClassDB.idxToKind(_radioClasses.selectedIndex);
+        Global.setClassKind(kind);
+        FlxG.switchState(new PlayInitState());
+    }
   }
 
   /**

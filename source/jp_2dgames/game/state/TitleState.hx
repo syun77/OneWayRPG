@@ -33,7 +33,7 @@ class TitleState extends FlxState {
     });
 
     var btn = new FlxButton(FlxG.width/2, FlxG.height*0.7, "CLICK HERE", function() {
-      FlxG.switchState(new PlayInitState());
+      FlxG.switchState(new MakeCharacterState());
     });
     btn.x -= btn.width/2;
     this.add(btn);

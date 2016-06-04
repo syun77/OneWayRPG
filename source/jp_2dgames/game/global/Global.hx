@@ -32,6 +32,8 @@ class Global {
   static var _killEnemies:Int;
   // ボス開始メッセージを表示したかどうか
   static var _bDispBossNotice:Bool;
+  // 選択した職業
+  static var _classKind:ClassesKind = ClassesKind.Fighter;
 
   public static var level(get, never):Int;
   public static var money(get, never):Int;
@@ -56,13 +58,12 @@ class Global {
     _player = new Params();
     _player.id = EnemiesKind.Player;
 
-    // TODO: 職業は戦士とする
-    var kind = ClassesKind.Fighter;
-    _player.setFromKind(kind);
+    // 職業設定
+    _player.setFromKind(_classKind);
 
     // アイテム初期化
     ItemList.createInstance();
-    var items = ClassDB.getItems(kind);
+    var items = ClassDB.getItems(_classKind);
     for(itemid in items) {
       var item = ItemUtil.add(itemid);
       ItemList.push(item);
@@ -130,6 +131,9 @@ class Global {
   }
   public static function setDispBossNotice(b:Bool):Void {
     _bDispBossNotice = b;
+  }
+  public static function setClassKind(kind:ClassesKind):Void {
+    _classKind = kind;
   }
 
   // -----------------------------------------------
