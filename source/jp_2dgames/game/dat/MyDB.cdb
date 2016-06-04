@@ -704,7 +704,7 @@
 					"extval": 0,
 					"hp": 3,
 					"ext": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "PortionHp05",
@@ -723,7 +723,7 @@
 					"extval": 0,
 					"hp": 5,
 					"ext": 0,
-					"cd": 4
+					"cd": 3
 				},
 				{
 					"id": "PortionHp10",
@@ -742,7 +742,7 @@
 					"extval": 0,
 					"hp": 10,
 					"ext": 0,
-					"cd": 5
+					"cd": 4
 				},
 				{
 					"id": "PortionDex5",
@@ -761,7 +761,7 @@
 					"ext": 1,
 					"extval": 5,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "PortionDex10",
@@ -780,7 +780,7 @@
 					"ext": 1,
 					"extval": 10,
 					"hp": 0,
-					"cd": 4
+					"cd": 3
 				},
 				{
 					"id": "PortionEva5",
@@ -799,7 +799,7 @@
 					"detail": "回避率5%上昇",
 					"detail_last": "回避率15％上昇",
 					"buy": 40,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "PortionEva10",
@@ -818,7 +818,7 @@
 					"detail": "回避率10％上昇",
 					"detail_last": "回避率30％上昇",
 					"buy": 100,
-					"cd": 4
+					"cd": 3
 				},
 				{
 					"id": "StickWood",
@@ -837,7 +837,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickHard",
@@ -856,7 +856,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickBronze",
@@ -875,7 +875,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickFire",
@@ -894,7 +894,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickFlame",
@@ -913,7 +913,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickShot",
@@ -932,7 +932,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickEnergy",
@@ -951,7 +951,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickMissile",
@@ -970,7 +970,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickSilver",
@@ -989,7 +989,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickPlastic",
@@ -1008,7 +1008,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickIron",
@@ -1027,7 +1027,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickDecay",
@@ -1046,7 +1046,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickIce",
@@ -1065,7 +1065,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickFreeze",
@@ -1084,7 +1084,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickGold",
@@ -1103,7 +1103,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickPlatinum",
@@ -1122,7 +1122,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickCurse",
@@ -1141,7 +1141,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickEvil",
@@ -1160,7 +1160,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickPoison",
@@ -1179,7 +1179,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickDarken",
@@ -1198,7 +1198,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickParalyze",
@@ -1217,7 +1217,7 @@
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
-					"cd": 3
+					"cd": 2
 				},
 				{
 					"id": "StickStop",
@@ -1236,7 +1236,7 @@
 					"detail": "",
 					"detail_last": "",
 					"buy": 30,
-					"cd": 3
+					"cd": 2
 				}
 			],
 			"separators": [],
@@ -1615,7 +1615,7 @@
 							"item": "StickHard"
 						}
 					],
-					"hp": 7,
+					"hp": 10,
 					"dex": 0,
 					"agi": 0,
 					"food": 10,
@@ -1626,7 +1626,7 @@
 				},
 				{
 					"id": "Magician",
-					"hp": 5,
+					"hp": 7,
 					"items": [
 						{
 							"item": "StickFire"
@@ -1648,7 +1648,7 @@
 				},
 				{
 					"id": "Ranger",
-					"hp": 7,
+					"hp": 8,
 					"items": [
 						{
 							"item": "StickWood"
@@ -1658,7 +1658,7 @@
 						}
 					],
 					"special": "PortionEva10",
-					"food": 10,
+					"food": 20,
 					"vit": 0,
 					"dex": 3,
 					"agi": 1,
