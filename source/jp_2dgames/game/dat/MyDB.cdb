@@ -881,8 +881,8 @@
 					"id": "StickFire",
 					"category": 1,
 					"name": "火の棒",
-					"min": 2,
-					"max": 3,
+					"min": 5,
+					"max": 6,
 					"power": 1,
 					"hit": 1,
 					"attr": "Fire",
@@ -900,8 +900,8 @@
 					"id": "StickFlame",
 					"category": 1,
 					"name": "火炎の棒",
-					"min": 2,
-					"max": 3,
+					"min": 4,
+					"max": 5,
 					"power": 2,
 					"hit": 1,
 					"attr": "Fire",
@@ -914,6 +914,25 @@
 					"extval": 0,
 					"hp": 0,
 					"cd": 2
+				},
+				{
+					"id": "StickHellFire",
+					"category": 1,
+					"name": "業火の棒",
+					"min": 3,
+					"max": 4,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 4,
+					"hit": 0.95,
+					"attr": "Fire",
+					"count": 1,
+					"bst": "None",
+					"detail": "",
+					"cd": 0,
+					"detail_last": "",
+					"buy": 25
 				},
 				{
 					"id": "StickShot",
@@ -1052,14 +1071,14 @@
 					"id": "StickIce",
 					"category": 1,
 					"name": "氷の棒",
-					"min": 2,
-					"max": 3,
+					"min": 5,
+					"max": 6,
 					"power": 2,
 					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
-					"buy": 5,
+					"buy": 15,
 					"detail_last": "",
 					"bst": "None",
 					"ext": 0,
@@ -1071,20 +1090,39 @@
 					"id": "StickFreeze",
 					"category": 1,
 					"name": "氷結の棒",
-					"min": 2,
-					"max": 3,
+					"min": 4,
+					"max": 5,
 					"power": 3,
 					"hit": 1,
 					"attr": "Ice",
 					"count": 1,
 					"detail": "",
-					"buy": 10,
+					"buy": 30,
 					"detail_last": "",
 					"bst": "None",
 					"ext": 0,
 					"extval": 0,
 					"hp": 0,
 					"cd": 2
+				},
+				{
+					"id": "StickBlizzard",
+					"category": 1,
+					"name": "ブリザードの棒",
+					"min": 3,
+					"max": 0,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 4,
+					"hit": 0.95,
+					"attr": "Ice",
+					"count": 1,
+					"bst": "None",
+					"detail": "",
+					"cd": 0,
+					"detail_last": "",
+					"buy": 40
 				},
 				{
 					"id": "StickGold",
@@ -1231,12 +1269,69 @@
 					"power": 3,
 					"hit": 0.5,
 					"attr": "Phys",
-					"count": 0,
+					"count": 1,
 					"bst": "Stan",
 					"detail": "",
 					"detail_last": "",
 					"buy": 30,
 					"cd": 2
+				},
+				{
+					"id": "SkillHeadBash",
+					"category": 1,
+					"name": "ヘッドバッシュ",
+					"min": 0,
+					"max": 0,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 4,
+					"hit": 0.9,
+					"attr": "Phys",
+					"count": 1,
+					"bst": "Blind",
+					"detail": "",
+					"cd": 2,
+					"detail_last": "",
+					"buy": 0
+				},
+				{
+					"id": "SkillTripleFire",
+					"category": 1,
+					"name": "連撃の炎",
+					"min": 0,
+					"max": 0,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 1,
+					"hit": 0.95,
+					"attr": "Fire",
+					"count": 3,
+					"bst": "None",
+					"detail": "",
+					"cd": 2,
+					"detail_last": "",
+					"buy": 0
+				},
+				{
+					"id": "SkillLegSnipe",
+					"category": 1,
+					"name": "レッグスナイプ",
+					"min": 0,
+					"max": 0,
+					"hp": 0,
+					"ext": 0,
+					"extval": 0,
+					"power": 1,
+					"hit": 0.8,
+					"attr": "Gun",
+					"count": 5,
+					"bst": "Paralyze",
+					"detail": "",
+					"cd": 3,
+					"detail_last": "",
+					"buy": 0
 				}
 			],
 			"separators": [],
@@ -1331,13 +1426,19 @@
 					"start": 1,
 					"end": 5,
 					"item": "StickFire",
+					"ratio": 100
+				},
+				{
+					"start": 2,
+					"end": 5,
+					"item": "StickFlame",
 					"ratio": 50
 				},
 				{
 					"start": 4,
 					"end": 5,
-					"item": "StickFlame",
-					"ratio": 10
+					"item": "StickHellFire",
+					"ratio": 20
 				},
 				{
 					"start": 2,
@@ -1382,16 +1483,22 @@
 					"ratio": 10
 				},
 				{
-					"start": 3,
+					"start": 2,
 					"end": 5,
 					"item": "StickIce",
+					"ratio": 100
+				},
+				{
+					"start": 3,
+					"end": 5,
+					"item": "StickFreeze",
 					"ratio": 50
 				},
 				{
 					"start": 4,
 					"end": 5,
-					"item": "StickFreeze",
-					"ratio": 20
+					"item": "StickBlizzard",
+					"ratio": 10
 				},
 				{
 					"start": 3,
@@ -1424,20 +1531,20 @@
 					"ratio": 10
 				},
 				{
-					"start": 0,
-					"end": 0,
+					"start": 2,
+					"end": 5,
 					"item": "StickParalyze",
 					"ratio": 10
 				},
 				{
-					"start": 0,
-					"end": 0,
+					"start": 2,
+					"end": 5,
 					"item": "StickDarken",
 					"ratio": 10
 				},
 				{
-					"start": 0,
-					"end": 0,
+					"start": 2,
+					"end": 5,
 					"item": "StickStop",
 					"ratio": 10
 				}
@@ -1624,43 +1731,43 @@
 						}
 					],
 					"hp": 10,
-					"dex": 0,
+					"dex": 1,
 					"agi": 0,
 					"food": 10,
 					"vit": 0,
-					"special": "PortionHp03",
-					"detail": "平均的な能力を持った冒険者",
+					"special": "SkillHeadBash",
+					"detail": "物理攻撃が得意な冒険者",
 					"name": "戦士",
 					"drops": [
 						{
 							"attr": "Phys",
-							"ratio": 2
+							"ratio": 1.25
 						},
-						{
-							"attr": "Gun",
-							"ratio": 0.5
-						},
-						{
-							"attr": "Fire",
-							"ratio": 0.25
-						},
-						{
-							"attr": "Ice",
-							"ratio": 0.25
-						}
-					],
-					"hits": [
 						{
 							"attr": "Gun",
 							"ratio": 0.8
 						},
 						{
 							"attr": "Fire",
-							"ratio": 0.5
+							"ratio": 0.6
 						},
 						{
 							"attr": "Ice",
-							"ratio": 0.5
+							"ratio": 0.6
+						}
+					],
+					"hits": [
+						{
+							"attr": "Gun",
+							"ratio": 0.9
+						},
+						{
+							"attr": "Fire",
+							"ratio": 0.8
+						},
+						{
+							"attr": "Ice",
+							"ratio": 0.8
 						}
 					]
 				},
@@ -1678,7 +1785,7 @@
 							"item": "StickIce"
 						}
 					],
-					"special": "StickFlame",
+					"special": "SkillTripleFire",
 					"food": 10,
 					"vit": 0,
 					"dex": 0,
@@ -1688,29 +1795,29 @@
 					"drops": [
 						{
 							"attr": "Phys",
-							"ratio": 0.5
+							"ratio": 0.75
 						},
 						{
 							"attr": "Gun",
-							"ratio": 0.25
+							"ratio": 0.6
 						},
 						{
 							"attr": "Fire",
-							"ratio": 2
+							"ratio": 1.25
 						},
 						{
 							"attr": "Ice",
-							"ratio": 2
+							"ratio": 1.25
 						}
 					],
 					"hits": [
 						{
 							"attr": "Phys",
-							"ratio": 0.8
+							"ratio": 0.9
 						},
 						{
 							"attr": "Gun",
-							"ratio": 0.5
+							"ratio": 0.8
 						}
 					]
 				},
@@ -1728,7 +1835,7 @@
 							"item": "StickEnergy"
 						}
 					],
-					"special": "PortionEva10",
+					"special": "SkillLegSnipe",
 					"food": 10,
 					"vit": 0,
 					"dex": 3,
@@ -1738,7 +1845,7 @@
 					"drops": [
 						{
 							"attr": "Gun",
-							"ratio": 3
+							"ratio": 1.25
 						}
 					],
 					"hits": [
@@ -1748,13 +1855,51 @@
 						},
 						{
 							"attr": "Fire",
-							"ratio": 0.6
+							"ratio": 0.8
 						},
 						{
-							"attr": "None",
-							"ratio": 0.6
+							"attr": "Ice",
+							"ratio": 0.8
 						}
 					]
+				},
+				{
+					"id": "Hero",
+					"name": "勇者",
+					"hp": 9,
+					"items": [
+						{
+							"item": "StickWood"
+						},
+						{
+							"item": "StickHard"
+						}
+					],
+					"special": "PortionHp03",
+					"food": 10,
+					"vit": 0,
+					"dex": 0,
+					"agi": 0,
+					"hits": [
+						{
+							"attr": "Phys",
+							"ratio": 0.9
+						},
+						{
+							"attr": "Gun",
+							"ratio": 0.9
+						},
+						{
+							"attr": "Fire",
+							"ratio": 0.9
+						},
+						{
+							"attr": "Ice",
+							"ratio": 0.9
+						}
+					],
+					"drops": [],
+					"detail": "オールマイティに戦える冒険者"
 				}
 			],
 			"separators": [],

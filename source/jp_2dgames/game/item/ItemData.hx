@@ -48,6 +48,8 @@ class ItemData {
     if(bSpecial) {
       // スペシャルはクールダウンが必要
       resetCoolDown();
+      // スキル使用ターンはクールダウンしない
+      now++;
       return;
     }
 

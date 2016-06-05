@@ -20,6 +20,7 @@
     <radio id="radio0" label="職業1" />
     <radio id="radio1" label="職業2" />
     <radio id="radio2" label="職業3" />
+    <radio id="radio3" label="職業4" />
   </radio_group>
   
   <!-- ■決定ボタン -->
