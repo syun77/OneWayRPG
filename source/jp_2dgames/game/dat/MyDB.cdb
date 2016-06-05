@@ -1328,10 +1328,10 @@
 					"ratio": 10
 				},
 				{
-					"start": 2,
+					"start": 1,
 					"end": 5,
 					"item": "StickFire",
-					"ratio": 100
+					"ratio": 50
 				},
 				{
 					"start": 4,
@@ -1599,6 +1599,14 @@
 					"display": null
 				},
 				{
+					"typeStr": "8",
+					"name": "hits"
+				},
+				{
+					"typeStr": "8",
+					"name": "drops"
+				},
+				{
 					"typeStr": "1",
 					"name": "detail",
 					"display": null
@@ -1622,17 +1630,49 @@
 					"vit": 0,
 					"special": "PortionHp03",
 					"detail": "平均的な能力を持った冒険者",
-					"name": "戦士"
+					"name": "戦士",
+					"drops": [
+						{
+							"attr": "Phys",
+							"ratio": 2
+						},
+						{
+							"attr": "Gun",
+							"ratio": 0.5
+						},
+						{
+							"attr": "Fire",
+							"ratio": 0.25
+						},
+						{
+							"attr": "Ice",
+							"ratio": 0.25
+						}
+					],
+					"hits": [
+						{
+							"attr": "Gun",
+							"ratio": 0.8
+						},
+						{
+							"attr": "Fire",
+							"ratio": 0.5
+						},
+						{
+							"attr": "Ice",
+							"ratio": 0.5
+						}
+					]
 				},
 				{
 					"id": "Magician",
 					"hp": 7,
 					"items": [
 						{
-							"item": "StickFire"
+							"item": "StickWood"
 						},
 						{
-							"item": "StickFlame"
+							"item": "StickFire"
 						},
 						{
 							"item": "StickIce"
@@ -1644,7 +1684,35 @@
 					"dex": 0,
 					"agi": 4,
 					"detail": "魔法が得意な冒険者",
-					"name": "魔法使い"
+					"name": "魔法使い",
+					"drops": [
+						{
+							"attr": "Phys",
+							"ratio": 0.5
+						},
+						{
+							"attr": "Gun",
+							"ratio": 0.25
+						},
+						{
+							"attr": "Fire",
+							"ratio": 2
+						},
+						{
+							"attr": "Ice",
+							"ratio": 2
+						}
+					],
+					"hits": [
+						{
+							"attr": "Phys",
+							"ratio": 0.8
+						},
+						{
+							"attr": "Gun",
+							"ratio": 0.5
+						}
+					]
 				},
 				{
 					"id": "Gunner",
@@ -1666,7 +1734,27 @@
 					"dex": 3,
 					"agi": 1,
 					"detail": "銃の扱いが得意な冒険者",
-					"name": "射撃手"
+					"name": "射撃手",
+					"drops": [
+						{
+							"attr": "Gun",
+							"ratio": 3
+						}
+					],
+					"hits": [
+						{
+							"attr": "Phys",
+							"ratio": 0.8
+						},
+						{
+							"attr": "Fire",
+							"ratio": 0.6
+						},
+						{
+							"attr": "None",
+							"ratio": 0.6
+						}
+					]
 				}
 			],
 			"separators": [],
@@ -1869,6 +1957,46 @@
 			],
 			"separators": [],
 			"props": {}
+		},
+		{
+			"name": "classes@drops",
+			"props": {
+				"hide": true
+			},
+			"separators": [],
+			"lines": [],
+			"columns": [
+				{
+					"typeStr": "6:attributes",
+					"name": "attr",
+					"display": null
+				},
+				{
+					"typeStr": "4",
+					"name": "ratio",
+					"display": 1
+				}
+			]
+		},
+		{
+			"name": "classes@hits",
+			"props": {
+				"hide": true
+			},
+			"separators": [],
+			"lines": [],
+			"columns": [
+				{
+					"typeStr": "6:attributes",
+					"name": "attr",
+					"display": null
+				},
+				{
+					"typeStr": "4",
+					"name": "ratio",
+					"display": 1
+				}
+			]
 		}
 	],
 	"customTypes": [],

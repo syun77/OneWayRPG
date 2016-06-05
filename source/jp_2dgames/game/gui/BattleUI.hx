@@ -282,7 +282,7 @@ class BattleUI extends FlxSpriteGroup {
       _txtAtkEnemy.text = '${damage}';
       // 命中率
       var hit = EnemyDB.getHit(enemy.id);
-      hit = BtlCalc.hit(hit, enemy, player);
+      hit = BtlCalc.hit(hit, enemy, player, Attribute.None);
       _txtHitEnemy.text = '(${hit}%)';
     }
 

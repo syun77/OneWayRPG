@@ -39,7 +39,8 @@ class ItemLottery {
    * コンストラクタ
    **/
   public function new(level:Int) {
-    _generator = ItemLotteryDB.createGenerator(level);
+    var kind = Global.getPlayerParam().kind;
+    _generator = ItemLotteryDB.createGenerator(level, kind);
     _clearLastLottery();
   }
 

@@ -1,5 +1,7 @@
 package jp_2dgames.game.dat;
 
+import jp_2dgames.game.dat.AttributeUtil;
+import jp_2dgames.game.dat.AttributeUtil.Attribute;
 import jp_2dgames.game.dat.MyDB;
 
 /**
@@ -39,6 +41,29 @@ class ClassDB {
       ret.push(item.item.id);
     }
     return ret;
+  }
+
+  public static function getHit(id:ClassesKind, attr:Attribute):Float {
+    var hits = get(id).hits;
+    for(hit in hits) {
+      if(attr == AttributeUtil.fromKind(hit.attr.id)) {
+        return hit.ratio;
+      }
+    }
+
+    return 1.0;
+  }
+
+  public static function getDrop(id:ClassesKind, attr:AttributesKind):Float {
+    var drops = get(id).drops;
+    for(drop in drops) {
+      if(attr == drop.attr.id) {
+        return drop.ratio;
+      }
+    }
+
+    // 見つからなかった
+    return 0;
   }
 
   public static function getSpecial(id:ClassesKind):ItemsKind {

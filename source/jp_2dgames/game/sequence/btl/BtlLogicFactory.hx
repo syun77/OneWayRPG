@@ -132,7 +132,7 @@ class BtlLogicFactory {
    * ダメージのLogicDataを作成
    **/
   static function _createDamage(ret:List<BtlLogicData>, prm:DamageParam):Bool {
-    var ratio = BtlCalc.hit(prm.hit, prm.actor, prm.target);
+    var ratio = BtlCalc.hit(prm.hit, prm.actor, prm.target, prm.attr);
     if(FlxG.random.bool(ratio)) {
       // 命中
       // シールドチェック

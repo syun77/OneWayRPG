@@ -1,5 +1,7 @@
 package jp_2dgames.game.sequence.btl;
 
+import jp_2dgames.game.dat.ClassDB;
+import jp_2dgames.game.actor.BtlGroupUtil.BtlGroup;
 import jp_2dgames.game.dat.AttributeUtil.Attribute;
 import jp_2dgames.game.actor.BadStatusUtil.BadStatus;
 import jp_2dgames.game.dat.EnemyDB;
@@ -30,7 +32,7 @@ class BtlCalc {
    * 命中率補正(*)
    **/
   public static function hitMulti(actor:Actor):Float {
-    var ret = hit(100, actor, null);
+    var ret = hit(100, actor, null, Attribute.None);
     return ret / 100;
   }
 
@@ -38,13 +40,19 @@ class BtlCalc {
    * 回避率補正(+)
    **/
   public static function evadePlus(actor:Actor):Int {
-    var ret = hit(100, null, actor);
+    var ret = hit(100, null, actor, Attribute.None);
     return Std.int(100 - ret);
   }
 
-  public static function hit(ratio:Int, actor:Actor, target:Actor):Int {
+  public static function hit(ratio:Int, actor:Actor, target:Actor, attr:Attribute):Int {
 
     var ret:Float = ratio;
+
+    if(actor != null && actor.group == BtlGroup.Player) {
+      // プレイヤーのみ命中率補正
+      var multipul = ClassDB.getHit(actor.params.kind, attr);
+      ret *= multipul;
+    }
 
     if(actor != null) {
       // 回避回数に応じて命中率変化 (1.1^cnt)
@@ -86,7 +94,7 @@ class BtlCalc {
     // 補正値なしの命中率を取得
     var ratio:Int = prm.ratioRaw;
 
-    return hit(ratio, actor, target);
+    return hit(ratio, actor, target, prm.attr);
   }
 
   /**

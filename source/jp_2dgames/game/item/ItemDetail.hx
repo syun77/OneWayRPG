@@ -48,7 +48,7 @@ class ItemDetail {
     ret.power = ItemUtil.getPower(item) + str;
     ret.count = ItemUtil.getCount(item);
     var attr  = ItemUtil.getAttribute(item);
-    ret.hit   = BtlCalc.hit(ItemUtil.getHit(item), player, enemy);
+    ret.hit   = BtlCalc.hit(ItemUtil.getHit(item), player, enemy, attr);
     ret.sum   = ItemUtil.calcDamage(owner, item, true, resists);
     if(item.isLast()) {
       // 最後の一撃

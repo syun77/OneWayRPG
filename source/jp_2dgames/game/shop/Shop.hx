@@ -1,4 +1,5 @@
 package jp_2dgames.game.shop;
+import jp_2dgames.game.global.Global;
 import jp_2dgames.game.item.ItemUtil;
 import jp_2dgames.game.dat.ItemLotteryDB;
 import jp_2dgames.game.item.ItemData;
@@ -42,7 +43,8 @@ class Shop {
    **/
   function _create(level:Int):Void {
     _items = new Array<ItemData>();
-    var gen = ItemLotteryDB.createGenerator(level);
+    var kind = Global.getPlayerParam().kind;
+    var gen = ItemLotteryDB.createGenerator(level, kind);
     for(i in 0...3) {
       var id = gen.exec();
       var item = ItemUtil.add(id);
