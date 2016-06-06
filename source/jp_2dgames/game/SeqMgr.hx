@@ -106,6 +106,8 @@ class SeqMgr extends FlxBasic {
       .add(DgSearch,   DgSearch2,   Conditions.isEndWait)   // 探索中...    -> 探索実行
       .add(DgSearch2,  BtlBoot,     Conditions.isAppearEnemy) // 探索中...  -> 敵に遭遇
       .add(DgSearch2,  DgGain,      Conditions.isItemGain)  // 探索中...    -> アイテム獲得
+      .add(DgSearch2,  DgBossNotice,Conditions.isBossNotice)// 探索中...    -> ボス出現警告
+      .add(DgSearch2,  DgShopFind,  Conditions.isShopFind)  // 探索中...    -> ショップを見つけた
       .add(DgSearch2,  DgSearch,    Conditions.isEventNone) // 探索中...    -> 再び探索
       .add(DgSearch2,  Dg,          Conditions.isEndWait)   // 探索中...    -> ダンジョンに戻る
       // ダンジョン - 探索 - アイテム獲得
@@ -113,6 +115,10 @@ class SeqMgr extends FlxBasic {
       .add(DgGain,     Dg,          Conditions.isEndWait)   // アイテム獲得  -> ダンジョンに戻る
       // ダンジョン - 探索 - アイテム一杯
       .add(DgItemFull, Dg,          Conditions.isEndWait)   // アイテム一杯  -> ダンジョンに戻る
+      // ダンジョン - 探索 - ボス出現警告
+      .add(DgBossNotice, Dg,        Conditions.isEndWait)   // ボス出現警告  -> ダンジョンに戻る
+      // ダンジョン - 探索 - ショップ発見
+      .add(DgShopFind, DgShop,      Conditions.isEndWait)   // ショップ発見  -> ダンジョンに戻る
 
       // ダンジョン - 休憩
       .add(DgRest,     Dg,          Conditions.isEndWait)   // 休憩         -> ダンジョン
@@ -405,6 +411,14 @@ private class Conditions {
   public static function isItemGain(owner:SeqMgr):Bool {
     // アイテム獲得したかどうか
     return DgEventMgr.event == DgEvent.Itemget;
+  }
+  public static function isBossNotice(owner:SeqMgr):Bool {
+    // ボス出現前メッセージ
+    return DgEventMgr.event == DgEvent.BossNotice;
+  }
+  public static function isShopFind(owner:SeqMgr):Bool {
+    // ショップ出現
+    return DgEventMgr.event == DgEvent.ShopFind;
   }
   public static function isItemFull(owner:SeqMgr):Bool {
     // アイテムが一杯かどうか

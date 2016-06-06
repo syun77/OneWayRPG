@@ -7,6 +7,7 @@ import jp_2dgames.lib.CsvLoader;
  **/
 class UIMsg {
   public static inline var BOSS_NOTICE:Int          = 1;  // ボス出現前メッセージ
+  public static inline var SHOP_FIND:Int            = 2;  // ショップ発見メッセージ
 
   private static var _csv:CsvLoader = null;
   /**

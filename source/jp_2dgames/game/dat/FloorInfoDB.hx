@@ -24,4 +24,20 @@ class FloorInfoDB {
   public static function getBoss(level:Int):EnemiesKind {
     return get(level).boss.id;
   }
+
+  /**
+   * ショップが出現するかどうか
+   **/
+  public static function isAppearShop(level:Int, step:Int):Bool {
+    var shops = get(level).shops;
+    for(shop in shops) {
+      if(shop.step == step) {
+        // 出現する
+        return true;
+      }
+    }
+
+    // 出現しない
+    return false;
+  }
 }

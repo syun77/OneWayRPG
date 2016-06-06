@@ -1,4 +1,5 @@
 package jp_2dgames.game.shop;
+import jp_2dgames.game.dat.FloorInfoDB;
 import jp_2dgames.game.global.Global;
 import jp_2dgames.game.item.ItemUtil;
 import jp_2dgames.game.dat.ItemLotteryDB;
@@ -19,6 +20,15 @@ class Shop {
   }
   public static function get():Array<ItemData> {
     return _instance._items;
+  }
+  public static function isAppear():Bool {
+    if(isEmpty()) {
+      return false;
+    }
+    if(FloorInfoDB.isAppearShop(Global.level, Global.step) == false) {
+      return false;
+    }
+    return true;
   }
   public static function isEmpty():Bool {
     return _instance._isEmpty();
@@ -45,7 +55,7 @@ class Shop {
     _items = new Array<ItemData>();
     var kind = Global.getPlayerParam().kind;
     var gen = ItemLotteryDB.createGenerator(level, kind);
-    for(i in 0...3) {
+    for(i in 0...5) {
       var id = gen.exec();
       var item = ItemUtil.add(id);
       _items.push(item);

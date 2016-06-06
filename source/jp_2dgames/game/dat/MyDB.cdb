@@ -533,6 +533,11 @@
 					"display": null
 				},
 				{
+					"typeStr": "8",
+					"name": "shops",
+					"display": null
+				},
+				{
 					"typeStr": "6:enemies",
 					"name": "boss",
 					"display": null
@@ -542,42 +547,78 @@
 				{
 					"floor": 1,
 					"steps": 20,
-					"boss": "SilverWolf"
+					"boss": "SilverWolf",
+					"shops": []
 				},
 				{
 					"floor": 2,
-					"steps": 20,
-					"boss": "Worm"
+					"steps": 25,
+					"boss": "Worm",
+					"shops": [
+						{
+							"step": 5
+						},
+						{
+							"step": 20
+						}
+					]
 				},
 				{
 					"floor": 3,
-					"steps": 20,
-					"boss": "Wood"
+					"steps": 25,
+					"boss": "Wood",
+					"shops": [
+						{
+							"step": 5
+						},
+						{
+							"step": 20
+						}
+					]
 				},
 				{
 					"floor": 4,
-					"steps": 20,
-					"boss": "Flower"
+					"steps": 30,
+					"boss": "Flower",
+					"shops": [
+						{
+							"step": 5
+						},
+						{
+							"step": 20
+						}
+					]
 				},
 				{
 					"floor": 5,
-					"steps": 20,
-					"boss": "BigMagician"
+					"steps": 40,
+					"boss": "BigMagician",
+					"shops": [
+						{
+							"step": 5
+						},
+						{
+							"step": 30
+						}
+					]
 				},
 				{
 					"floor": 6,
 					"steps": 20,
-					"boss": "BigMagician"
+					"boss": "BigMagician",
+					"shops": []
 				},
 				{
 					"floor": 7,
 					"steps": 20,
-					"boss": "BigMagician"
+					"boss": "BigMagician",
+					"shops": []
 				},
 				{
 					"floor": 8,
 					"steps": 20,
-					"boss": "BigMagician"
+					"boss": "BigMagician",
+					"shops": []
 				}
 			],
 			"separators": [],
@@ -2140,6 +2181,21 @@
 					"typeStr": "4",
 					"name": "ratio",
 					"display": 1
+				}
+			]
+		},
+		{
+			"name": "floorinfo@shops",
+			"props": {
+				"hide": true
+			},
+			"separators": [],
+			"lines": [],
+			"columns": [
+				{
+					"typeStr": "3",
+					"name": "step",
+					"display": null
 				}
 			]
 		}

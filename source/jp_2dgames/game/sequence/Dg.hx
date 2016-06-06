@@ -1,6 +1,5 @@
 package jp_2dgames.game.sequence;
 import flixel.math.FlxMath;
-import jp_2dgames.lib.MyShake;
 import jp_2dgames.game.gui.message.UIMsg;
 import jp_2dgames.game.gui.DialogPopupUI;
 import jp_2dgames.game.shop.Shop;
@@ -48,7 +47,7 @@ class Dg extends FlxFSMState<SeqMgr> {
     }
 
     // ショップボタンチェック
-    if(Shop.isEmpty()) {
+    if(Shop.isAppear() == false) {
       // 押せない
       BattleUI.lockButton("field", "shop");
     }
@@ -65,15 +64,6 @@ class Dg extends FlxFSMState<SeqMgr> {
     else {
       // 次のフロアにはまだ進めない
       BattleUI.lockButton("field", "nextfloor");
-    }
-
-
-    if(Global.step == 1 && Global.isDispBossNotice == false) {
-      // ボス出現前メッセージ
-      var prm = new DialogPopupUIParam();
-      prm.body = UIMsg.get(UIMsg.BOSS_NOTICE);
-      FlxG.state.openSubState(new DialogPopupUI(owner, prm));
-      Global.setDispBossNotice(true);
     }
   }
 
@@ -247,6 +237,36 @@ class DgGain extends FlxFSMState<SeqMgr> {
       // 消しておく
       ItemLottery.clearLastLottery();
     }
+  }
+}
+
+/**
+ * ダンジョン - ボス出現前警告
+ **/
+class DgBossNotice extends FlxFSMState<SeqMgr> {
+
+  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+    // ボス出現前メッセージ
+    var prm = new DialogPopupUIParam();
+    prm.body = UIMsg.get(UIMsg.BOSS_NOTICE);
+    FlxG.state.openSubState(new DialogPopupUI(owner, prm));
+  }
+}
+
+/**
+ * ダンジョン - ショップ発見
+ **/
+class DgShopFind extends FlxFSMState<SeqMgr> {
+
+  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    // ショップアイテム生成
+    Shop.create(Global.level);
+
+    // ショップ発見メッセージ
+    var prm = new DialogPopupUIParam();
+    prm.body = UIMsg.get(UIMsg.SHOP_FIND);
+    FlxG.state.openSubState(new DialogPopupUI(owner, prm));
   }
 }
 

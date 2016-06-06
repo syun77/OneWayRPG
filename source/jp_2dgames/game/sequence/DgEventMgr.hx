@@ -1,5 +1,6 @@
 package jp_2dgames.game.sequence;
 
+import jp_2dgames.game.dat.FloorInfoDB;
 import jp_2dgames.game.global.Global;
 import flixel.FlxG;
 
@@ -11,6 +12,8 @@ enum DgEvent {
   Encount; // 敵出現
   Itemget; // アイテム獲得
   Stair;   // 階段を見つけた
+  BossNotice; // ボス出現前メッセージ
+  ShopFind; // ショップ出現
 }
 
 class DgEventMgr {
@@ -60,6 +63,16 @@ class DgEventMgr {
       resetEnemyEncount();
       // 階段出現
       _bStair = true;
+      return;
+    }
+    if(Global.step == 1) {
+      // ボス出現前メッセージ
+      _event = DgEvent.BossNotice;
+      return;
+    }
+    if(FloorInfoDB.isAppearShop(Global.level, Global.step)) {
+      // ショップ出現
+      _event = DgEvent.ShopFind;
       return;
     }
 
