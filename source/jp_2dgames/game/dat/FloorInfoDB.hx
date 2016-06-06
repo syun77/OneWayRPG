@@ -40,4 +40,11 @@ class FloorInfoDB {
     // 出現しない
     return false;
   }
+
+  /**
+   * アップグレードが出現するかどうか
+   **/
+  public static function isAppearUpgrade(level:Int, step:Int):Bool {
+    return get(level).upgrade == step;
+  }
 }

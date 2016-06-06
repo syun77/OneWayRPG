@@ -538,6 +538,10 @@
 					"display": null
 				},
 				{
+					"typeStr": "3",
+					"name": "upgrade"
+				},
+				{
 					"typeStr": "6:enemies",
 					"name": "boss",
 					"display": null
@@ -548,7 +552,8 @@
 					"floor": 1,
 					"steps": 20,
 					"boss": "SilverWolf",
-					"shops": []
+					"shops": [],
+					"upgrade": 10
 				},
 				{
 					"floor": 2,
@@ -561,7 +566,8 @@
 						{
 							"step": 20
 						}
-					]
+					],
+					"upgrade": 12
 				},
 				{
 					"floor": 3,
@@ -574,7 +580,8 @@
 						{
 							"step": 20
 						}
-					]
+					],
+					"upgrade": 12
 				},
 				{
 					"floor": 4,
@@ -587,7 +594,8 @@
 						{
 							"step": 20
 						}
-					]
+					],
+					"upgrade": 15
 				},
 				{
 					"floor": 5,
@@ -600,25 +608,29 @@
 						{
 							"step": 30
 						}
-					]
+					],
+					"upgrade": 20
 				},
 				{
 					"floor": 6,
 					"steps": 20,
 					"boss": "BigMagician",
-					"shops": []
+					"shops": [],
+					"upgrade": 0
 				},
 				{
 					"floor": 7,
 					"steps": 20,
 					"boss": "BigMagician",
-					"shops": []
+					"shops": [],
+					"upgrade": 0
 				},
 				{
 					"floor": 8,
 					"steps": 20,
 					"boss": "BigMagician",
-					"shops": []
+					"shops": [],
+					"upgrade": 0
 				}
 			],
 			"separators": [],

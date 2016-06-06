@@ -1,5 +1,7 @@
 package jp_2dgames.game.state;
 
+import jp_2dgames.game.global.Global;
+import jp_2dgames.game.dat.FloorInfoDB;
 import jp_2dgames.game.particle.ParticleUtil;
 import jp_2dgames.lib.Snd;
 import jp_2dgames.game.actor.Actor;
@@ -20,6 +22,13 @@ import flixel.addons.ui.FlxUISubState;
  * メインゲーム強化メニュー
  **/
 class UpgradeSubState extends FlxUISubState {
+
+  /**
+   * 出現するかどうか
+   **/
+  public static function isAppear():Bool {
+    return FloorInfoDB.isAppearUpgrade(Global.level, Global.step);
+  }
 
   // -------------------------------------------
   // ■フィールド

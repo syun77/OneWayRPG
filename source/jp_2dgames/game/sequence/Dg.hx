@@ -52,6 +52,13 @@ class Dg extends FlxFSMState<SeqMgr> {
       BattleUI.lockButton("field", "shop");
     }
 
+    // 強化チェック
+    if(UpgradeSubState.isAppear() == false) {
+      // 押せない
+      BattleUI.lockButton("field", "upgrade");
+    }
+
+
     // 次のフロアに進めるかどうか
     if(DgEventMgr.isFoundStair()) {
       // 次のフロアに進む以外のボタンを無効にする
@@ -266,6 +273,20 @@ class DgShopFind extends FlxFSMState<SeqMgr> {
     // ショップ発見メッセージ
     var prm = new DialogPopupUIParam();
     prm.body = UIMsg.get(UIMsg.SHOP_FIND);
+    FlxG.state.openSubState(new DialogPopupUI(owner, prm));
+  }
+}
+
+/**
+ * ダンジョン - 強化発見
+ **/
+class DgUpgradeFind extends FlxFSMState<SeqMgr> {
+
+  override public function enter(owner:SeqMgr, fsm:FlxFSM<SeqMgr>):Void {
+
+    // 強化発見メッセージ
+    var prm = new DialogPopupUIParam();
+    prm.body = UIMsg.get(UIMsg.UPGRADE_FIND);
     FlxG.state.openSubState(new DialogPopupUI(owner, prm));
   }
 }
