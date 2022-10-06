@@ -212,31 +212,31 @@
 #### BtlLogic (行動種別)
 
 *   // ■行動開始
-*  BeginAttack(attr:Attribute, bMsg:Bool);  // 通常攻撃
-*  BeginLastAttack;                         // 最後の一撃
+*  BeginAttack (attr:攻撃属性, bMsg:メッセージ表示フラグ)  // 通常攻撃
+*  BeginLastAttack (引数なし)                        // 最後の一撃
 
 *  // ■行動終了
-*  EndAction(bHit:Bool);
+*  EndAction (bHit:攻撃が命中したかどうか)
 
 *  // ■アイテム消費
-*  UseItem(item:ItemData);
+*  UseItem (item:アイテム情報)
 
 *  // ■メッセージ表示
-*  MessageDisp(msgID:Int, args:Array<Dynamic>);
+*  MessageDisp (msgID:メッセージID, args:メッセージ引数)
 
 *  // ■効果反映
-*  HpDamage(val:Int, bSeq:Bool); // HPダメージ
-*  HpRecover(val:Int);           // HP回復
-*  Badstatus(bst:BadStatus);     // バッドステータス
-*  ChanceRoll(b:Bool);           // 成功 or 失敗
-*  AddFood(val:Int);             // 食糧増加
-*  ShieldDamage(val:Int, bSeq:Bool); // シールドダメージ
+*  HpDamage (val:ダメージ量, bSeq:連続ダメージかどうか) // HPダメージ
+*  HpRecover (val:回復量)          // HP回復
+*  Badstatus(bst:BadStatus);      // バッドステータス
+*  ChanceRoll (bst:付着するバッドステータス) // 成功 or 失敗
+*  AddFood (val:増加した食料の値)    // 食糧増加
+*  ShieldDamage (val:シールドへのダメージ量, bSeq:連続かどうか) // シールドダメージ
 *  // ■ステータスアップ
-*  DexUp(val:Int); // 命中率アップ
-*  EvaUp(val:Int); // 回避率アップ
+*  DexUp (val:命中率上昇値) // 命中率アップ
+*  EvaUp (val:回避率上昇値) // 回避率アップ
 
 *  // ■その他
-*  DecayItem(item:ItemData); // アイテム壊れる
-*  Dead; // 死亡
-*  TurnEnd; // ターン終了
-*  BtlEnd(bWin:Bool); // バトル終了
+*  DecayItem (item:劣化するアイテム) // アイテム壊れる
+*  Dead (引数なし。targetが死亡する) // 死亡
+*  TurnEnd (引数なし。targetのターン終了) // ターン終了
+*  BtlEnd (bWin:勝利かどうか) // バトル終了
