@@ -240,3 +240,21 @@
 *  Dead (引数なし。targetが死亡する) // 死亡
 *  TurnEnd (引数なし。targetのターン終了) // ターン終了
 *  BtlEnd (bWin:勝利かどうか) // バトル終了
+
+## ソースコード個別解説
+
+### BtlLogicPlayer.hx
+
+BtlLogicData を再生するモジュール。BtlLogicDataは以下のデータを持つ
+
+* type:BtlLogic;   // 演出種別
+* actorID:Int;     // 行動主体者
+* targetID:Int;    // 対象者
+* bWaitQuick:Bool; // 演出時間を短縮するかどうか
+_updateMain()で、BtlLogicのパラメータに対応する処理を行う。
+もし演出完了待ちがあれば、_checkWait() で待ちが発生する。
+_state が State.End になると処理が終了となる。
+
+### BtlLogicMgr.x
+
+バトルの計算や演出を管理するモジュール。
