@@ -257,4 +257,22 @@ _state が State.End になると処理が終了となる。
 
 ### BtlLogicMgr.x
 
-バトルの計算や演出を管理するモジュール。
+バトルの計算や演出を管理するモジュール。以下状態遷移について
+
+* State.Init: BtlLogicDataを先頭から取り出す。データがある場合は BtlLogicPlayer.start() で再生して State.Main へ遷移。存在しない場合は State.End へ遷移
+* State.Main: BtlLogicPlayer.update() で更新。BtlLogicPlayer.isEnd() が true を返したら終了なので、 State.Init に戻る
+* State.End: 終了
+
+_createLogic() で BtlLogicData を作成する
+
+1. ActorMgr から TempActorMgr に actor情報 をコピーする
+2. 行動順ソートをする
+3. 行動順に _createActionActor() で BtlLogicData を作成する。もしバトルが終了していたらここで中断
+4. 行動順にバステ処理とターン終了処理を行う。もしバトルが終了していたらここで中断
+
+_createActionActor() は BtlLogicData を生成する関数
+
+1. actorの死亡チェック。死亡していたら何もせず終了
+2. actorのバステチェック。麻痺していたら何もせず終了
+3. actorの側が BltGroup.Player の場合は BtlLogicFactory.createPlayerLogic() を呼び出す。側が BtlGroup.Enemy の場合は BtlLogicFactory.createEnemyLogic() を呼び出す
+4. 
