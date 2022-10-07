@@ -275,4 +275,4 @@ _createActionActor() は BtlLogicData を生成する関数
 1. actorの死亡チェック。死亡していたら何もせず終了
 2. actorのバステチェック。麻痺していたら何もせず終了
 3. actorの側が BltGroup.Player の場合は BtlLogicFactory.createPlayerLogic() を呼び出す。側が BtlGroup.Enemy の場合は BtlLogicFactory.createEnemyLogic() を呼び出す
-4. 
+4. バトル終了チェック (味方が全滅 or 敵が全滅)
